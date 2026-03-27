@@ -23,7 +23,7 @@ jobs:
         run: pip install requests
 
       - name: Run the download script
-        run: python download_extensions.py
+        run: python update_extensions.py
 
       - name: Commit and Push changes
         run: |

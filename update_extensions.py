@@ -1,34 +1,33 @@
 import requests
 import os
 import json
+import zipfile
 
-def get_firefox_versions(addon_slug):
+def get_firefox_latest(addon_slug):
     api_url = f"https://addons.mozilla.org/api/v5/addons/addon/{addon_slug}/versions/"
     data = requests.get(api_url).json()
-    versions = []
-    for v in data.get('results', []):
-        versions.append({
-            'id': v['version'],
-            'url': v['file']['url'],
-            'type': 'firefox'
-        })
-    return versions
+    latest = data.get('results', [])[0]
+    return {"version": latest['version'], "url": latest['file']['url']}
 
-def download_file(url, dest):
+def get_chrome_latest(extension_id):
+    url = f"https://clients2.google.com/service/update2/crx?response=redirect&prodversion=98.0&acceptformat=crx2,crx3&x=id%3D{extension_id}%26uc"
     r = requests.get(url)
-    with open(dest, 'wb') as f:
+    with open("temp_chrome.crx", "wb") as f:
         f.write(r.content)
+    
+    version = "unknown"
+    try:
+        with zipfile.ZipFile("temp_chrome.crx", 'r') as z:
+            with z.open('manifest.json') as f:
+                manifest = json.load(f)
+                version = manifest.get('version', 'unknown')
+    except:
+        pass
+    return {"version": version, "url": url}
 
 if __name__ == "__main__":
-    fx_versions = get_firefox_versions("better-roblox-extension")
+    fx = get_firefox_latest("better-roblox-extension")
+    ch = get_chrome_latest("lplhnhhlblehjmmkcpjbojiaanbpgnpd")
     
-    chrome_id = "lplhnhhlblehjmmkcpjbojiaanbpgnpd"
-    crx_url = f"https://clients2.google.com/service/update2/crx?response=redirect&prodversion=98.0&acceptformat=crx2,crx3&x=id%3D{chrome_id}%26uc"
-    
-    all_data = {
-        "firefox": fx_versions,
-        "chrome": [{"id": "latest", "url": crx_url, "type": "chrome"}]
-    }
-    
-    with open("versions.json", "w") as f:
-        json.dump(all_data, f)
+    with open("meta.json", "w") as f:
+        json.dump({"firefox": fx, "chrome": ch}, f)

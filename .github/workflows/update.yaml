@@ -1,4 +1,4 @@
-name: EXTENSION FETCHER AND UPDATER
+name: Extension PR Sync
 on:
   workflow_dispatch:
   schedule:
@@ -24,23 +24,25 @@ jobs:
     needs: fetch-meta
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         browser: [firefox, chrome]
     steps:
       - name: Checkout Merge Branch
         uses: actions/checkout@v4
         with:
-          # This checks out FF-merge or CR-merge
           ref: ${{ matrix.browser == 'firefox' && 'FF-merge' || 'CR-merge' }}
+          fetch-depth: 0
 
       - name: Download and Unpack
         run: |
           URL="${{ fromJson(needs.fetch-meta.outputs.matrix)[matrix.browser].url }}"
+          
           find . -maxdepth 1 ! -name '.' ! -name '..' ! -name '.git' -exec rm -rf {} +
           
           wget -O plugin.zip "$URL"
-          unzip -o plugin.zip -d .
-          rm plugin.zip
+          unzip -o plugin.zip -d . || true
+          rm -f plugin.zip
 
       - name: Push and Create PR
         env:
@@ -61,14 +63,14 @@ jobs:
 
           git add .
           if git diff --staged --quiet; then
-            echo "No changes found for $BROWSER $VER"
+            echo "No new changes for $BROWSER version $VER"
           else
             git commit -m "Sync $BROWSER to version $VER"
             git push origin "$HEAD" --force
             
             gh pr create \
-              --title "EXTENSION UPDATE: $BASE Update to $VER" \
-              --body "$BROWSER $VER. merge needed to upddate extension $BASE." \
+              --title "🚀 Update $BASE to $VER" \
+              --body "Automated sync from $BROWSER store. Version: $VER" \
               --base "$BASE" \
-              --head "$HEAD" || echo "PR already opend"
+              --head "$HEAD" || echo "PR already exists, branch updated."
           fi

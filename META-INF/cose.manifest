@@ -1,0 +1,162 @@
+Manifest-Version: 1.0
+
+Name: manifest.json
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: qNR1f9P38/sq1npjq3c62rv+7eU=
+SHA256-Digest: CO1iWWtv8KSOVt3ePWtSkb/0H1uTZYj7fwm2u2HgorY=
+
+Name: bundle.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: 8/cPqqN3fkWt8nUrGSMZTbTbDcM=
+SHA256-Digest: qc8chTnXfu/OLcna//YvezAMEi0q6DiBdaUTZR467/E=
+
+Name: vendors.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: 9N6zTJ+nXkKFcts6p/zSjjbZDp0=
+SHA256-Digest: No32J9Kpt/rWAHbjnjzeBfUktruVKj4xzfbtS4G7jRM=
+
+Name: vendors.js.LICENSE.txt
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: YxgZ022RgobXd7bk2fkFg4plw3o=
+SHA256-Digest: EYgSHYFlbzDT3/05/YAVGiGnMKTq8DRMnmi7Du4h8Eg=
+
+Name: background.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: YAX0vD/KI5k8hvItvCB7VzB0o7M=
+SHA256-Digest: rHYFzqSGr2jsNR28+FinzPhn1M8g1UJli/L2xEMZnTI=
+
+Name: youtube.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: jOlcDDEp9ULV9TVyHiFjRdwnyLg=
+SHA256-Digest: pJF/zUNvDu32OA3EbC52UiWpWEO1zyjNNjdT6NJ0VBs=
+
+Name: changelog.json
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: NtwNq0Rg84vT967MLQuOImxM2IA=
+SHA256-Digest: U74c1adh3Rff+HSkVhBTXHIKv7ov8+DKlH7r6QcnRcM=
+
+Name: net_requests/rules.json
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: Q3XMChj/o0mK17cemKpoMi5aeLI=
+SHA256-Digest: KuGFFFwEOTArOQx/xZxznc8FxVFxrNuko+5M2cfO+8I=
+
+Name: styles/tailwind.css
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: Qeccdz2YaufMuQx8f3ISTlFQXjM=
+SHA256-Digest: 1A/D6j6veQXISEIiYFpRpjRjxXzyANBEK2YWy7w/m0I=
+
+Name: betterblox-popup/shield/popup.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: HPdIPCaMquDajAlgzwi+wW1wQ+8=
+SHA256-Digest: DOS4n5M3ISTQC3P4R3LSq0q1rP9WoDlC3kWHyvsy/P4=
+
+Name: betterblox-popup/shield/popup.html
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: aU4gUl2e+YAG5PeORC8UJvHekB8=
+SHA256-Digest: t4y/0sW0mMIvVy8L3EtQjhZ4UJrlv+w5KFXzJdVLRUs=
+
+Name: betterblox-popup/default/popup.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: 3C6sC8dhMS62hojz7accJ8zVWVA=
+SHA256-Digest: YupbCh4HH07MPhcoSjnalicz7C16hI3VP2UR90Vj4mc=
+
+Name: betterblox-popup/default/popup.html
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: O00k/tZ6rPpiacQAnhEf/WOnVIw=
+SHA256-Digest: SVVt+9Auf6cHDL0ewfbmZmwJiMx1OYiCvdLmXtjUmcg=
+
+Name: betterblox-frontend/core/context_scripts/serverIdExtractor.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: mSZLFXYkJYqFUL1d7Gm6rgI4jV0=
+SHA256-Digest: e71wj7u00AwYboBRxMCTat0HyvVAb4pfJVJ3DG8MTkw=
+
+Name: betterblox-frontend/core/context_scripts/autoJoiner.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: BTiXJI5BgDGlaIvYrZ7F/8Y8Flc=
+SHA256-Digest: eA7u66rZg22ur8p2QvD90dsrsnx74GJctK67XVX2wfE=
+
+Name: betterblox-frontend/core/context_scripts/xmlhttpRequestHook.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: +ku1n4u4uygMYXnTOl4kWKAxH+I=
+SHA256-Digest: v9SnouGWq6ZtcWNt2GcjHAmIpkF1oQI2+dJA8n8iX4U=
+
+Name: icons/icon128.png
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: pXrK2U3WgH7cG1w2XB9K5RY2mRI=
+SHA256-Digest: KML6tYiKdWyPZ4X5Mb6KWjl3vhcpj6BuBoEAFz5zyQE=
+
+Name: icons/icon512.png
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: PK3/GPEvx8aLipNcHJaZ/5+Oag8=
+SHA256-Digest: NYwoGCG6KCoNtV4xHzGCvMRdbrnMfuUmb6NWgkBmAwA=
+
+Name: icons/icon48.png
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: zDxz1rSHs3FiYaZamcFIkDRK2Bs=
+SHA256-Digest: /HcmL18mKt1pfxp8NpolrSp6fNWTWpJAZh1ntjkM2do=
+
+Name: icons/icon256.png
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: 9oc+o0uLHlQouvZPOD1y13bVbCA=
+SHA256-Digest: 40kcs9BKkPE7zqaJkjki76dnusZy2YOWsrT9afK5ZLc=
+
+Name: icons/icon16.png
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: vmRtlxxd0ilKclwj3GroxSbUawE=
+SHA256-Digest: UkZCW6Ve5oVCISdwhDgCcl/jfEg2wbxlxmGRlch85p4=
+
+Name: icons/icon32.png
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: emmMsyzO2cVn33vEM+uFRle+ntM=
+SHA256-Digest: +gs3SpcRXfZq7G0YrtryPNhFtW5TTSGFtxN0nASq5zo=
+
+Name: icons/png/logo48.png
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: zDxz1rSHs3FiYaZamcFIkDRK2Bs=
+SHA256-Digest: /HcmL18mKt1pfxp8NpolrSp6fNWTWpJAZh1ntjkM2do=
+
+Name: icons/png/filter.png
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: y9rdY0hw2D+weOaPRQYt2HfiJ1M=
+SHA256-Digest: qC/oJIP8/ceVi29GEh8Q7JH54liznlDpdp2Yl8SvjT0=
+
+Name: icons/png/logo32.png
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: emmMsyzO2cVn33vEM+uFRle+ntM=
+SHA256-Digest: +gs3SpcRXfZq7G0YrtryPNhFtW5TTSGFtxN0nASq5zo=
+
+Name: icons/svg/smallest-server.svg
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: Nxra0WJhKf+3Kcc/vLDxb2+MMVE=
+SHA256-Digest: iZU+Tn/EzY6wUzwVHrP1oeuWzM6hoUor/4JgJeEN0HY=
+
+Name: icons/svg/play.svg
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: 5BIN7x5VAhOgnWOMfjcdZ4ZeY+8=
+SHA256-Digest: UYGz77vbHZ8Z4bAf2yq4UsuF6d0nQgsi1h9wI6S86d4=
+
+Name: icons/svg/player-count-server.svg
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: 8E8z3Bju4bGVjXQOyO18h5X+R98=
+SHA256-Digest: KQ5bg8ILOxFC9Ouw6jhjo4cqpDFNlHWGfV4o105ec0U=
+
+Name: icons/svg/pin-outline.svg
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: sSDaQmhQMsE9ye7miDCPP4ywIqY=
+SHA256-Digest: X+nrLtmrHStMMvvU3fvFre3i7MzOIXJPkQIvBXmS9po=
+
+Name: icons/svg/user-online.svg
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: UsWO2J2h0Gjcb/BN5hP8cm5yjGU=
+SHA256-Digest: zh1g8T+EZ30AlZ+Yzh1GxAjQ6x7TqmeCPK9cYLdslc4=
+
+Name: icons/svg/not-full-server.svg
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: Iplv+l+6ZpCv16oKNonUwAb8Vm0=
+SHA256-Digest: oZzEPDHfvmYkpNQwu7UuwO2AO7N68H5UC7GcaCNpnx0=
+
+Name: betterblox-thirdparty/content.js
+Digest-Algorithms: SHA1 SHA256
+SHA1-Digest: Wd322IkFx4pG50jbUwUL6iLQG/M=
+SHA256-Digest: qWwW22t/BGBSUiSL382PcZSBs+jaPVNTqLU0I3kDEfA=
+

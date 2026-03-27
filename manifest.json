@@ -1,0 +1,90 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "name": "BetterBLOX - Better Roblox Extension",
+  "author": "Allory Dante",
+  "homepage_url": "https://betterroblox.com",
+  "version": "2.4.3",
+  "description": "BetterBLOX is a Better Roblox Extension that shows when users were last online. Adds free server region selector and player popups.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "betterblox-popup/default/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "BetterBLOX - Last Online"
+  },
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "notifications",
+    "declarativeNetRequest",
+    "tabs",
+    "cookies",
+    "alarms",
+    "background"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ruleset_1",
+        "enabled": true,
+        "path": "net_requests/rules.json"
+      }
+    ]
+  },
+  "host_permissions": [
+    "*://*.roblox.com/*",
+    "*://*.rbxcdn.com/*",
+    "https://betterroblox.com/*",
+    "https://*.betterroblox.com/*",
+    "https://*.youtube.com/*",
+    "http://127.0.0.1:3658/*"
+  ],
+  "optional_host_permissions": ["*://*/*"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/svg/*.svg",
+        "icons/png/*.png",
+        "changelog.json",
+        "styles/tailwind.css"
+      ],
+      "matches": ["*://*/*"]
+    }
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://www.roblox.com/*", "*://roblox.com/*"],
+      "js": ["vendors.js", "bundle.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://*.youtube.com/*"],
+      "js": ["youtube.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "*://*.rbxcdn.com/*",
+        "https://*.betterroblox.com/*",
+        "https://betterroblox.com/*"
+      ],
+      "js": ["betterblox-thirdparty/content.js"],
+      "run_at": "document_end"
+    }
+  ]
+}

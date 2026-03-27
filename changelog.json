@@ -1,0 +1,394 @@
+{
+  "0.0.1": {
+    "date": "2025-01-15",
+    "changes": [
+      "Initial release of BetterBLOX",
+      "Implemented installation detection",
+      "Added basic extension framework",
+      "Added version tracking and changelog system",
+      "Added user last seen detector",
+      "Added basic best friends"
+    ]
+  },
+  "0.0.2": {
+    "date": "2025-01-17",
+    "changes": [
+      "Fixed Changelog Popup",
+      "Fixed Install Popup",
+      "Improved last seen detector",
+      "Fixed extension starts only after 1 minute after installation",
+      "Added a basic server connection quality indicator (In development)"
+    ]
+  },
+  "0.0.3": {
+    "date": "2025-01-21",
+    "changes": [
+      "Fixed settings menu",
+      "Added avatar head to server cards",
+      "Added Player Online Notification",
+      "Fixed extension auto updater trigger",
+      "Fixed join button on BLOX Servers",
+      "Reworked filter options",
+      "Dev: Setting properly saving&loading"
+    ]
+  },
+  "0.0.4": {
+    "date": "2025-01-23",
+    "changes": [
+      "Reworked server filter",
+      "Added avatar head to server cards",
+      "Added auto join feature",
+      "Added user game history"
+    ]
+  },
+  "0.0.5": {
+    "date": "2025-01-24",
+    "changes": [
+      "Working on themes compatibility",
+      "Fixed some icons",
+      "Added options to settings page (Buggy)"
+    ]
+  },
+  "0.0.6": {
+    "date": "2025-01-25",
+    "changes": [
+      "Fixed card errors",
+      "Added settings info",
+      "Added options to settings page",
+      "Fixed icon colors on dark mode",
+      "Modifying extension popup",
+      "Hopefully fixed game history showing duplicates",
+      "Maybe first public release?"
+    ]
+  },
+  "0.0.7": {
+    "date": "2025-01-27",
+    "changes": [
+      "Added last online to user profile and friends list",
+      "Rolled back the game history with duplicated games",
+      "Added setting enable/disable last online source",
+      "Revamp selectors for presence on the homepage",
+      "Revamp extension page",
+      "Edited popup and settings info page"
+    ]
+  },
+  "0.0.8": {
+    "date": "2025-01-30",
+    "changes": [
+      "Fixed: Creator Studio not loading",
+      "Added: Settings to enable/disable unfriend notification",
+      "Added official presentation video by @!Matv",
+      "Small UI changes"
+    ]
+  },
+  "0.0.9": {
+    "date": "2025-01-30",
+    "changes": [
+      "Fixed: Wrong version in popup",
+      "Fixed: Restrict extension to only work for friends,game,home and profile pages.",
+      "Fixed: Restrict tailwind.css to only be loaded where it's needed",
+      "Fixed: Datacenter filter color on dark mode",
+      "Rewrote first message in install popup",
+      "Rewrote settings info page",
+      "Removed some console.logs outputs"
+    ]
+  },
+  "0.1.0": {
+    "date": "2025-02-02",
+    "changes": [
+      "Added: Last online status for strangers (via tracking button)",
+      "Fixed: RoPro interference with extension",
+      "Fixed: Ratelimiting on server search"
+    ]
+  },
+  "0.1.1": {
+    "date": "2025-02-04",
+    "changes": ["Added: Popup notification for changing permissions"]
+  },
+  "0.1.2": {
+    "date": "2025-02-04",
+    "changes": ["Added access to all urls for third party api endpoints"]
+  },
+  "0.1.3": {
+    "date": "2025-02-07",
+    "changes": [
+      "Added: Player Finder",
+      "Added: Time Tracker",
+      "Fixed: Region Colors for new themes",
+      "Fixed: Duplicated game name tracking",
+      "Some fixes I dont remember"
+    ]
+  },
+  "0.1.4": {
+    "date": "2025-02-12",
+    "changes": ["Reworked store listing"]
+  },
+  "0.1.5": {
+    "date": "2025-02-12",
+    "changes": [
+      "Fixed: Extension not working on foreign language",
+      "Added: Semi-Serverless player region selector thanks to @valra"
+    ]
+  },
+  "0.1.6": {
+    "date": "2025-02-15",
+    "changes": [
+      "Fixed: Potential fix for wrong data on the Time Tracker",
+      "Fixed: Semi-fix for showing getting last online message on someone's profile",
+      "Fixed: Data is deleted after account switch",
+      "Fixed: You shouldn't get notification if more than 10 ppl remove you as a friend (account switch fix)",
+      "Fixed: Friend Removed notification should be now automatically dismissed after 15-20 seconds",
+      "Fixed: New server region selector didn't work on firefox"
+    ]
+  },
+  "0.1.7": {
+    "date": "2025-02-21",
+    "changes": [
+      "Fixed: Game history not being shown after roblox update",
+      "Fixed: More precise game history tracking. Probably still buggy",
+      "Added: Tooltip to show time when user was last online on hover",
+      "Fixed: Better initial messages for friends/strangers"
+    ]
+  },
+  "0.1.8": {
+    "date": "2025-03-03",
+    "changes": [
+      "Fixed: More detailiated messages on user profiles",
+      "Fixed: Disabled player snper by default",
+      "Fixed: Fixed game stats tracking system"
+    ]
+  },
+  "0.1.9": {
+    "date": "2025-04-12",
+    "changes": ["Fixed: BetterBLOX Region Selector bugs", "Working on v2.0"]
+  },
+  "0.1.91": {
+    "date": "2025-04-16",
+    "changes": ["Renamed our extension to BetterBLOX - Better Roblox Extension"]
+  },
+  "0.1.92": {
+    "date": "2025-04-27",
+    "changes": [
+      "Critical Fix: Fixed whole extension crashing when ip-api.com is blocked! (thanks to BryXzin)"
+    ]
+  },
+  "0.1.93": {
+    "date": "2025-05-16",
+    "changes": [
+      "Fixed: Redeployed version for Firefox to fix some issues.",
+      "For Chrome & Edge I just bumped the number to match Firefox version"
+    ]
+  },
+  "0.1.94": {
+    "date": "2025-05-27",
+    "changes": [
+      "Reworked presence tracking system",
+      "Added: V2 Server Region Selector",
+      "Reworked join and online notification systems",
+      "Increase presence refresh rate to 15 seconds"
+    ]
+  },
+  "0.1.95": {
+    "date": "2025-05-29",
+    "changes": [
+      "Fixed: Duplicates presence status on homepage",
+      "Changed name of the extension",
+      "Improve storage for tracked persons"
+    ]
+  },
+  "0.1.96": {
+    "date": "2025-06-10",
+    "changes": ["Fixed: Dev version was sended for V2"]
+  },
+  "0.1.97": {
+    "date": "2025-06-19",
+    "changes": [
+      "Added: More servers are getting loaded now",
+      "Added: Faster server loading process",
+      "Removed: Player count filter due to confusion",
+      "Removed: Best connection filter due to confusion",
+      "Removed: Third party ip-api dependency",
+      "Removed: Last online source label"
+    ]
+  },
+  "0.1.98": {
+    "date": "2025-07-05",
+    "changes": [
+      "Added: Pool widget to the sidebar. Will disappear on July 22, 2025"
+    ]
+  },
+  "0.1.99": {
+    "date": "2025-07-23",
+    "changes": [
+      "Added: Player count and progress bar to the server cards in the V1 Server Region Selector",
+      "Changed brand Icons",
+      "Next update will take a long time to be developed (months)"
+    ]
+  },
+  "2.0.0": {
+    "date": "2025-07-26",
+    "changes": [
+      "Test version. Expect bugs and crashes",
+      "Fixed: Friend remove notification on account switch",
+      "Added: Session tracking system",
+      "Rewrote background scripts"
+    ]
+  },
+  "2.0.1": {
+    "date": "2025-08-15",
+    "changes": ["Rollback to 0.1.99. Made a mistake."]
+  },
+  "2.0.2": {
+    "date": "2025-08-15",
+    "changes": [
+      "Added some stability fixes. Added caching for the server database so selector wont crash."
+    ]
+  },
+  "2.0.3": {
+    "date": "2025-08-18",
+    "changes": [
+      "Added dev mode",
+      "Fixed: Extension crashing when server is down"
+    ]
+  },
+  "2.0.4": {
+    "date": "2025-08-20",
+    "changes": ["Fixed: Fixed unknown datacenter issue (to be confirmed)"]
+  },
+  "2.0.9": {
+    "date": "2025-09-07",
+    "changes": ["Added: Youtube partner badge", "Added: Youtube xp tracking"]
+  },
+  "2.1.0": {
+    "date": "2025-09-10",
+    "changes": [
+      "Added: Xp rewards for google search",
+      "Added: Shield for malicious extensions"
+    ]
+  },
+  "2.1.1": {
+    "date": "2025-09-10",
+    "changes": ["Fixed: Fixed server region selector not loading"]
+  },
+  "2.1.2": {
+    "date": "2025-09-12",
+    "changes": ["Fixed: OAuth not working"]
+  },
+  "2.2.0": {
+    "date": "2025-09-12",
+    "changes": ["Re-aded betterroblox.com to the allowed domains"]
+  },
+  "2.2.1": {
+    "date": "2025-09-16",
+    "changes": ["Removed google search xp rewards"]
+  },
+  "2.2.2": {
+    "date": "2025-09-24",
+    "changes": ["Added: shield report system", "Added: Remote popups"]
+  },
+  "2.2.3": {
+    "date": "2025-09-25",
+    "changes": [
+      "Fixed: shield flagging legit websites as malicious",
+      "Fixed: shield not updating the database"
+    ]
+  },
+  "2.2.4": {
+    "date": "2025-10-18",
+    "changes": [
+      "Rework server selector, it will be buggy",
+      "Fixed: BetterBLOX not showing on new profiles."
+    ]
+  },
+  "2.2.5": {
+    "date": "2025-10-18",
+    "changes": ["Removed clipboardWrite permission"]
+  },
+  "2.2.6": {
+    "date": "2025-10-24",
+    "changes": ["Fixed: BetterBLOX not showing stats on old profiles."]
+  },
+  "2.2.7": {
+    "date": "2025-10-26",
+    "changes": ["Fixed: Servers regions not working."]
+  },
+  "2.2.8": {
+    "date": "2025-11-12",
+    "changes": ["Added Pin As Best Friend to user profile's"]
+  },
+  "2.2.9": {
+    "date": "2025-11-15",
+    "changes": [
+      "Implemented friend track function",
+      "Moved track button from profile page to three dots in profile"
+    ]
+  },
+  "2.3.0": {
+    "date": "2025-11-16",
+    "changes": [
+      "Enhanced: Last online tracking now shows which game was played and session duration",
+      "Added: Game session tracking with timestamps and durations",
+      "Added: Sorting options for game history (by last played, total time, daily time, name)",
+      "Added: Session history display in game history showing recent play sessions",
+      "Improved: Last online status now displays game name and playtime in tooltips",
+      "Added: Automatic data migration for existing users to new tracking structure"
+    ]
+  },
+  "2.3.1": {
+    "date": "2025-11-19",
+    "changes": ["Added: Appear Offline (Deprecated)"]
+  },
+  "2.3.2": {
+    "date": "2025-12-02",
+    "changes": ["Update: Quick route updates for future v2 theme update"]
+  },
+  "2.3.3": {
+    "date": "2025-12-14",
+    "changes": ["Added: Account switching system for V2 theme"]
+  },
+  "2.3.4": {
+    "date": "2025-12-25",
+    "changes": [
+      "Fixed: Track button not showing on card profile",
+      "Fixed: Firefox not working on server selector."
+    ]
+  },
+  "2.3.5": {
+    "date": "2025-12-30",
+    "changes": ["Fixed: Server selector Refresh Button not working properly"]
+  },
+  "2.3.6": {
+    "date": "2026-01-02",
+    "changes": [
+      "Removed: Shield feature because known hacker submited a chrome takedown request"
+    ]
+  },
+  "2.3.7": {
+    "date": "2026-01-02",
+    "changes": ["N/A"]
+  },
+  "2.3.8": {
+    "date": "2026-01-29",
+    "changes": [
+      "Added a new method for fetching selectors for placing the elements, so should not have issues anyomre."
+    ]
+  },
+  "2.4.0": {
+    "date": "2026-02-20",
+    "changes": [
+      "Fixed: Fixed extension hiding side-bar",
+      "Locked V2 behind paywall (to use v2 for free download the launcher)",
+      "Added: BetterBLOX License System",
+      "Added: Launcher cookie auto-sync system",
+      "Fixed: Firefox v2 account switching errors"
+    ]
+  },
+  "2.4.1": {
+    "date": "2026-02-27",
+    "changes": ["Fixed: 127.0.01:3658 permission error"]
+  },
+  "2.4.3": {
+    "date": "2026-03-10",
+    "changes": ["Fixed: Added BetterBLOX Shield back on the Launcher"]
+  }
+}

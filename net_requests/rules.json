@@ -1,0 +1,38 @@
+[
+	{
+		"id": 1,
+		"priority": 1,
+		"action": {
+			"type": "modifyHeaders",
+			"requestHeaders": [
+				{
+					"header": "User-Agent",
+					"operation": "set",
+					"value": "Roblox"
+				}
+			]
+		},
+		"condition": {
+			"urlFilter": "https://gamejoin.roblox.com/v1/join-game-instance",
+			"resourceTypes": ["xmlhttprequest"]
+		}
+	},
+	{
+		"id": 2,
+		"priority": 1,
+		"action": {
+			"type": "modifyHeaders",
+			"requestHeaders": [
+				{
+					"header": "Referer",
+					"operation": "set",
+					"value": "https://www.roblox.com/"
+				}
+			]
+		},
+		"condition": {
+			"urlFilter": "https://auth.roblox.com/v1/authentication-ticket/",
+			"resourceTypes": ["xmlhttprequest"]
+		}
+	}
+]

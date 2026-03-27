@@ -1,4 +1,4 @@
-name: EXTENSION FETCHER & UPDATER
+name: EXTENSION FETCHER AND UPDATER
 on:
   workflow_dispatch:
   schedule:
@@ -18,32 +18,31 @@ jobs:
       - run: pip install requests
       - run: python update_extensions.py
       - id: set-matrix
-        run: |
-          echo "matrix=$(cat meta.json)" >> $GITHUB_OUTPUT
+        run: echo "matrix=$(cat meta.json)" >> $GITHUB_OUTPUT
 
-  unpack-and-pr:
+  process-sync:
     needs: fetch-meta
     runs-on: ubuntu-latest
     strategy:
       matrix:
         browser: [firefox, chrome]
     steps:
-      - name: Checkout Browser Branch
+      - name: Checkout Merge Branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ matrix.browser == 'firefox' && 'Firefox' || 'Chrome' }}
+          # This checks out FF-merge or CR-merge
+          ref: ${{ matrix.browser == 'firefox' && 'FF-merge' || 'CR-merge' }}
 
       - name: Download and Unpack
         run: |
           URL="${{ fromJson(needs.fetch-meta.outputs.matrix)[matrix.browser].url }}"
-          VER="${{ fromJson(needs.fetch-meta.outputs.matrix)[matrix.browser].version }}"
+          find . -maxdepth 1 ! -name '.' ! -name '..' ! -name '.git' -exec rm -rf {} +
           
           wget -O plugin.zip "$URL"
-          find . -maxdepth 1 ! -name '.' ! -name '..' ! -name '.git' ! -name 'plugin.zip' -exec rm -rf {} +
-          unzip -o plugin.zip -d . || echo "Error unzipping but continuing..."
+          unzip -o plugin.zip -d .
           rm plugin.zip
 
-      - name: Create Pull Request
+      - name: Push and Create PR
         env:
           GH_TOKEN: ${{ github.token }}
           BROWSER: ${{ matrix.browser }}
@@ -52,16 +51,24 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          BRANCH_NAME="update-$BROWSER-$VER"
-          BASE_BRANCH="${BROWSER^}"
-          
-          git checkout -b "$BRANCH_NAME"
+          if [ "$BROWSER" = "firefox" ]; then
+            HEAD="FF-merge"
+            BASE="Firefox"
+          else
+            HEAD="CR-merge"
+            BASE="Chrome"
+          fi
+
           git add .
-          git commit -m "auto sync: $BROWSER version $VER" || exit 0
-          git push origin "$BRANCH_NAME" --force
-          
-          gh pr create \
-            --title "update $BASE_BRANCH to $VER" \
-            --body "auto extraction of the latest $BROWSER build" \
-            --base "$BASE_BRANCH" \
-            --head "$BRANCH_NAME" || echo "PR already exists :sob:"
+          if git diff --staged --quiet; then
+            echo "No changes found for $BROWSER $VER"
+          else
+            git commit -m "Sync $BROWSER to version $VER"
+            git push origin "$HEAD" --force
+            
+            gh pr create \
+              --title "EXTENSION UPDATE: $BASE Update to $VER" \
+              --body "$BROWSER $VER. merge needed to upddate extension $BASE." \
+              --base "$BASE" \
+              --head "$HEAD" || echo "PR already opend"
+          fi

@@ -1,32 +1,34 @@
 import requests
 import os
+import json
 
-def download_firefox(addon_slug):
+def get_firefox_versions(addon_slug):
     api_url = f"https://addons.mozilla.org/api/v5/addons/addon/{addon_slug}/versions/"
-    response = requests.get(api_url).json()
-    
-    if not os.path.exists('firefox_versions'):
-        os.makedirs('firefox_versions')
+    data = requests.get(api_url).json()
+    versions = []
+    for v in data.get('results', []):
+        versions.append({
+            'id': v['version'],
+            'url': v['file']['url'],
+            'type': 'firefox'
+        })
+    return versions
 
-    for version in response.get('results', []):
-        v_num = version['version']
-        file_url = version['file']['url']
-        print(f"Downloading Firefox version {v_num}...")
-        r = requests.get(file_url)
-        with open(f"firefox_versions/{addon_slug}_{v_num}.xpi", 'wb') as f:
-            f.write(r.content)
-
-def download_chrome_current(extension_id):
-    if not os.path.exists('chrome_versions'):
-        os.makedirs('chrome_versions')
-    
-    # Standard CRX download URL
-    url = f"https://clients2.google.com/service/update2/crx?response=redirect&prodversion=98.0&acceptformat=crx2,crx3&x=id%3D{extension_id}%26uc"
-    print(f"Downloading current Chrome version for {extension_id}...")
+def download_file(url, dest):
     r = requests.get(url)
-    with open(f"chrome_versions/{extension_id}_current.crx", 'wb') as f:
+    with open(dest, 'wb') as f:
         f.write(r.content)
 
 if __name__ == "__main__":
-    download_firefox("better-roblox-extension")
-    download_chrome_current("lplhnhhlblehjmmkcpjbojiaanbpgnpd")
+    fx_versions = get_firefox_versions("better-roblox-extension")
+    
+    chrome_id = "lplhnhhlblehjmmkcpjbojiaanbpgnpd"
+    crx_url = f"https://clients2.google.com/service/update2/crx?response=redirect&prodversion=98.0&acceptformat=crx2,crx3&x=id%3D{chrome_id}%26uc"
+    
+    all_data = {
+        "firefox": fx_versions,
+        "chrome": [{"id": "latest", "url": crx_url, "type": "chrome"}]
+    }
+    
+    with open("versions.json", "w") as f:
+        json.dump(all_data, f)

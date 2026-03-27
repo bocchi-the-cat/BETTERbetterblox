@@ -1,4 +1,4 @@
-name: Multi-Store Unpacker
+name: EXTENSION FETCHER & UPDATER
 on:
   workflow_dispatch:
   schedule:
@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pip install requests
-      - run: python download_extensions.py
+      - run: python update_extensions.py
       - id: set-matrix
         run: |
           echo "matrix=$(cat meta.json)" >> $GITHUB_OUTPUT

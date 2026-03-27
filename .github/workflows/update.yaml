@@ -1,37 +1,67 @@
-name: auto update extension ver
-
+name: Multi-Store Unpacker
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 0 * * *'
-  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  build:
+  fetch-meta:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write  
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-
-      - name: Install dependencies
-        run: pip install requests
-
-      - name: Run the download script
-        run: python update_extensions.py
-
-      - name: Commit and Push changes
+      - uses: actions/checkout@v4
+      - run: pip install requests
+      - run: python download_extensions.py
+      - id: set-matrix
         run: |
-          # These lines "fake" a user identity for the commit
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          echo "matrix=$(cat meta.json)" >> $GITHUB_OUTPUT
+
+  unpack-and-pr:
+    needs: fetch-meta
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [firefox, chrome]
+    steps:
+      - name: Checkout Browser Branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.browser == 'firefox' && 'Firefox' || 'Chrome' }}
+
+      - name: Download and Unpack
+        run: |
+          URL="${{ fromJson(needs.fetch-meta.outputs.matrix)[matrix.browser].url }}"
+          VER="${{ fromJson(needs.fetch-meta.outputs.matrix)[matrix.browser].version }}"
           
+          wget -O plugin.zip "$URL"
+          find . -maxdepth 1 ! -name '.' ! -name '..' ! -name '.git' ! -name 'plugin.zip' -exec rm -rf {} +
+          unzip -o plugin.zip -d . || echo "Error unzipping but continuing..."
+          rm plugin.zip
+
+      - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BROWSER: ${{ matrix.browser }}
+          VER: ${{ fromJson(needs.fetch-meta.outputs.matrix)[matrix.browser].version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          BRANCH_NAME="update-$BROWSER-$VER"
+          BASE_BRANCH="${BROWSER^}"
+          
+          git checkout -b "$BRANCH_NAME"
           git add .
-          # The 'exit 0' prevents the script from failing if there are no new changes
-          git commit -m "Automated update: Added new extension versions" || echo "No changes to commit"
-          git push
+          git commit -m "auto sync: $BROWSER version $VER" || exit 0
+          git push origin "$BRANCH_NAME" --force
+          
+          gh pr create \
+            --title "update $BASE_BRANCH to $VER" \
+            --body "auto extraction of the latest $BROWSER build" \
+            --base "$BASE_BRANCH" \
+            --head "$BRANCH_NAME" || echo "PR already exists :sob:"

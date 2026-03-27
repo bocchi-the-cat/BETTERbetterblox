@@ -1,4 +1,4 @@
-name: Extension PR Sync
+name: EXTENSION UPDATER & FETCHER
 on:
   workflow_dispatch:
   schedule:
@@ -37,9 +37,7 @@ jobs:
       - name: Download and Unpack
         run: |
           URL="${{ fromJson(needs.fetch-meta.outputs.matrix)[matrix.browser].url }}"
-          
           find . -maxdepth 1 ! -name '.' ! -name '..' ! -name '.git' -exec rm -rf {} +
-          
           wget -O plugin.zip "$URL"
           unzip -o plugin.zip -d . || true
           rm -f plugin.zip
@@ -62,15 +60,16 @@ jobs:
           fi
 
           git add .
+          
           if git diff --staged --quiet; then
-            echo "No new changes for $BROWSER version $VER"
+            echo "No changes detected"
           else
             git commit -m "Sync $BROWSER to version $VER"
             git push origin "$HEAD" --force
             
             gh pr create \
-              --title "🚀 Update $BASE to $VER" \
-              --body "Automated sync from $BROWSER store. Version: $VER" \
+              --title "Update $BASE to $VER" \
+              --body "Syncing latest $BROWSER source code" \
               --base "$BASE" \
-              --head "$HEAD" || echo "PR already exists, branch updated."
+              --head "$HEAD" || echo "PR already exists"
           fi

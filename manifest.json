@@ -59,38 +59,34 @@
     "changelog.json",
     "styles/tailwind.css"
   ],
-  "content_scripts": [
-    {
-      "matches": [
-        "*://www.roblox.com/*",
-        "*://roblox.com/*"
-      ],
-      "js": [
-        "vendors.js",
-        "bundle.js"
-      ],
-      "run_at": "document_end"
-    },
-    {
-      "matches": [
-        "https://*.youtube.com/*"
-      ],
-      "js": [
-        "youtube.js"
-      ],
-      "run_at": "document_end"
-    },
-    {
-      "matches": [
-        "*://*.rbxcdn.com/*",
-        "https://*.betterroblox.com/*",
-        "https://betterroblox.com/*",
-        "https://*.google.com/search*"
-      ],
-      "js": [
-        "betterblox-thirdparty/content.js"
-      ],
-      "run_at": "document_end"
-    }
-  ]
+  "content_scripts": [{
+    "matches": [
+      "*://www.roblox.com/*",
+      "*://roblox.com/*"
+    ],
+    "js": [
+      "vendors.js",
+      "bundle.js"
+    ],
+    "run_at": "document_end"
+  }, {
+    "matches": [
+      "https://*.youtube.com/*"
+    ],
+    "js": [
+      "youtube.js"
+    ],
+    "run_at": "document_end"
+  }, {
+    "matches": [
+      "*://*.rbxcdn.com/*",
+      "https://*.betterroblox.com/*",
+      "https://betterroblox.com/*",
+      "https://*.google.com/search*"
+    ],
+    "js": [
+      "betterblox-thirdparty/content.js"
+    ],
+    "run_at": "document_end"
+  }]
 }

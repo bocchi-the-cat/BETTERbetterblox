@@ -1,5 +1,5 @@
 {
-"update_url": "https://clients2.google.com/service/update2/crx",
+  "update_url": "https://clients2.google.com/service/update2/crx",
 
   "manifest_version": 3,
   "name": "BetterBLOX - Better Roblox Extension",
@@ -34,13 +34,11 @@
     "background"
   ],
   "declarative_net_request": {
-    "rule_resources": [
-      {
-        "id": "ruleset_1",
-        "enabled": true,
-        "path": "net_requests/rules.json"
-      }
-    ]
+    "rule_resources": [{
+      "id": "ruleset_1",
+      "enabled": true,
+      "path": "net_requests/rules.json"
+    }]
   },
   "host_permissions": [
     "*://*.roblox.com/*",
@@ -55,36 +53,30 @@
     "service_worker": "background.js",
     "type": "module"
   },
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "icons/svg/*.svg",
-        "icons/png/*.png",
-        "changelog.json",
-        "styles/tailwind.css"
-      ],
-      "matches": ["*://*/*"]
-    }
-  ],
-  "content_scripts": [
-    {
-      "matches": ["*://www.roblox.com/*", "*://roblox.com/*"],
-      "js": ["vendors.js", "bundle.js"],
-      "run_at": "document_end"
-    },
-    {
-      "matches": ["https://*.youtube.com/*"],
-      "js": ["youtube.js"],
-      "run_at": "document_end"
-    },
-    {
-      "matches": [
-        "*://*.rbxcdn.com/*",
-        "https://*.betterroblox.com/*",
-        "https://betterroblox.com/*"
-      ],
-      "js": ["betterblox-thirdparty/content.js"],
-      "run_at": "document_end"
-    }
-  ]
+  "web_accessible_resources": [{
+    "resources": [
+      "icons/svg/*.svg",
+      "icons/png/*.png",
+      "changelog.json",
+      "styles/tailwind.css"
+    ],
+    "matches": ["*://*/*"]
+  }],
+  "content_scripts": [{
+    "matches": ["*://www.roblox.com/*", "*://roblox.com/*"],
+    "js": ["vendors.js", "bundle.js"],
+    "run_at": "document_end"
+  }, {
+    "matches": ["https://*.youtube.com/*"],
+    "js": ["youtube.js"],
+    "run_at": "document_end"
+  }, {
+    "matches": [
+      "*://*.rbxcdn.com/*",
+      "https://*.betterroblox.com/*",
+      "https://betterroblox.com/*"
+    ],
+    "js": ["betterblox-thirdparty/content.js"],
+    "run_at": "document_end"
+  }]
 }

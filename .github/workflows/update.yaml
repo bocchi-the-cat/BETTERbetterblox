@@ -1,4 +1,4 @@
-name: EXTENSION SOURCE UPDATER
+name: Extension PR Sync
 on:
   workflow_dispatch:
   schedule:
@@ -49,9 +49,9 @@ jobs:
           fi
 
       - name: Beautify Code
-        run: |
-          pip install jsbeautifier
-          python -c "import update_extension; update_extension.beautify_repo('.')"
+        env:
+          BEAUTIFY_ONLY: "true"
+        run: python update_extension.py
 
       - name: Push and Create PR
         env:

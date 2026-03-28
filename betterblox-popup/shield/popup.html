@@ -1,215 +1,251 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>BetterBLOX Shield Alert</title>
-    <style>
-      body {
-        padding: 20px;
-        font-family: Arial, sans-serif;
-        background-color: #1a1a1a;
-        color: #ffffff;
-        margin: 0;
-        overflow-y: auto;
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE and Edge */
-      }
+< !DOCTYPE html >
+  <
+  html >
+  <
+  head >
+  <
+  title > BetterBLOX Shield Alert < /title> <
+  style >
+  body {
+    padding: 20 px;
+    font - family: Arial,
+    sans - serif;
+    background - color: #1a1a1a;
+        color: # ffffff;
+    margin: 0;
+    overflow - y: auto;
+    scrollbar - width: none; /* Firefox */ -
+    ms - overflow - style: none; /* IE and Edge */
+  }
 
-      body::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
-      }
+body::-webkit - scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
 
-      .container {
-        text-align: center;
-      }
+  .container {
+    text - align: center;
+  }
 
-      .title {
-        font-size: 24px;
-        font-weight: bold;
-        margin-bottom: 8px;
-        color: #dc2626;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-      }
+  .title {
+    font - size: 24 px;
+    font - weight: bold;
+    margin - bottom: 8 px;
+    color: #dc2626;
+    display: flex;
+    align - items: center;
+    justify - content: center;
+    gap: 8 px;
+  }
 
-      .subtitle {
-        font-size: 16px;
-        margin-bottom: 20px;
-        line-height: 1.4;
-      }
+  .subtitle {
+    font - size: 16 px;
+    margin - bottom: 20 px;
+    line - height: 1.4;
+  }
 
-      .extension-info {
-        background-color: #2d3748;
-        border-left: 4px solid #f59e0b;
-        padding: 12px;
-        margin: 10px 0;
-        text-align: left;
-        font-size: 0.9rem;
-        border-radius: 4px;
-        transition: transform 0.2s;
-      }
+  .extension - info {
+    background - color: #2d3748;
+        border-left: 4px solid # f59e0b;
+    padding: 12 px;
+    margin: 10 px 0;
+    text - align: left;
+    font - size: 0.9 rem;
+    border - radius: 4 px;
+    transition: transform 0.2 s;
+  }
 
-      .extension-info:hover {
-        transform: translateX(2px);
-      }
+  .extension - info: hover {
+    transform: translateX(2 px);
+  }
 
-      .extension-name {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 8px;
-        color: #ffffff;
-      }
+  .extension - name {
+    font - size: 16 px;
+    font - weight: 600;
+    margin - bottom: 8 px;
+    color: #ffffff;
+  }
 
-      .extension-id {
-        font-size: 12px;
-        opacity: 0.7;
-        font-family: monospace;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 4px 8px;
-        border-radius: 4px;
-        display: inline-block;
-      }
+  .extension - id {
+    font - size: 12 px;
+    opacity: 0.7;
+    font - family: monospace;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4 px 8 px;
+    border - radius: 4 px;
+    display: inline - block;
+  }
 
-      .threat-level {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 4px 12px;
-        border-radius: 12px;
-        font-size: 12px;
-        font-weight: 600;
-        margin-top: 8px;
-      }
+  .threat - level {
+    display: inline - flex;
+    align - items: center;
+    gap: 6 px;
+    padding: 4 px 12 px;
+    border - radius: 12 px;
+    font - size: 12 px;
+    font - weight: 600;
+    margin - top: 8 px;
+  }
 
-      .threat-level.high {
-        background-color: #7f1d1d;
-        color: #fca5a5;
-        border: 1px solid #991b1b;
+  .threat - level.high {
+    background - color: #7f1d1d;
+        color: # fca5a5;
+    border: 1 px solid #991b1b;
       }
 
       .threat-level.critical {
-        background-color: #7f1d1d;
-        color: #fca5a5;
-        border: 1px solid #991b1b;
+        background-color: # 7 f1d1d;
+    color: #fca5a5;
+    border: 1 px solid #991b1b;
         font-weight: 700;
       }
 
       .threat-level.medium {
-        background-color: #92400e;
-        color: #fbbf24;
-        border: 1px solid #d97706;
-      }
+        background-color: # 92400 e;
+    color: #fbbf24;
+    border: 1 px solid #d97706;
+  }
 
-      .threat-level.low {
-        background-color: #14532d;
-        color: #86efac;
-        border: 1px solid #166534;
+  .threat - level.low {
+    background - color: #14532d;
+        color: # 86 efac;
+    border: 1 px solid #166534;
       }
 
       .description {
-        background-color: #2d3748;
-        border-left: 4px solid #f59e0b;
-        padding: 12px;
-        margin: 10px 0;
-        text-align: left;
-        font-size: 0.9rem;
-        border-radius: 4px;
-        transition: transform 0.2s;
-      }
+        background-color: # 2 d3748;
+    border - left: 4 px solid #f59e0b;
+    padding: 12 px;
+    margin: 10 px 0;
+    text - align: left;
+    font - size: 0.9 rem;
+    border - radius: 4 px;
+    transition: transform 0.2 s;
+  }
 
-      .description:hover {
-        transform: translateX(2px);
-      }
+  .description: hover {
+    transform: translateX(2 px);
+  }
 
-      .description h4 {
-        margin: 0 0 8px 0;
-        font-size: 16px;
-        font-weight: 600;
-      }
+  .description h4 {
+    margin: 0 0 8 px 0;
+    font - size: 16 px;
+    font - weight: 600;
+  }
 
-      .description ul {
-        margin: 8px 0;
-        padding-left: 20px;
-      }
+  .description ul {
+    margin: 8 px 0;
+    padding - left: 20 px;
+  }
 
-      .description li {
-        margin-bottom: 4px;
-      }
+  .description li {
+    margin - bottom: 4 px;
+  }
 
-      .footer {
-        margin-top: 15px;
-        font-size: 0.75rem;
-        color: #9ca3af;
+  .footer {
+    margin - top: 15 px;
+    font - size: 0.75 rem;
+    color: #9ca3af;
         text-align: center;
-        border-top: 1px solid #f59e0b;
-        padding-top: 10px;
-      }
+        border-top: 1px solid # f59e0b;
+    padding - top: 10 px;
+  }
 
-      .icon {
-        width: 16px;
-        height: 16px;
-        fill: currentColor;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div id="shieldIcon" class="shield-icon" style="display: none">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16V16H8V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.4,8.7 10.4,10V11H13.6V10C13.6,8.7 12.8,8.2 12,8.2Z"
-          />
-        </svg>
-      </div>
+  .icon {
+    width: 16 px;
+    height: 16 px;
+    fill: currentColor;
+  } <
+  /style> <
+  /head> <
+  body >
+  <
+  div class = "container" >
+  <
+  div id = "shieldIcon"
+class = "shield-icon"
+style = "display: none" >
+  <
+  svg width = "32"
+height = "32"
+viewBox = "0 0 24 24"
+fill = "currentColor" >
+  <
+  path
+d =
+  "M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16V16H8V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.4,8.7 10.4,10V11H13.6V10C13.6,8.7 12.8,8.2 12,8.2Z" /
+  >
+  <
+  /svg> <
+  /div>
 
-      <h1 class="title" id="title">BetterBLOX Shield</h1>
-      <p class="subtitle" id="subtitle">
-        Protecting you from malicious extensions
-      </p>
+  <
+  h1 class = "title"
+id = "title" > BetterBLOX Shield < /h1> <
+  p class = "subtitle"
+id = "subtitle" >
+  Protecting you from malicious extensions <
+  /p>
 
-      <div class="extension-info" id="extensionInfo" style="display: none">
-        <div class="extension-name" id="extensionName"></div>
-        <div class="extension-id" id="extensionId"></div>
-        <div class="threat-level" id="threatLevel"></div>
-      </div>
+  <
+  div class = "extension-info"
+id = "extensionInfo"
+style = "display: none" >
+  <
+  div class = "extension-name"
+id = "extensionName" > < /div> <
+  div class = "extension-id"
+id = "extensionId" > < /div> <
+  div class = "threat-level"
+id = "threatLevel" > < /div> <
+  /div>
 
-      <div class="description" id="description">
-        <h4>What is BetterBLOX Shield?</h4>
-        <p>
-          BetterBLOX Shield monitors your browser for potentially malicious
-          extensions and warns you when you visit dangerous extension pages.
-        </p>
-        <ul>
-          <li>Real-time extension monitoring</li>
-          <li>Malicious extension detection</li>
-          <li>Chrome Web Store integration</li>
-          <li>Automatic threat warnings</li>
-        </ul>
-      </div>
+  <
+  div class = "description"
+id = "description" >
+  <
+  h4 > What is BetterBLOX Shield ? < /h4> <
+  p >
+  BetterBLOX Shield monitors your browser
+for potentially malicious
+extensions and warns you when you visit dangerous extension pages. <
+  /p> <
+  ul >
+  <
+  li > Real - time extension monitoring < /li> <
+  li > Malicious extension detection < /li> <
+  li > Chrome Web Store integration < /li> <
+  li > Automatic threat warnings < /li> <
+  /ul> <
+  /div>
 
-      <div class="footer">
-        <p>
-          <svg
-            style="
-              width: 16px;
-              height: 16px;
-              display: inline-block;
-              vertical-align: middle;
-              margin-right: 6px;
-              fill: currentColor;
-            "
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16V16H8V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.4,8.7 10.4,10V11H13.6V10C13.6,8.7 12.8,8.2 12,8.2Z"
-            />
-          </svg>
-          BetterBLOX Shield - Protecting your Roblox experience
-        </p>
-      </div>
-    </div>
+  <
+  div class = "footer" >
+  <
+  p >
+  <
+  svg
+style = "
+width: 16 px;
+height: 16 px;
+display: inline - block;
+vertical - align: middle;
+margin - right: 6 px;
+fill: currentColor;
+"
+viewBox = "0 0 24 24" >
+  <
+  path
+d =
+  "M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M12,7C13.4,7 14.8,8.6 14.8,10V11H16V16H8V11H9.2V10C9.2,8.6 10.6,7 12,7M12,8.2C11.2,8.2 10.4,8.7 10.4,10V11H13.6V10C13.6,8.7 12.8,8.2 12,8.2Z" /
+  >
+  <
+  /svg>
+BetterBLOX Shield - Protecting your Roblox experience <
+  /p> <
+  /div> <
+  /div>
 
-    <script src="popup.js"></script>
-  </body>
-</html>
+  <
+  script src = "popup.js" > < /script> <
+  /body> <
+  /html>

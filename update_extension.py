@@ -2,6 +2,7 @@ import requests
 import os
 import json
 import zipfile
+import jsbeautifier
 
 def get_firefox_latest(addon_slug):
     api_url = f"https://addons.mozilla.org/api/v5/addons/addon/{addon_slug}/versions/"
@@ -24,6 +25,22 @@ def get_chrome_latest(extension_id):
     except:
         pass
     return {"version": version, "url": url}
+
+def beautify_repo(directory):
+    opts = jsbeautifier.default_options()
+    opts.indent_size = 2
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".js") or file.endswith(".json") or file.endswith(".css"):
+                file_path = os.path.join(root, file)
+                with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                    content = f.read()
+                try:
+                    beautified = jsbeautifier.beautify(content, opts)
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(beautified)
+                except:
+                    continue
 
 if __name__ == "__main__":
     fx = get_firefox_latest("better-roblox-extension")

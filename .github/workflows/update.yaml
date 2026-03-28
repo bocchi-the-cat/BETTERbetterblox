@@ -1,4 +1,4 @@
-name: Extension PR Sync
+name: EXTENSION SOURCE UPDATER
 on:
   workflow_dispatch:
   schedule:
@@ -15,7 +15,7 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
-      - run: pip install requests
+      - run: pip install requests jsbeautifier
       - run: python update_extension.py
       - id: set-matrix
         run: echo "matrix=$(cat meta.json)" >> $GITHUB_OUTPUT
@@ -42,6 +42,17 @@ jobs:
           unzip -o plugin.zip -d . || true
           rm -f plugin.zip
 
+          if [ "${{ matrix.browser }}" = "firefox" ]; then
+            rm -rf META-INF
+          else
+            rm -rf _metadata
+          fi
+
+      - name: Beautify Code
+        run: |
+          pip install jsbeautifier
+          python -c "import update_extension; update_extension.beautify_repo('.')"
+
       - name: Push and Create PR
         env:
           GH_TOKEN: ${{ github.token }}
@@ -63,7 +74,7 @@ jobs:
           git add .
           
           if git diff --staged --quiet && [ "$EVENT_NAME" != "workflow_dispatch" ]; then
-            echo "No changes detected and not a manual run"
+            echo "No changes detected"
           else
             git commit --allow-empty -m "Sync $BROWSER to version $VER"
             git push origin "$HEAD" --force

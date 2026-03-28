@@ -34,10 +34,16 @@ jobs:
           ref: ${{ matrix.browser == 'firefox' && 'FF-merge' || 'CR-merge' }}
           fetch-depth: 0
 
+      - name: Checkout Tools from Main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: tools
+
       - name: Download and Unpack
         run: |
           URL="${{ fromJson(needs.fetch-meta.outputs.matrix)[matrix.browser].url }}"
-          find . -maxdepth 1 ! -name '.' ! -name '..' ! -name '.git' -exec rm -rf {} +
+          find . -maxdepth 1 ! -name '.' ! -name '..' ! -name '.git' ! -name 'tools' -exec rm -rf {} +
           wget -O plugin.zip "$URL"
           unzip -o plugin.zip -d . || true
           rm -f plugin.zip
@@ -51,7 +57,12 @@ jobs:
       - name: Beautify Code
         env:
           BEAUTIFY_ONLY: "true"
-        run: python update_extension.py
+        run: |
+          pip install jsbeautifier
+          python tools/update_extension.py
+
+      - name: Cleanup Tools before push
+        run: rm -rf tools
 
       - name: Push and Create PR
         env:

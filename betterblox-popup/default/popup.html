@@ -1,28 +1,31 @@
-<!doctype html>
-<html>
-  <head>
-    <title>BetterBLOX</title>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
+< !doctype html >
+  <
+  html >
+  <
+  head >
+  <
+  title > BetterBLOX < /title> <
+  style >
+  *
+  {
+    box - sizing: border - box;
+  }
 
-      body {
-        width: 340px;
-        min-height: 320px;
-        padding: 0;
-        font-family:
-          "Segoe UI",
-          system-ui,
-          -apple-system,
-          sans-serif;
-        background: linear-gradient(
-          180deg,
-          #faf5ff 0%,
-          #f3e8ff 30%,
-          #f5f3ff 100%
-        );
-        color: #1e1b4b;
+body {
+  width: 340 px;
+  min - height: 320 px;
+  padding: 0;
+  font - family: "Segoe UI",
+  system - ui,
+  -apple - system,
+  sans - serif;
+  background: linear - gradient(
+    180 deg,
+    #faf5ff 0 % ,
+    #f3e8ff 30 % ,
+    #f5f3ff 100 %
+  );
+  color: #1e1b4b;
         margin: 0;
       }
 
@@ -30,166 +33,165 @@
         body {
           background: linear-gradient(
             180deg,
-            #1e1b4b 0%,
-            #312e81 40%,
-            #0f0a1e 100%
-          );
-          color: #e9d5ff;
-        }
-      }
+            # 1e1 b4b 0 % ,
+  #312e81 40%,
+            # 0 f0a1e 100 %
+);
+color: #e9d5ff;
+}
+}
 
-      .container {
-        padding: 20px;
-        max-width: 340px;
-      }
+.container {
+  padding: 20 px;
+  max - width: 340 px;
+}
 
-      .header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 16px 20px;
-        margin: -20px -20px 20px -20px;
-        background: linear-gradient(
-          135deg,
-          rgba(99, 102, 241, 0.12) 0%,
-          rgba(124, 58, 237, 0.08) 100%
-        );
-        border-bottom: 1px solid rgba(124, 58, 237, 0.15);
-      }
+.header {
+  display: flex;
+  align - items: center;
+  justify - content: center;
+  gap: 10 px;
+  padding: 16 px 20 px;
+  margin: -20 px - 20 px 20 px - 20 px;
+  background: linear - gradient(
+    135 deg,
+    rgba(99, 102, 241, 0.12) 0 % ,
+    rgba(124, 58, 237, 0.08) 100 %
+  );
+  border - bottom: 1 px solid rgba(124, 58, 237, 0.15);
+}
 
-      @media (prefers-color-scheme: dark) {
-        .header {
-          background: linear-gradient(
-            135deg,
-            rgba(129, 140, 248, 0.15) 0%,
-            rgba(139, 92, 246, 0.1) 100%
-          );
-          border-bottom-color: rgba(167, 139, 250, 0.2);
-        }
-      }
+@media(prefers - color - scheme: dark) {
+    .header {
+      background: linear - gradient(
+        135 deg,
+        rgba(129, 140, 248, 0.15) 0 % ,
+        rgba(139, 92, 246, 0.1) 100 %
+      );
+      border - bottom - color: rgba(167, 139, 250, 0.2);
+    }
+  }
 
-      .logo {
-        width: 36px;
-        height: 36px;
-        border-radius: 10px;
-      }
+  .logo {
+    width: 36 px;
+    height: 36 px;
+    border - radius: 10 px;
+  }
 
-      .header h2 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        margin: 0;
-      }
+  .header h2 {
+    font - size: 1.25 rem;
+    font - weight: 700;
+    letter - spacing: -0.02 em;
+    margin: 0;
+  }
 
-      .version-badge {
-        background: linear-gradient(135deg, #6366f1, #7c3aed);
-        color: white;
-        padding: 3px 10px;
-        border-radius: 20px;
-        font-size: 0.7rem;
-        font-weight: 600;
-        margin-left: 6px;
-      }
+  .version - badge {
+    background: linear - gradient(135 deg, #6366f1, # 7 c3aed);
+    color: white;
+    padding: 3 px 10 px;
+    border - radius: 20 px;
+    font - size: 0.7 rem;
+    font - weight: 600;
+    margin - left: 6 px;
+  }
 
-      .status {
-        color: #ff6b6b;
-        font-weight: bold;
-        margin: 10px 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 6px;
-      }
+  .status {
+    color: #ff6b6b;
+    font - weight: bold;
+    margin: 10 px 0;
+    display: flex;
+    align - items: center;
+    justify - content: center;
+    gap: 6 px;
+  }
 
-      .status::before {
-        content: "";
-        display: inline-block;
-        width: 8px;
-        height: 8px;
-        background-color: #ff6b6b;
-        border-radius: 50%;
-        animation: pulse 2s infinite;
-      }
+  .status::before {
+    content: "";
+    display: inline - block;
+    width: 8 px;
+    height: 8 px;
+    background - color: #ff6b6b;
+    border - radius: 50 % ;
+    animation: pulse 2 s infinite;
+  }
 
-      @keyframes pulse {
-        0% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.5;
-        }
-        100% {
-          opacity: 1;
-        }
-      }
+@keyframes pulse {
+  0 % {
+    opacity: 1;
+  }
+  50 % {
+    opacity: 0.5;
+  }
+  100 % {
+    opacity: 1;
+  }
+}
 
-      .info-box {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(124, 58, 237, 0.12);
-        padding: 14px 16px;
-        margin: 12px 0;
-        text-align: left;
-        font-size: 0.875rem;
-        border-radius: 12px;
-        box-shadow: 0 2px 8px rgba(99, 102, 241, 0.06);
-        transition:
-          box-shadow 0.2s,
-          border-color 0.2s;
-      }
+.info - box {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop - filter: blur(8 px);
+    border: 1 px solid rgba(124, 58, 237, 0.12);
+    padding: 14 px 16 px;
+    margin: 12 px 0;
+    text - align: left;
+    font - size: 0.875 rem;
+    border - radius: 12 px;
+    box - shadow: 0 2 px 8 px rgba(99, 102, 241, 0.06);
+    transition: box - shadow 0.2 s,
+    border - color 0.2 s;
+  }
 
-      .info-box:hover {
-        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
-        border-color: rgba(124, 58, 237, 0.18);
-      }
+  .info - box: hover {
+    box - shadow: 0 4 px 12 px rgba(99, 102, 241, 0.1);
+    border - color: rgba(124, 58, 237, 0.18);
+  }
 
-      @media (prefers-color-scheme: dark) {
-        .info-box {
-          background: rgba(30, 27, 75, 0.5);
-          border-color: rgba(167, 139, 250, 0.15);
-          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-        }
-        .info-box:hover {
-          border-color: rgba(167, 139, 250, 0.25);
-        }
+@media(prefers - color - scheme: dark) {
+    .info - box {
+        background: rgba(30, 27, 75, 0.5);
+        border - color: rgba(167, 139, 250, 0.15);
+        box - shadow: 0 2 px 12 px rgba(0, 0, 0, 0.2);
       }
-
-      .warning {
-        color: #d97706;
-        font-size: 0.85rem;
-        margin: 8px 0;
+      .info - box: hover {
+        border - color: rgba(167, 139, 250, 0.25);
       }
+  }
 
-      .changelog {
-        max-height: 100px;
-        overflow-y: auto;
-        margin: 10px 0;
-        padding-right: 8px;
-        font-size: 0.8rem;
-        text-align: left;
-      }
+  .warning {
+    color: #d97706;
+    font - size: 0.85 rem;
+    margin: 8 px 0;
+  }
 
-      .changelog::-webkit-scrollbar {
-        width: 6px;
-      }
+  .changelog {
+    max - height: 100 px;
+    overflow - y: auto;
+    margin: 10 px 0;
+    padding - right: 8 px;
+    font - size: 0.8 rem;
+    text - align: left;
+  }
 
-      .changelog::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 3px;
-      }
+  .changelog::-webkit - scrollbar {
+    width: 6 px;
+  }
 
-      .changelog::-webkit-scrollbar-thumb {
-        background: #888;
+  .changelog::-webkit - scrollbar - track {
+    background: #f1f1f1;
+    border - radius: 3 px;
+  }
+
+  .changelog::-webkit - scrollbar - thumb {
+    background: #888;
         border-radius: 3px;
       }
 
       @media (prefers-color-scheme: dark) {
         .changelog::-webkit-scrollbar-track {
-          background: #2d3748;
-        }
-        .changelog::-webkit-scrollbar-thumb {
-          background: #4a5568;
+          background: # 2 d3748;
+  }
+  .changelog::-webkit - scrollbar - thumb {
+    background: #4a5568;
         }
       }
 
@@ -211,7 +213,8 @@
       }
 
       .discord-button {
-        background: linear-gradient(135deg, #5865f2, #4752c4);
+        background: linear-gradient(135deg, # 5865 f2,
+    #4752c4);
         color: white;
         box-shadow: 0 2px 8px rgba(88, 101, 242, 0.35);
       }
@@ -223,138 +226,138 @@
 
       .settings-button {
         background: rgba(99, 102, 241, 0.15);
-        color: #4f46e5;
-        border: 1px solid rgba(99, 102, 241, 0.3);
-      }
+        color: # 4 f46e5;
+    border: 1 px solid rgba(99, 102, 241, 0.3);
+  }
 
-      .settings-button:hover {
-        background: rgba(99, 102, 241, 0.25);
-        transform: translateY(-1px);
-      }
+  .settings - button: hover {
+    background: rgba(99, 102, 241, 0.25);
+    transform: translateY(-1 px);
+  }
 
-      @media (prefers-color-scheme: dark) {
-        .settings-button {
-          background: rgba(167, 139, 250, 0.2);
-          color: #c4b5fd;
-          border-color: rgba(167, 139, 250, 0.35);
-        }
-        .settings-button:hover {
-          background: rgba(167, 139, 250, 0.3);
-        }
+@media(prefers - color - scheme: dark) {
+    .settings - button {
+        background: rgba(167, 139, 250, 0.2);
+        color: #c4b5fd;
+        border - color: rgba(167, 139, 250, 0.35);
       }
-
-      .discord-icon {
-        width: 20px;
-        height: 20px;
-        fill: currentColor;
+      .settings - button: hover {
+        background: rgba(167, 139, 250, 0.3);
       }
+  }
 
-      .footer {
-        margin-top: 18px;
-        padding-top: 14px;
-        border-top: 1px solid rgba(124, 58, 237, 0.1);
-        font-size: 0.75rem;
-        color: #6b7280;
+  .discord - icon {
+    width: 20 px;
+    height: 20 px;
+    fill: currentColor;
+  }
+
+  .footer {
+    margin - top: 18 px;
+    padding - top: 14 px;
+    border - top: 1 px solid rgba(124, 58, 237, 0.1);
+    font - size: 0.75 rem;
+    color: #6b7280;
         text-align: center;
       }
 
       @media (prefers-color-scheme: dark) {
         .footer {
           border-top-color: rgba(167, 139, 250, 0.12);
-          color: #a78bfa;
+          color: # a78bfa;
+  }
+}
+
+.buttons - container {
+    display: flex;
+    justify - content: center;
+    flex - wrap: wrap;
+    gap: 10 px;
+    margin - top: 14 px;
+  }
+
+  .icon {
+    width: 16 px;
+    height: 16 px;
+    display: inline - block;
+    vertical - align: middle;
+  }
+
+  .icon - warning {
+    fill: #d97706;
+  }
+
+  .icon - settings {
+    fill: currentColor;
+    width: 18 px;
+    height: 18 px;
+  }
+
+  .icon - heart {
+    fill: #ff6b6b;
+    width: 14 px;
+    height: 14 px;
+  }
+
+  .author - link {
+    color: inherit;
+    text - decoration: none;
+    transition: opacity 0.2 s;
+  }
+
+  .author - link: hover {
+    opacity: 0.8;
+    text - decoration: underline;
+  }
+
+@media(prefers - color - scheme: dark) {
+    .author - link {
+        color: #9ca3af;
         }
       }
 
-      .buttons-container {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 14px;
-      }
-
-      .icon {
-        width: 16px;
-        height: 16px;
-        display: inline-block;
-        vertical-align: middle;
-      }
-
-      .icon-warning {
-        fill: #d97706;
-      }
-
-      .icon-settings {
-        fill: currentColor;
-        width: 18px;
-        height: 18px;
-      }
-
-      .icon-heart {
-        fill: #ff6b6b;
-        width: 14px;
-        height: 14px;
-      }
-
-      .author-link {
-        color: inherit;
-        text-decoration: none;
-        transition: opacity 0.2s;
-      }
-
-      .author-link:hover {
-        opacity: 0.8;
-        text-decoration: underline;
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .author-link {
-          color: #9ca3af;
+      # theme - box {
+          border - color: rgba(124, 58, 237, 0.2);
         }
-      }
 
-      #theme-box {
-        border-color: rgba(124, 58, 237, 0.2);
-      }
-
-      #theme-box span:first-child {
-        color: #5b21b6;
+        #theme - box span: first - child {
+            color: #5b21b6;
         font-size: 0.95rem;
       }
 
       @media (prefers-color-scheme: dark) {
-        #theme-box span:first-child {
-          color: #c4b5fd;
-        }
-      }
+        # theme - box span: first - child {
+              color: #c4b5fd;
+            }
+          }
 
-      .bblox-unlock-section {
-        display: none;
-      }
+          .bblox - unlock - section {
+            display: none;
+          }
 
-      .bblox-unlock-desc {
-        font-size: 0.85rem;
-        margin: 0 0 10px 0;
-        line-height: 1.4;
-      }
+          .bblox - unlock - desc {
+            font - size: 0.85 rem;
+            margin: 0 0 10 px 0;
+            line - height: 1.4;
+          }
 
-      .bblox-unlock-actions {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        margin-bottom: 12px;
-      }
+          .bblox - unlock - actions {
+            display: flex;
+            flex - direction: column;
+            gap: 8 px;
+            margin - bottom: 12 px;
+          }
 
-      .bblox-unlock-btn {
-        width: 100%;
-        padding: 12px 14px;
-        border-radius: 10px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        cursor: pointer;
-        border: 1px solid rgba(124, 58, 237, 0.2);
-        background: rgba(255, 255, 255, 0.8);
-        color: #1e1b4b;
+          .bblox - unlock - btn {
+            width: 100 % ;
+            padding: 12 px 14 px;
+            border - radius: 10 px;
+            font - size: 0.85 rem;
+            font - weight: 700;
+            cursor: pointer;
+            border: 1 px solid rgba(124, 58, 237, 0.2);
+            background: rgba(255, 255, 255, 0.8);
+            color: #1e1b4b;
         text-align: left;
         transition:
           border-color 0.2s,
@@ -369,466 +372,533 @@
       @media (prefers-color-scheme: dark) {
         .bblox-unlock-btn {
           background: rgba(30, 27, 75, 0.6);
-          color: #e9d5ff;
-          border-color: rgba(167, 139, 250, 0.25);
-        }
-        .bblox-unlock-btn:hover {
-          border-color: rgba(167, 139, 250, 0.45);
-        }
+          color: # e9d5ff;
+            border - color: rgba(167, 139, 250, 0.25);
+          }
+          .bblox - unlock - btn: hover {
+            border - color: rgba(167, 139, 250, 0.45);
+          }
       }
 
-      .bblox-unlock-btn-primary {
+      .bblox - unlock - btn - primary {
         border: none;
-        background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+        background: linear - gradient(135 deg, #6366f1 0%, # 7 c3aed 100 % );
         color: #ffffff;
-        box-shadow: 0 2px 10px rgba(124, 58, 237, 0.35);
+        box - shadow: 0 2 px 10 px rgba(124, 58, 237, 0.35);
       }
 
-      .bblox-unlock-btn-primary:hover {
-        box-shadow: 0 4px 14px rgba(124, 58, 237, 0.45);
+      .bblox - unlock - btn - primary: hover {
+        box - shadow: 0 4 px 14 px rgba(124, 58, 237, 0.45);
       }
 
-      .bblox-unlock-sub {
-        margin-top: 4px;
-        font-size: 0.75rem;
-        font-weight: 600;
+      .bblox - unlock - sub {
+        margin - top: 4 px;
+        font - size: 0.75 rem;
+        font - weight: 600;
         color: #6b7280;
       }
 
       @media (prefers-color-scheme: dark) {
         .bblox-unlock-sub {
-          color: #9ca3af;
-        }
+          color: # 9 ca3af;
       }
+  }
 
-      .bblox-unlock-sub.light {
-        color: rgba(255, 255, 255, 0.9);
-      }
+  .bblox - unlock - sub.light {
+    color: rgba(255, 255, 255, 0.9);
+  }
 
-      .bblox-license-inline {
-        background: rgba(99, 102, 241, 0.06);
-        border: 1px solid rgba(124, 58, 237, 0.18);
-        border-radius: 10px;
-        padding: 12px;
-        margin-top: 10px;
-      }
+  .bblox - license - inline {
+    background: rgba(99, 102, 241, 0.06);
+    border: 1 px solid rgba(124, 58, 237, 0.18);
+    border - radius: 10 px;
+    padding: 12 px;
+    margin - top: 10 px;
+  }
 
-      @media (prefers-color-scheme: dark) {
-        .bblox-license-inline {
-          background: rgba(79, 70, 229, 0.12);
-          border-color: rgba(167, 139, 250, 0.2);
-        }
-      }
+@media(prefers - color - scheme: dark) {
+    .bblox - license - inline {
+      background: rgba(79, 70, 229, 0.12);
+      border - color: rgba(167, 139, 250, 0.2);
+    }
+  }
 
-      .bblox-license-inline-title {
-        font-size: 0.8rem;
-        font-weight: 800;
-        margin: 0 0 8px 0;
-        color: #5b21b6;
+  .bblox - license - inline - title {
+    font - size: 0.8 rem;
+    font - weight: 800;
+    margin: 0 0 8 px 0;
+    color: #5b21b6;
       }
 
       @media (prefers-color-scheme: dark) {
         .bblox-license-inline-title {
-          color: #c4b5fd;
-        }
-      }
+          color: # c4b5fd;
+  }
+}
 
-      .bblox-license-inline-input {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 10px 12px;
-        border-radius: 8px;
-        border: 1px solid rgba(124, 58, 237, 0.25);
-        font-size: 0.85rem;
-        outline: none;
-        background: rgba(255, 255, 255, 0.9);
-        color: #1e1b4b;
+.bblox - license - inline - input {
+  width: 100 % ;
+  box - sizing: border - box;
+  padding: 10 px 12 px;
+  border - radius: 8 px;
+  border: 1 px solid rgba(124, 58, 237, 0.25);
+  font - size: 0.85 rem;
+  outline: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1e1b4b;
       }
 
       .bblox-license-inline-input::placeholder {
-        color: #8b5cf6;
-        opacity: 0.7;
+        color: # 8 b5cf6;
+  opacity: 0.7;
+}
+
+@media(prefers - color - scheme: dark) {
+    .bblox - license - inline - input {
+        background: rgba(30, 27, 75, 0.6);
+        color: #e9d5ff;
+        border - color: rgba(167, 139, 250, 0.3);
       }
-
-      @media (prefers-color-scheme: dark) {
-        .bblox-license-inline-input {
-          background: rgba(30, 27, 75, 0.6);
-          color: #e9d5ff;
-          border-color: rgba(167, 139, 250, 0.3);
-        }
-        .bblox-license-inline-input::placeholder {
-          color: #a78bfa;
-        }
+      .bblox - license - inline - input::placeholder {
+        color: #a78bfa;
       }
+  }
 
-      .bblox-license-inline-error {
-        display: none;
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: #dc2626;
-        margin-top: 6px;
-      }
+  .bblox - license - inline - error {
+    display: none;
+    font - size: 0.75 rem;
+    font - weight: 700;
+    color: #dc2626;
+    margin - top: 6 px;
+  }
 
-      .bblox-license-inline-activate {
-        margin-top: 10px;
-        width: 100%;
-        padding: 10px 12px;
-        border-radius: 8px;
-        border: none;
-        font-size: 0.85rem;
-        font-weight: 700;
-        cursor: pointer;
-        background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
-        color: #ffffff;
-        transition:
-          opacity 0.2s,
-          transform 0.1s;
-      }
+  .bblox - license - inline - activate {
+    margin - top: 10 px;
+    width: 100 % ;
+    padding: 10 px 12 px;
+    border - radius: 8 px;
+    border: none;
+    font - size: 0.85 rem;
+    font - weight: 700;
+    cursor: pointer;
+    background: linear - gradient(135 deg, #6366f1 0%, # 7 c3aed 100 % );
+    color: #ffffff;
+    transition:
+      opacity 0.2 s,
+      transform 0.1 s;
+  }
 
-      .bblox-license-inline-activate:hover {
-        opacity: 0.95;
-        transform: translateY(-0.5px);
-      }
+  .bblox - license - inline - activate: hover {
+    opacity: 0.95;
+    transform: translateY(-0.5 px);
+  }
 
-      @media (prefers-color-scheme: dark) {
-        .bblox-license-inline-activate {
-          background: linear-gradient(135deg, #818cf8 0%, #8b5cf6 100%);
-        }
-      }
-    </style>
-    <link rel="stylesheet" href="../../styles/tailwind.css" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="header">
-        <img src="../../icons/icon32.png" alt="BetterBLOX Logo" class="logo" />
-        <h2>BetterBLOX</h2>
-        <span class="version-badge" id="version-badge"></span>
-      </div>
+@media(prefers - color - scheme: dark) {
+    .bblox - license - inline - activate {
+      background: linear - gradient(135 deg, #818cf8 0%, # 8 b5cf6 100 % );
+    }
+  } <
+  /style> <
+  link rel = "stylesheet"
+href = "../../styles/tailwind.css" / >
+  <
+  /head> <
+  body >
+  <
+  div class = "container" >
+  <
+  div class = "header" >
+  <
+  img src = "../../icons/icon32.png"
+alt = "BetterBLOX Logo"
+class = "logo" / >
+<
+h2 > BetterBLOX < /h2> <
+  span class = "version-badge"
+id = "version-badge" > < /span> <
+  /div>
 
-      <div class="info-box" style="margin-top: 20px" id="theme-box">
-        <span style="font-weight: 700">BetterBLOX V2 Engine</span>
+  <
+  div class = "info-box"
+style = "margin-top: 20px"
+id = "theme-box" >
+  <
+  span style = "font-weight: 700" > BetterBLOX V2 Engine < /span>
 
-        <!-- Shown when user has a license: toggle + options -->
-        <div id="theme-activated-section" style="display: none">
-          <div
-            style="
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              margin-top: 8px;
-            "
-          >
-            <span style="font-size: 0.9rem">Enable theme</span>
-            <label
-              class="switch"
-              style="
-                position: relative;
-                display: inline-block;
-                width: 40px;
-                height: 24px;
-              "
-            >
-              <input type="checkbox" id="theme-toggle" />
-              <span
-                style="
-                  position: absolute;
-                  cursor: pointer;
-                  top: 0;
-                  left: 0;
-                  right: 0;
-                  bottom: 0;
-                  background-color: #ccc;
-                  transition: 0.4s;
-                  border-radius: 12px;
-                "
-              ></span>
-              <span
-                style="
-                  position: absolute;
-                  content: &quot;&quot;;
-                  height: 16px;
-                  width: 16px;
-                  left: 4px;
-                  bottom: 4px;
-                  background-color: white;
-                  transition: 0.4s;
-                  border-radius: 50%;
-                  transform: translateX(0);
-                "
-              ></span>
-            </label>
-          </div>
-          <p style="margin: 8px 0 0; font-size: 0.85rem">
-            Enable or disable the BetterBLOX v2 theme engine (complete website
-            overhaul)
-          </p>
+  <
+  !--Shown when user has a license: toggle + options-- >
+  <
+  div id = "theme-activated-section"
+style = "display: none" >
+  <
+  div
+style = "
+display: flex;
+justify - content: space - between;
+align - items: center;
+margin - top: 8 px;
+" >
+<
+span style = "font-size: 0.9rem" > Enable theme < /span> <
+  label
+class = "switch"
+style = "
+position: relative;
+display: inline - block;
+width: 40 px;
+height: 24 px;
+" >
+<
+input type = "checkbox"
+id = "theme-toggle" / >
+  <
+  span
+style = "
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background - color: #ccc;
+transition: 0.4 s;
+border - radius: 12 px;
+" >
+< /span> <
+span
+style = "
+position: absolute;
+content: & quot; & quot;;
+height: 16 px;
+width: 16 px;
+left: 4 px;
+bottom: 4 px;
+background - color: white;
+transition: 0.4 s;
+border - radius: 50 % ;
+transform: translateX(0);
+" >
+< /span> <
+/label> <
+/div> <
+p style = "margin: 8px 0 0; font-size: 0.85rem" >
+  Enable or disable the BetterBLOX v2 theme engine(complete website overhaul) <
+  /p>
 
-          <div id="url-rewrite-option" style="margin-top: 12px; display: none">
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-              "
-            >
-              <span>Disable URL Rewrites</span>
-              <label
-                class="switch"
-                style="
-                  position: relative;
-                  display: inline-block;
-                  width: 40px;
-                  height: 24px;
-                "
-              >
-                <input type="checkbox" id="url-rewrite-toggle" />
-                <span
-                  style="
-                    position: absolute;
-                    cursor: pointer;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background-color: #ccc;
-                    transition: 0.4s;
-                    border-radius: 12px;
-                  "
-                ></span>
-                <span
-                  style="
-                    position: absolute;
-                    content: &quot;&quot;;
-                    height: 16px;
-                    width: 16px;
-                    left: 4px;
-                    bottom: 4px;
-                    background-color: white;
-                    transition: 0.4s;
-                    border-radius: 50%;
-                    transform: translateX(0);
-                  "
-                ></span>
-              </label>
-            </div>
-            <p style="margin: 8px 0 0; font-size: 0.85rem">
-              Enable if you encounter reload problems caused by other extensions
-              (e.g. Rogold Ultimate)
-            </p>
-          </div>
-          <div id="dev-mode-option" style="margin-top: 12px; display: none">
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 8px;
-              "
-            >
-              <span>Theme Environment</span>
-            </div>
-            <select
-              id="theme-environment-select"
-              style="
-                width: 100%;
-                padding: 8px 12px;
-                border: 1px solid #ccc;
-                border-radius: 6px;
-                background-color: white;
-                font-size: 0.9rem;
-                cursor: pointer;
-                margin-bottom: 4px;
-              "
-            >
-              <option value="production">Production</option>
-              <option value="beta">Beta (Testers)</option>
-              <option value="dev">Development (Localhost)</option>
-            </select>
-            <p style="margin: 8px 0 0; font-size: 0.85rem">
-              Select which theme server to use
-            </p>
-          </div>
+  <
+  div id = "url-rewrite-option"
+style = "margin-top: 12px; display: none" >
+  <
+  div
+style = "
+display: flex;
+justify - content: space - between;
+align - items: center;
+" >
+<
+span > Disable URL Rewrites < /span> <
+  label
+class = "switch"
+style = "
+position: relative;
+display: inline - block;
+width: 40 px;
+height: 24 px;
+" >
+<
+input type = "checkbox"
+id = "url-rewrite-toggle" / >
+  <
+  span
+style = "
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background - color: #ccc;
+transition: 0.4 s;
+border - radius: 12 px;
+" >
+< /span> <
+span
+style = "
+position: absolute;
+content: & quot; & quot;;
+height: 16 px;
+width: 16 px;
+left: 4 px;
+bottom: 4 px;
+background - color: white;
+transition: 0.4 s;
+border - radius: 50 % ;
+transform: translateX(0);
+" >
+< /span> <
+/label> <
+/div> <
+p style = "margin: 8px 0 0; font-size: 0.85rem" >
+  Enable
+if you encounter reload problems caused by other extensions
+  (e.g.Rogold Ultimate) <
+  /p> <
+  /div> <
+  div id = "dev-mode-option"
+style = "margin-top: 12px; display: none" >
+  <
+  div
+style = "
+display: flex;
+justify - content: space - between;
+align - items: center;
+margin - bottom: 8 px;
+" >
+<
+span > Theme Environment < /span> <
+  /div> <
+  select
+id = "theme-environment-select"
+style = "
+width: 100 % ;
+padding: 8 px 12 px;
+border: 1 px solid #ccc;
+border - radius: 6 px;
+background - color: white;
+font - size: 0.9 rem;
+cursor: pointer;
+margin - bottom: 4 px;
+" >
+<
+option value = "production" > Production < /option> <
+  option value = "beta" > Beta(Testers) < /option> <
+  option value = "dev" > Development(Localhost) < /option> <
+  /select> <
+  p style = "margin: 8px 0 0; font-size: 0.85rem" >
+  Select which theme server to use <
+  /p> <
+  /div>
 
-          <div
-            id="settings-notification"
-            style="
-              margin-top: 12px;
-              display: none;
-              padding: 10px 12px;
-              background: rgba(99, 102, 241, 0.12);
-              border-radius: 8px;
-              border: 1px solid rgba(99, 102, 241, 0.25);
-            "
-          >
-            <p style="margin: 0; font-size: 0.85rem; color: #4f46e5">
-              <svg
-                style="
-                  width: 14px;
-                  height: 14px;
-                  display: inline-block;
-                  vertical-align: middle;
-                  fill: #6366f1;
+  <
+  div
+id = "settings-notification"
+style = "
+margin - top: 12 px;
+display: none;
+padding: 10 px 12 px;
+background: rgba(99, 102, 241, 0.12);
+border - radius: 8 px;
+border: 1 px solid rgba(99, 102, 241, 0.25);
+" >
+<
+p style = "margin: 0; font-size: 0.85rem; color: #4f46e5" >
+  <
+  svg
+style = "
+width: 14 px;
+height: 14 px;
+display: inline - block;
+vertical - align: middle;
+fill: #6366f1;
                   margin-right: 4px;
                 "
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
-                />
-              </svg>
-              Please reload the Roblox page for changes to take effect
-            </p>
-          </div>
-        </div>
+                viewBox= "0 0 24 24" >
+  <
+  path
+d = "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" /
+  >
+  <
+  /svg>
+Please reload the Roblox page
+for changes to take effect
+  <
+  /p> <
+  /div> <
+  /div>
 
-        <!-- Shown when user has no license: download / buy / enter key -->
-        <div id="theme-unlock-section">
-          <p class="bblox-unlock-desc">
-            V2 is a complete website overhaul. Download the BetterBLOX Roblox
-            Launcher or unlock it here with a license key.
-          </p>
-          <div class="bblox-unlock-actions">
-            <button
-              type="button"
-              id="bblox-try-launcher"
-              class="bblox-unlock-btn"
-            >
-              Download BetterBLOX Roblox Launcher
-              <div class="bblox-unlock-sub">
-                The custom theme will be applied by default inside the BetterBLOX Launcher.
-              </div>
-            </button>
-            <button
-              type="button"
-              id="bblox-buy-license"
-              class="bblox-unlock-btn bblox-unlock-btn-primary"
-            >
-              Buy a license key
-              <div class="bblox-unlock-sub light">
-                Works on launcher + extension. Disables launcher ads.
-              </div>
-            </button>
-          </div>
-          <div class="bblox-license-inline">
-            <div class="bblox-license-inline-title">
-              Already have a license?
-            </div>
-            <input
-              id="bblox-license-key-input"
-              class="bblox-license-inline-input"
-              type="text"
-              placeholder="Enter license key"
-              autocomplete="off"
-            />
-            <div id="bblox-license-error" class="bblox-license-inline-error">
-              Please enter your license key.
-            </div>
-            <button
-              type="button"
-              id="bblox-license-activate"
-              class="bblox-license-inline-btn bblox-license-inline-activate"
-            >
-              Activate & Enable
-            </button>
-          </div>
-        </div>
-      </div>
+  <
+  !--Shown when user has no license: download / buy / enter key-- >
+  <
+  div id = "theme-unlock-section" >
+  <
+  p class = "bblox-unlock-desc" >
+  V2 is a complete website overhaul.Download the BetterBLOX Roblox
+Launcher or unlock it here with a license key. <
+  /p> <
+  div class = "bblox-unlock-actions" >
+  <
+  button
+type = "button"
+id = "bblox-try-launcher"
+class = "bblox-unlock-btn" >
+Download BetterBLOX Roblox Launcher
+  <
+  div class = "bblox-unlock-sub" >
+  The custom theme will be applied by
+default inside the BetterBLOX Launcher. <
+  /div> <
+  /button> <
+  button
+type = "button"
+id = "bblox-buy-license"
+class = "bblox-unlock-btn bblox-unlock-btn-primary" >
+Buy a license key
+  <
+  div class = "bblox-unlock-sub light" >
+  Works on launcher + extension.Disables launcher ads. <
+  /div> <
+  /button> <
+  /div> <
+  div class = "bblox-license-inline" >
+  <
+  div class = "bblox-license-inline-title" >
+  Already have a license ?
+  <
+  /div> <
+  input
+id = "bblox-license-key-input"
+class = "bblox-license-inline-input"
+type = "text"
+placeholder = "Enter license key"
+autocomplete = "off" /
+  >
+  <
+  div id = "bblox-license-error"
+class = "bblox-license-inline-error" >
+Please enter your license key. <
+  /div> <
+  button
+type = "button"
+id = "bblox-license-activate"
+class = "bblox-license-inline-btn bblox-license-inline-activate" >
+Activate & Enable <
+  /button> <
+  /div> <
+  /div> <
+  /div>
 
-      <div class="info-box">
-        <p style="margin-top: 0">Join our Discord community to:</p>
-        <ul style="margin: 8px 0 8px 20px; padding: 0">
-          <li>Report bugs</li>
-          <li>Get support</li>
-          <li>Suggest features</li>
-          <li>Stay updated</li>
-        </ul>
-        <p style="margin: 8px 0; font-size: 0.875rem">
-          Visit our
-          <a
-            href="https://betterroblox.com"
-            target="_blank"
-            class="author-link"
-            style="color: #6366f1; font-weight: 600"
-            >official website</a
-          >
-          for more information!
-        </p>
-      </div>
+  <
+  div class = "info-box" >
+  <
+  p style = "margin-top: 0" > Join our Discord community to: < /p> <
+  ul style = "margin: 8px 0 8px 20px; padding: 0" >
+  <
+  li > Report bugs < /li> <
+  li > Get support < /li> <
+  li > Suggest features < /li> <
+  li > Stay updated < /li> <
+  /ul> <
+  p style = "margin: 8px 0; font-size: 0.875rem" >
+  Visit our <
+  a
+href = "https://betterroblox.com"
+target = "_blank"
+class = "author-link"
+style = "color: #6366f1; font-weight: 600" >
+  official website < /a >
+  for more information!
+  <
+  /p> <
+  /div>
 
-      <!-- Review Request Box -->
-      <div class="info-box" style="border-color: rgba(16, 185, 129, 0.25)">
-        <p style="margin-top: 0">Enjoying BetterBLOX?</p>
-        <p style="margin: 8px 0; font-size: 0.9rem">
-          Please consider
-          <a
-            href="https://chromewebstore.google.com/detail/better-roblox-extension/lplhnhhlblehjmmkcpjbojiaanbpgnpd/reviews"
-            target="_blank"
-            style="color: #6366f1; text-decoration: none; font-weight: 600"
-            class="author-link"
-            >leaving a 5-star review</a
-          >. Your support helps us grow!
-          <svg
-            style="
-              width: 14px;
-              height: 14px;
-              display: inline-block;
-              vertical-align: middle;
-              fill: #eab308;
-            "
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
-            />
-          </svg>
-        </p>
-      </div>
+  <
+  !--Review Request Box-- >
+  <
+  div class = "info-box"
+style = "border-color: rgba(16, 185, 129, 0.25)" >
+  <
+  p style = "margin-top: 0" > Enjoying BetterBLOX ? < /p> <
+  p style = "margin: 8px 0; font-size: 0.9rem" >
+  Please consider <
+  a
+href = "https://chromewebstore.google.com/detail/better-roblox-extension/lplhnhhlblehjmmkcpjbojiaanbpgnpd/reviews"
+target = "_blank"
+style = "color: #6366f1; text-decoration: none; font-weight: 600"
+class = "author-link" >
+leaving a 5 - star review < /a >
+  .Your support helps us grow!
+  <
+  svg
+style = "
+width: 14 px;
+height: 14 px;
+display: inline - block;
+vertical - align: middle;
+fill: #eab308;
+"
+viewBox = "0 0 24 24" >
+  <
+  path
+d = "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" /
+  >
+  <
+  /svg> <
+  /p> <
+  /div>
 
-      <div class="buttons-container">
-        <a
-          href="https://discord.gg/VY6tDwctW5"
-          target="_blank"
-          class="button discord-button"
-        >
-          <svg class="discord-icon" viewBox="0 0 24 24">
-            <path
-              d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"
-            />
-          </svg>
-          Join Discord
-        </a>
-        <a
-          href="https://www.roblox.com/my/account?betterblox=active"
-          target="_blank"
-          class="button settings-button"
-        >
-          <svg class="icon icon-settings" viewBox="0 0 24 24">
-            <path
-              d="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z"
-            />
-          </svg>
-          Settings
-        </a>
-      </div>
+  <
+  div class = "buttons-container" >
+  <
+  a
+href = "https://discord.gg/VY6tDwctW5"
+target = "_blank"
+class = "button discord-button" >
+<
+svg class = "discord-icon"
+viewBox = "0 0 24 24" >
+  <
+  path
+d =
+  "M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z" /
+  >
+  <
+  /svg>
+Join Discord
+  <
+  /a> <
+  a
+href = "https://www.roblox.com/my/account?betterblox=active"
+target = "_blank"
+class = "button settings-button" >
+<
+svg class = "icon icon-settings"
+viewBox = "0 0 24 24" >
+  <
+  path
+d =
+  "M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" /
+  >
+  <
+  /svg>
+Settings
+  <
+  /a> <
+  /div>
 
-      <div class="footer">
-        Made with
-        <svg class="icon icon-heart" viewBox="0 0 24 24">
-          <path
-            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-          />
-        </svg>
-        by
-        <a
-          href="https://github.com/AlloryDante"
-          target="_blank"
-          class="author-link"
-          >Allory Dante</a
-        >
-      </div>
-    </div>
+  <
+  div class = "footer" >
+  Made with <
+  svg class = "icon icon-heart"
+viewBox = "0 0 24 24" >
+  <
+  path
+d =
+  "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /
+  >
+  <
+  /svg>
+by
+  <
+  a
+href = "https://github.com/AlloryDante"
+target = "_blank"
+class = "author-link" >
+Allory Dante < /a >
+  <
+  /div> <
+  /div>
 
-    <script src="popup.js"></script>
-  </body>
-</html>
+  <
+  script src = "popup.js" > < /script> <
+  /body> <
+  /html>

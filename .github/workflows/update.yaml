@@ -1,4 +1,4 @@
-name: EXTENSION UPDATER & FETCHER
+name: Extension PR Sync
 on:
   workflow_dispatch:
   schedule:
@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pip install requests
-      - run: python update_extensions.py
+      - run: python update_extension.py
       - id: set-matrix
         run: echo "matrix=$(cat meta.json)" >> $GITHUB_OUTPUT
 
@@ -47,6 +47,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           BROWSER: ${{ matrix.browser }}
           VER: ${{ fromJson(needs.fetch-meta.outputs.matrix)[matrix.browser].version }}
+          EVENT_NAME: ${{ github.event_name }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -61,15 +62,15 @@ jobs:
 
           git add .
           
-          if git diff --staged --quiet; then
-            echo "No changes detected"
+          if git diff --staged --quiet && [ "$EVENT_NAME" != "workflow_dispatch" ]; then
+            echo "No changes detected and not a manual run"
           else
-            git commit -m "Sync $BROWSER to version $VER"
+            git commit --allow-empty -m "Sync $BROWSER to version $VER"
             git push origin "$HEAD" --force
             
             gh pr create \
               --title "Update $BASE to $VER" \
-              --body "Syncing latest $BROWSER source code" \
+              --body "Syncing latest $BROWSER source code via $EVENT_NAME" \
               --base "$BASE" \
               --head "$HEAD" || echo "PR already exists"
           fi

@@ -29,22 +29,34 @@ def get_chrome_latest(extension_id):
 def beautify_repo(directory):
     opts = jsbeautifier.default_options()
     opts.indent_size = 2
+    opts.wrap_line_length = 120
+    
+    extensions = ('.js', '.json', '.css', '.html')
+    
     for root, dirs, files in os.walk(directory):
+        if '.git' in root:
+            continue
         for file in files:
-            if file.endswith(".js") or file.endswith(".json") or file.endswith(".css"):
+            if file.endswith(extensions):
                 file_path = os.path.join(root, file)
-                with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
-                    content = f.read()
                 try:
+                    with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                        content = f.read()
+                    
                     beautified = jsbeautifier.beautify(content, opts)
+                    
                     with open(file_path, 'w', encoding='utf-8') as f:
                         f.write(beautified)
-                except:
-                    continue
+                except Exception as e:
+                    print(f"Could not beautify {file}: {e}")
 
 if __name__ == "__main__":
-    fx = get_firefox_latest("better-roblox-extension")
-    ch = get_chrome_latest("lplhnhhlblehjmmkcpjbojiaanbpgnpd")
-    
-    with open("meta.json", "w") as f:
-        json.dump({"firefox": fx, "chrome": ch}, f)
+    # If running as a standalone script for metadata fetch
+    if not os.environ.get("BEAUTIFY_ONLY"):
+        fx = get_firefox_latest("better-roblox-extension")
+        ch = get_chrome_latest("lplhnhhlblehjmmkcpjbojiaanbpgnpd")
+        with open("meta.json", "w") as f:
+            json.dump({"firefox": fx, "chrome": ch}, f)
+    # If explicitly called to beautify
+    else:
+        beautify_repo(".")

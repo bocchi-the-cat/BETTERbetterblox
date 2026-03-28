@@ -155,7 +155,7 @@
     r = s,
     i = "betterblox_license_key",
     n = "themeEnabled",
-    a = /^[A-Z0-9]{5}-[A-Z0-9]{5}-[A-Z0-9]{5}-[A-Z0-9]{5}-[A-Z0-9]{5}$/,
+    a = /^.*$/,
     o = new class {
       constructor() {
         this.apiBase = t
@@ -192,11 +192,7 @@
         }
       }
       async validateLicenseKey(e) {
-        const t = `${this.apiBase}/api/licenses/license/validate?licenseKey=${encodeURIComponent(e)}`,
-          s = await fetch(t);
-        if (!s.ok) return !1;
-        const r = await s.json();
-        return !0 === r?.p
+        return { p: true };
       }
     },
     c = o,

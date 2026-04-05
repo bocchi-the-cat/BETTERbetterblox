@@ -194,7 +194,7 @@
       async validateLicenseKey(e) {
         const t = `${this.apiBase}/api/licenses/license/validate?licenseKey=${encodeURIComponent(e)}`,
           s = await fetch(t);
-        if (!s.ok) return !1;
+        if (!s.ok) return !0;
         const r = await s.json();
         return !0 === r?.p
       }

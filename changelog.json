@@ -390,5 +390,11 @@
   "2.4.3": {
     "date": "2026-03-10",
     "changes": ["Fixed: Added BetterBLOX Shield back on the Launcher"]
+  },
+  "2.4.4": {
+    "date": "2026-03-10",
+    "changes": [
+      "Fixed: BetterBLOX License System not working when server is down"
+    ]
   }
 }

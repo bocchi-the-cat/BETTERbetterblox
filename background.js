@@ -6,18 +6,51 @@
       constructor() {
         this.SERVER_URL = t, this.DATACENTER_CACHE_KEY = "betterblox_datacenters_cache", this.CACHE_EXPIRY_KEY =
           "betterblox_datacenters_cache_expiry", this.CACHE_DURATION = 864e5, this.SHORT_CACHE_DURATION = 15e3, this
-          .CLIENT_LOCATION_KEY = "betterblox_client_location"
+          .CLIENT_LOCATION_KEY = "betterblox_client_location", this.joinGameTaskIdByTabId = new Map
+      }
+      _joinGameTabId(e) {
+        return e?.tab?.id ?? null
+      }
+      _isJoinGameTaskStale(e, t) {
+        if (null == e || null == t) return !1;
+        const s = this.joinGameTaskIdByTabId.get(e);
+        return void 0 !== s && s !== t
+      }
+      _joinGameStalePayload(e, t) {
+        return this._isJoinGameTaskStale(e, t) ? {
+          abortedStaleTask: !0
+        } : null
+      }
+      async _sleepJoinGameUnlessStale(e, t, s) {
+        let r = e;
+        for (; r > 0;) {
+          if (this._isJoinGameTaskStale(t, s)) return;
+          const e = Math.min(400, r);
+          await new Promise(t => setTimeout(t, e)), r -= e
+        }
       }
       init() {
-        chrome.runtime.onMessage.addListener((e, t, s) => "GET_DATACENTERS" === e.type ? ((async () => {
-          const e = await this.getDatacenters();
-          console.log("[SERVER INFO] Datacenters fetched from server and cached"), s(e)
-        })(), !0) : "GET_GAMEJOIN_DATA" === e.type ? ((async () => {
-          s(await this.getGameJoinData(e.data.placeId, e.data.serverId))
-        })(), !0) : "GET_CLIENT_LOCATION" === e.type ? ((async () => {
-          const e = await this.getClientLocation();
-          s(e)
-        })(), !0) : void 0)
+        chrome.tabs?.onRemoved && chrome.tabs.onRemoved.addListener(e => {
+          this.joinGameTaskIdByTabId.delete(e)
+        }), chrome.runtime.onMessage.addListener((e, t, s) => {
+          if ("SET_JOIN_GAME_TASK_ID" === e.type) {
+            const r = this._joinGameTabId(t);
+            return null != r && null != e.taskId && this.joinGameTaskIdByTabId.set(r, e.taskId), s({
+              ok: !0
+            }), !1
+          }
+          return "GET_DATACENTERS" === e.type ? ((async () => {
+            const e = await this.getDatacenters();
+            console.log("[SERVER INFO] Datacenters fetched from server and cached"), s(e)
+          })(), !0) : "GET_GAMEJOIN_DATA" === e.type ? ((async () => {
+            const r = this._joinGameTabId(t),
+              i = e.data?.taskId ?? null;
+            s(await this.getGameJoinData(e.data.placeId, e.data.serverId, i, r))
+          })(), !0) : "GET_CLIENT_LOCATION" === e.type ? ((async () => {
+            const e = await this.getClientLocation();
+            s(e)
+          })(), !0) : void 0
+        })
       }
       async getDatacenters() {
         try {
@@ -95,60 +128,98 @@
           return console.warn("[SERVER INFO] Failed to get client location:", e), null
         }
       }
-      async getGameJoinData(e, t) {
-        try {
-          const s = await fetch("https://gamejoin.roblox.com/v1/join-game-instance", {
-              method: "POST",
-              headers: {
-                Accept: "*/*",
-                "Accept-Encoding": "gzip, deflate, br, zstd",
-                "Accept-Language": "en,en-US;q=0.9",
-                Referer: `https://www.roblox.com/games/${e}/`,
-                Origin: "https://www.roblox.com",
-                "User-Agent": "Roblox"
-              },
-              body: JSON.stringify({
-                placeId: e,
-                gameId: t,
-                gameJoinAttemptId: t,
-                joinOrigin: "RobloxApp"
+      _joinGameRetryAfterMs(e) {
+        const t = e.headers.get("retry-after");
+        if (null == t || "" === t) return 5e3;
+        const s = t.trim(),
+          r = Number.parseInt(s, 10);
+        if (!Number.isNaN(r) && /^\d+$/.test(s)) return 1e3 * r;
+        const i = Date.parse(s);
+        return Number.isNaN(i) ? 5e3 : Math.max(0, i - Date.now())
+      }
+      async getGameJoinData(e, t, s, r) {
+        for (let i = 1; i <= 3; i++) {
+          const n = this._joinGameStalePayload(r, s);
+          if (n) return n;
+          try {
+            const n = await fetch("https://gamejoin.roblox.com/v1/join-game-instance", {
+                method: "POST",
+                headers: {
+                  Accept: "*/*",
+                  "Accept-Encoding": "gzip, deflate, br, zstd",
+                  "Accept-Language": "en,en-US;q=0.9",
+                  Referer: `https://www.roblox.com/games/${e}/`,
+                  Origin: "https://www.roblox.com",
+                  "User-Agent": "Roblox"
+                },
+                body: JSON.stringify({
+                  placeId: e,
+                  gameId: t,
+                  gameJoinAttemptId: t,
+                  joinOrigin: "RobloxApp"
+                }),
+                credentials: "include"
               }),
-              credentials: "include"
-            }),
-            r = await s.json(),
-            {
-              joinScript: i
-            } = r;
-          if (!i) return {
-            data: r,
-            status: s.status,
-            waitTime: s.headers.get("retry-after"),
-            queuePosition: r.queuePosition || 0
-          };
-          const n = {
-            latitude: null,
-            longitude: null
-          };
-          if (i.SessionId) {
-            const e = JSON.parse(i.SessionId);
-            n.latitude = e.Latitude, n.longitude = e.Longitude, n.latitude && n.longitude && (console.log(
-              "[SERVER INFO] Storing client location from game join data"), await this.storeClientLocation(n))
+              a = this._joinGameStalePayload(r, s);
+            if (a) return a;
+            if (429 === n.status) {
+              const e = this._joinGameRetryAfterMs(n);
+              if (console.warn(`[SERVER INFO] getGameJoinData 429 (attempt ${i}/3), waiting ${e}ms`), i < 3) {
+                await this._sleepJoinGameUnlessStale(e, r, s);
+                continue
+              }
+              return {
+                error: "Too many requests (429)",
+                status: 429,
+                waitTime: n.headers.get("retry-after")
+              }
+            }
+            const o = await n.json(),
+              c = this._joinGameStalePayload(r, s);
+            if (c) return c;
+            const {
+              joinScript: l
+            } = o;
+            if (!l) {
+              return this._joinGameStalePayload(r, s) || {
+                data: o,
+                status: n.status,
+                waitTime: n.headers.get("retry-after"),
+                queuePosition: o.queuePosition || 0
+              }
+            }
+            const d = {
+              latitude: null,
+              longitude: null
+            };
+            if (l.SessionId) {
+              const e = JSON.parse(l.SessionId);
+              d.latitude = e.Latitude, d.longitude = e.Longitude, d.latitude && d.longitude && (console.log(
+                "[SERVER INFO] Storing client location from game join data"), await this.storeClientLocation(d))
+            }
+            const u = this._joinGameStalePayload(r, s);
+            if (u) return u;
+            const h = l.UdmuxEndpoints?.[0] || null;
+            if (!h || !h.Address) {
+              console.error("No connection address found");
+              return this._joinGameStalePayload(r, s) || {
+                data: o,
+                status: n.status,
+                waitTime: n.headers.get("retry-after"),
+                queuePosition: o.queuePosition || 0
+              }
+            }
+            const g = this._joinGameStalePayload(r, s);
+            return g || {
+              clientData: d,
+              ip: h.Address,
+              datacenterId: l.DataCenterId,
+              placeVersion: l.PlaceVersion || null,
+              queuePosition: o.queuePosition || 0
+            }
+          } catch (e) {
+            return console.error("Failed to fetch server data:", e), null
           }
-          const a = i.UdmuxEndpoints?.[0] || null;
-          return a && a.Address ? {
-            clientData: n,
-            ip: a.Address,
-            datacenterId: i.DataCenterId,
-            placeVersion: i.PlaceVersion || null,
-            queuePosition: r.queuePosition || 0
-          } : (console.error("No connection address found"), {
-            data: r,
-            status: s.status,
-            waitTime: s.headers.get("retry-after"),
-            queuePosition: r.queuePosition || 0
-          })
-        } catch (e) {
-          return console.error("Failed to fetch server data:", e), null
         }
       }
     },
@@ -807,10 +878,37 @@
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
   }
   const S = "https://users.roblox.com/v1",
-    E = "https://friends.roblox.com/v1",
-    T = new class {
+    T = "https://friends.roblox.com/v1",
+    E = new class {
       constructor() {
         this.rateLimitQueue = new Map
+      }
+      parseRetryAfterSeconds(e) {
+        if (null == e || "" === e) return null;
+        const t = parseInt(e, 10);
+        return Number.isFinite(t) && t >= 0 ? t : null
+      }
+      async fetchFriendsFindPage(e, t = 3) {
+        const s = {
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        };
+        for (let r = 1; r <= t; r++) {
+          const i = await fetch(e, s);
+          if (429 === i.status) {
+            const e = this.parseRetryAfterSeconds(i.headers.get("Retry-After")) ?? 5;
+            if (console.warn(`[RobloxAPI] friends/find rate limited (${r}/${t}). Waiting ${e}s`), r === t)
+            return null;
+            await new Promise(t => setTimeout(t, 1e3 * e));
+            continue
+          }
+          if (401 === i.status) throw new Error("Unauthorized - User not authenticated");
+          if (!i.ok) throw new Error(`HTTP error! status: ${i.status}`);
+          return await i.json()
+        }
+        return null
       }
       async fetch(e, t = {}) {
         try {
@@ -844,18 +942,32 @@
         return this.fetch(`${S}/users/search?keyword=${e}&limit=${t}`)
       }
       async getFriends(e, t = 50, s = null) {
-        let r = `${E}/users/${e}/friends/find`;
+        let r = `${T}/users/${e}/friends/find`;
         return s && (r += `?cursor=${s}`), t && (r += `${s?"&":"?"}limit=${t}`), this.fetch(r)
       }
       async getAllFriends(e, t = void 0) {
-        let s = `${E}/users/${e}/friends`;
-        void 0 !== t && (s += `?userSort=${t}`);
-        const r = await this.fetch(s);
-        if (!r.data || !Array.isArray(r.data)) throw new Error("Invalid response format from friends API");
-        return r.data.filter(e => e.id && -1 !== e.id)
+        const s = [];
+        let r = null;
+        for (;;) {
+          const t = new URLSearchParams({
+            limit: String(50)
+          });
+          r && t.set("cursor", r);
+          const i = `${T}/users/${e}/friends/find?${t}`,
+            n = await this.fetchFriendsFindPage(i);
+          if (null === n) return console.warn(
+            "[RobloxAPI] getAllFriends: stopping after repeated rate limits; returning partial list"), s;
+          const a = n.PageItems;
+          if (!Array.isArray(a)) throw new Error("Invalid response format from friends API");
+          for (const e of a) null != e?.id && -1 !== e.id && s.push({
+            id: e.id
+          });
+          if (r = n.NextCursor, !r) break
+        }
+        return s
       }
       async getFriendsCount(e) {
-        return this.fetch(`${E}/users/${e}/friends/count`)
+        return this.fetch(`${T}/users/${e}/friends/count`)
       }
       async getUsersPresence(e) {
         return this.fetch("https://presence.roblox.com/v1/presence/users", {
@@ -958,7 +1070,7 @@
         const e = Date.now();
         if (e - this.lastAuthCheck < this.AUTH_RATE_LIMIT && this.authData) return this.authData.id;
         try {
-          const t = await T.getCurrentUser();
+          const t = await E.getCurrentUser();
           return this.authData = {
             id: t.id,
             name: t.name,
@@ -1002,9 +1114,9 @@
         return this.authData && !e || await this.checkAuthStatus(), this.authData
       }
     },
-    C = v,
+    N = v,
     D = "betterblox_friends_list",
-    N = e => new Promise(t => setTimeout(t, e)),
+    C = e => new Promise(t => setTimeout(t, e)),
     U = new class {
       constructor() {
         this.friendsData = {}, this.currentUserId = null, this.subscribers = [], this.isInitialized = !1
@@ -1038,7 +1150,7 @@
       }
       async updateCurrentUser() {
         try {
-          const e = await C.getAuthData(!0),
+          const e = await N.getAuthData(!0),
             t = e?.id?.toString();
           if (t !== this.currentUserId) {
             const e = this.currentUserId;
@@ -1053,7 +1165,7 @@
       }
       async updateFriendsList() {
         try {
-          const e = (await C.getAuthData(!0))?.id?.toString();
+          const e = (await N.getAuthData(!0))?.id?.toString();
           if (!e) return void console.log("[FRIENDS] User not authenticated, skipping friends update");
           if (e !== this.currentUserId) {
             const t = this.currentUserId;
@@ -1063,7 +1175,7 @@
           }
           const t = e;
           console.log(`[FRIENDS] Fetching friends for user: ${t}`);
-          const s = (await T.getAllFriends(parseInt(t))).map(e => e.id).filter(e => {
+          const s = (await E.getAllFriends(parseInt(t))).map(e => e.id).filter(e => {
               const t = parseInt(e);
               return t > 0 && !isNaN(t)
             }),
@@ -1124,7 +1236,7 @@
           }), chrome.alarms.onAlarm.addListener(e => {
             "friendsListCheck" === e.name && this.updateFriendsList()
           }); this.currentUserId && !this.getCurrentUserFriends();) console.log(
-            "[FRIENDS] No friends data found for current user, waiting 10 seconds before retrying"), await N(1e4),
+            "[FRIENDS] No friends data found for current user, waiting 10 seconds before retrying"), await C(1e4),
           await this.updateFriendsList()
       }
       getCurrentUserFriends() {
@@ -1339,14 +1451,14 @@
       }
       startPeriodicCheck() {
         this.updatePresencesLoop(), chrome.alarms.create("friendsPresenceCheck", {
-          periodInMinutes: .25
+          periodInMinutes: .75
         }), chrome.alarms.onAlarm.addListener(e => {
           "friendsPresenceCheck" === e.name && this.updatePresencesLoop()
         })
       }
     },
-    $ = F,
-    P = new class {
+    P = F,
+    $ = new class {
       constructor() {
         this.userFriendsData = {}, this.currentUserId = null, this.initializeNotificationListener()
       }
@@ -1415,7 +1527,7 @@
       }
       async sendGroupRemovedNotification(e) {
         try {
-          const t = e.slice(0, 3).map(e => T.getUserInfo(e)),
+          const t = e.slice(0, 3).map(e => E.getUserInfo(e)),
             s = (await Promise.all(t)).map(e => e.name),
             r = e.length - 3,
             i = r > 0 ? `${s.join(", ")} and ${r} others` : s.join(", "),
@@ -1448,7 +1560,7 @@
       }
       async sendIndividualRemovedNotifications(e) {
         for (const t of e) try {
-          const [e, s] = await Promise.all([T.getUserInfo(t), T.getUserThumbnail(t)]), r = s.data?.[0]
+          const [e, s] = await Promise.all([E.getUserInfo(t), E.getUserThumbnail(t)]), r = s.data?.[0]
             ?.imageUrl || "/icons/icon48.png", i = `friend-removed-${t}`, n = {
               type: "basic",
               iconUrl: r,
@@ -1552,7 +1664,7 @@
       }
       async notifyNewSessions(e) {
         try {
-          if (!await d.getSettings("session-notification", !0)) return void console.log(
+          if (!await d.getSettings("session-notification", !1)) return void console.log(
             "[SESSION NOTIFICATION] Notifications disabled, skipping");
           if (e.length > 10) return void console.log(
             "[SESSION NOTIFICATION] Too many new sessions, skipping notification");
@@ -1675,7 +1787,7 @@
       }
       async getCurrentUserData() {
         try {
-          const e = await C.getAuthData(!0);
+          const e = await N.getAuthData(!0);
           return e && e.id && e.name ? {
             id: e.id,
             username: e.name
@@ -1734,7 +1846,7 @@
       }
       async updateExtensionId() {
         try {
-          const e = await C.getAuthData();
+          const e = await N.getAuthData();
           return e && e.id ? (this.extensionId = `user-${e.id}`, !0) : (this.extensionId = null, !1)
         } catch (e) {
           return this.extensionId = null, !1
@@ -1751,7 +1863,7 @@
         if (this.isRunning && !this.currentTask && !this.isRequestInProgress) {
           this.isRequestInProgress = !0;
           try {
-            if (!await C.isAuthenticated()) return this.wasAuthenticated = !1, void this.scheduleNextCheck();
+            if (!await N.isAuthenticated()) return this.wasAuthenticated = !1, void this.scheduleNextCheck();
             if (!this.extensionId && !await this.updateExtensionId()) return void this.scheduleNextCheck();
             this.wasAuthenticated = !0;
             const e = await fetch(`${L}/get-task`, {
@@ -1876,8 +1988,8 @@
           `[DISCOVERY] Next check in ${s}`), this.scheduledJob = setTimeout(() => this.checkForTask(), t)
       }
     },
-    z = `${t}/api/discovery`,
-    j = new class {
+    j = `${t}/api/discovery`,
+    z = new class {
       constructor() {
         this.isRunning = !1, this.currentTask = null, this.scheduledJob = null, this.extensionId = null, this
           .wasAuthenticated = !1, this.isRequestInProgress = !1
@@ -1887,7 +1999,7 @@
       }
       async updateExtensionId() {
         try {
-          const e = await C.getAuthData();
+          const e = await N.getAuthData();
           return e && e.id ? (this.extensionId = `user-${e.id}`, !0) : (this.extensionId = null, !1)
         } catch (e) {
           return this.extensionId = null, !1
@@ -1904,10 +2016,10 @@
         if (this.isRunning && !this.currentTask && !this.isRequestInProgress) {
           this.isRequestInProgress = !0;
           try {
-            if (!await C.isAuthenticated()) return this.wasAuthenticated = !1, void this.scheduleNextCheck();
+            if (!await N.isAuthenticated()) return this.wasAuthenticated = !1, void this.scheduleNextCheck();
             if (!this.extensionId && !await this.updateExtensionId()) return void this.scheduleNextCheck();
             this.wasAuthenticated = !0;
-            const e = await fetch(`${z}/get-server-task`, {
+            const e = await fetch(`${j}/get-server-task`, {
               method: "GET",
               headers: {
                 "X-Extension-Id": this.extensionId
@@ -1994,7 +2106,7 @@
       }
       async submitServerTask(e) {
         try {
-          const t = await fetch(`${z}/submit-server-task`, {
+          const t = await fetch(`${j}/submit-server-task`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -2013,7 +2125,7 @@
         this.isRunning && (this.scheduledJob = setTimeout(() => this.checkForServerTask(), 3e5))
       }
     },
-    G = j,
+    G = z,
     q = "betterblox_friend_tracking",
     V = "betterblox_friend_tracking_history",
     H = new class {
@@ -2032,9 +2144,9 @@
         try {
           const t = String(e);
           console.log(`[Friend Tracking] Initializing tracking for user ${t}`);
-          const s = (await T.getFriendsCount(t)).count;
+          const s = (await E.getFriendsCount(t)).count;
           console.log(`[Friend Tracking] User ${t} has ${s} friends`);
-          const r = (await T.getAllFriends(t, 1)).map(e => e.id);
+          const r = (await E.getAllFriends(t, 1)).map(e => e.id);
           console.log(`[Friend Tracking] Fetched ${r.length} friend IDs for user ${t}`);
           const i = await this.getTrackingData();
           return i[t] = {
@@ -2099,11 +2211,11 @@
             r = s[t];
           if (!r || !r.isTracking) return console.log(
             `[Friend Tracking] User ${t} is not being tracked, stopping check`), void this.stopPeriodicCheck(t);
-          const i = (await T.getFriendsCount(t)).count;
+          const i = (await E.getFriendsCount(t)).count;
           if (i === r.count) return console.log(`[Friend Tracking] Friend count unchanged for user ${t} (${i})`), r
             .lastChecked = Date.now(), void await this.saveTrackingData(s);
           console.log(`[Friend Tracking] Friend count changed for user ${t}: ${r.count} -> ${i}`);
-          const n = (await T.getAllFriends(t)).map(e => e.id),
+          const n = (await E.getAllFriends(t)).map(e => e.id),
             a = new Set(r.friendIds || []),
             o = new Set(n),
             c = (r.friendIds || []).length,
@@ -2212,7 +2324,7 @@
       }
       async updateCurrentUser() {
         try {
-          const e = await C.getAuthData(!0),
+          const e = await N.getAuthData(!0),
             t = e?.id?.toString();
           if (t !== this.currentUserId) {
             const e = this.currentUserId;
@@ -2227,7 +2339,7 @@
       }
       async updateSessionsList() {
         try {
-          const e = (await C.getAuthData(!0))?.id?.toString();
+          const e = (await N.getAuthData(!0))?.id?.toString();
           if (!e) return void console.log("[SESSIONS] User not authenticated, skipping sessions update");
           if (e !== this.currentUserId) {
             const t = this.currentUserId;
@@ -2629,13 +2741,13 @@
   }).then(e => {
     e?.value && Z(e.value)
   }), async function() {
-    console.log("[BETTERBLOX] Initializing v2 background theme bridge"), C.init(), W.init(), r.init(), chrome
+    console.log("[BETTERBLOX] Initializing v2 background theme bridge"), N.init(), W.init(), r.init(), chrome
       .runtime.onMessage.addListener((e, t, s) => "GET_LICENSE" === e.type ? (c.getLicense().then(s).catch(e => {
         console.error("[License] GET_LICENSE error:", e), s(!1)
       }), !0) : "SET_LICENSE" === e.type ? (c.setLicense(e.licenseKey ?? e.data).then(s).catch(e => {
         console.error("[License] SET_LICENSE error:", e), s(!1)
-      }), !0) : void 0), $.addSubscriber(h), $.addSubscriber(f), $.addSubscriber(w), $.addSubscriber(A), U
-      .addSubscriber(P), B.addSubscriber(x), await U.initialize(), await B.initialize(), await $.initialize(),
+      }), !0) : void 0), P.addSubscriber(h), P.addSubscriber(f), P.addSubscriber(w), P.addSubscriber(A), U
+      .addSubscriber($), B.addSubscriber(x), await U.initialize(), await B.initialize(), await P.initialize(),
       await A.initialize(), await _.initialize(), await M.initialize(), await G.initialize(), await X
     .initialize(), await async function() {
         chrome.runtime.onMessage.addListener((t, s, r) => {

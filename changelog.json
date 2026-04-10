@@ -112,7 +112,6 @@
   "0.1.3": {
     "date": "2025-02-07",
     "changes": [
-      "Added: Player Finder",
       "Added: Time Tracker",
       "Fixed: Region Colors for new themes",
       "Fixed: Duplicated game name tracking",
@@ -395,6 +394,27 @@
     "date": "2026-03-10",
     "changes": [
       "Fixed: BetterBLOX License System not working when server is down"
+    ]
+  },
+  "2.4.5": {
+    "date": "2026-04-04",
+    "changes": [
+      "Added: Online notification for friends button on profile page",
+      "Added: Game notification for friends button on profile page",
+      "Removed: Player finder",
+      "Removed: Best Friend option",
+      "Removed: Friend tracking for other users (will come in v2)",
+      "Disabled Sessions notifications by default",
+      "Fixed: Buttons on profile page were not displaying properly",
+      "Fixed: Game Servers not resizing properly",
+      "Fixed: Improved friend tracking system with new api",
+      "Fixed: Some layout responsiveness issues"
+    ]
+  },
+  "2.4.6": {
+    "date": "2026-04-07",
+    "changes": [
+      "Fixed: Server region selector not returning enough servers"
     ]
   }
 }

@@ -5,7 +5,7 @@
   "name": "BetterBLOX - Better Roblox Extension",
   "author": "Allory Dante",
   "homepage_url": "https://betterroblox.com",
-  "version": "2.4.4",
+  "version": "2.4.6",
   "description": "BetterBLOX is a Better Roblox Extension that shows when users were last online. Adds free server region selector and player popups.",
   "icons": {
     "16": "icons/icon16.png",

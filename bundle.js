@@ -1,90 +1,13 @@
 (() => {
   "use strict";
-  var t, e, n, r, a, s, o = {
-      91: (t, e, n) => {
-        n.a(t, async (t, e) => {
-          try {
-            var r = n(113),
-              a = n(105);
-            await a.n.initialize(), (new r.a).init(), console.log("[BETTERBLOX] Betterblox is running");
-            const t = document.body;
-            t && (t.classList.contains("dark-theme") ? t.classList.add("tw-dark-theme") : t.classList.remove(
-              "tw-dark-theme")), e()
-          } catch (t) {
-            e(t)
-          }
-        }, 1)
-      },
-      105: (t, e, n) => {
+  var t, e, n, a, r, s, i = {
+      81: (t, e, n) => {
         n.d(e, {
-          n: () => a
+          a: () => zt
         });
-        const r = "undefined" == typeof browser ? chrome : browser,
-          a = new class {
-            constructor() {
-              this.listeners = new Map, this.PREFIX = "betterblox_"
-            }
-            getPrefixedKey(t) {
-              return t.startsWith(this.PREFIX) ? t : `${this.PREFIX}${t}`
-            }
-            async initialize() {
-              r.storage.onChanged.addListener((t, e) => {
-                "sync" === e && Object.entries(t).forEach(([t, {
-                  newValue: e
-                }]) => {
-                  this.notifyListeners(t, e)
-                })
-              })
-            }
-            async get(t, e = null, n = !1) {
-              const a = this.getPrefixedKey(t);
-              try {
-                const s = await r.storage.local.get(a);
-                if (void 0 !== s[a]) return s[a];
-                if (n) return e;
-                const o = await r.storage.local.get(t);
-                return void 0 !== o[t] ? (console.warn("Fallback Result Considered for", t, o), o[t]) : e
-              } catch (t) {
-                return console.error("Error getting setting:", t), e
-              }
-            }
-            async set(t, e) {
-              const n = this.getPrefixedKey(t);
-              try {
-                await r.storage.local.set({
-                  [n]: e
-                }), this.notifyListeners(n, e)
-              } catch (t) {
-                console.error("Error setting setting:", t)
-              }
-            }
-            addListener(t, e) {
-              const n = this.getPrefixedKey(t);
-              this.listeners.has(n) || this.listeners.set(n, new Set), this.listeners.get(n).add(e)
-            }
-            removeListener(t, e) {
-              const n = this.getPrefixedKey(t);
-              this.listeners.has(n) && this.listeners.get(n).delete(e)
-            }
-            notifyListeners(t, e) {
-              this.listeners.has(t) && this.listeners.get(t).forEach(t => t(e))
-            }
-            async getSettings(t, e = null) {
-              const n = await this.get(`settings_${t}`, e, !0);
-              return void 0 === n && e ? (this.set(`settings_${t}`, e), e) : n
-            }
-            async setSettings(t, e) {
-              await this.set(`settings_${t}`, e)
-            }
-          }
-      },
-      113: (t, e, n) => {
-        n.d(e, {
-          a: () => oe
-        });
-        var r = n(105);
+        var a = n(105);
 
-        function a(t) {
+        function r(t) {
           return chrome.runtime.getURL(`icons/svg/${t}.svg`)
         }
 
@@ -92,36 +15,26 @@
           return chrome.runtime.getURL(`icons/png/${t}.png`)
         }
 
-        function o(t, e, n) {
-          const r = t.querySelector(".button-text");
-          r && r.remove();
-          const a = document.createElement("span");
-          a.className = "button-text " + (n ? "tw-text-[#0095ff] dark:tw-text-[#0095ff]" : ""), a.textContent = n ?
-            "Remove Best Friend" : "Add Best Friend", t.appendChild(a), n ? (e.style.filter =
-              "invert(46%) sepia(99%) saturate(1426%) hue-rotate(197deg) brightness(99%) contrast(96%)", e
-              .className = "") : (e.style.filter = "", e.className = "dark:tw-invert")
-        }
-
         function i(t, e, n) {
-          const r = t.querySelector(".button-text");
-          r && r.remove();
-          const a = document.createElement("span");
-          a.className = "button-text " + (n ? "tw-text-[#0095ff] dark:tw-text-[#0095ff]" : ""), a.textContent = n ?
-            "Disable Online Notification" : "Notify when Online", t.appendChild(a), n ? (e.style.filter =
+          const a = t.querySelector(".button-text");
+          a && a.remove();
+          const r = document.createElement("span");
+          r.className = "button-text " + (n ? "tw-text-[#0095ff] dark:tw-text-[#0095ff]" : ""), r.textContent = n ?
+            "Disable Online Notification" : "Notify when Online", t.appendChild(r), n ? (e.style.filter =
               "invert(46%) sepia(99%) saturate(1426%) hue-rotate(197deg) brightness(99%) contrast(96%)", e
               .className = "") : (e.style.filter = "", e.className = "dark:tw-brightness-0 dark:tw-invert")
         }
 
-        function l(t, e, n) {
-          const r = t.querySelector(".button-text");
-          r && r.remove();
-          const a = document.createElement("span");
-          a.className = "button-text " + (n ? "tw-text-[#0095ff] dark:tw-text-[#0095ff]" : ""), a.textContent = n ?
-            "Disable Join Notifications" : "Game Join Notifications", t.appendChild(a), n ? (e.style.filter =
+        function o(t, e, n) {
+          const a = t.querySelector(".button-text");
+          a && a.remove();
+          const r = document.createElement("span");
+          r.className = "button-text " + (n ? "tw-text-[#0095ff] dark:tw-text-[#0095ff]" : ""), r.textContent = n ?
+            "Disable Join Notifications" : "Game Join Notifications", t.appendChild(r), n ? (e.style.filter =
               "invert(46%) sepia(99%) saturate(1426%) hue-rotate(197deg) brightness(99%) contrast(96%)", e
               .className = "") : (e.style.filter = "", e.className = "dark:tw-brightness-0 dark:tw-invert")
         }
-        async function c(t) {
+        async function l(t) {
           const e = function(t) {
             try {
               return t.parentElement.parentElement.parentElement.querySelector("a").href.split("/")[4]
@@ -130,11 +43,11 @@
             }
           }(t);
           if (!e) return;
-          if (!await r.n.getSettings("game-history", !0)) return;
-          const n = (await r.n.get("betterblox_presence_tracker_v2", {}))[e];
+          if (!await a.n.getSettings("game-history", !0)) return;
+          const n = (await a.n.get("betterblox_presence_tracker_v2", {}))[e];
           if (!n?.gameHistory) return;
-          const a = t.querySelector(".game-history-container");
-          a && a.remove();
+          const r = t.querySelector(".game-history-container");
+          r && r.remove();
           const s = document.createElement("div");
           if (s.className = "game-history-container", s.style.cssText = "min-width: 320px; width: 100%;", 2 === n
             .presenceType && n.gameHistory.currentGame) {
@@ -143,32 +56,32 @@
             e.className =
               "tw-px-3 tw-py-2.5 tw-mb-2 tw-bg-blue-50 dark:tw-bg-blue-900/20 tw-border-l-2 tw-border-blue-500 tw-rounded",
               e.innerHTML =
-              `\n      <a href="https://www.roblox.com/games/${n.gameHistory.currentGame}" target="_blank" rel="noopener" class="tw-block">\n        <div class="tw-flex tw-items-center tw-justify-between">\n          <div class="tw-flex-1 tw-min-w-0">\n            <div class="tw-text-sm tw-font-semibold tw-text-blue-700 dark:tw-text-blue-300 tw-truncate">${n.gameHistory.currentGameName}</div>\n            <div class="tw-text-xs tw-text-blue-600 dark:tw-text-blue-400 tw-mt-0.5">Currently playing</div>\n          </div>\n          <div class="tw-text-sm tw-font-medium tw-text-blue-600 dark:tw-text-blue-400 tw-ml-2">${u(t)}</div>\n        </div>\n      </a>\n    `,
+              `\n      <a href="https://www.roblox.com/games/${n.gameHistory.currentGame}" target="_blank" rel="noopener" class="tw-block">\n        <div class="tw-flex tw-items-center tw-justify-between">\n          <div class="tw-flex-1 tw-min-w-0">\n            <div class="tw-text-sm tw-font-semibold tw-text-blue-700 dark:tw-text-blue-300 tw-truncate">${n.gameHistory.currentGameName}</div>\n            <div class="tw-text-xs tw-text-blue-600 dark:tw-text-blue-400 tw-mt-0.5">Currently playing</div>\n          </div>\n          <div class="tw-text-sm tw-font-medium tw-text-blue-600 dark:tw-text-blue-400 tw-ml-2">${d(t)}</div>\n        </div>\n      </a>\n    `,
               s.appendChild(e)
           }
-          const o = Object.entries(n.gameHistory.games).filter(([t]) => t !== n.gameHistory.currentGame
+          const i = Object.entries(n.gameHistory.games).filter(([t]) => t !== n.gameHistory.currentGame
           ?.toString()).map(([t, e]) => ({
             placeId: t,
             ...e,
             lastPlayed: e.lastPlayed || 0
           }));
-          if (o.length > 0) {
+          if (i.length > 0) {
             const t = document.createElement("div");
             t.className = "tw-px-3 tw-py-2 tw-border-b tw-border-gray-200 dark:tw-border-gray-700", t.innerHTML =
               `\n      <div class="tw-flex tw-flex-col tw-gap-2">\n        <div class="tw-text-sm tw-font-semibold tw-text-gray-700 dark:tw-text-gray-200">Game History</div>\n        <div class="tw-flex tw-items-center tw-gap-1 tw-flex-wrap" id="sort-buttons-${e}">\n          <button type="button" data-sort="totalTime" class="sort-btn active tw-px-2 tw-py-1 tw-text-xs tw-rounded hover:tw-bg-gray-100 dark:hover:tw-bg-gray-700 tw-text-gray-700 dark:tw-text-gray-300 tw-font-medium tw-transition-colors tw-whitespace-nowrap" title="Total Time">\n            Total\n          </button>\n          <button type="button" data-sort="lastPlayed" class="sort-btn tw-px-2 tw-py-1 tw-text-xs tw-rounded hover:tw-bg-gray-100 dark:hover:tw-bg-gray-700 tw-text-gray-600 dark:tw-text-gray-400 tw-transition-colors tw-whitespace-nowrap" title="Last Played">\n            Recent\n          </button>\n          <button type="button" data-sort="dailyTime" class="sort-btn tw-px-2 tw-py-1 tw-text-xs tw-rounded hover:tw-bg-gray-100 dark:hover:tw-bg-gray-700 tw-text-gray-600 dark:tw-text-gray-400 tw-transition-colors tw-whitespace-nowrap" title="Today">\n            Today\n          </button>\n          <button type="button" data-sort="name" class="sort-btn tw-px-2 tw-py-1 tw-text-xs tw-rounded hover:tw-bg-gray-100 dark:hover:tw-bg-gray-700 tw-text-gray-600 dark:tw-text-gray-400 tw-transition-colors tw-whitespace-nowrap" title="Name">\n            A-Z\n          </button>\n        </div>\n      </div>\n    `;
             const n = document.createElement("div");
-            n.id = `games-list-${e}`, n.className = "tw-max-h-64 tw-overflow-y-auto", d(n, o, "totalTime");
-            const r = t.querySelectorAll(`#sort-buttons-${e} .sort-btn`);
-            r.forEach(t => {
+            n.id = `games-list-${e}`, n.className = "tw-max-h-64 tw-overflow-y-auto", c(n, i, "totalTime");
+            const a = t.querySelectorAll(`#sort-buttons-${e} .sort-btn`);
+            a.forEach(t => {
               t.addEventListener("click", t => {
                 t.stopPropagation(), t.preventDefault();
                 const e = t.currentTarget.dataset.sort;
-                r.forEach(t => {
+                a.forEach(t => {
                   t.classList.remove("active", "tw-text-gray-700", "dark:tw-text-gray-300",
                     "tw-font-medium"), t.classList.add("tw-text-gray-600", "dark:tw-text-gray-400")
                 }), t.currentTarget.classList.add("active", "tw-text-gray-700", "dark:tw-text-gray-300",
                   "tw-font-medium"), t.currentTarget.classList.remove("tw-text-gray-600",
-                  "dark:tw-text-gray-400"), d(n, o, e)
+                  "dark:tw-text-gray-400"), c(n, i, e)
               })
             }), s.appendChild(t), s.appendChild(n)
           }
@@ -176,7 +89,7 @@
             function(t, e) {
               let n = t.closest(".friend-tile-dropdown");
               if (n || (n = t.closest("ul")?.parentElement), !n) return;
-              const r = () => {
+              const a = () => {
                   let t = e.parentElement;
                   for (; t && t !== document.body;) {
                     if (t.classList.contains("MuiPaper-root") || "menu" === t.getAttribute("role") ||
@@ -185,8 +98,8 @@
                   }
                   return null
                 },
-                a = () => {
-                  const t = r();
+                r = () => {
+                  const t = a();
                   if (t) {
                     t.style.minWidth || (t.style.minWidth = "320px");
                     const e = t.querySelector("ul") || t;
@@ -202,35 +115,35 @@
                       }
                       return n.querySelector("a") || n
                     })(),
-                    s = r();
-                  if (a(), !t || !s) return;
-                  const o = t => {
+                    s = a();
+                  if (r(), !t || !s) return;
+                  const i = t => {
                     t.stopPropagation(), t.preventDefault()
                   };
-                  e.addEventListener("mouseenter", o), e.addEventListener("mouseleave", t => {
+                  e.addEventListener("mouseenter", i), e.addEventListener("mouseleave", t => {
                     const e = t.relatedTarget;
-                    e && (s.contains(e) || n.contains(e)) && o(t)
-                  }), s.addEventListener("mouseenter", o), s.addEventListener("mouseleave", t => {
-                    const r = t.relatedTarget;
-                    r && (e.contains(r) || n.contains(r)) && o(t)
+                    e && (s.contains(e) || n.contains(e)) && i(t)
+                  }), s.addEventListener("mouseenter", i), s.addEventListener("mouseleave", t => {
+                    const a = t.relatedTarget;
+                    a && (e.contains(a) || n.contains(a)) && i(t)
                   }), (() => {
                     if (n.querySelector(".betterblox-hover-bridge")) return;
                     const e = document.createElement("div");
                     e.className = "betterblox-hover-bridge", e.style.cssText =
                       "position: absolute; pointer-events: auto; z-index: 1000;";
-                    const r = t.getBoundingClientRect(),
-                      a = s.getBoundingClientRect();
-                    e.style.width = `${Math.max(r.width,a.width)}px`, e.style.height = "10px", e.style.top =
-                      `${r.bottom}px`, e.style.left = `${Math.min(r.left,a.left)}px`, n.style.position =
+                    const a = t.getBoundingClientRect(),
+                      r = s.getBoundingClientRect();
+                    e.style.width = `${Math.max(a.width,r.width)}px`, e.style.height = "10px", e.style.top =
+                      `${a.bottom}px`, e.style.left = `${Math.min(a.left,r.left)}px`, n.style.position =
                       "relative", n.appendChild(e)
                   })()
                 };
-              s(), a(), setTimeout(() => {
-                s(), a()
+              s(), r(), setTimeout(() => {
+                s(), r()
               }, 100), setTimeout(() => {
-                s(), a()
+                s(), r()
               }, 500), new MutationObserver(() => {
-                s(), a()
+                s(), r()
               }).observe(n, {
                 childList: !0,
                 subtree: !0,
@@ -240,35 +153,35 @@
             }(t, s)
         }
 
-        function d(t, e, n, r) {
-          let a = [...e];
+        function c(t, e, n, a) {
+          let r = [...e];
           switch (n) {
             case "lastPlayed":
-              a.sort((t, e) => (e.lastPlayed || 0) - (t.lastPlayed || 0));
+              r.sort((t, e) => (e.lastPlayed || 0) - (t.lastPlayed || 0));
               break;
             case "dailyTime":
-              a.sort((t, e) => (e.dailyTime || 0) - (t.dailyTime || 0));
+              r.sort((t, e) => (e.dailyTime || 0) - (t.dailyTime || 0));
               break;
             case "name":
-              a.sort((t, e) => {
+              r.sort((t, e) => {
                 const n = (t.name || "Unknown Game").toLowerCase(),
-                  r = (e.name || "Unknown Game").toLowerCase();
-                return n.localeCompare(r)
+                  a = (e.name || "Unknown Game").toLowerCase();
+                return n.localeCompare(a)
               });
               break;
             default:
-              a.sort((t, e) => (e.totalTime || 0) - (t.totalTime || 0))
+              r.sort((t, e) => (e.totalTime || 0) - (t.totalTime || 0))
           }
-          a = a.slice(0, 8), 0 !== a.length ? t.innerHTML = a.map((t, e) => {
-              const n = e === a.length - 1,
-                r = t.sessions && t.sessions.length > 0 ? t.sessions.sort((t, e) => (e.timestamp || 0) - (t
+          r = r.slice(0, 8), 0 !== r.length ? t.innerHTML = r.map((t, e) => {
+              const n = e === r.length - 1,
+                a = t.sessions && t.sessions.length > 0 ? t.sessions.sort((t, e) => (e.timestamp || 0) - (t
                   .timestamp || 0))[0] : null;
-              return `\n        <div class="tw-px-3 tw-py-2 ${n?"":"tw-border-b tw-border-gray-100 dark:tw-border-gray-800"} hover:tw-bg-gray-50 dark:hover:tw-bg-gray-800/50 tw-transition-colors">\n          <a href="https://www.roblox.com/games/${t.placeId}" target="_blank" rel="noopener" class="tw-block">\n            <div class="tw-flex tw-items-start tw-justify-between tw-gap-2">\n              <div class="tw-flex-1 tw-min-w-0">\n                <div class="tw-text-sm tw-font-medium tw-text-gray-800 dark:tw-text-gray-200 tw-truncate tw-mb-0.5">${t.name}</div>\n                <div class="tw-flex tw-items-center tw-gap-2 tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">\n                  ${t.lastPlayed?`<span>${function(t){const e=(new Date).getTime()-t,n=Math.floor(e/6e4),r=Math.floor(e/36e5),a=Math.floor(e/864e5);return n<60?`${n} minute${1!==n?"s":""} ago`:r<24?`${r} hour${1!==r?"s":""} ago`:`${a} day${1!==a?"s":""} ago`}(t.lastPlayed)}</span>`:""}\n                  ${t.dailyTime>0?`<span class="tw-text-blue-600 dark:tw-text-blue-400">${u(t.dailyTime)} today</span>`:""}\n                </div>\n                ${r?`\n                  <div class="tw-mt-1 tw-text-xs tw-text-gray-400 dark:tw-text-gray-500">\n                    Last session: ${new Date(r.timestamp).toLocaleDateString()} at ${new Date(r.timestamp).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})} (${u(r.duration)})\n                  </div>\n                `:""}\n              </div>\n              <div class="tw-flex tw-flex-col tw-items-end tw-gap-0.5 tw-flex-shrink-0">\n                <div class="tw-text-sm tw-font-semibold tw-text-gray-700 dark:tw-text-gray-300">${u(t.totalTime)}</div>\n                <div class="tw-text-xs tw-text-gray-400 dark:tw-text-gray-500">total</div>\n              </div>\n            </div>\n          </a>\n        </div>\n      `
+              return `\n        <div class="tw-px-3 tw-py-2 ${n?"":"tw-border-b tw-border-gray-100 dark:tw-border-gray-800"} hover:tw-bg-gray-50 dark:hover:tw-bg-gray-800/50 tw-transition-colors">\n          <a href="https://www.roblox.com/games/${t.placeId}" target="_blank" rel="noopener" class="tw-block">\n            <div class="tw-flex tw-items-start tw-justify-between tw-gap-2">\n              <div class="tw-flex-1 tw-min-w-0">\n                <div class="tw-text-sm tw-font-medium tw-text-gray-800 dark:tw-text-gray-200 tw-truncate tw-mb-0.5">${t.name}</div>\n                <div class="tw-flex tw-items-center tw-gap-2 tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">\n                  ${t.lastPlayed?`<span>${function(t){const e=(new Date).getTime()-t,n=Math.floor(e/6e4),a=Math.floor(e/36e5),r=Math.floor(e/864e5);return n<60?`${n} minute${1!==n?"s":""} ago`:a<24?`${a} hour${1!==a?"s":""} ago`:`${r} day${1!==r?"s":""} ago`}(t.lastPlayed)}</span>`:""}\n                  ${t.dailyTime>0?`<span class="tw-text-blue-600 dark:tw-text-blue-400">${d(t.dailyTime)} today</span>`:""}\n                </div>\n                ${a?`\n                  <div class="tw-mt-1 tw-text-xs tw-text-gray-400 dark:tw-text-gray-500">\n                    Last session: ${new Date(a.timestamp).toLocaleDateString()} at ${new Date(a.timestamp).toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"})} (${d(a.duration)})\n                  </div>\n                `:""}\n              </div>\n              <div class="tw-flex tw-flex-col tw-items-end tw-gap-0.5 tw-flex-shrink-0">\n                <div class="tw-text-sm tw-font-semibold tw-text-gray-700 dark:tw-text-gray-300">${d(t.totalTime)}</div>\n                <div class="tw-text-xs tw-text-gray-400 dark:tw-text-gray-500">total</div>\n              </div>\n            </div>\n          </a>\n        </div>\n      `
             }).join("") : t.innerHTML =
             '<div class="tw-px-3 tw-py-4 tw-text-center tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">No games found</div>'
         }
 
-        function u(t) {
+        function d(t) {
           if (!t || t < 0) return "0m";
           const e = Math.floor(t / 6e4),
             n = Math.floor(e / 60);
@@ -278,7 +191,7 @@
           }
           return `${e}m`
         }
-        const w = {
+        const u = {
           pages: ["home"],
           selectors: [{
             selector: '.friend-tile-dropdown:not([data-betterblox-processed="true"])',
@@ -289,65 +202,11 @@
                     return t.parentElement.parentElement.parentElement.querySelector("a").href.split(
                       "/")[4]
                   } catch (t) {
-                    return console.error("Bestfriend: Error getting user ID from element"), null
-                  }
-                }(t);
-                if (!e) return;
-                if (!await r.n.getSettings("best-friend", !0)) return;
-                const n = t.querySelector("ul");
-                n && function(t, e) {
-                  const n = document.createElement("li"),
-                    r = function() {
-                      const t = document.createElement("button");
-                      return t.className = "friend-tile-dropdown-button", t
-                    }(),
-                    s = function() {
-                      const t = document.createElement("div");
-                      return t.style.display = "flex", t.style.alignItems = "center", t.style.gap =
-                        "5px", t
-                    }(),
-                    i = function() {
-                      const t = document.createElement("img");
-                      return t.src = a("pin-outline"), t.style.width = "26px", t.style.height =
-                        "26px", t.className = "dark:tw-invert", t
-                    }();
-                  (async function(t) {
-                    return new Promise(e => {
-                      chrome.storage.local.get(["bestFriends"], n => {
-                        const r = n.bestFriends || [];
-                        e(r.includes(t))
-                      })
-                    })
-                  })(e).then(t => {
-                    o(s, i, t)
-                  }), r.addEventListener("click", async () => {
-                    const t = await async function(t) {
-                      return new Promise(e => {
-                        chrome.storage.local.get(["bestFriends"], n => {
-                          let r = n.bestFriends || [];
-                          r.includes(t) ? r = r.filter(e => e !== t) : r.push(t),
-                            chrome.storage.local.set({
-                              bestFriends: r
-                            }, () => {
-                              e(r.includes(t))
-                            })
-                        })
-                      })
-                    }(e);
-                    o(s, i, t)
-                  }), s.appendChild(i), r.appendChild(s), n.appendChild(r), t.appendChild(n)
-                }(n, e)
-              })(t), async function(t) {
-                const e = function(t) {
-                  try {
-                    return t.parentElement.parentElement.parentElement.querySelector("a").href.split(
-                      "/")[4]
-                  } catch (t) {
                     return console.error("OnlineNotify: Error getting user ID from element"), null
                   }
                 }(t);
                 if (!e) return;
-                if (!await r.n.getSettings("friends-online-notify", !0)) return;
+                if (!await a.n.getSettings("friends-online-notify", !0)) return;
                 const n = t.querySelector("ul");
                 n && function(t, e) {
                   const n = document.createElement("li"),
@@ -362,24 +221,24 @@
                     }(),
                     l = function() {
                       const t = document.createElement("img");
-                      return t.src = a("user-online"), t.style.width = "26px", t.style.height = "26px",
-                        t.className = "dark:tw-brightness-0 dark:tw-invert", t
+                      return t.src = r("user-online"), t.style.width = "26px", t.style.height =
+                        "26px", t.className = "dark:tw-brightness-0 dark:tw-invert", t
                     }();
                   (async function(t) {
-                    return (await r.n.get("notifyOnline", [])).includes(t)
+                    return (await a.n.get("notifyOnline", [])).includes(t)
                   })(e).then(t => {
                     i(o, l, t)
                   }), s.addEventListener("click", async () => {
                     const t = await async function(t) {
-                      const e = await r.n.get("notifyOnline", []);
+                      const e = await a.n.get("notifyOnline", []);
                       let n;
-                      return n = e.includes(t) ? e.filter(e => e !== t) : [...e, t], await r.n
-                        .set("notifyOnline", n), n.includes(t)
+                      return n = e.includes(t) ? e.filter(e => e !== t) : [...e, t], await a
+                        .n.set("notifyOnline", n), n.includes(t)
                     }(e);
                     i(o, l, t)
                   }), o.appendChild(l), s.appendChild(o), n.appendChild(s), t.appendChild(n)
                 }(n, e)
-              }(t), async function(t) {
+              })(t), async function(t) {
                 const e = function(t) {
                   try {
                     return t.parentElement.parentElement.parentElement.querySelector("a").href.split(
@@ -389,7 +248,7 @@
                   }
                 }(t);
                 if (!e) return;
-                if (!await r.n.getSettings("auto-join", !0)) return;
+                if (!await a.n.getSettings("auto-join", !0)) return;
                 const n = t.querySelector("ul");
                 n && function(t, e) {
                   const n = document.createElement("li"),
@@ -397,56 +256,31 @@
                       const t = document.createElement("button");
                       return t.className = "friend-tile-dropdown-button", t
                     }(),
-                    o = function() {
+                    i = function() {
                       const t = document.createElement("div");
                       return t.style.display = "flex", t.style.alignItems = "center", t.style.gap =
                         "5px", t
                     }(),
-                    i = function() {
+                    l = function() {
                       const t = document.createElement("img");
-                      return t.src = a("play"), t.style.width = "20px", t.style.height = "20px", t
+                      return t.src = r("play"), t.style.width = "20px", t.style.height = "20px", t
                         .className = "dark:tw-brightness-0 dark:tw-invert", t
                     }();
                   (async function(t) {
-                    return (await r.n.get("autoJoin", [])).includes(t)
+                    return (await a.n.get("autoJoin", [])).includes(t)
                   })(e).then(t => {
-                    l(o, i, t)
+                    o(i, l, t)
                   }), s.addEventListener("click", async () => {
                     const t = await async function(t) {
-                      const e = await r.n.get("autoJoin", []);
+                      const e = await a.n.get("autoJoin", []);
                       let n;
-                      return n = e.includes(t) ? e.filter(e => e !== t) : [...e, t], await r
-                        .n.set("autoJoin", n), n.includes(t)
+                      return n = e.includes(t) ? e.filter(e => e !== t) : [...e, t], await a.n
+                        .set("autoJoin", n), n.includes(t)
                     }(e);
-                    l(o, i, t)
-                  }), o.appendChild(i), s.appendChild(o), n.appendChild(s), t.appendChild(n)
+                    o(i, l, t)
+                  }), i.appendChild(l), s.appendChild(i), n.appendChild(s), t.appendChild(n)
                 }(n, e)
-              }(t), c(t)
-            }
-          }, {
-            selector: ".friends-carousel-list-container",
-            handler: (t, e) => {
-              !async function(t) {
-                const e = Array.from(t.children),
-                  n = await async function() {
-                    return new Promise(t => {
-                      chrome.storage.local.get(["bestFriends"], e => {
-                        t(e.bestFriends || [])
-                      })
-                    })
-                  }(), r = await async function(t, e) {
-                    return t.map(t => {
-                      const n = t.querySelector('a[href*="/users/"]'),
-                        r = n ? n.href.match(/\/users\/(\d+)/)?.[1] : null;
-                      return {
-                        element: t,
-                        isBestFriend: !!r && e.includes(r)
-                      }
-                    }).sort((t, e) => t.isBestFriend === e.isBestFriend ? 0 : t.isBestFriend ? -1 :
-                      1).map(t => t.element)
-                  }(e, n);
-                t.innerHTML = "", r.forEach(e => t.appendChild(e))
-              }(t)
+              }(t), l(t)
             }
           }],
           settings: {
@@ -459,10 +293,10 @@
               isBeta: !1
             }, {
               type: "toggle",
-              id: "best-friend",
-              title: "Best Friend",
-              description: "Pin your best friend in the friends list",
-              defaultValue: !0,
+              id: "more-presence-details",
+              title: "More Presence details",
+              description: "For offline friends, show last game and session length after the time (e.g. “playing …”). When off, only the time ago is shown.",
+              defaultValue: !1,
               isBeta: !1
             }, {
               type: "toggle",
@@ -492,6 +326,13 @@
               description: "Get notified when a friend unfriends you",
               defaultValue: !0,
               isBeta: !1
+            }, {
+              type: "toggle",
+              id: "session-notification",
+              title: "New Session Notifications",
+              description: "Get notified when a new login session is detected on your account",
+              defaultValue: !1,
+              isBeta: !1
             }]
           }
         };
@@ -502,15 +343,15 @@
               const {
                 url: e,
                 data: n,
-                status: r,
-                contentType: a,
+                status: a,
+                contentType: r,
                 isJson: s
               } = t.detail;
               this.notify(e, {
                 url: e,
                 data: n,
-                status: r,
-                contentType: a,
+                status: a,
+                contentType: r,
                 isJson: s
               })
             }, !1)
@@ -522,14 +363,14 @@
             this.listeners.has(t) && this.listeners.get(t).delete(e)
           }
           notify(t, e) {
-            this.listeners.forEach((n, r) => {
-              t.match(new RegExp(r)) && n.forEach(t => t(e))
+            this.listeners.forEach((n, a) => {
+              t.match(new RegExp(a)) && n.forEach(t => t(e))
             })
           }
         };
-        var g = n(938),
-          h = n(922);
-        class m {
+        var w = n(938),
+          g = n(922);
+        class h {
           constructor(t, e) {
             this.container = t, this.paginationManager = e, this.globeInstance = null, this.isGlobeInteracting = !
               1, this.hasUserInteracted = !1, this.autoRotateTimer = null, this.prevCoords = {
@@ -555,7 +396,7 @@
             if (this.globeContainer && !this.globeInstance) {
               console.log("Initializing globe..."), this.showLoading();
               try {
-                this.globeInstance = new g.A(this.globeContainer).globeImageUrl(
+                this.globeInstance = new w.A(this.globeContainer).globeImageUrl(
                     "//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg").backgroundColor(
                     "rgba(0,0,0,0)").backgroundImageUrl(
                     "//cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png").showAtmosphere(!0)
@@ -620,7 +461,7 @@
             if (!this.globeInstance) return;
             const {
               lat: n,
-              lng: r
+              lng: a
             } = this.prevCoords;
             setTimeout(() => {
               this.prevCoords = {
@@ -628,19 +469,19 @@
                 lng: e
               }
             }, this.FLIGHT_TIME);
-            const a = {
+            const r = {
               startLat: n,
-              startLng: r,
+              startLng: a,
               endLat: t,
               endLng: e
             };
-            this.globeInstance.arcsData([...this.globeInstance.arcsData(), a]), setTimeout(() => {
+            this.globeInstance.arcsData([...this.globeInstance.arcsData(), r]), setTimeout(() => {
               this.globeInstance && this.globeInstance.arcsData(this.globeInstance.arcsData().filter(t =>
-                t !== a))
+                t !== r))
             }, 2 * this.FLIGHT_TIME);
             const s = {
               lat: n,
-              lng: r
+              lng: a
             };
             this.globeInstance.ringsData([...this.globeInstance.ringsData(), s]), setTimeout(() => {
               this.globeInstance && this.globeInstance.ringsData(this.globeInstance.ringsData().filter(t =>
@@ -663,10 +504,10 @@
               e = this.paginationManager.mainClass.datacenters || {},
               n = t.map(t => {
                 const n = this.getRegionCoordinates(t.name, t.city, t.country),
-                  r = new Set;
+                  a = new Set;
                 return e && Object.keys(e).length > 0 && Object.values(e).forEach(e => {
                   e.location && e.location.city === t.city && e.location.country === t.country && e
-                    .organization && r.add(e.organization)
+                    .organization && a.add(e.organization)
                 }), {
                   lat: n.lat,
                   lng: n.lng,
@@ -678,35 +519,35 @@
                   selected: this.paginationManager.filterSettings.datacenters.has(`${t.city}, ${t.country}`),
                   hasServers: !0,
                   type: "region",
-                  organizations: Array.from(r)
+                  organizations: Array.from(a)
                 }
               }),
-              r = new Map;
+              a = new Map;
             return e && Object.keys(e).length > 0 && Object.entries(e).forEach(([e, n]) => {
               if (n.location && n.location.latLong) {
-                let [a, s] = n.location.latLong;
-                a = parseFloat(a), s = parseFloat(s);
-                const o = `${a.toFixed(4)},${s.toFixed(4)}`,
-                  i = n.location.datacenter || `${n.location.country} ${n.location.city}`;
-                if (!t.some(t => t.name === i || t.city === n.location.city && t.country === n.location
+                let [r, s] = n.location.latLong;
+                r = parseFloat(r), s = parseFloat(s);
+                const i = `${r.toFixed(4)},${s.toFixed(4)}`,
+                  o = n.location.datacenter || `${n.location.country} ${n.location.city}`;
+                if (!t.some(t => t.name === o || t.city === n.location.city && t.country === n.location
                     .country)) {
-                  r.has(o) || r.set(o, {
-                    lat: a,
+                  a.has(i) || a.set(i, {
+                    lat: r,
                     lng: s,
                     city: n.location.city,
                     country: n.location.country,
                     datacenters: [],
                     organizations: new Set
                   });
-                  const t = r.get(o);
+                  const t = a.get(i);
                   t.datacenters.push({
                     id: e,
-                    name: i,
+                    name: o,
                     organization: n.organization
                   }), t.organizations.add(n.organization)
                 }
               }
-            }), [...n, ...Array.from(r.values()).map(t => {
+            }), [...n, ...Array.from(a.values()).map(t => {
               const e = t.datacenters[0],
                 n = t.datacenters.length;
               return {
@@ -739,8 +580,8 @@
                   count: 0,
                   pings: []
                 });
-                const r = e.get(n);
-                r.count++, t.ping && r.pings.push(t.ping)
+                const a = e.get(n);
+                a.count++, t.ping && a.pings.push(t.ping)
               }
             }), Array.from(e.values()).map(t => ({
               ...t,
@@ -749,16 +590,16 @@
             }))
           }
           getRegionCoordinates(t, e, n) {
-            const r = this.paginationManager.mainClass.datacenters || {};
-            if (Object.keys(r).length > 0)
-              for (const [t, a] of Object.entries(r))
-                if (a.location && a.location.latLong && a.location.city === e && a.location.country === n) {
-                  const [t, e] = a.location.latLong;
+            const a = this.paginationManager.mainClass.datacenters || {};
+            if (Object.keys(a).length > 0)
+              for (const [t, r] of Object.entries(a))
+                if (r.location && r.location.latLong && r.location.city === e && r.location.country === n) {
+                  const [t, e] = r.location.latLong;
                   return {
                     lat: t,
                     lng: e
                   }
-                } const a = {
+                } const r = {
                 Dublin: {
                   lat: 53.3498,
                   lng: -6.2603
@@ -898,7 +739,7 @@
                   lng: -79.3832
                 }
               };
-            return s[t] ? s[t] : a[e] ? a[e] : {
+            return s[t] ? s[t] : r[e] ? r[e] : {
               US: {
                 lat: 39.8283,
                 lng: -98.5795
@@ -972,13 +813,13 @@
                 return .005 + .001 * Math.min(e - 1, 5)
               }
             }).pointsData(t).customLayerData(this.particleData).customThreeObject(t => {
-              const e = new h.Gu$(.075, 8, 8),
-                n = new h.V9B({
+              const e = new g.Gu$(.075, 8, 8),
+                n = new g.V9B({
                   color: 10025880,
                   transparent: !0,
                   opacity: .8
                 });
-              return new h.eaF(e, n)
+              return new g.eaF(e, n)
             }).customThreeObjectUpdate((t, e) => {
               const n = this.globeInstance.getCoords(e.lat, e.lng, e.alt);
               t.position.set(n.x, n.y, n.z)
@@ -986,11 +827,11 @@
           }
           updateStats(t, e) {
             const n = t.length,
-              r = this.paginationManager.filterSettings.datacenters.size,
-              a = Object.keys(e).length;
+              a = this.paginationManager.filterSettings.datacenters.size,
+              r = Object.keys(e).length;
             this.container.querySelector("#total-regions").textContent = n, this.container.querySelector(
-                "#selected-count").textContent = r, this.container.querySelector("#total-datacenters")
-              .textContent = a
+                "#selected-count").textContent = a, this.container.querySelector("#total-datacenters")
+              .textContent = r
           }
           toggleRegionSelection(t) {
             const e = this.getAvailableRegions().find(e => e.name === t);
@@ -998,10 +839,10 @@
               const t = `${e.city}, ${e.country}`,
                 n = this.paginationManager.filterSettings.datacenters.has(t);
               this.paginationManager.setDatacenterFilter(t, !n);
-              const r = document.querySelector("#region-filter-indicator");
-              r && (this.paginationManager.filterSettings.datacenters.size > 0 ? (r.classList.remove(
-                "tw-bg-gray-400"), r.classList.add("tw-bg-blue-500")) : (r.classList.remove("tw-bg-blue-500"),
-                r.classList.add("tw-bg-gray-400"))), this.updateGlobeVisualization()
+              const a = document.querySelector("#region-filter-indicator");
+              a && (this.paginationManager.filterSettings.datacenters.size > 0 ? (a.classList.remove(
+                "tw-bg-gray-400"), a.classList.add("tw-bg-blue-500")) : (a.classList.remove("tw-bg-blue-500"),
+                a.classList.add("tw-bg-gray-400"))), this.updateGlobeVisualization()
             }
           }
           updateParticleStreams() {
@@ -1024,28 +865,28 @@
             const e = this.getRegionCoordinates(t.name, t.city, t.country);
             console.log(`Starting emission for ${t.name} at`, e);
             const n = 1e3 / this.EMISSION_RATE,
-              r = setInterval(() => {
+              a = setInterval(() => {
                 if (!this.paginationManager.filterSettings.datacenters.has(`${t.city}, ${t.country}`))
-                return clearInterval(r), this.emissionTimers.delete(t.name), void this.particleCounters
+                return clearInterval(a), this.emissionTimers.delete(t.name), void this.particleCounters
                   .delete(t.name);
                 const n = this.particleCounters.get(t.name) || 0;
                 n >= this.PARTICLE_COUNT && this.particleCounters.set(t.name, 0);
-                const a = this.createRandomParticle(t, e, n);
-                this.particleData.push(a), this.particleCounters.set(t.name, n + 1), this.globeInstance && this
+                const r = this.createRandomParticle(t, e, n);
+                this.particleData.push(r), this.particleCounters.set(t.name, n + 1), this.globeInstance && this
                   .globeInstance.customLayerData([...this.particleData])
               }, n);
-            this.emissionTimers.set(t.name, r)
+            this.emissionTimers.set(t.name, a)
           }
           createRandomParticle(t, e, n) {
-            const r = Math.random() * this.CONE_HEIGHT,
-              a = r / this.CONE_HEIGHT * this.CONE_BASE_RADIUS,
+            const a = Math.random() * this.CONE_HEIGHT,
+              r = a / this.CONE_HEIGHT * this.CONE_BASE_RADIUS,
               s = 2 * Math.random() * Math.PI,
-              o = Math.sqrt(Math.random()) * a,
-              i = Math.cos(s) * o,
-              l = Math.sin(s) * o,
-              c = e.lat + i,
+              i = Math.sqrt(Math.random()) * r,
+              o = Math.cos(s) * i,
+              l = Math.sin(s) * i,
+              c = e.lat + o,
               d = e.lng + l,
-              u = r,
+              u = a,
               w = 2 * Math.random() * Math.PI,
               g = this.PARTICLE_SPEED * (.5 + 1 * Math.random()),
               h = g * (.3 + .7 * Math.random());
@@ -1061,8 +902,8 @@
               movementSpeed: g,
               verticalSpeed: h,
               phase: 2 * Math.random() * Math.PI,
-              currentHeight: r,
-              maxRadius: a,
+              currentHeight: a,
+              maxRadius: r,
               streamOffset: 2 * Math.random() * Math.PI,
               wobbleIntensity: .05 + .15 * Math.random(),
               spiralTightness: .5 + 1 * Math.random(),
@@ -1078,19 +919,19 @@
                   this.particleData = this.particleData.filter(e => {
                     const n = .05;
                     e.currentHeight += e.verticalSpeed * n;
-                    const r = Math.sin(2 * t + e.phase) * e.wobbleIntensity,
-                      a = .1 * Math.sin(t * e.spiralTightness + e.streamOffset),
+                    const a = Math.sin(2 * t + e.phase) * e.wobbleIntensity,
+                      r = .1 * Math.sin(t * e.spiralTightness + e.streamOffset),
                       s = (Math.random() - .5) * this.MOVEMENT_RANDOMNESS * .05,
-                      o = .1 * Math.sin(t * e.chaosFactor + e.randomDirection);
-                    e.movementAngle += (r + a + s + o) * n, e.currentHeight, this.CONE_HEIGHT, this
+                      i = .1 * Math.sin(t * e.chaosFactor + e.randomDirection);
+                    e.movementAngle += (a + r + s + i) * n, e.currentHeight, this.CONE_HEIGHT, this
                       .CONE_BASE_RADIUS;
-                    const i = Math.cos(e.movementAngle) * e.movementSpeed * n,
+                    const o = Math.cos(e.movementAngle) * e.movementSpeed * n,
                       l = Math.sin(e.movementAngle) * e.movementSpeed * n,
                       c = (Math.random() - .5) * this.MOVEMENT_RANDOMNESS * n * .1,
                       d = (Math.random() - .5) * this.MOVEMENT_RANDOMNESS * n * .1,
                       u = Math.sin(1.5 * t + e.randomDirection) * this.MOVEMENT_RANDOMNESS * n * .05,
                       w = Math.cos(1.5 * t + e.randomDirection) * this.MOVEMENT_RANDOMNESS * n * .05;
-                    e.lat += i + c + u, e.lng += l + d + w, e.alt = e.currentHeight;
+                    e.lat += o + c + u, e.lng += l + d + w, e.alt = e.currentHeight;
                     const g = Math.sqrt(Math.pow(e.lat - e.centerLat, 2) + Math.pow(e.lng - e.centerLng,
                       2));
                     return !(e.currentHeight > this.CONE_HEIGHT || e.alt > this.CONE_HEIGHT || g > 1.5 *
@@ -1150,15 +991,15 @@
               document.head.appendChild(t)
           }
         }
-        class p {
+        class m {
           constructor(t) {
             this.mainClass = t, this.globeViewer = null, this.resetToDefaults(), this.setupLoadMoreButton()
           }
           resetToDefaults() {
             this.currentPage = 1, this.itemsPerPage = 8, this.elementList = [], this.filterSettings = {
                 datacenters: new Set
-              }, this.sortOrder = "Desc", this.isBestConnection = !1, this.ageSort = null, this.botSort = null,
-              this.oldVersionSort = null, this.isShuffled2 = !1, this._previousSortOrder = null
+              }, this.sortOrder = "Desc", this.isBestConnection = !1, this.ageSort = null, this.oldVersionSort =
+              null, this.isShuffled2 = !1, this._previousSortOrder = null
           }
           reset() {
             this.elementList = [];
@@ -1181,40 +1022,41 @@
               "tw-hidden")
           }
           async handleServerListRefresh() {
-            console.log("handleServerListRefresh", this.currentPage);
             const t = this.getFilteredServerList(),
               e = document.querySelector("#betterblox-server-list");
             if (!e) return void console.error("Server list container not found");
             const n = this.currentPage * this.itemsPerPage,
-              r = t.slice(0, n);
+              a = t.slice(0, n);
             this.elementList.length, this.elementList = this.elementList.filter(t => {
-                if (!t || !t.id) return !1;
-                const n = r.some(e => e.id === t.id);
-                if (!n) {
-                  const n = e.querySelector(`[betterblox-server-id="${t.id}"]`);
-                  n && n.remove()
-                }
-                return n
-              }), console.log("filteredServerList", t), console.log("this.elementList", this.elementList), console
-              .log("serversToShow", r);
-            for (const n of r) {
+              if (!t || !t.id) return !1;
+              const n = a.some(e => e.id === t.id);
+              if (!n) {
+                const n = e.querySelector(`[betterblox-server-id="${t.id}"]`);
+                n && n.remove()
+              }
+              return n
+            });
+            for (const n of a) {
               if (!n || !n.id) continue;
-              const r = this.elementList.findIndex(t => t && t.id === n.id);
-              if (console.log("existingIndex", r), -1 === r) this.elementList.push(n), console.log(
-                "Creating new server card", n), await this.mainClass.createServerCard(n, t);
+              const a = this.elementList.findIndex(t => t && t.id === n.id);
+              if (-1 === a) this.elementList.push(n), await this.mainClass.createServerCard(n, t);
               else {
-                const a = this.elementList[r];
-                if (this.hasServerChanged(a, n)) {
-                  const a = e.querySelector(`[betterblox-server-id="${n.id}"]`);
-                  a && (a.remove(), await this.mainClass.createServerCard(n, t)), this.elementList[r] = n
+                const r = this.elementList[a];
+                if (this.hasServerChanged(r, n)) {
+                  const r = e.querySelector(`[betterblox-server-id="${n.id}"]`);
+                  r && (r.remove(), await this.mainClass.createServerCard(n, t)), this.elementList[a] = n
                 }
               }
             }
-            this.sortElementsToMatchList(e, r), this.updateLoadMoreButton()
+            this.sortElementsToMatchList(e, a), this.updateLoadMoreButton()
           }
           hasServerChanged(t, e) {
             return t.playing !== e.playing || t.ping !== e.ping || t.playerTokens.join(",") !== e.playerTokens
-              .join(",") || t.placeVersion !== e.placeVersion || t.isOutdated !== e.isOutdated
+              .join(",") || t.placeVersion !== e.placeVersion || t.isOutdated !== e.isOutdated || t
+              .joinDataPending !== e.joinDataPending || t.joinDataFailed !== e.joinDataFailed || t
+              .joinFailedStuckInQueue !== e.joinFailedStuckInQueue || t.datacenterId !== e.datacenterId || t
+              .ip !== e.ip || t.distance !== e.distance || t.isClosest !== e.isClosest || t.queuePosition !== e
+              .queuePosition || t.serverAge !== e.serverAge || t.botPercentage !== e.botPercentage
           }
           sortElementsToMatchList(t, e) {
             const n = Array.from(t.children);
@@ -1238,8 +1080,7 @@
           }
           setSortOrder(t) {
             this.sortOrder = t, this.filterSettings.datacenters.clear(), this.isBestConnection = !1, this
-              .ageSort = null, this.botSort = null, this.oldVersionSort = null, this.isShuffled2 = !1, this
-              .currentPage = 1;
+              .ageSort = null, this.oldVersionSort = null, this.isShuffled2 = !1, this.currentPage = 1;
             const e = document.querySelector("#region-filter-indicator");
             e && (e.classList.remove("tw-bg-blue-500"), e.classList.add("tw-bg-gray-400")), this.mainClass
               .refreshServerListWithSortOrder(t)
@@ -1253,12 +1094,8 @@
               .globeViewer && this.globeViewer.refresh()
           }
           setAgeSort(t) {
-            this.ageSort === t ? this.ageSort = null : (this.ageSort = t, this.isBestConnection = !1, this
-              .botSort = null), this.currentPage = 1, this.handleServerListRefresh()
-          }
-          setBotSort(t) {
-            this.botSort === t ? this.botSort = null : (this.botSort = t, this.isBestConnection = !1, this
-              .ageSort = null), this.currentPage = 1, this.handleServerListRefresh()
+            this.ageSort === t ? this.ageSort = null : (this.ageSort = t, this.isBestConnection = !1), this
+              .currentPage = 1, this.handleServerListRefresh()
           }
           setOldVersionSort() {
             this.oldVersionSort = !this.oldVersionSort || null, this.currentPage = 1, this
@@ -1269,7 +1106,7 @@
           }
           async toggleBestConnection() {
             if (this.isBestConnection = !this.isBestConnection, this.isBestConnection) {
-              this.ageSort = null, this.botSort = null;
+              this.ageSort = null;
               const t = await this.mainClass.calculateServerDistances();
               this.mainClass.serverList = t
             }
@@ -1277,45 +1114,61 @@
           }
           getFilteredServerList() {
             let t = [...this.mainClass.serverList];
-            if (this.filterSettings.datacenters.size > 0 && (t = t.filter(t => {
-                const e = `${t.datacenter?.location?.city}, ${t.datacenter?.location?.country}`;
-                return this.filterSettings.datacenters.has(e)
-              })), this.isShuffled2)
-              for (let e = t.length - 1; e > 0; e--) {
-                const n = Math.floor(Math.random() * (e + 1));
-                [t[e], t[n]] = [t[n], t[e]]
-              } else this.isBestConnection || t.sort((t, e) => "Asc" === this.sortOrder ? t.playing - e.playing :
-                e.playing - t.playing);
-            if (this.ageSort && t.sort((t, e) => {
-                const n = t => {
+            this.filterSettings.datacenters.size > 0 && (t = t.filter(t => {
+              const e = `${t.datacenter?.location?.city}, ${t.datacenter?.location?.country}`;
+              return this.filterSettings.datacenters.has(e)
+            }));
+            const e = (t, e) => this.mainClass.compareJoinDataPriority(t, e);
+            if (this.isShuffled2) {
+              const e = t => {
+                  for (let e = t.length - 1; e > 0; e--) {
+                    const n = Math.floor(Math.random() * (e + 1));
+                    [t[e], t[n]] = [t[n], t[e]]
+                  }
+                },
+                n = [
+                  [],
+                  [],
+                  []
+                ];
+              t.forEach(t => {
+                n[this.mainClass.joinDataPriority(t)].push(t)
+              }), n.forEach(e), t = n.flat()
+            } else this.isBestConnection ? t.sort((t, n) => {
+              const a = e(t, n);
+              return 0 !== a ? a : (t.distance ?? 1 / 0) - (n.distance ?? 1 / 0)
+            }) : t.sort((t, n) => {
+              const a = e(t, n);
+              return 0 !== a ? a : "Asc" === this.sortOrder ? t.playing - n.playing : n.playing - t.playing
+            });
+            if (this.ageSort && t.sort((t, n) => {
+                const a = e(t, n);
+                if (0 !== a) return a;
+                const r = t => {
                     if (t.firstSeen) return new Date(t.firstSeen).getTime();
                     if (!t.serverAge) return Date.now();
                     const e = t.serverAge.match(/(\d+)([mhd])/);
                     if (!e) return Date.now();
                     const n = parseInt(e[1]);
-                    let r = 0;
+                    let a = 0;
                     switch (e[2]) {
                       case "m":
-                        r = 60 * n * 1e3;
+                        a = 60 * n * 1e3;
                         break;
                       case "h":
-                        r = 60 * n * 60 * 1e3;
+                        a = 60 * n * 60 * 1e3;
                         break;
                       case "d":
-                        r = 24 * n * 60 * 60 * 1e3;
+                        a = 24 * n * 60 * 60 * 1e3;
                         break;
                       default:
                         return Date.now()
                     }
-                    return Date.now() - r
+                    return Date.now() - a
                   },
-                  r = n(t),
-                  a = n(e);
-                return "Newest" === this.ageSort ? a - r : "Oldest" === this.ageSort ? r - a : void 0
-              }), this.botSort && t.sort((t, e) => {
-                const n = t.botPercentage || 0,
-                  r = e.botPercentage || 0;
-                return "Most Botted" === this.botSort ? r - n : "Least Botted" === this.botSort ? n - r : void 0
+                  s = r(t),
+                  i = r(n);
+                return "Newest" === this.ageSort ? i - s : "Oldest" === this.ageSort ? s - i : void 0
               }), this.oldVersionSort) {
               const e = this.mainClass.getLatestPlaceVersion();
               t = t.filter(t => void 0 !== t.isOutdated ? !0 === t.isOutdated : null !== e && null !== t
@@ -1328,13 +1181,13 @@
           }
         }
 
-        function b(t, e) {
+        function p(t, e) {
           if (!t || !e || t.length !== e.length) return 1 / 0;
           let n = 0;
-          for (let r = 0; r < t.length; r++) t[r] !== e[r] && n++;
+          for (let a = 0; a < t.length; a++) t[a] !== e[a] && n++;
           return n
         }
-        const f = new class {
+        const b = new class {
             constructor() {
               this.serverList = [], this.gameId = null, this.datacenters = null, this.paginationManager = null,
                 this.cachedServers = new Map, this.serverBotAnalysis = new Map, this.serverAvatars = new Map, this
@@ -1357,14 +1210,33 @@
                   currentCursor: null,
                   emptyResponseCount: 0,
                   pendingRequests: new Set
-                }, this.cacheLoadingController = null
+                }, this.cacheLoadingController = null, this.crawlGeneration = 0, this._joinDataActivityCount = 0,
+                this._joinDataQueue = [], this._joinDataInflight = 0, this._joinDataMaxConcurrent = 4, this
+                ._pendingBulkServers = [], this._bulkDebounceTimer = null, this._enrichmentRefreshTimer = null,
+                this._joinQueueRetryIds = new Set, this._joinQueueRetryTimer = null, this
+                ._joinQueueRetryIntervalMs = 8e3, this._maxJoinQueuePolls = 45, this._joinQueueMaxNonZeroStreak =
+                4, this._joinDataActiveIds = new Set, this.joinGameTaskId = this._newJoinGameTaskId()
+            }
+            _newJoinGameTaskId() {
+              return globalThis.crypto?.randomUUID ? globalThis.crypto.randomUUID() :
+                `jg_${Date.now()}_${Math.random().toString(36).slice(2,14)}`
+            }
+            async _registerJoinGameTaskWithBackground() {
+              try {
+                await chrome.runtime.sendMessage({
+                  type: "SET_JOIN_GAME_TASK_ID",
+                  taskId: this.joinGameTaskId
+                })
+              } catch (t) {
+                console.warn("[BBloxUI] SET_JOIN_GAME_TASK_ID failed:", t)
+              }
             }
             async addServerContainer(t) {
               this.datacenters = await this.getDatacenters(), this.gameId = this.getGameId(), this
-                .paginationManager || (this.paginationManager = new p(this)), this.createBetterBLOXContainer(t
+                .paginationManager || (this.paginationManager = new m(this)), this.createBetterBLOXContainer(t
                   .parentElement), this.updateStatus({
                   datacentersCount: this.datacenters ? Object.keys(this.datacenters).length : 0
-                }), this.refreshServerList()
+                }), await this._registerJoinGameTaskWithBackground(), this.refreshServerList()
             }
             createBetterBLOXContainer(t) {
               const e = document.querySelector("#betterblox-server-filter");
@@ -1374,49 +1246,49 @@
                       const e = t.mainClass.datacenters,
                         n = t.mainClass.serverList;
                       if (!e) return [];
-                      const r = new Map;
+                      const a = new Map;
                       return Object.values(e).forEach(t => {
                         const e = `${t.location.city}, ${t.location.country}`;
-                        r.has(e) || r.set(e, {
+                        a.has(e) || a.set(e, {
                           city: t.location.city,
                           country: t.location.country,
                           region: t.location.region,
                           serverCount: 0,
                           datacenterIds: new Set
-                        }), r.get(e).datacenterIds.add(t.id)
+                        }), a.get(e).datacenterIds.add(t.id)
                       }), n.forEach(t => {
                         if (t.datacenter?.location) {
                           const e = `${t.datacenter.location.city}, ${t.datacenter.location.country}`,
-                            n = r.get(e);
+                            n = a.get(e);
                           n && n.serverCount++
                         }
-                      }), Array.from(r.values()).filter(t => t.serverCount > 0).sort((t, e) => t.region !== e
+                      }), Array.from(a.values()).filter(t => t.serverCount > 0).sort((t, e) => t.region !== e
                         .region ? t.region.localeCompare(e.region) : t.city.localeCompare(e.city))
                     },
                     n = e => e.map(e =>
                       `\n        <button \n          class="tw-w-full tw-text-left tw-px-4 tw-py-2 tw-rounded-lg tw-flex tw-flex-col datacenter-button ${t.filterSettings.datacenters.has(`${e.city}, ${e.country}`)?"tw-bg-blue-200 dark:tw-bg-blue-800 hover:tw-bg-blue-300 dark:hover:tw-bg-blue-700":"hover:tw-bg-gray-100 dark:tw-bg-gray-700 dark:hover:tw-bg-gray-600"}"\n          data-location="${e.city}, ${e.country}"\n        >\n          <div class="tw-flex tw-items-center tw-gap-2 tw-justify-between">\n            <span class="tw-font-medium">${e.city}, ${e.country}</span>\n            <div class="tw-flex tw-items-center tw-gap-2">\n              <span class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">\n                ${e.serverCount} servers\n              </span>\n            </div>\n          </div>\n          <div class="tw-text-sm tw-text-gray-500 dark:tw-text-gray-400">\n            <span>${e.region}</span>\n          </div>\n        </button>\n      `
                       ).join(""),
-                    r = (n(e()),
-                      `\n    <div id="betterblox-server-filter" class="tw-stack tw-server-list-section">\n      <div class="tw-container-header">\n        <h2 class="container-header-text tw-flex tw-items-center tw-justify-center tw-gap-2">\n        <img src="${s("logo32")}" alt="BetterBLOX Logo" class="tw-w-4 tw-h-4" />\n          BetterBLOX Servers\n        </h2>\n        \n        <div class="btn-more tw-flex tw-flex-col tw-gap-2">\n          \x3c!-- First row --\x3e\n          <div class="tw-flex tw-flex-row tw-gap-2">\n            <button type="button" id="sort-toggle" class="tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n              <span id="sort-text">Descending</span>\n            </button>\n            \n            <div class="tw-relative">\n              <button id="region-filter-button" class="tw-relative tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n                <span>Region</span>\n                <span id="region-filter-indicator" class="tw-w-2 tw-h-2 tw-rounded-full tw-bg-gray-400"></span>\n                <span id="selected-regions-count" class="tw-absolute tw--top-2 tw--right-2 tw-h-5 tw-w-5 tw-text-xs tw-bg-blue-500 tw-text-white tw-rounded-full tw-flex tw-items-center tw-justify-center tw-hidden">\n                  0\n                </span>\n              </button>\n              <div id="region-filter-dropdown" class="tw-hidden tw-absolute tw-z-10 tw-bg-white dark:tw-bg-gray-800 tw-rounded-lg tw-shadow tw-w-[800px] tw-p-2 tw-left-1/2 tw-transform tw--translate-x-1/2 tw-max-h-[600px]">\n                \x3c!-- View Toggle Buttons --\x3e\n                <div class="tw-flex tw-gap-2 tw-mb-3 tw-px-2">\n                  <button id="globe-view-toggle" class="tw-flex-1 tw-px-4 tw-py-2 tw-bg-blue-500 tw-text-white tw-rounded-lg hover:tw-bg-blue-600 tw-transition-colors">\n                    Globe View\n                  </button>\n                  <button id="list-view-toggle" class="tw-flex-1 tw-px-4 tw-py-2 tw-bg-gray-200 dark:tw-bg-gray-700 tw-text-gray-700 dark:tw-text-gray-300 tw-rounded-lg hover:tw-bg-gray-300 dark:hover:tw-bg-gray-600 tw-transition-colors">\n                    List View\n                  </button>\n                </div>\n                \n                \x3c!-- Globe View Container --\x3e\n                <div id="region-globe-container" class="tw-mb-3">\n                  <div id="globe-viewer-wrapper"></div>\n                </div>\n                \n                \x3c!-- List View Container --\x3e\n                <div id="region-list-container" class="tw-hidden">\n                  <div class="tw-text-sm tw-text-gray-600 dark:tw-text-gray-400 tw-flex tw-justify-between tw-items-center tw-border-b tw-mb-2 tw-pb-2 tw-border-gray-200 dark:tw-border-gray-700 tw-px-4">\n                    <span id="region-stats">Loading regions...</span>\n                    <span id="region-connection-stats"></span>\n                  </div>\n                  <button class="tw-w-full tw-text-left tw-px-4 tw-py-2 hover:tw-bg-gray-100 dark:tw-bg-gray-700 dark:hover:tw-bg-gray-600 tw-rounded-lg tw-mb-1">\n                    All Regions\n                  </button>\n                  <div class="tw-border-t tw-border-gray-200 dark:tw-border-gray-700 tw-my-1"></div>\n                  <div class="tw-overflow-y-auto tw-max-h-72">\n                    <div id="datacenter-list" class="tw-space-y-1">\n                      <div class="tw-animate-pulse tw-flex tw-flex-col tw-gap-2 tw-px-4">\n                        <div class="tw-h-12 tw-bg-gray-200 dark:tw-bg-gray-700 tw-rounded"></div>\n                        <div class="tw-h-12 tw-bg-gray-200 dark:tw-bg-gray-700 tw-rounded"></div>\n                        <div class="tw-h-12 tw-bg-gray-200 dark:tw-bg-gray-700 tw-rounded"></div>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <button type="button" id="best-connection" class="tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n              <span>Best Connection</span>\n              <span id="best-connection-indicator" class="tw-w-2 tw-h-2 tw-rounded-full tw-bg-gray-400"></span>\n            </button>\n\n            <button type="button" id="refresh-servers" class="tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n              <span>Refresh</span>\n              <span id="refresh-spinner" class="tw-hidden">\n                <svg class="tw-animate-spin tw-h-4 tw-w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">\n                  <circle class="tw-opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>\n                  <path class="tw-opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>\n                </svg>\n              </span>\n            </button>\n            <button type="button" id="reset-filters" class="tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n              <span>Reset</span>\n            </button>\n          </div>\n          \n          \x3c!-- Second row --\x3e\n          <div class="tw-flex tw-flex-row tw-gap-2">\n            <div class="tw-relative">\n              <button id="age-filter-button" class="tw-relative tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n                <span>Server Age</span>\n                <span id="age-filter-indicator" class="tw-w-2 tw-h-2 tw-rounded-full tw-bg-gray-400"></span>\n              </button>\n              <div id="age-filter-dropdown" class="tw-hidden tw-absolute tw-z-10 tw-bg-white dark:tw-bg-gray-800 tw-rounded-lg tw-shadow tw-w-48 tw-p-2 tw-left-1/2 tw-transform tw--translate-x-1/2">\n                <button class="tw-w-full tw-text-left tw-px-4 tw-py-2 hover:tw-bg-gray-100 dark:tw-bg-gray-700 dark:hover:tw-bg-gray-600 tw-rounded-lg tw-mb-1 tw-age-option" data-age="Oldest">\n                  Oldest\n                </button>\n                <div class="tw-border-t tw-border-gray-200 dark:tw-border-gray-700 tw-my-1"></div>\n                <button class="tw-w-full tw-text-left tw-px-4 tw-py-2 hover:tw-bg-gray-100 dark:tw-bg-gray-700 dark:hover:tw-bg-gray-600 tw-rounded-lg tw-age-option" data-age="Newest">\n                  Newest\n                </button>\n              </div>\n            </div>\n            \n            <div class="tw-relative">\n              <button id="bot-filter-button" class="tw-relative tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n                <span>Bot Filter</span>\n                <span id="bot-filter-indicator" class="tw-w-2 tw-h-2 tw-rounded-full tw-bg-gray-400"></span>\n              </button>\n              <div id="bot-filter-dropdown" class="tw-hidden tw-absolute tw-z-10 tw-bg-white dark:tw-bg-gray-800 tw-rounded-lg tw-shadow tw-w-48 tw-p-2 tw-left-1/2 tw-transform tw--translate-x-1/2">\n                <button class="tw-w-full tw-text-left tw-px-4 tw-py-2 hover:tw-bg-gray-100 dark:tw-bg-gray-700 dark:hover:tw-bg-gray-600 tw-rounded-lg tw-mb-1 tw-bot-option" data-bot="Least Botted">\n                  Least Botted\n                </button>\n                <div class="tw-border-t tw-border-gray-200 dark:tw-border-gray-700 tw-my-1"></div>\n                <button class="tw-w-full tw-text-left tw-px-4 tw-py-2 hover:tw-bg-gray-100 dark:tw-bg-gray-700 dark:hover:tw-bg-gray-600 tw-rounded-lg tw-bot-option" data-bot="Most Botted">\n                  Most Botted\n                </button>\n              </div>\n            </div>\n            \n            <button type="button" id="old-version-filter" class="tw-hidden tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n              <span>Old Version</span>\n              <span id="old-version-indicator" class="tw-w-2 tw-h-2 tw-rounded-full tw-bg-gray-400"></span>\n            </button>\n            \n            <button type="button" id="shuffle-servers-2" class="tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n              <span>Shuffle</span>\n            </button>\n          </div>\n        </div>\n      </div>\n      \x3c!-- <button class="tw-btn-secondary-md btn-more" style="margin-bottom:10px;">Join Fastest Server</button>\n      <button class="tw-btn-secondary-md btn-more" style="margin-bottom:10px;">Join Fullest Server</button> --\x3e\n      \x3c!-- Status Card --\x3e\n      <div id="betterblox-status-card" class="tw-container tw-bg-white dark:tw-bg-[#393b3d] tw-border tw-border-gray-300 dark:tw-border-gray-700 tw-rounded-lg tw-p-3 tw-my-4">\n        <div class="tw-flex tw-items-center tw-justify-between">\n          <div class="tw-flex tw-items-center tw-gap-3">\n            <div id="crawler-status-indicator" class="tw-flex tw-items-center tw-gap-2">\n              <div id="status-dot" class="tw-w-2 tw-h-2 tw-rounded-full tw-bg-yellow-500 tw-animate-pulse"></div>\n              <span id="status-text" class="tw-text-sm tw-font-medium tw-text-gray-600 dark:tw-text-gray-300">Loading...</span>\n            </div>\n            <div class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">\n              <span id="servers-loaded-count">0</span>/<span id="total-servers-count">0</span> servers • <span id="datacenters-count">0</span> datacenters\n              <span id="page-info" class="tw-ml-2 tw-hidden">Page <span id="current-page">0</span></span>\n              <span id="crawl-limit-info" class="tw-ml-2">Limit: <span id="crawl-limit-count" class="tw-cursor-pointer hover:tw-text-blue-500 dark:hover:tw-text-blue-400 tw-underline" title="Click to edit">1000</span></span>\n            </div>\n          </div>\n          <div class="tw-flex tw-items-center tw-gap-2">\n            <button id="stop-crawler-btn" class="tw-hidden tw-px-3 tw-py-1.5 tw-text-xs tw-font-medium tw-bg-red-500 tw-text-white tw-rounded-md hover:tw-bg-red-600 active:tw-bg-red-700 tw-transition-colors tw-shadow-sm tw-border-0 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-red-500 focus:tw-ring-opacity-50">\n              Stop\n            </button>\n            <button id="skip-cache-btn" class="tw-hidden tw-px-3 tw-py-1.5 tw-text-xs tw-font-medium tw-bg-orange-500 tw-text-white tw-rounded-md hover:tw-bg-orange-600 active:tw-bg-orange-700 tw-transition-colors tw-shadow-sm tw-border-0 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-orange-500 focus:tw-ring-opacity-50">\n              Skip Cache\n            </button>\n            <div class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">\n              <div class="tw-w-16 tw-bg-gray-200 dark:tw-bg-gray-600 tw-rounded-full tw-h-1.5">\n                <div id="progress-bar" class="tw-h-1.5 tw-rounded-full tw-bg-blue-500 tw-transition-all tw-duration-300" style="width: 0%"></div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div class="tw-container">\n        \x3c!-- Server List Container --\x3e\n        <div id="list-view-container">\n          <div class="tw-my-2 tw-mx-2 tw-text-sm tw-text-gray-600 dark:tw-text-gray-400 tw-flex tw-justify-between tw-items-center tw-border-t tw-pt-2 tw-border-gray-200 dark:tw-border-gray-700">\n            <span id="server-stats">Loading servers...</span>\n            <span id="datacenter-stats"></span>\n          </div>\n          <div id="betterblox-server-list" class="tw-grid sm:tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-4 tw-gap-2 tw-place-items-center">\n          </div>\n          <button type="button" id="load-more-servers" class="tw-mt-4 tw-rbx-running-games-load-more tw-btn-control-md tw-btn-full-width tw-hidden">\n            Load More\n          </button>\n        </div>\n      </div>\n    </div>\n  `
+                    a = (n(e()),
+                      `\n    <div id="betterblox-server-filter" class="tw-w-full tw-min-w-0 tw-max-w-full tw-mx-auto tw-box-border tw-px-4 sm:tw-px-6 tw-flex tw-flex-col">\n      <div class="tw-container-header tw-flex tw-w-full tw-min-w-0 tw-flex-col tw-gap-2">\n        \x3c!-- Title + first filter row on one line --\x3e\n        <div class="tw-flex tw-w-full tw-min-w-0 tw-flex-wrap tw-items-center tw-justify-between tw-gap-x-3 tw-gap-y-2">\n          <h2 class="container-header-text tw-m-0 tw-flex tw-shrink-0 tw-items-center tw-justify-start tw-gap-2 tw-text-left">\n        <img src="${s("logo32")}" alt="BetterBLOX Logo" class="tw-w-4 tw-h-4 tw-shrink-0" />\n          BetterBLOX Servers\n          </h2>\n          <div class="tw-flex tw-min-w-0 tw-flex-1 tw-flex-row tw-flex-wrap tw-gap-2 tw-justify-end">\n            <button type="button" id="sort-toggle" class="tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n              <span id="sort-text">Descending</span>\n            </button>\n            \n            <div class="tw-relative">\n              <button id="region-filter-button" class="tw-relative tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n                <span>Region</span>\n                <span id="region-filter-indicator" class="tw-w-2 tw-h-2 tw-rounded-full tw-bg-gray-400"></span>\n                <span id="selected-regions-count" class="tw-absolute tw--top-2 tw--right-2 tw-h-5 tw-w-5 tw-text-xs tw-bg-blue-500 tw-text-white tw-rounded-full tw-flex tw-items-center tw-justify-center tw-hidden">\n                  0\n                </span>\n              </button>\n              <div id="region-filter-dropdown" class="tw-hidden tw-absolute tw-z-10 tw-bg-white dark:tw-bg-gray-800 tw-rounded-lg tw-shadow tw-w-[800px] tw-p-2 tw-left-1/2 tw-transform tw--translate-x-1/2 tw-max-h-[600px]">\n                \x3c!-- View Toggle Buttons --\x3e\n                <div class="tw-flex tw-gap-2 tw-mb-3 tw-px-2">\n                  <button id="globe-view-toggle" class="tw-flex-1 tw-px-4 tw-py-2 tw-bg-blue-500 tw-text-white tw-rounded-lg hover:tw-bg-blue-600 tw-transition-colors">\n                    Globe View\n                  </button>\n                  <button id="list-view-toggle" class="tw-flex-1 tw-px-4 tw-py-2 tw-bg-gray-200 dark:tw-bg-gray-700 tw-text-gray-700 dark:tw-text-gray-300 tw-rounded-lg hover:tw-bg-gray-300 dark:hover:tw-bg-gray-600 tw-transition-colors">\n                    List View\n                  </button>\n                </div>\n                \n                \x3c!-- Globe View Container --\x3e\n                <div id="region-globe-container" class="tw-mb-3">\n                  <div id="globe-viewer-wrapper"></div>\n                </div>\n                \n                \x3c!-- List View Container --\x3e\n                <div id="region-list-container" class="tw-hidden">\n                  <div class="tw-text-sm tw-text-gray-600 dark:tw-text-gray-400 tw-flex tw-justify-between tw-items-center tw-border-b tw-mb-2 tw-pb-2 tw-border-gray-200 dark:tw-border-gray-700 tw-px-4">\n                    <span id="region-stats">Loading regions...</span>\n                    <span id="region-connection-stats"></span>\n                  </div>\n                  <button class="tw-w-full tw-text-left tw-px-4 tw-py-2 hover:tw-bg-gray-100 dark:tw-bg-gray-700 dark:hover:tw-bg-gray-600 tw-rounded-lg tw-mb-1">\n                    All Regions\n                  </button>\n                  <div class="tw-border-t tw-border-gray-200 dark:tw-border-gray-700 tw-my-1"></div>\n                  <div class="tw-overflow-y-auto tw-max-h-72">\n                    <div id="datacenter-list" class="tw-space-y-1">\n                      <div class="tw-animate-pulse tw-flex tw-flex-col tw-gap-2 tw-px-4">\n                        <div class="tw-h-12 tw-bg-gray-200 dark:tw-bg-gray-700 tw-rounded"></div>\n                        <div class="tw-h-12 tw-bg-gray-200 dark:tw-bg-gray-700 tw-rounded"></div>\n                        <div class="tw-h-12 tw-bg-gray-200 dark:tw-bg-gray-700 tw-rounded"></div>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n\n            <button type="button" id="best-connection" class="tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n              <span>Best Connection</span>\n              <span id="best-connection-indicator" class="tw-w-2 tw-h-2 tw-rounded-full tw-bg-gray-400"></span>\n            </button>\n\n            <button type="button" id="refresh-servers" class="tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n              <span>Refresh</span>\n              <span id="refresh-spinner" class="tw-hidden">\n                <svg class="tw-animate-spin tw-h-4 tw-w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">\n                  <circle class="tw-opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>\n                  <path class="tw-opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>\n                </svg>\n              </span>\n            </button>\n            <button type="button" id="reset-filters" class="tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n              <span>Reset</span>\n            </button>\n          </div>\n        </div>\n\n        <div class="btn-more tw-flex tw-w-full tw-flex-row tw-flex-wrap tw-gap-2 tw-justify-end">\n          \x3c!-- Second row --\x3e\n            <div class="tw-relative">\n              <button id="age-filter-button" class="tw-relative tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n                <span>Server Age</span>\n                <span id="age-filter-indicator" class="tw-w-2 tw-h-2 tw-rounded-full tw-bg-gray-400"></span>\n              </button>\n              <div id="age-filter-dropdown" class="tw-hidden tw-absolute tw-z-10 tw-bg-white dark:tw-bg-gray-800 tw-rounded-lg tw-shadow tw-w-48 tw-p-2 tw-left-1/2 tw-transform tw--translate-x-1/2">\n                <button class="tw-w-full tw-text-left tw-px-4 tw-py-2 hover:tw-bg-gray-100 dark:tw-bg-gray-700 dark:hover:tw-bg-gray-600 tw-rounded-lg tw-mb-1 tw-age-option" data-age="Oldest">\n                  Oldest\n                </button>\n                <div class="tw-border-t tw-border-gray-200 dark:tw-border-gray-700 tw-my-1"></div>\n                <button class="tw-w-full tw-text-left tw-px-4 tw-py-2 hover:tw-bg-gray-100 dark:tw-bg-gray-700 dark:hover:tw-bg-gray-600 tw-rounded-lg tw-age-option" data-age="Newest">\n                  Newest\n                </button>\n              </div>\n            </div>\n            \n            <button type="button" id="old-version-filter" class="tw-hidden tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n              <span>Old Version</span>\n              <span id="old-version-indicator" class="tw-w-2 tw-h-2 tw-rounded-full tw-bg-gray-400"></span>\n            </button>\n            \n            <button type="button" id="shuffle-servers-2" class="tw-border-none hover:tw-underline tw-bg-[#ffffff] dark:tw-bg-[#121215] tw-flex tw-items-center tw-gap-1">\n              <span>Shuffle</span>\n            </button>\n        </div>\n      </div>\n      \x3c!-- <button class="tw-btn-secondary-md btn-more" style="margin-bottom:10px;">Join Fastest Server</button>\n      <button class="tw-btn-secondary-md btn-more" style="margin-bottom:10px;">Join Fullest Server</button> --\x3e\n      \x3c!-- Status Card --\x3e\n      <div id="betterblox-status-card" class="tw-container tw-mx-auto tw-my-4 tw-w-full tw-max-w-6xl tw-bg-white dark:tw-bg-[#393b3d] tw-border tw-border-gray-300 dark:tw-border-gray-700 tw-rounded-lg tw-p-3">\n        <div class="tw-flex tw-items-center tw-justify-between">\n          <div class="tw-flex tw-items-center tw-gap-3">\n            <div id="crawler-status-indicator" class="tw-flex tw-items-center tw-gap-2">\n              <div id="status-dot" class="tw-w-2 tw-h-2 tw-rounded-full tw-bg-yellow-500 tw-animate-pulse"></div>\n              <span id="status-text" class="tw-text-sm tw-font-medium tw-text-gray-600 dark:tw-text-gray-300">Loading...</span>\n            </div>\n            <div class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">\n              <span id="servers-loaded-count">0</span>/<span id="total-servers-count">0</span> servers • <span id="datacenters-count">0</span> datacenters\n              <span id="page-info" class="tw-ml-2 tw-hidden">Page <span id="current-page">0</span></span>\n              <span id="crawl-limit-info" class="tw-ml-2">Limit: <span id="crawl-limit-count" class="tw-cursor-pointer hover:tw-text-blue-500 dark:hover:tw-text-blue-400 tw-underline" title="Click to edit">1000</span></span>\n            </div>\n          </div>\n          <div class="tw-flex tw-items-center tw-gap-2">\n            <button id="stop-crawler-btn" class="tw-hidden tw-px-3 tw-py-1.5 tw-text-xs tw-font-medium tw-bg-red-500 tw-text-white tw-rounded-md hover:tw-bg-red-600 active:tw-bg-red-700 tw-transition-colors tw-shadow-sm tw-border-0 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-red-500 focus:tw-ring-opacity-50">\n              Stop\n            </button>\n            <button id="skip-cache-btn" class="tw-hidden tw-px-3 tw-py-1.5 tw-text-xs tw-font-medium tw-bg-orange-500 tw-text-white tw-rounded-md hover:tw-bg-orange-600 active:tw-bg-orange-700 tw-transition-colors tw-shadow-sm tw-border-0 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-orange-500 focus:tw-ring-opacity-50">\n              Skip Cache\n            </button>\n            <div class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">\n              <div class="tw-w-16 tw-bg-gray-200 dark:tw-bg-gray-600 tw-rounded-full tw-h-1.5">\n                <div id="progress-bar" class="tw-h-1.5 tw-rounded-full tw-bg-blue-500 tw-transition-all tw-duration-300" style="width: 0%"></div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div class="tw-container tw-w-full tw-min-w-0 tw-max-w-full">\n        \x3c!-- Server List Container --\x3e\n        <div id="list-view-container" class="tw-w-full tw-min-w-0">\n          <div class="tw-my-2 tw-text-sm tw-text-gray-600 dark:tw-text-gray-400 tw-flex tw-flex-wrap tw-gap-x-3 tw-gap-y-1 tw-justify-between tw-items-center tw-border-t tw-pt-2 tw-border-gray-200 dark:tw-border-gray-700">\n            <span id="server-stats" class="tw-min-w-0 tw-flex-1">Loading servers...</span>\n            <span id="datacenter-stats"></span>\n          </div>\n          <div id="betterblox-server-list" class="tw-grid sm:tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-4 tw-gap-2 tw-place-items-center">\n          </div>\n          <button type="button" id="load-more-servers" class="tw-mt-4 tw-box-border tw-block tw-w-full tw-max-w-full tw-rounded-lg tw-border tw-border-solid tw-border-gray-300 tw-bg-white tw-py-1.5 tw-text-center tw-text-sm tw-font-medium tw-text-gray-700 tw-outline-none tw-transition-colors hover:tw-bg-gray-50 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-blue-500 focus:tw-ring-offset-1 dark:tw-border-gray-700 dark:tw-bg-[#393b3d] dark:tw-text-gray-200 dark:hover:tw-bg-[#434547] dark:focus:tw-ring-offset-[#121215] tw-hidden">\n            Load More\n          </button>\n        </div>\n      </div>\n    </div>\n  `
                       ),
-                    a = document.createRange().createContextualFragment(r);
-                  let o = "globe",
-                    i = null;
-                  const l = a.querySelector("#region-filter-indicator"),
-                    c = a.querySelector("#globe-view-toggle"),
-                    d = a.querySelector("#list-view-toggle"),
-                    u = a.querySelector("#region-globe-container"),
-                    w = a.querySelector("#region-list-container"),
-                    g = a.querySelector("#globe-viewer-wrapper"),
-                    h = a.querySelector("#region-filter-button"),
-                    p = a.querySelector("#region-filter-dropdown"),
-                    b = r => {
-                      if (o = r, "globe" === o) c.classList.remove("tw-bg-gray-200", "dark:tw-bg-gray-700",
+                    r = document.createRange().createContextualFragment(a);
+                  let i = "globe",
+                    o = null;
+                  const l = r.querySelector("#region-filter-indicator"),
+                    c = r.querySelector("#globe-view-toggle"),
+                    d = r.querySelector("#list-view-toggle"),
+                    u = r.querySelector("#region-globe-container"),
+                    w = r.querySelector("#region-list-container"),
+                    g = r.querySelector("#globe-viewer-wrapper"),
+                    m = r.querySelector("#region-filter-button"),
+                    p = r.querySelector("#region-filter-dropdown"),
+                    b = a => {
+                      if (i = a, "globe" === i) c.classList.remove("tw-bg-gray-200", "dark:tw-bg-gray-700",
                           "tw-text-gray-700", "dark:tw-text-gray-300"), c.classList.add("tw-bg-blue-500",
                           "tw-text-white"), d.classList.remove("tw-bg-blue-500", "tw-text-white"), d.classList
                         .add("tw-bg-gray-200", "dark:tw-bg-gray-700", "tw-text-gray-700",
                         "dark:tw-text-gray-300"), u.classList.remove("tw-hidden"), w.classList.add("tw-hidden"),
-                        i ? i.refresh() : (i = new m(g, t), t.setGlobeViewer(i));
+                        o ? o.refresh() : (o = new h(g, t), t.setGlobeViewer(o));
                       else {
                         d.classList.remove("tw-bg-gray-200", "dark:tw-bg-gray-700", "tw-text-gray-700",
                             "dark:tw-text-gray-300"), d.classList.add("tw-bg-blue-500", "tw-text-white"), c
@@ -1428,7 +1300,7 @@
                       }
                     };
                   c && c.addEventListener("click", () => b("globe")), d && d.addEventListener("click", () => b(
-                    "list")), h && h.addEventListener("click", async t => {
+                    "list")), m && m.addEventListener("click", async t => {
                     if (t.stopPropagation(), p.classList.toggle("tw-hidden"), !p.classList.contains(
                         "tw-hidden")) {
                       b("globe");
@@ -1438,41 +1310,41 @@
                         await new Promise(t => setTimeout(t, 100)), t.innerHTML = n(e()))
                     }
                   }), document.addEventListener("click", t => {
-                    !p || h?.contains(t.target) || p.contains(t.target) || p.classList.add("tw-hidden")
+                    !p || m?.contains(t.target) || p.contains(t.target) || p.classList.add("tw-hidden")
                   });
-                  const f = a.querySelector("#sort-toggle"),
-                    y = a.querySelector("#sort-text");
+                  const f = r.querySelector("#sort-toggle"),
+                    y = r.querySelector("#sort-text");
                   f && f.addEventListener("click", async () => {
                     const e = "Desc" === t.sortOrder ? "Asc" : "Desc";
                     y.textContent = "Desc" === e ? "Descending" : "Ascending", t.setSortOrder(e)
                   });
-                  const x = a.querySelector("#refresh-servers"),
-                    v = a.querySelector("#refresh-spinner");
-                  x && x.addEventListener("click", async () => {
-                    v.classList.remove("tw-hidden"), x.disabled = !0;
+                  const v = r.querySelector("#refresh-servers"),
+                    x = r.querySelector("#refresh-spinner");
+                  v && v.addEventListener("click", async () => {
+                    x.classList.remove("tw-hidden"), v.disabled = !0;
                     try {
                       await t.mainClass.refreshServerList()
                     } catch (t) {
                       console.error("Error refreshing server list:", t)
                     } finally {
-                      v.classList.add("tw-hidden"), x.disabled = !1
+                      x.classList.add("tw-hidden"), v.disabled = !1
                     }
                   });
-                  const k = a.querySelector("#stop-crawler-btn");
-                  k && k.addEventListener("click", () => {
-                    t.mainClass.stopCrawler(), t.mainClass.updateStatus({
+                  const k = r.querySelector("#stop-crawler-btn");
+                  k && k.addEventListener("click", async () => {
+                    await t.mainClass.stopCrawler(!0), t.mainClass.updateStatus({
                       isCrawling: !1,
                       error: "Crawling stopped by user"
                     })
                   });
-                  const S = a.querySelector("#skip-cache-btn");
+                  const S = r.querySelector("#skip-cache-btn");
                   S && S.addEventListener("click", () => {
                     t.mainClass.skipCacheLoading(), t.mainClass.updateStatus({
                       error: null
                     })
                   });
-                  const C = a.querySelector("#crawl-limit-count");
-                  C && C.addEventListener("click", () => {
+                  const L = r.querySelector("#crawl-limit-count");
+                  L && L.addEventListener("click", () => {
                     const e = t.mainClass.crawlLimit,
                       n = prompt(`Enter new crawl limit (current: ${e}):`, e);
                     if (null !== n) {
@@ -1482,26 +1354,26 @@
                         alert("Please enter a valid number between 1 and 10000")
                     }
                   });
-                  const L = a.querySelector("#best-connection"),
-                    E = a.querySelector("#best-connection-indicator");
-                  L && L.addEventListener("click", async () => {
-                    L.disabled = !0;
-                    const e = L.querySelector("span").textContent;
-                    L.querySelector("span").textContent = "Calculating...";
+                  const C = r.querySelector("#best-connection"),
+                    E = r.querySelector("#best-connection-indicator");
+                  C && C.addEventListener("click", async () => {
+                    C.disabled = !0;
+                    const e = C.querySelector("span").textContent;
+                    C.querySelector("span").textContent = "Calculating...";
                     try {
                       await t.toggleBestConnection(), t.isBestConnection ? (E.classList.remove(
                         "tw-bg-gray-400"), E.classList.add("tw-bg-green-500")) : (E.classList.remove(
-                        "tw-bg-green-500"), E.classList.add("tw-bg-gray-400")), X()
+                        "tw-bg-green-500"), E.classList.add("tw-bg-gray-400")), F()
                     } catch (t) {} finally {
-                      L.disabled = !1, L.querySelector("span").textContent = e
+                      C.disabled = !1, C.querySelector("span").textContent = e
                     }
                   });
-                  const T = a.querySelector("#age-filter-button"),
-                    M = a.querySelector("#age-filter-dropdown"),
-                    A = a.querySelector("#age-filter-indicator");
+                  const T = r.querySelector("#age-filter-button"),
+                    I = r.querySelector("#age-filter-dropdown"),
+                    M = r.querySelector("#age-filter-indicator");
                   T && T.addEventListener("click", e => {
-                    e.stopPropagation(), M.classList.toggle("tw-hidden"), M.classList.contains("tw-hidden") ||
-                      M.querySelectorAll(".age-option").forEach(e => {
+                    e.stopPropagation(), I.classList.toggle("tw-hidden"), I.classList.contains("tw-hidden") ||
+                      I.querySelectorAll(".age-option").forEach(e => {
                         e.classList.remove("tw-bg-blue-200", "dark:tw-bg-blue-800", "tw-bg-blue-300",
                           "dark:tw-bg-blue-700", "hover:tw-bg-gray-100", "dark:tw-bg-gray-700",
                           "dark:hover:tw-bg-gray-600"), e.dataset.age === t.ageSort ? e.classList.add(
@@ -1509,189 +1381,148 @@
                           "hover:tw-bg-gray-100", "dark:tw-bg-gray-700", "dark:hover:tw-bg-gray-600")
                       })
                   }), document.addEventListener("click", t => {
-                    !M || T?.contains(t.target) || M.contains(t.target) || M.classList.add("tw-hidden")
+                    !I || T?.contains(t.target) || I.contains(t.target) || I.classList.add("tw-hidden")
                   });
-                  const I = e => {
+                  const A = e => {
                     e.preventDefault(), e.stopPropagation();
                     const n = e.target.closest(".age-option");
                     if (!n) return;
-                    const r = n.dataset.age;
-                    let a;
-                    a = t.ageSort === r ? null : r, t.setAgeSort(r);
-                    const s = M.querySelectorAll(".age-option");
+                    const a = n.dataset.age;
+                    let r;
+                    r = t.ageSort === a ? null : a, t.setAgeSort(a);
+                    const s = I.querySelectorAll(".age-option");
                     s.forEach(t => {
                         t.classList.remove("tw-bg-blue-200", "dark:tw-bg-blue-800", "tw-bg-blue-300",
                           "dark:tw-bg-blue-700", "hover:tw-bg-gray-100", "dark:tw-bg-gray-700",
                           "dark:hover:tw-bg-gray-600")
-                      }), a && n.classList.add("tw-bg-blue-200", "dark:tw-bg-blue-800"), s.forEach(t => {
+                      }), r && n.classList.add("tw-bg-blue-200", "dark:tw-bg-blue-800"), s.forEach(t => {
                         t.classList.contains("tw-bg-blue-200") || t.classList.add("hover:tw-bg-gray-100",
                           "dark:tw-bg-gray-700", "dark:hover:tw-bg-gray-600")
-                      }), A && (a ? (A.classList.remove("tw-bg-gray-400"), A.classList.add("tw-bg-teal-500")) :
-                        (A.classList.remove("tw-bg-teal-500"), A.classList.add("tw-bg-gray-400"))), X(), M
+                      }), M && (r ? (M.classList.remove("tw-bg-gray-400"), M.classList.add("tw-bg-teal-500")) :
+                        (M.classList.remove("tw-bg-teal-500"), M.classList.add("tw-bg-gray-400"))), F(), I
                       .classList.add("tw-hidden")
                   };
-                  M.querySelectorAll(".age-option").forEach(t => {
-                    t.addEventListener("click", I)
+                  I.querySelectorAll(".age-option").forEach(t => {
+                    t.addEventListener("click", A)
                   });
-                  const B = a.querySelector("#bot-filter-button"),
-                    P = a.querySelector("#bot-filter-dropdown"),
-                    N = a.querySelector("#bot-filter-indicator");
-                  B && B.addEventListener("click", e => {
-                    e.stopPropagation(), P.classList.toggle("tw-hidden"), P.classList.contains("tw-hidden") ||
-                      P.querySelectorAll(".bot-option").forEach(e => {
-                        e.classList.remove("tw-bg-blue-200", "dark:tw-bg-blue-800", "tw-bg-blue-300",
-                          "dark:tw-bg-blue-700", "hover:tw-bg-gray-100", "dark:tw-bg-gray-700",
-                          "dark:hover:tw-bg-gray-600"), e.dataset.bot === t.botSort ? e.classList.add(
-                          "tw-bg-blue-200", "dark:tw-bg-blue-800") : e.classList.add(
-                          "hover:tw-bg-gray-100", "dark:tw-bg-gray-700", "dark:hover:tw-bg-gray-600")
-                      })
-                  }), document.addEventListener("click", t => {
-                    !P || B?.contains(t.target) || P.contains(t.target) || P.classList.add("tw-hidden")
-                  });
-                  const $ = e => {
-                    e.preventDefault(), e.stopPropagation();
-                    const n = e.target.closest(".bot-option");
-                    if (!n) return;
-                    const r = n.dataset.bot;
-                    let a;
-                    a = t.botSort === r ? null : r, t.setBotSort(r);
-                    const s = P.querySelectorAll(".bot-option");
-                    s.forEach(t => {
-                      t.classList.remove("tw-bg-blue-200", "dark:tw-bg-blue-800", "tw-bg-blue-300",
-                        "dark:tw-bg-blue-700", "hover:tw-bg-gray-100", "dark:tw-bg-gray-700",
-                        "dark:hover:tw-bg-gray-600")
-                    }), a && n.classList.add("tw-bg-blue-200", "dark:tw-bg-blue-800"), s.forEach(t => {
-                      t.classList.contains("tw-bg-blue-200") || t.classList.add("hover:tw-bg-gray-100",
-                        "dark:tw-bg-gray-700", "dark:hover:tw-bg-gray-600")
-                    }), N && (a ? (N.classList.remove("tw-bg-gray-400"), N.classList.add(
-                      "tw-bg-purple-500")) : (N.classList.remove("tw-bg-purple-500"), N.classList.add(
-                        "tw-bg-gray-400"))), X(), P.classList.add("tw-hidden")
-                  };
-                  P.querySelectorAll(".bot-option").forEach(t => {
-                    t.addEventListener("click", $)
-                  });
-                  const R = a.querySelector("#shuffle-servers-2");
-                  R && R.addEventListener("click", () => {
+                  const D = r.querySelector("#shuffle-servers-2");
+                  D && D.addEventListener("click", () => {
                     t.toggleShuffle2()
                   });
-                  const D = a.querySelector("#old-version-filter"),
-                    O = a.querySelector("#old-version-indicator");
-                  D && D.addEventListener("click", () => {
-                    t.setOldVersionSort(), t.oldVersionSort ? (O.classList.remove("tw-bg-gray-400"), O
-                      .classList.add("tw-bg-orange-500")) : (O.classList.remove("tw-bg-orange-500"), O
+                  const P = r.querySelector("#old-version-filter"),
+                    $ = r.querySelector("#old-version-indicator");
+                  P && P.addEventListener("click", () => {
+                    t.setOldVersionSort(), t.oldVersionSort ? ($.classList.remove("tw-bg-gray-400"), $
+                      .classList.add("tw-bg-orange-500")) : ($.classList.remove("tw-bg-orange-500"), $
                       .classList.add("tw-bg-gray-400"))
                   });
-                  const q = a.querySelector("#server-stats"),
-                    _ = a.querySelector("#datacenter-stats"),
-                    H = () => {
-                      const r = e(),
+                  const R = r.querySelector("#server-stats"),
+                    _ = r.querySelector("#datacenter-stats"),
+                    N = () => {
+                      const a = e(),
                         s = t.mainClass.serverList.length,
-                        o = t.elementList.length,
-                        i = r.length;
-                      q.textContent = `Showing ${o} of ${s} servers`, _.textContent = `${i} locations`;
-                      const l = t.mainClass.hasOldVersionServers(),
-                        c = document.querySelector("#old-version-filter");
-                      if (c)
-                        if (l) c.classList.remove("tw-hidden");
-                        else if (c.classList.add("tw-hidden"), t.oldVersionSort) {
+                        i = t.elementList.length,
+                        o = a.length,
+                        l = t.mainClass.getJoinDataBreakdown();
+                      let c =
+                        `Showing ${i} of ${s} servers · Resolved ${l.successful} · In pool ${l.inPool} · Failed ${l.failed}`;
+                      l.unknown > 0 && (c += ` · No region ${l.unknown}`), R.textContent = c, _.textContent =
+                        `${o} locations`;
+                      const d = t.mainClass.hasOldVersionServers(),
+                        u = document.querySelector("#old-version-filter");
+                      if (u)
+                        if (d) u.classList.remove("tw-hidden");
+                        else if (u.classList.add("tw-hidden"), t.oldVersionSort) {
                         t.oldVersionSort = null;
-                        const e = a.querySelector("#old-version-indicator");
+                        const e = r.querySelector("#old-version-indicator");
                         e && (e.classList.remove("tw-bg-orange-500"), e.classList.add("tw-bg-gray-400"))
                       }
-                      const d = document.querySelector("#region-stats"),
-                        u = document.querySelector("#region-connection-stats");
-                      if (d && (d.textContent = `${i} locations available`), u && (u.innerHTML = ""), p && !p
+                      const w = document.querySelector("#region-stats"),
+                        g = document.querySelector("#region-connection-stats");
+                      if (w && (w.textContent = `${o} locations available`), g && (g.innerHTML = ""), p && !p
                         .classList.contains("tw-hidden")) {
                         const t = p.querySelector("#datacenter-list");
                         t && (t.innerHTML = n(e()))
                       }
                     },
-                    F = t.handleServerListRefresh;
+                    j = t.handleServerListRefresh;
                   t.handleServerListRefresh = async function() {
-                    await F.call(this), H(), t.mainClass.updateStatusCard()
+                    await j.call(this), N(), t.mainClass.updateStatusCard()
                   };
-                  const j = t.mainClass.createServerCard;
+                  const O = t.mainClass.createServerCard;
                   t.mainClass.createServerCard = async function(t) {
-                    await j.call(this, t), H()
-                  }, H();
-                  const z = a.querySelector("#region-filter-dropdown button");
-                  z && z.addEventListener("click", e => {
-                    e.preventDefault(), e.stopPropagation(), a.querySelectorAll(".datacenter-button").forEach(
+                    await O.call(this, t), N()
+                  }, N();
+                  const B = r.querySelector("#region-filter-dropdown button");
+                  B && B.addEventListener("click", e => {
+                    e.preventDefault(), e.stopPropagation(), r.querySelectorAll(".datacenter-button").forEach(
                       t => {
                         t.classList.remove("tw-bg-blue-200", "dark:tw-bg-blue-800", "hover:bg-blue-300",
                           "dark:hover:tw-bg-blue-700")
-                      }), t.clearDatacenterFilters(), V(), l && (l.classList.remove("tw-bg-blue-500"), l
+                      }), t.clearDatacenterFilters(), H(), l && (l.classList.remove("tw-bg-blue-500"), l
                       .classList.add("tw-bg-gray-400"))
                   });
-                  const G = a.querySelector("#datacenter-list");
-                  G && G.addEventListener("click", e => {
+                  const q = r.querySelector("#datacenter-list");
+                  q && q.addEventListener("click", e => {
                     e.preventDefault(), e.stopPropagation();
                     const n = e.target.closest(".datacenter-button");
                     if (!n) return;
-                    const r = n.dataset.location,
-                      a = !n.classList.contains("tw-bg-blue-200");
-                    a ? n.classList.add("tw-bg-blue-200", "dark:tw-bg-blue-800", "hover:tw-bg-blue-300",
+                    const a = n.dataset.location,
+                      r = !n.classList.contains("tw-bg-blue-200");
+                    r ? n.classList.add("tw-bg-blue-200", "dark:tw-bg-blue-800", "hover:tw-bg-blue-300",
                         "dark:hover:tw-bg-blue-700") : n.classList.remove("tw-bg-blue-200",
                         "dark:tw-bg-blue-800", "hover:tw-bg-blue-300", "dark:hover:tw-bg-blue-700"), t
-                      .setDatacenterFilter(r, a), V(), l && (t.filterSettings.datacenters.size > 0 ? (l
+                      .setDatacenterFilter(a, r), H(), l && (t.filterSettings.datacenters.size > 0 ? (l
                         .classList.remove("tw-bg-gray-400"), l.classList.add("tw-bg-blue-500")) : (l
                         .classList.remove("tw-bg-blue-500"), l.classList.add("tw-bg-gray-400")))
                   });
-                  const V = () => {
-                      const e = a.querySelector("#selected-regions-count");
+                  const H = () => {
+                      const e = r.querySelector("#selected-regions-count");
                       if (!e) return;
                       const n = t.filterSettings.datacenters.size;
                       n > 0 ? (e.textContent = n, e.classList.remove("tw-hidden")) : e.classList.add("tw-hidden")
                     },
-                    U = () => {
-                      const e = a.querySelector("#region-filter-indicator");
+                    G = () => {
+                      const e = r.querySelector("#region-filter-indicator");
                       e && (t.filterSettings.datacenters.size > 0 ? (e.classList.remove("tw-bg-gray-400"), e
                         .classList.add("tw-bg-blue-500")) : (e.classList.remove("tw-bg-blue-500"), e.classList
                         .add("tw-bg-gray-400")))
                     },
-                    X = () => {
-                      A && (t.ageSort ? (A.classList.remove("tw-bg-gray-400"), A.classList.add(
-                        "tw-bg-teal-500")) : (A.classList.remove("tw-bg-teal-500"), A.classList.add(
-                          "tw-bg-gray-400"))), N && (t.botSort ? (N.classList.remove("tw-bg-gray-400"), N
-                        .classList.add("tw-bg-purple-500")) : (N.classList.remove("tw-bg-purple-500"), N
-                        .classList.add("tw-bg-gray-400"))), E && (t.isBestConnection ? (E.classList.remove(
-                        "tw-bg-gray-400"), E.classList.add("tw-bg-green-500")) : (E.classList.remove(
-                        "tw-bg-green-500"), E.classList.add("tw-bg-gray-400")))
+                    F = () => {
+                      M && (t.ageSort ? (M.classList.remove("tw-bg-gray-400"), M.classList.add(
+                        "tw-bg-teal-500")) : (M.classList.remove("tw-bg-teal-500"), M.classList.add(
+                          "tw-bg-gray-400"))), E && (t.isBestConnection ? (E.classList.remove("tw-bg-gray-400"),
+                        E.classList.add("tw-bg-green-500")) : (E.classList.remove("tw-bg-green-500"), E
+                        .classList.add("tw-bg-gray-400")))
                     };
-                  V(), H(), U(), X(), t.mainClass.updateStatusCard();
-                  const W = a.querySelector("#reset-filters");
-                  return W && W.addEventListener("click", () => {
-                    t.reset(), a.querySelectorAll(".datacenter-button").forEach(t => {
+                  H(), N(), G(), F(), t.mainClass.updateStatusCard();
+                  const V = r.querySelector("#reset-filters");
+                  return V && V.addEventListener("click", () => {
+                    t.reset(), r.querySelectorAll(".datacenter-button").forEach(t => {
                       t.classList.remove("tw-bg-blue-200", "dark:tw-bg-blue-800", "hover:bg-blue-300",
                         "dark:hover:tw-bg-blue-700")
-                    }), f && y && (y.textContent = "Descending"), A && (A.classList.remove(
-                      "tw-bg-teal-500"), A.classList.add("tw-bg-gray-400")), M.querySelectorAll(
+                    }), f && y && (y.textContent = "Descending"), M && (M.classList.remove(
+                      "tw-bg-teal-500"), M.classList.add("tw-bg-gray-400")), I.querySelectorAll(
                       ".age-option").forEach(t => {
                       t.classList.remove("tw-bg-blue-200", "dark:tw-bg-blue-800", "tw-bg-blue-300",
                         "dark:tw-bg-blue-700", "hover:tw-bg-gray-100", "dark:tw-bg-gray-700",
                         "dark:hover:tw-bg-gray-600"), t.classList.add("hover:tw-bg-gray-100",
                         "dark:tw-bg-gray-700", "dark:hover:tw-bg-gray-600")
-                    }), t.ageSort = null, N && (N.classList.remove("tw-bg-purple-500"), N.classList.add(
-                      "tw-bg-gray-400")), P.querySelectorAll(".bot-option").forEach(t => {
-                      t.classList.remove("tw-bg-blue-200", "dark:tw-bg-blue-800", "tw-bg-blue-300",
-                        "dark:tw-bg-blue-700", "hover:tw-bg-gray-100", "dark:tw-bg-gray-700",
-                        "dark:hover:tw-bg-gray-600"), t.classList.add("hover:tw-bg-gray-100",
-                        "dark:tw-bg-gray-700", "dark:hover:tw-bg-gray-600")
-                    }), t.botSort = null, t.oldVersionSort = null, O && (O.classList.remove(
-                      "tw-bg-orange-500"), O.classList.add("tw-bg-gray-400")), [l, E].forEach(t => {
+                    }), t.ageSort = null, t.oldVersionSort = null, $ && ($.classList.remove(
+                      "tw-bg-orange-500"), $.classList.add("tw-bg-gray-400")), [l, E].forEach(t => {
                       t && (t.classList.remove("tw-bg-blue-500", "tw-bg-green-500", "tw-bg-teal-500",
                         "tw-bg-purple-500", "tw-bg-orange-500"), t.classList.add("tw-bg-gray-400"))
                     });
-                    const e = a.querySelector("#selected-regions-count");
+                    const e = r.querySelector("#selected-regions-count");
                     e && e.classList.add("tw-hidden"), p && p.classList.add("tw-hidden")
-                  }), a.cleanup = () => {
-                    i && (i.destroy(), i = null)
-                  }, a.updateStats = H, a.updateFilterIndicators = U, a.updateRegionCount = V, a
+                  }), r.cleanup = () => {
+                    o && (o.destroy(), o = null)
+                  }, r.updateStats = N, r.updateFilterIndicators = G, r.updateRegionCount = H, r
                 }(this.paginationManager),
-                r = t.querySelector("#rbx-public-running-games");
-              t.insertBefore(n, r);
-              const a = t.querySelector("#betterblox-server-filter");
-              return this.containerElement = a, this.containerUpdateStats = a.updateStats, a
+                a = t.querySelector("#rbx-public-running-games");
+              t.insertBefore(n, a);
+              const r = t.querySelector("#betterblox-server-filter");
+              return this.containerElement = r, this.containerUpdateStats = r.updateStats, r
             }
             async createServerCard(t, e = null) {
               if (!t) return void console.error("Server not found");
@@ -1700,54 +1531,65 @@
               let n = this.serverAvatars.get(t.id);
               !n && t.playerTokens && t.playerTokens.length > 0 && (n = await this.getServerAvatars(t
                 .playerTokens), n && this.serverAvatars.set(t.id, n));
-              const r = await this.getClientLocation();
-              let a = t.botPercentage || null;
-              null === a && this.serverBotAnalysis.has(t.id) && (a = this.serverBotAnalysis.get(t.id)
-                .botPercentage, t.botPercentage = a);
-              const s = function(t, e, n, r, a, s, o, i, l = null, c = null, d = !1, u = null, w = null, g = !1,
-                  h = null, m = null, p = null, b = null) {
-                  const f = n - 5,
-                    y = Math.round(n / r * 100),
-                    x = h ? Math.round(h / 60 * 100) : null,
-                    v = t => t * (Math.PI / 180),
-                    k = (() => {
+              const a = await this.getClientLocation();
+              let r = t.botPercentage || null;
+              null === r && this.serverBotAnalysis.has(t.id) && (r = this.serverBotAnalysis.get(t.id)
+                .botPercentage, t.botPercentage = r);
+              const s = function(t, e, n, a, r, s, i, o, l = null, c = null, d = !1, u = null, w = null, g = !1,
+                  h = null, m = null, p = null, b = null, f = !1, y = !1, v = !1) {
+                  const x = n - 5,
+                    k = Math.round(n / a * 100),
+                    S = h ? Math.round(h / 60 * 100) : null,
+                    L = t => t * (Math.PI / 180),
+                    C = (() => {
                       if (!c || !p || !b) return null;
                       const t = [];
                       if (Object.values(p).forEach(e => {
                           if (e.location?.latLong) {
-                            const [n, r] = e.location.latLong, a = ((t, e, n, r) => {
-                              const a = v(n - t),
-                                s = v(r - e),
-                                o = Math.sin(a / 2) * Math.sin(a / 2) + Math.cos(v(t)) * Math.cos(v(n)) *
+                            const [n, a] = e.location.latLong, r = ((t, e, n, a) => {
+                              const r = L(n - t),
+                                s = L(a - e),
+                                i = Math.sin(r / 2) * Math.sin(r / 2) + Math.cos(L(t)) * Math.cos(L(n)) *
                                 Math.sin(s / 2) * Math.sin(s / 2);
-                              return 2 * Math.atan2(Math.sqrt(o), Math.sqrt(1 - o)) * 6371
-                            })(b.latitude, b.longitude, n, r);
-                            t.push(a)
+                              return 2 * Math.atan2(Math.sqrt(i), Math.sqrt(1 - i)) * 6371
+                            })(b.latitude, b.longitude, n, a);
+                            t.push(r)
                           }
                         }), 0 === t.length) return null;
                       const e = Math.max(...t);
                       return Math.round(100 - c / e * 100)
                     })(),
-                    S = f > 0 ?
-                    `<div class="tw-bg-gray-200 dark:tw-bg-gray-500 tw-w-14 tw-h-14 tw-rounded-full tw-flex tw-items-center tw-justify-center">\n            <p class="tw-text-center tw-text-xl tw-font-semibold tw-text-gray-500 dark:tw-text-white">+${f}</p>\n          </div>\n          ` :
+                    E = null != u && Number(u) > 0 ? Number(u) : 0,
+                    T = y ? "tw-border-amber-500/80 dark:tw-border-amber-500/70" : f ?
+                    "tw-border-blue-400/70 dark:tw-border-blue-500/60" :
+                    "tw-border-gray-300 dark:tw-border-gray-700",
+                    I = y ?
+                    `<div class="tw-flex tw-flex-col tw-gap-0.5">\n         <p class="tw-font-semibold tw-text-amber-700 dark:tw-text-amber-400">Region unavailable</p>\n         <p class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">${v?"Join queue did not clear (gave up after several tries)":"Could not load server details"}</p>\n       </div>` :
+                    f ?
+                    `<div class="tw-flex tw-flex-col tw-gap-0.5 tw-text-gray-600 dark:tw-text-gray-300" aria-live="polite">\n           <div class="tw-flex tw-items-center tw-gap-2">\n             <span class="tw-inline-block tw-h-3.5 tw-w-3.5 tw-shrink-0 tw-rounded-full tw-border-2 tw-border-current tw-border-t-transparent tw-animate-spin" aria-hidden="true"></span>\n             <span class="tw-text-sm tw-font-medium">${E>0?`Join queue #${E}`:"Loading region…"}</span>\n           </div>\n           ${E>0?'<p class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400 tw-ml-6">Polling for region…</p>':""}\n         </div>` :
+                    `<p class="tw-font-semibold dark:tw-text-white">${e?.location?.country||"Unknown"}</p>`,
+                    M = y ?
+                    '<p class="tw-text-center tw-text-sm tw-font-semibold tw-text-amber-700 dark:tw-text-amber-400">—</p>' :
+                    f ?
+                    `<p class="tw-text-center tw-text-sm tw-text-gray-500 dark:tw-text-gray-400 tw-animate-pulse">${E>0?"In Roblox queue — retrying…":"Resolving location…"}</p>` :
+                    `<p class="tw-text-center tw-text-md tw-font-semibold">${e?.location?.city||"Unknown"} - ${e?.location?.region||"Unknown"}</p>`,
+                    A = x > 0 ?
+                    `<div class="tw-bg-gray-200 dark:tw-bg-gray-500 tw-w-14 tw-h-14 tw-rounded-full tw-flex tw-items-center tw-justify-center">\n            <p class="tw-text-center tw-text-xl tw-font-semibold tw-text-gray-500 dark:tw-text-white">+${x}</p>\n          </div>\n          ` :
                     "",
-                    C = Object.values(a).slice(0, 5).map(t => t ?
-                      `<img src="${t}" class="tw-bg-gray-300 dark:tw-bg-gray-500 tw-w-14 tw-h-14 tw-object-cover tw-rounded-full" />` :
-                      '<span class="tw-thumbnail-2d-container tw-icon-blocked tw-avatar-card-image tw-rounded-full"></span>'
-                      ).join(""),
-                    L =
-                    `\n    <div id="server-card" betterblox-server-id="${o}" class="tw-bg-white dark:tw-bg-[#393b3d] tw-h-96 tw-w-56 tw-rounded-lg tw-p-2 tw-border-2 tw-border-gray-300 dark:tw-border-gray-700 tw-shadow-md tw-flex tw-flex-col tw-relative">\n        <div class="tw-flex tw-flex-row tw-justify-between tw-items-center">\n          <p class="tw-font-semibold dark:tw-text-white">${e?.location?.country||"Unknown"}</p>\n        </div>\n        \n        ${d?'<div class="tw-absolute tw-top-2 tw-right-2 tw-bg-gradient-to-r tw-from-green-400/80 tw-to-green-500/60 tw-backdrop-blur-sm tw-text-white tw-text-xs tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-shadow-lg tw-border tw-border-green-300/30">\n                ⚡ Closest\n              </div>':""}\n\n        <div class="tw-grid tw-grid-cols-3 tw-gap-1 tw-w-full tw-mt-4 tw-h-32">\n          ${C}\n          ${S}\n        </div>\n        \n        \x3c!-- Player count and progress bar --\x3e\n        <div class="tw-mt-2">\n          <div class="tw-flex tw-justify-between tw-items-center tw-mb-1">\n            <p class="tw-text-sm tw-font-medium dark:tw-text-white">${n} of ${r} people max</p>\n            <p class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">${y}% full</p>\n          </div>\n          <div class="tw-w-full tw-bg-gray-200 dark:tw-bg-gray-600 tw-rounded-full tw-h-2">\n            <div class="tw-h-2 tw-rounded-full tw-transition-all tw-duration-300 tw-bg-gray-400 dark:tw-bg-gray-300" style="width: ${y}%"></div>\n          </div>\n        </div>\n        \n        \x3c!-- Server Info Table --\x3e\n        <div class="tw-mt-2 tw-bg-gray-50 dark:tw-bg-gray-700 tw-rounded-md tw-p-2">\n          <table class="tw-w-full tw-text-xs">\n            <tbody>\n              <tr class="tw-border-b tw-border-gray-200 dark:tw-border-gray-600">\n                <td class="tw-py-1 tw-font-medium tw-text-gray-600 dark:tw-text-gray-300 tw-w-1/3">Ping</td>\n                <td class="tw-py-1 tw-text-right tw-text-gray-800 dark:tw-text-white tw-w-1/3">${t||"N/A"}ms</td>\n                <td class="tw-py-1 tw-font-medium tw-text-gray-600 dark:tw-text-gray-300 tw-w-1/3 tw-pl-4">Speed</td>\n                <td class="tw-py-1 tw-text-right tw-text-gray-800 dark:tw-text-white">${null!==x?x+"%":"N/A"}</td>\n              </tr>\n              <tr class="tw-border-b tw-border-gray-200 dark:tw-border-gray-600">\n                <td class="tw-py-1 tw-font-medium tw-text-gray-600 dark:tw-text-gray-300">Version</td>\n                <td class="tw-py-1 tw-text-right tw-text-gray-800 dark:tw-text-white ${g?"tw-text-orange-500":""}">${w||"N/A"}${g?" (Old)":""}</td>\n                <td class="tw-py-1 tw-font-medium tw-text-gray-600 dark:tw-text-gray-300 tw-pl-4">Age</td>\n                <td class="tw-py-1 tw-text-right tw-text-gray-800 dark:tw-text-white">${l||"N/A"}</td>\n              </tr>\n              <tr>\n                <td class="tw-py-1 tw-font-medium tw-text-gray-600 dark:tw-text-gray-300">Closest</td>\n                <td class="tw-py-1 tw-text-right tw-text-gray-800 dark:tw-text-white">${null!==k?k+"%":"N/A"}</td>\n                <td class="tw-py-1 tw-font-medium tw-text-gray-600 dark:tw-text-gray-300 tw-pl-4">Bots</td>\n                <td class="tw-py-1 tw-text-right tw-text-gray-800 dark:tw-text-white">${null!==m?m+"%":"N/A"}</td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n        <div class="tw-stats tw-border-[1px] tw-border-gray-300 dark:tw-border-gray-500 tw-rounded-md tw-my-2 dark:tw-text-white">\n          <p class="tw-text-center tw-text-md tw-font-semibold">${e?.location?.city||"Unknown"} - ${e?.location?.region||"Unknown"}</p>\n        </div>\n        <div class="tw-mt-auto">\n        <button class="tw-bg-transparent tw-border-[1px] tw-border-gray-400 dark:tw-border-gray-300 tw-text-black dark:tw-text-white tw-font-semibold hover:tw-bg-gray-200 hover:tw-border-gray-400 dark:hover:tw-bg-gray-600 dark:hover:tw-border-gray-600 tw-px-4 tw-rounded-md tw-text-xs tw-w-full" id="join-button" onclick="Roblox.GameLauncher.joinGameInstance(${s}, '${o}')">\n          Join${u&&u>0?` (${u} in queue)`:""}\n        </button>\n           \n          \x3c!-- <div class="tw-grid tw-grid-cols-6 tw-gap-1">\n            <button class="tw-col-span-4 tw-bg-transparent tw-border-[1px] tw-border-gray-400 dark:tw-border-gray-300 tw-text-black dark:tw-text-white tw-font-semibold hover:tw-bg-gray-200 hover:tw-border-gray-400 dark:hover:tw-bg-gray-600 dark:hover:tw-border-gray-600 tw-px-4 tw-rounded-md tw-text-xs tw-w-full" id="join-button" onclick="Roblox.GameLauncher.joinGameInstance(${s}, '${o}')">Join</button>\n            <button class="tw-col-span-2 tw-bg-transparent tw-border-[1px] tw-border-gray-400 dark:tw-border-gray-300 tw-text-black dark:tw-text-white tw-font-semibold hover:tw-bg-gray-200 hover:tw-border-gray-400 dark:hover:tw-bg-gray-600 dark:hover:tw-border-gray-600 tw-px-4 tw-rounded-md tw-text-xs" id="invite-button">Invite</button>\n          </div> --\x3e\n        </div>\n      </div>\n    `,
-                    E = document.createRange().createContextualFragment(L),
-                    T = (E.querySelector("#join-button"), E.querySelector("#invite-button"));
-                  return T && "function" == typeof i && T.addEventListener("click", i), E
-                }(t.ping, t.datacenter, t.playing, t.maxPlayers, n, this.gameId, t.id, "", t.serverAge, t
+                    D =
+                    `\n    <div id="server-card" betterblox-server-id="${i}" class="tw-bg-white dark:tw-bg-[#393b3d] tw-h-96 tw-w-56 tw-rounded-lg tw-p-2 tw-border-2 ${T} tw-shadow-md tw-flex tw-flex-col tw-relative" ${f?'aria-busy="true"':""}>\n        <div class="tw-flex tw-flex-row tw-justify-between tw-items-center tw-min-h-[2.25rem]">\n          ${I}\n        </div>\n        \n        ${d?'<div class="tw-absolute tw-top-2 tw-right-2 tw-bg-gradient-to-r tw-from-green-400/80 tw-to-green-500/60 tw-backdrop-blur-sm tw-text-white tw-text-xs tw-font-semibold tw-px-2 tw-py-1 tw-rounded-lg tw-shadow-lg tw-border tw-border-green-300/30">\n                ⚡ Closest\n              </div>':""}\n\n        <div class="tw-grid tw-grid-cols-3 tw-gap-1 tw-w-full tw-mt-4 tw-h-32">\n          ${Object.values(r).slice(0,5).map(t=>t?`<img src="${t}" class="tw-bg-gray-300 dark:tw-bg-gray-500 tw-w-14 tw-h-14 tw-object-cover tw-rounded-full" />`:'<span class="tw-thumbnail-2d-container tw-icon-blocked tw-avatar-card-image tw-rounded-full"></span>').join("")}\n          ${A}\n        </div>\n        \n        \x3c!-- Player count and progress bar --\x3e\n        <div class="tw-mt-2">\n          <div class="tw-flex tw-justify-between tw-items-center tw-mb-1">\n            <p class="tw-text-sm tw-font-medium dark:tw-text-white">${n} of ${a} people max</p>\n            <p class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">${k}% full</p>\n          </div>\n          <div class="tw-w-full tw-bg-gray-200 dark:tw-bg-gray-600 tw-rounded-full tw-h-2">\n            <div class="tw-h-2 tw-rounded-full tw-transition-all tw-duration-300 tw-bg-gray-400 dark:tw-bg-gray-300" style="width: ${k}%"></div>\n          </div>\n        </div>\n        \n        \x3c!-- Server Info Table --\x3e\n        <div class="tw-mt-2 tw-bg-gray-50 dark:tw-bg-gray-700 tw-rounded-md tw-p-2">\n          <table class="tw-w-full tw-text-xs">\n            <tbody>\n              <tr class="tw-border-b tw-border-gray-200 dark:tw-border-gray-600">\n                <td class="tw-py-1 tw-font-medium tw-text-gray-600 dark:tw-text-gray-300 tw-w-1/3">Ping</td>\n                <td class="tw-py-1 tw-text-right tw-text-gray-800 dark:tw-text-white tw-w-1/3">${t||"N/A"}ms</td>\n                <td class="tw-py-1 tw-font-medium tw-text-gray-600 dark:tw-text-gray-300 tw-w-1/3 tw-pl-4">Speed</td>\n                <td class="tw-py-1 tw-text-right tw-text-gray-800 dark:tw-text-white">${null!==S?S+"%":"N/A"}</td>\n              </tr>\n              <tr class="tw-border-b tw-border-gray-200 dark:tw-border-gray-600">\n                <td class="tw-py-1 tw-font-medium tw-text-gray-600 dark:tw-text-gray-300">Version</td>\n                <td class="tw-py-1 tw-text-right tw-text-gray-800 dark:tw-text-white ${g?"tw-text-orange-500":""}">${w||"N/A"}${g?" (Old)":""}</td>\n                <td class="tw-py-1 tw-font-medium tw-text-gray-600 dark:tw-text-gray-300 tw-pl-4">Age</td>\n                <td class="tw-py-1 tw-text-right tw-text-gray-800 dark:tw-text-white">${l||"N/A"}</td>\n              </tr>\n              <tr>\n                <td class="tw-py-1 tw-font-medium tw-text-gray-600 dark:tw-text-gray-300">Closest</td>\n                <td class="tw-py-1 tw-text-right tw-text-gray-800 dark:tw-text-white">${null!==C?C+"%":"N/A"}</td>\n                <td class="tw-py-1 tw-font-medium tw-text-gray-600 dark:tw-text-gray-300 tw-pl-4">Bots</td>\n                <td class="tw-py-1 tw-text-right tw-text-gray-800 dark:tw-text-white">${null!==m?m+"%":"N/A"}</td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n        <div class="tw-stats tw-border-[1px] tw-border-gray-300 dark:tw-border-gray-500 tw-rounded-md tw-my-2 dark:tw-text-white">\n          ${M}\n        </div>\n        <div class="tw-mt-auto">\n        <button class="tw-bg-transparent tw-border-[1px] tw-border-gray-400 dark:tw-border-gray-300 tw-text-black dark:tw-text-white tw-font-semibold hover:tw-bg-gray-200 hover:tw-border-gray-400 dark:hover:tw-bg-gray-600 dark:hover:tw-border-gray-600 tw-px-4 tw-rounded-md tw-text-xs tw-w-full" id="join-button" onclick="Roblox.GameLauncher.joinGameInstance(${s}, '${i}')">\n          Join${u&&u>0?` (${u} in queue)`:""}\n        </button>\n           \n          \x3c!-- <div class="tw-grid tw-grid-cols-6 tw-gap-1">\n            <button class="tw-col-span-4 tw-bg-transparent tw-border-[1px] tw-border-gray-400 dark:tw-border-gray-300 tw-text-black dark:tw-text-white tw-font-semibold hover:tw-bg-gray-200 hover:tw-border-gray-400 dark:hover:tw-bg-gray-600 dark:hover:tw-border-gray-600 tw-px-4 tw-rounded-md tw-text-xs tw-w-full" id="join-button" onclick="Roblox.GameLauncher.joinGameInstance(${s}, '${i}')">Join</button>\n            <button class="tw-col-span-2 tw-bg-transparent tw-border-[1px] tw-border-gray-400 dark:tw-border-gray-300 tw-text-black dark:tw-text-white tw-font-semibold hover:tw-bg-gray-200 hover:tw-border-gray-400 dark:hover:tw-bg-gray-600 dark:hover:tw-border-gray-600 tw-px-4 tw-rounded-md tw-text-xs" id="invite-button">Invite</button>\n          </div> --\x3e\n        </div>\n      </div>\n    `,
+                    P = document.createRange().createContextualFragment(D),
+                    $ = (P.querySelector("#join-button"), P.querySelector("#invite-button"));
+                  return $ && "function" == typeof o && $.addEventListener("click", o), P
+                }(t.ping, t.datacenter, t.playing, t.maxPlayers, n || {}, this.gameId, t.id, "", t.serverAge, t
                   .distance || null, t.isClosest || !1, t.queuePosition || null, t.placeVersion || null, t
-                  .isOutdated || !1, t.fps || null, a, this.datacenters, r),
-                o = document.querySelector("#betterblox-server-list");
-              o ? o.appendChild(s) : console.error("Server list container not found")
+                  .isOutdated || !1, t.fps || null, r, this.datacenters, a, !!t.joinDataPending, !!t
+                  .joinDataFailed, !!t.joinFailedStuckInQueue),
+                i = document.querySelector("#betterblox-server-list");
+              i ? i.appendChild(s) : console.error("Server list container not found")
             }
             async refreshServerList() {
-              this.stopCrawler(), this.clearDisplayedServers(), this.serverList = [], this.crawlerState
+              await this.stopCrawler(!1), this.clearDisplayedServers(), this.serverList = [], this.crawlerState
                 .isActive = !0, this.crawlerState.nextPageCursor = null, this.crawlerState.currentCursor = null,
                 this.crawlerState.emptyResponseCount = 0, this.crawlerState.pendingRequests.clear(), this
                 .updateStatus({
@@ -1772,7 +1614,7 @@
               }
             }
             async refreshServerListWithSortOrder(t) {
-              this.stopCrawler(), this.clearDisplayedServers(), this.serverList = [], this.crawlerState
+              await this.stopCrawler(!1), this.clearDisplayedServers(), this.serverList = [], this.crawlerState
                 .isActive = !0, this.crawlerState.nextPageCursor = null, this.crawlerState.currentCursor = null,
                 this.crawlerState.emptyResponseCount = 0, this.crawlerState.pendingRequests.clear(), this
                 .updateStatus({
@@ -1804,15 +1646,15 @@
               await this.fetchCachedServers();
               let e = "",
                 n = !0,
-                r = 0,
-                a = 0;
-              for (; n && this.crawlerState.isActive && this.getValidServerCount() < this.crawlLimit;) try {
+                a = 0,
+                r = 0;
+              for (; n && this.crawlerState.isActive && this.serverList.length < this.crawlLimit;) try {
                 const s = await this.searchServers(this.gameId, 50, t, e);
                 if (429 === s.status) {
                   const t = parseInt(s.headers?.["retry-after"]) || 5;
                   this.updateStatus({
                     error: `Rate limited, waiting ${t}s...`,
-                    processingProgress: Math.min(90, r / Math.max(1, r + 1) * 100)
+                    processingProgress: Math.min(90, a / Math.max(1, a + 1) * 100)
                   }), await new Promise(e => setTimeout(e, 1e3 * t)), this.updateStatus({
                     error: null
                   });
@@ -1820,19 +1662,19 @@
                 }
                 if (!s.ok || !s.data?.data) throw new Error(`HTTP error! status: ${s.status}`);
                 if (s.data.data && s.data.data.length > 0) {
-                  if (this.crawlerState.emptyResponseCount = 0, a += await this.processServerData(s.data.data),
-                    this.getValidServerCount() >= this.crawlLimit) {
+                  if (this.crawlerState.emptyResponseCount = 0, r += await this.processServerData(s.data.data),
+                    this.serverList.length >= this.crawlLimit) {
                     this.updateStatus({
                       error: `Crawl limit reached (${this.crawlLimit} valid servers)`,
                       isCrawling: !1
                     });
                     break
                   }
-                  r++;
-                  const t = Math.min(90, r / Math.max(1, r + 1) * 100);
+                  a++;
+                  const t = Math.min(90, a / Math.max(1, a + 1) * 100);
                   this.updateStatus({
-                    currentPage: r,
-                    totalServers: a,
+                    currentPage: a,
+                    totalServers: r,
                     serversLoaded: this.serverList.length,
                     processingProgress: t,
                     hasMorePages: !!s.data.nextPageCursor
@@ -1842,10 +1684,10 @@
                     hasMorePages: !1
                   })) : (this.updateStatus({
                   error: `Empty response, retrying... (${this.crawlerState.emptyResponseCount}/6)`,
-                  processingProgress: Math.min(90, r / Math.max(1, r + 1) * 100)
+                  processingProgress: Math.min(90, a / Math.max(1, a + 1) * 100)
                 }), await new Promise(t => setTimeout(t, 5e3)))
               } catch (t) {
-                if (console.error(`Error fetching page ${r+1} of servers: ${t.message}`), 0 === a) {
+                if (console.error(`Error fetching page ${a+1} of servers: ${t.message}`), 0 === r) {
                   this.updateStatus({
                     error: t.message,
                     isCrawling: !1
@@ -1868,56 +1710,219 @@
                 }), await this.updateServerDistancesAndBadges(), await this.paginationManager
                 .handleServerListRefresh(), this.containerUpdateStats && this.containerUpdateStats())
             }
+            joinDataPriority(t) {
+              return !t || t.joinDataPending ? 2 : t.joinDataFailed ? 1 : 0
+            }
+            compareJoinDataPriority(t, e) {
+              return this.joinDataPriority(t) - this.joinDataPriority(e)
+            }
+            getJoinDataBreakdown() {
+              let t = 0,
+                e = 0,
+                n = 0,
+                a = 0;
+              for (const r of this.serverList) r.joinDataFailed ? n++ : r.joinDataPending ? e++ : null != r
+                .datacenterId && r.ip ? t++ : a++;
+              return {
+                successful: t,
+                inPool: e,
+                failed: n,
+                unknown: a
+              }
+            }
+            serverAgeFromFirstSeen(t) {
+              if (!t) return null;
+              const e = Date.now() - new Date(t).getTime(),
+                n = Math.floor(e / 6e4),
+                a = Math.floor(e / 36e5),
+                r = Math.floor(e / 864e5);
+              return n < 60 ? `${n}m` : a < 24 ? `${a}h` : `${r}d`
+            }
+            mergeGameJoinScanIntoServer(t, e) {
+              if (!e || e.error) return null;
+              const n = this.datacenters[e.datacenterId];
+              return {
+                ...t,
+                ...e,
+                datacenter: n || null,
+                datacenterId: e.datacenterId,
+                queuePosition: e.queuePosition ?? null,
+                placeVersion: e.placeVersion ?? null
+              }
+            }
+            _beginJoinDataActivity() {
+              0 === this._joinDataActivityCount && this.showNetworkActivity(), this._joinDataActivityCount++
+            }
+            _endJoinDataActivity() {
+              this._joinDataActivityCount = Math.max(0, this._joinDataActivityCount - 1), 0 === this
+                ._joinDataActivityCount && this.hideNetworkActivity()
+            }
+            enqueueJoinDataEnrichment(t) {
+              t && (this._joinDataActiveIds.has(t) || (this._joinDataActiveIds.add(t), this._joinDataQueue.push(
+                t), this._pumpJoinDataQueue()))
+            }
+            _pumpJoinDataQueue() {
+              for (; this._joinDataInflight < this._joinDataMaxConcurrent && this._joinDataQueue.length > 0;) {
+                const t = this._joinDataQueue.shift();
+                this._joinDataInflight++, this._runEnrichmentForServer(t).catch(t => console.warn(
+                  "[BBloxUI] join-data enrichment failed:", t)).finally(() => {
+                  this._joinDataInflight--, this._pumpJoinDataQueue()
+                })
+              }
+            }
+            _scheduleJoinQueueRetrySweep() {
+              null == this._joinQueueRetryTimer && (this._joinQueueRetryTimer = setTimeout(() => {
+                this._joinQueueRetryTimer = null, this._sweepJoinQueueRetries()
+              }, this._joinQueueRetryIntervalMs))
+            }
+            _sweepJoinQueueRetries() {
+              const t = this.crawlGeneration;
+              for (const t of [...this._joinQueueRetryIds]) {
+                const e = this.serverList.findIndex(e => e.id === t);
+                if (-1 === e) {
+                  this._joinQueueRetryIds.delete(t);
+                  continue
+                }
+                const n = this.serverList[e];
+                if (!n.joinDataPending) {
+                  this._joinQueueRetryIds.delete(t);
+                  continue
+                }
+                const a = Number(n.queuePosition) || 0;
+                null != n.datacenterId && n.ip || a <= 0 ? this._joinQueueRetryIds.delete(t) : this
+                  .enqueueJoinDataEnrichment(t)
+              }
+              t === this.crawlGeneration && this._joinQueueRetryIds.size > 0 && this
+              ._scheduleJoinQueueRetrySweep()
+            }
+            _poolJoinQueueRetry(t) {
+              this._joinQueueRetryIds.add(t), this._scheduleJoinQueueRetrySweep()
+            }
+            async _runEnrichmentForServer(t) {
+              try {
+                const e = this.crawlGeneration;
+                let n = this.serverList.findIndex(e => e.id === t);
+                if (-1 === n) return;
+                const a = this.serverList[n];
+                if (!a.joinDataPending) return;
+                let r;
+                this._beginJoinDataActivity();
+                try {
+                  r = await chrome.runtime.sendMessage({
+                    type: "GET_GAMEJOIN_DATA",
+                    data: {
+                      placeId: this.gameId,
+                      serverId: t,
+                      taskId: this.joinGameTaskId
+                    }
+                  })
+                } finally {
+                  this._endJoinDataActivity()
+                }
+                if (e !== this.crawlGeneration) return;
+                if (n = this.serverList.findIndex(e => e.id === t), -1 === n) return;
+                if (r?.abortedStaleTask) return;
+                const s = this.mergeGameJoinScanIntoServer(this.serverList[n], r);
+                if (!s) return this._joinQueueRetryIds.delete(t), this.serverList[n] = {
+                  ...this.serverList[n],
+                  joinDataPending: !1,
+                  joinDataFailed: !0,
+                  joinFailedStuckInQueue: !1,
+                  joinQueueNonZeroStreak: 0
+                }, void this._scheduleRefreshAfterEnrichment();
+                const i = Number(s.queuePosition) || 0,
+                  o = null != s.datacenterId && s.ip;
+                if (i > 0 && !o) {
+                  const e = (a.joinQueueNonZeroStreak || 0) + 1,
+                    r = (a.joinQueuePollCount || 0) + 1;
+                  return e >= this._joinQueueMaxNonZeroStreak ? (this._joinQueueRetryIds.delete(t), s
+                    .joinDataPending = !1, s.joinDataFailed = !0, s.joinFailedStuckInQueue = !0, s
+                    .joinQueueNonZeroStreak = 0, s.joinQueuePollCount = r, this.serverList[n] = s, void this
+                    ._scheduleRefreshAfterEnrichment()) : r > this._maxJoinQueuePolls ? (this._joinQueueRetryIds
+                    .delete(t), s.joinDataPending = !1, s.joinDataFailed = !1, s.joinFailedStuckInQueue = !1, s
+                    .joinQueueNonZeroStreak = 0, s.joinQueuePollCount = r, this.serverList[n] = s, void this
+                    ._scheduleRefreshAfterEnrichment()) : (s.joinDataPending = !0, s.joinDataFailed = !1, s
+                    .joinFailedStuckInQueue = !1, s.joinQueueNonZeroStreak = e, s.joinQueuePollCount = r, this
+                    .serverList[n] = s, this._poolJoinQueueRetry(t), void this._scheduleRefreshAfterEnrichment()
+                    )
+                }
+                this._joinQueueRetryIds.delete(t), s.joinDataPending = !1, s.joinDataFailed = !1, s
+                  .joinFailedStuckInQueue = !1, s.joinQueueNonZeroStreak = 0, this.serverList[n] = s, null == s
+                  .datacenterId || this.cachedServers.has(t) || this._queueBulkAfterEnrichment({
+                    id: t,
+                    placeId: parseInt(this.gameId, 10),
+                    datacenter: s.datacenterId,
+                    ip: s.ip || null
+                  }), this._scheduleRefreshAfterEnrichment()
+              } finally {
+                this._joinDataActiveIds.delete(t)
+              }
+            }
+            _queueBulkAfterEnrichment(t) {
+              this._pendingBulkServers.push(t), this._bulkDebounceTimer && clearTimeout(this._bulkDebounceTimer),
+                this._bulkDebounceTimer = setTimeout(() => {
+                  this._bulkDebounceTimer = null, this._flushPendingBulkAfterEnrichment()
+                }, 400)
+            }
+            async _flushPendingBulkAfterEnrichment() {
+              const t = this._pendingBulkServers.splice(0, this._pendingBulkServers.length);
+              if (0 === t.length) return;
+              const e = this.crawlGeneration,
+                n = await this.sendPageServersToBulkUpdate(t);
+              e === this.crawlGeneration && (n.forEach((t, e) => {
+                const n = this.serverList.findIndex(t => t.id === e); - 1 !== n && (this.serverList[n] = {
+                  ...this.serverList[n],
+                  firstSeen: t,
+                  serverAge: this.serverAgeFromFirstSeen(t)
+                })
+              }), this._scheduleRefreshAfterEnrichment())
+            }
+            _scheduleRefreshAfterEnrichment() {
+              this._enrichmentRefreshTimer && clearTimeout(this._enrichmentRefreshTimer), this
+                ._enrichmentRefreshTimer = setTimeout(async () => {
+                  this._enrichmentRefreshTimer = null;
+                  const t = this.crawlGeneration;
+                  await this.updateServerDistancesAndBadges(), t === this.crawlGeneration && this
+                    .paginationManager && await this.paginationManager.handleServerListRefresh()
+                }, 200)
+            }
             async processServerData(t) {
               if (!t || 0 === t.length) return 0;
-              const e = [],
-                n = t.map(async t => {
-                  const n = await this.getServerDatacenter(t, this.gameId);
-                  return n && !this.cachedServers.has(t.id) && e.push({
-                    id: t.id,
-                    placeId: parseInt(this.gameId),
-                    datacenter: n.datacenterId,
-                    ip: n.ip || null
-                  }), n
-                }),
-                r = (await Promise.all(n)).filter(t => null != t && null !== t.datacenter);
-              let a = new Map;
-              r.forEach(t => {
-                const e = this.cachedServers.get(t.id);
-                e && e.firstSeen && a.set(t.id, e.firstSeen)
-              }), e.length > 0 && (await this.sendPageServersToBulkUpdate(e)).forEach((t, e) => {
-                a.set(e, t)
-              });
-              const s = r.map(t => {
-                  const e = a.get(t.id);
-                  let n = null;
-                  if (e) {
-                    const t = Date.now() - new Date(e).getTime(),
-                      r = Math.floor(t / 6e4),
-                      a = Math.floor(t / 36e5),
-                      s = Math.floor(t / 864e5);
-                    n = r < 60 ? `${r}m` : a < 24 ? `${a}h` : `${s}d`
-                  }
+              const e = t.filter(t => t.maxPlayers !== t.playing),
+                n = new Set(this.serverList.map(t => t.id)),
+                a = e.filter(t => !n.has(t.id)).map(t => {
+                  const e = this.cachedServers.get(t.id),
+                    n = e?.firstSeen ?? null;
                   return {
                     ...t,
-                    serverAge: n,
-                    firstSeen: e
+                    datacenter: null,
+                    datacenterId: null,
+                    ip: null,
+                    joinDataPending: !0,
+                    joinDataFailed: !1,
+                    joinFailedStuckInQueue: !1,
+                    joinQueueNonZeroStreak: 0,
+                    joinQueuePollCount: 0,
+                    queuePosition: null,
+                    placeVersion: null,
+                    firstSeen: n,
+                    serverAge: this.serverAgeFromFirstSeen(n)
                   }
-                }),
-                o = new Set(this.serverList.map(t => t.id)),
-                i = s.filter(t => !o.has(t.id));
-              if (s.length, i.length, this.serverList.push(...i), i.length > 0) try {
+                });
+              this.serverList.push(...a);
+              const r = a;
+              if (a.forEach(t => this.enqueueJoinDataEnrichment(t.id)), r.length > 0) try {
                 this.updateStatus({
                   error: "Loading avatars and analyzing servers..."
                 });
-                const t = await this.batchLoadServerAvatars(i);
+                const t = await this.batchLoadServerAvatars(r);
                 t.forEach((t, e) => {
                   this.serverAvatars.set(e, t)
                 });
                 const e = await this.batchAnalyzeBotProbability(t);
                 e.forEach((t, e) => {
                   this.serverBotAnalysis.set(e, t)
-                }), i.forEach(t => {
+                }), r.forEach(t => {
                   const n = e.get(t.id);
                   n && (t.botPercentage = n.botPercentage)
                 }), this.updateStatus({
@@ -1937,8 +1942,8 @@
               const e = t.children.length,
                 n = this.status.isCrawling ? this.serverList.length : this.paginationManager.currentPage * this
                 .paginationManager.itemsPerPage,
-                r = this.serverList.slice(e, n);
-              for (const t of r) document.querySelector(`[betterblox-server-id="${t.id}"]`) || await this
+                a = this.serverList.slice(e, n);
+              for (const t of a) document.querySelector(`[betterblox-server-id="${t.id}"]`) || await this
                 .createServerCard(t);
               this.paginationManager.updateLoadMoreButton()
             }
@@ -1953,9 +1958,22 @@
               }
               this.paginationManager.updateLoadMoreButton()
             }
-            stopCrawler() {
-              this.crawlerState.isActive = !1, this.crawlerState.pendingRequests.clear(), this
-                .hideNetworkActivity(), this.crawlerState.pendingRequests.forEach(t => {})
+            _releaseJoinDataPendingAfterCancel() {
+              for (const t of this.serverList) t.joinDataPending && (t.joinDataPending = !1, t
+                .joinFailedStuckInQueue = !1, t.joinQueueNonZeroStreak = 0)
+            }
+            async stopCrawler(t = !1) {
+              this.joinGameTaskId = this._newJoinGameTaskId(), await this._registerJoinGameTaskWithBackground(),
+                this.crawlGeneration++, this._joinDataQueue.length = 0, this._joinDataActiveIds.clear(), this
+                ._joinQueueRetryIds.clear(), null != this._joinQueueRetryTimer && (clearTimeout(this
+                  ._joinQueueRetryTimer), this._joinQueueRetryTimer = null), this._bulkDebounceTimer && (
+                  clearTimeout(this._bulkDebounceTimer), this._bulkDebounceTimer = null), this
+                ._enrichmentRefreshTimer && (clearTimeout(this._enrichmentRefreshTimer), this
+                  ._enrichmentRefreshTimer = null), this._pendingBulkServers.length = 0, this.crawlerState
+                .isActive = !1, this.crawlerState.pendingRequests.clear(), this.hideNetworkActivity(), t && this
+                .serverList.length > 0 && (this._releaseJoinDataPendingAfterCancel(), await this
+                  .updateServerDistancesAndBadges(), this.paginationManager ? await this.paginationManager
+                  .handleServerListRefresh() : this.containerUpdateStats && this.containerUpdateStats())
             }
             skipCacheLoading() {
               this.cacheLoadingController && this.cacheLoadingController.abort()
@@ -1972,24 +1990,21 @@
             }
             async getServerDatacenter(t, e) {
               if (t.maxPlayers === t.playing) return;
-              this.showNetworkActivity();
-              let n = await chrome.runtime.sendMessage({
-                type: "GET_GAMEJOIN_DATA",
-                data: {
-                  placeId: e,
-                  serverId: t.id
-                }
-              });
-              if (this.hideNetworkActivity(), !n || n.error) return;
-              const r = this.datacenters[n.datacenterId];
-              return {
-                ...t,
-                ...n,
-                datacenter: r || null,
-                datacenterId: n.datacenterId,
-                queuePosition: n.queuePosition || null,
-                placeVersion: n.placeVersion || null
+              let n;
+              this._beginJoinDataActivity();
+              try {
+                n = await chrome.runtime.sendMessage({
+                  type: "GET_GAMEJOIN_DATA",
+                  data: {
+                    placeId: e,
+                    serverId: t.id,
+                    taskId: this.joinGameTaskId
+                  }
+                })
+              } finally {
+                this._endJoinDataActivity()
               }
+              return n?.abortedStaleTask ? void 0 : this.mergeGameJoinScanIntoServer(t, n)
             }
             async fetchCachedServers() {
               try {
@@ -2065,31 +2080,31 @@
                 body: JSON.stringify(e)
               });
               if (!n.ok) return null;
-              const r = await n.json(),
-                a = {};
-              for (const t of r.data) a[t.requestId.split(":")[1]] = t.imageUrl;
-              return a
+              const a = await n.json(),
+                r = {};
+              for (const t of a.data) r[t.requestId.split(":")[1]] = t.imageUrl;
+              return r
             }
             async batchLoadServerAvatars(t) {
               const e = new Map,
                 n = new Set,
-                r = new Map;
+                a = new Map;
               if (t.forEach(t => {
                   if (t.playerTokens && t.playerTokens.length > 0) {
                     const e = [...t.playerTokens];
-                    r.set(t.id, e), e.forEach(t => n.add(t))
+                    a.set(t.id, e), e.forEach(t => n.add(t))
                   }
                 }), 0 === n.size) return e;
-              const a = Array.from(n),
+              const r = Array.from(n),
                 s = [];
-              for (let t = 0; t < a.length; t += 100) s.push(a.slice(t, t + 100));
+              for (let t = 0; t < r.length; t += 100) s.push(r.slice(t, t + 100));
               for (const t of s) try {
                 const n = await this.getServerAvatars(t);
-                n && r.forEach((t, r) => {
-                  const a = {};
+                n && a.forEach((t, a) => {
+                  const r = {};
                   t.forEach(t => {
-                    n[t] && (a[t] = n[t])
-                  }), Object.keys(a).length > 0 && e.set(r, a)
+                    n[t] && (r[t] = n[t])
+                  }), Object.keys(r).length > 0 && e.set(a, r)
                 })
               } catch (t) {}
               return e
@@ -2098,8 +2113,8 @@
               const e = new Map,
                 n = Array.from(t.entries()).map(async ([t, n]) => {
                   if (n && Object.keys(n).length > 0) try {
-                    const r = await this.analyzeBotProbabilityForServer(t, Object.values(n));
-                    r && e.set(t, r)
+                    const a = await this.analyzeBotProbabilityForServer(t, Object.values(n));
+                    a && e.set(t, a)
                   } catch (t) {}
                 });
               return await Promise.all(n), e
@@ -2150,17 +2165,17 @@
                               try {
                                 const t = document.createElement("canvas");
                                 t.width = 8, t.height = 8;
-                                const r = t.getContext("2d");
-                                r.drawImage(n, 0, 0, 8, 8);
-                                const a = r.getImageData(0, 0, 8, 8).data;
+                                const a = t.getContext("2d");
+                                a.drawImage(n, 0, 0, 8, 8);
+                                const r = a.getImageData(0, 0, 8, 8).data;
                                 let s = 0;
-                                const o = a.length / 4;
-                                for (let t = 0; t < a.length; t += 4) s += (a[t] + a[t + 1] + a[t +
+                                const i = r.length / 4;
+                                for (let t = 0; t < r.length; t += 4) s += (r[t] + r[t + 1] + r[t +
                                   2]) / 3;
-                                const i = s / o;
+                                const o = s / i;
                                 let l = "";
-                                for (let t = 0; t < a.length; t += 4) l += (a[t] + a[t + 1] + a[t +
-                                  2]) / 3 > i ? "1" : "0";
+                                for (let t = 0; t < r.length; t += 4) l += (r[t] + r[t + 1] + r[t +
+                                  2]) / 3 > o ? "1" : "0";
                                 e(l)
                               } catch (t) {
                                 console.warn("Canvas processing failed:", t), e(null)
@@ -2168,8 +2183,8 @@
                             }, n.onerror = () => {
                               console.warn("Image load failed:", t), e(null)
                             };
-                            const r = t.includes("?") ? "&" : "?";
-                            n.src = `${t}${r}_t=${Date.now()}`
+                            const a = t.includes("?") ? "&" : "?";
+                            n.src = `${t}${a}_t=${Date.now()}`
                           } catch (t) {
                             console.warn("Image hash calculation failed:", t), e(null)
                           }
@@ -2184,24 +2199,24 @@
                       analyzed: !1,
                       reason: "Failed to process enough thumbnails"
                     };
-                    const r = new Set;
-                    let a = 0;
+                    const a = new Set;
+                    let r = 0;
                     for (let t = 0; t < n.length; t++)
-                      for (let e = t + 1; e < n.length; e++) b(n[t], n[e]) <= 7 && (a++, r.add(n[t]), r.add(n[
+                      for (let e = t + 1; e < n.length; e++) p(n[t], n[e]) <= 7 && (r++, a.add(n[t]), a.add(n[
                         e]));
-                    const s = r.size,
-                      o = Math.round(s / n.length * 100);
-                    let i = "low";
-                    return n.length >= 4 && a > 0 && (i = "medium"), n.length >= 5 && a >= 2 && (i =
+                    const s = a.size,
+                      i = Math.round(s / n.length * 100);
+                    let o = "low";
+                    return n.length >= 4 && r > 0 && (o = "medium"), n.length >= 5 && r >= 2 && (o =
                     "high"), {
-                      botPercentage: o,
-                      confidence: i,
-                      similarPairs: a,
+                      botPercentage: i,
+                      confidence: o,
+                      similarPairs: r,
                       totalThumbnails: t.length,
                       validThumbnails: n.length,
                       botCount: s,
                       analyzed: !0,
-                      reason: a > 0 ? `Found ${a} similar pair(s)` : "No similar avatars detected"
+                      reason: r > 0 ? `Found ${r} similar pair(s)` : "No similar avatars detected"
                     }
                   } catch (e) {
                     return console.error("Bot analysis failed:", e), {
@@ -2219,22 +2234,22 @@
                 return null
               }
             }
-            async searchServers(t, e = 100, n = "Asc", r = "") {
-              const a = await fetch(
-                `https://games.roblox.com/v1/games/${t}/servers/Public?limit=${e}&sortOrder=${n}&excludeFullGames=true&cursor=${r}`, {
+            async searchServers(t, e = 100, n = "Asc", a = "") {
+              const r = await fetch(
+                `https://games.roblox.com/v1/games/${t}/servers/Public?limit=${e}&sortOrder=${n}&excludeFullGames=true&cursor=${a}`, {
                   method: "GET",
                   credentials: "include"
                 });
-              if (!a.ok) return 429 === a.status ? {
+              if (!r.ok) return 429 === r.status ? {
                 ok: !1,
                 status: 429,
-                headers: a.headers
-              } : (await new Promise(t => setTimeout(t, 5e3)), await this.searchServers(t, e, n, r));
-              const s = await a.json();
+                headers: r.headers
+              } : (await new Promise(t => setTimeout(t, 5e3)), await this.searchServers(t, e, n, a));
+              const s = await r.json();
               return {
                 ok: !0,
-                status: a.status,
-                headers: a.headers,
+                status: r.status,
+                headers: r.headers,
                 data: s
               }
             }
@@ -2248,12 +2263,12 @@
                 type: "GET_CLIENT_LOCATION"
               })
             }
-            calculateDistance(t, e, n, r) {
-              const a = this.toRadians(n - t),
-                s = this.toRadians(r - e),
-                o = Math.sin(a / 2) * Math.sin(a / 2) + Math.cos(this.toRadians(t)) * Math.cos(this.toRadians(
+            calculateDistance(t, e, n, a) {
+              const r = this.toRadians(n - t),
+                s = this.toRadians(a - e),
+                i = Math.sin(r / 2) * Math.sin(r / 2) + Math.cos(this.toRadians(t)) * Math.cos(this.toRadians(
                 n)) * Math.sin(s / 2) * Math.sin(s / 2);
-              return 2 * Math.atan2(Math.sqrt(o), Math.sqrt(1 - o)) * 6371
+              return 2 * Math.atan2(Math.sqrt(i), Math.sqrt(1 - i)) * 6371
             }
             toRadians(t) {
               return t * (Math.PI / 180)
@@ -2267,25 +2282,25 @@
               if (!t) return;
               const e = this.getLatestPlaceVersion(),
                 n = this.serverList.map(n => {
-                  let r = null;
+                  let a = null;
                   if (n.datacenter?.location?.latLong) {
-                    const [e, a] = n.datacenter.location.latLong;
-                    r = this.calculateDistance(t.latitude, t.longitude, e, a)
+                    const [e, r] = n.datacenter.location.latLong;
+                    a = this.calculateDistance(t.latitude, t.longitude, e, r)
                   }
-                  const a = null !== e && null !== n.placeVersion && parseInt(n.placeVersion) < e;
+                  const r = null !== e && null !== n.placeVersion && parseInt(n.placeVersion) < e;
                   return {
                     ...n,
-                    distance: r,
-                    isOutdated: a
+                    distance: a,
+                    isOutdated: r
                   }
                 }),
-                r = n.filter(t => null !== t.distance),
-                a = [...r].sort((t, e) => t.distance - e.distance),
-                s = Math.ceil(.2 * r.length),
-                o = new Set(a.slice(0, s).map(t => t.id));
+                a = n.filter(t => null !== t.distance),
+                r = [...a].sort((t, e) => t.distance - e.distance),
+                s = Math.ceil(.2 * a.length),
+                i = new Set(r.slice(0, s).map(t => t.id));
               this.serverList = n.map(t => ({
                 ...t,
-                isClosest: null !== t.distance && o.has(t.id)
+                isClosest: null !== t.distance && i.has(t.id)
               }))
             }
             async calculateServerDistances() {
@@ -2294,8 +2309,8 @@
               const e = this.serverList.map(e => {
                   let n = null;
                   if (e.datacenter?.location?.latLong) {
-                    const [r, a] = e.datacenter.location.latLong;
-                    n = this.calculateDistance(t.latitude, t.longitude, r, a)
+                    const [a, r] = e.datacenter.location.latLong;
+                    n = this.calculateDistance(t.latitude, t.longitude, a, r)
                   }
                   return {
                     ...e,
@@ -2306,13 +2321,13 @@
                   if (null !== t.distance && null === e.distance) return -1;
                   if (null === t.distance && null !== e.distance) return 1;
                   const n = t.ping || 1 / 0,
-                    r = e.ping || 1 / 0;
-                  return n !== r ? n - r : e.playing - t.playing
+                    a = e.ping || 1 / 0;
+                  return n !== a ? n - a : e.playing - t.playing
                 }),
                 n = e.filter(t => null !== t.distance),
-                r = Math.ceil(.2 * n.length);
+                a = Math.ceil(.2 * n.length);
               return e.map((t, e) => {
-                const n = null !== t.distance && e < r;
+                const n = null !== t.distance && e < a;
                 return {
                   ...t,
                   isClosest: n
@@ -2324,7 +2339,7 @@
               return t ? t[1] : null
             }
             getValidServerCount() {
-              return this.serverList.filter(t => null !== t.datacenter).length
+              return this.serverList.length
             }
             hasOldVersionServers() {
               const t = this.getLatestPlaceVersion();
@@ -2358,47 +2373,50 @@
               if (!t) return;
               const e = t.querySelector("#status-dot"),
                 n = t.querySelector("#status-text"),
-                r = t.querySelector("#stop-crawler-btn"),
-                a = t.querySelector("#skip-cache-btn");
+                a = t.querySelector("#stop-crawler-btn"),
+                r = t.querySelector("#skip-cache-btn");
               this.status.isLoadingCache ? (e.className =
                   "tw-w-2 tw-h-2 tw-rounded-full tw-bg-blue-500 tw-animate-pulse", n.textContent = this.status
-                  .error || "Loading cached servers...", r && r.classList.add("tw-hidden"), a && a.classList
+                  .error || "Loading cached servers...", a && a.classList.add("tw-hidden"), r && r.classList
                   .remove("tw-hidden")) : this.status.isCrawling ? (e.className =
                   "tw-w-2 tw-h-2 tw-rounded-full tw-bg-yellow-500 tw-animate-pulse", this.status.error ? n
-                  .textContent = this.status.error : n.textContent = "Crawling...", r && r.classList.remove(
-                    "tw-hidden"), a && a.classList.add("tw-hidden")) : (e.className =
-                  "tw-w-2 tw-h-2 tw-rounded-full tw-bg-green-500", n.textContent = "Ready", r && r.classList.add(
-                    "tw-hidden"), a && a.classList.add("tw-hidden")), t.querySelector("#servers-loaded-count")
+                  .textContent = this.status.error : n.textContent = "Crawling...", a && a.classList.remove(
+                    "tw-hidden"), r && r.classList.add("tw-hidden")) : (e.className =
+                  "tw-w-2 tw-h-2 tw-rounded-full tw-bg-green-500", n.textContent = "Ready", a && a.classList.add(
+                    "tw-hidden"), r && r.classList.add("tw-hidden")), t.querySelector("#servers-loaded-count")
                 .textContent = this.getValidServerCount(), t.querySelector("#total-servers-count").textContent =
                 this.status.totalServers, t.querySelector("#datacenters-count").textContent = this.status
                 .datacentersCount, t.querySelector("#crawl-limit-count").textContent = this.status.crawlLimit;
               const s = t.querySelector("#page-info"),
-                o = t.querySelector("#current-page");
-              this.status.currentPage > 0 ? (o.textContent = this.status.currentPage, s.classList.remove(
+                i = t.querySelector("#current-page");
+              this.status.currentPage > 0 ? (i.textContent = this.status.currentPage, s.classList.remove(
                 "tw-hidden")) : s.classList.add("tw-hidden");
-              const i = t.querySelector("#progress-bar");
-              this.status.isCrawling ? i.style.width = `${this.status.processingProgress}%` : i.style.width = "0%"
+              const o = t.querySelector("#progress-bar");
+              this.status.isCrawling ? o.style.width = `${this.status.processingProgress}%` : o.style.width = "0%"
             }
-            cleanup() {
-              this.stopCrawler(), this.skipCacheLoading(), this.containerElement && this.containerElement
-                .cleanup && this.containerElement.cleanup(), this.serverList = [], this.cachedServers.clear(),
-                this.serverBotAnalysis.clear(), this.serverAvatars.clear()
+            async cleanup() {
+              await this.stopCrawler(!1), this._bulkDebounceTimer && (clearTimeout(this._bulkDebounceTimer), this
+                  ._bulkDebounceTimer = null), this._enrichmentRefreshTimer && (clearTimeout(this
+                  ._enrichmentRefreshTimer), this._enrichmentRefreshTimer = null), this.skipCacheLoading(), this
+                .containerElement && this.containerElement.cleanup && this.containerElement.cleanup(), this
+                .serverList = [], this.cachedServers.clear(), this.serverBotAnalysis.clear(), this.serverAvatars
+                .clear()
             }
           },
-          y = t => f.addServerContainer(t),
-          x = {
+          f = t => b.addServerContainer(t),
+          y = {
             pages: ["game"],
             selectors: [{
               selector: "#running-game-instances-container #rbx-private-servers",
               handler: async (t, e) => {
-                await r.n.getSettings("better-servers-list", !0) && (console.log(
-                  "Adding server container 16 - testing cache"), y(t))
+                await a.n.getSettings("better-servers-list", !0) && (console.log(
+                  "Adding server container 16 - testing cache"), f(t))
               }
             }, {
               selector: "#roseal-running-game-instances-container #rbx-private-servers",
               handler: async (t, e) => {
-                await r.n.getSettings("better-servers-list", !0) && (console.log(
-                  "Adding server container 16 - testing cache"), y(t))
+                await a.n.getSettings("better-servers-list", !0) && (console.log(
+                  "Adding server container 16 - testing cache"), f(t))
               }
             }],
             settings: {
@@ -2426,7 +2444,7 @@
               e.remove()
             }
         }
-        const k = {
+        const x = {
           async initialize() {
             try {
               (await chrome.storage.local.get("installedBefore")).installedBefore || ("loading" === document
@@ -2439,19 +2457,19 @@
             }
           }
         };
-        async function S(t) {
+        async function k(t) {
           const e = document.createElement("link");
           e.rel = "stylesheet", e.href = chrome.runtime.getURL("styles/tailwind.css"), document.head.appendChild(
             e);
           try {
             const e = await fetch(chrome.runtime.getURL("changelog.json")),
               n = await e.json(),
-              r = document.createElement("div");
-            r.id = "timeline-modal", r.setAttribute("tabindex", "-1"), r.setAttribute("aria-hidden", "false"), r
+              a = document.createElement("div");
+            a.id = "timeline-modal", a.setAttribute("tabindex", "-1"), a.setAttribute("aria-hidden", "false"), a
               .className =
               "tw-overflow-y-auto tw-overflow-x-hidden tw-fixed tw-top-0 tw-right-0 tw-left-0 tw-z-50 tw-flex tw-justify-center tw-items-center tw-w-full md:tw-inset-0 tw-h-full tw-max-h-full tw-bg-gray-900/50",
-              r.innerHTML =
-              `\n      <div class="tw-relative tw-p-4 tw-w-full tw-max-w-md tw-max-h-full">\n        <div class="tw-relative tw-bg-white tw-rounded-lg tw-shadow dark:tw-bg-gray-700">\n          \x3c!-- Modal header --\x3e\n          <div class="tw-flex tw-items-center tw-justify-between tw-p-4 md:tw-p-5 tw-rounded-t dark:tw-border-gray-600 tw-bg-gray-50 dark:tw-bg-gray-700" style="border-bottom: solid">\n            <h3 class="tw-text-xl tw-font-semibold tw-text-gray-900 dark:tw-text-white tw-flex tw-items-center tw-gap-2">\n              <img src="${s("logo32")}" alt="BetterBLOX Logo" class="tw-w-5 tw-h-5" />\n              BetterBLOX Updated!\n            </h3>\n            <button type="button" id="closeChangelogPopup" class="tw-border-none tw-text-gray-400 tw-bg-transparent hover:tw-bg-gray-200 hover:tw-text-gray-900 tw-rounded-lg tw-text-sm tw-w-8 tw-h-8 tw-ms-auto tw-inline-flex tw-justify-center tw-items-center dark:hover:tw-bg-gray-600 dark:hover:tw-text-white tw-transition-colors tw-duration-200">\n              <svg class="tw-w-3 tw-h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">\n                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />\n              </svg>\n              <span class="tw-sr-only">Close modal</span>\n            </button>\n          </div>\n          \x3c!-- Modal body --\x3e\n          <div class="tw-p-4 md:tw-p-5">\n            <div class="tw-max-h-[60vh] tw-overflow-y-auto tw-mb-4 [&::-webkit-scrollbar]:tw-w-2 [&::-webkit-scrollbar-track]:tw-bg-transparent [&::-webkit-scrollbar-thumb]:tw-bg-gray-300 [&::-webkit-scrollbar-thumb]:tw-rounded-full dark:[&::-webkit-scrollbar-thumb]:tw-bg-gray-500">\n              <ol class="tw-relative tw-border-gray-200 dark:tw-border-gray-600 tw-ms-3.5 tw-space-y-10" style="border-left: solid">\n                ${Object.entries(n).sort(([t],[e])=>{const n=t.split(".").map(Number),r=e.split(".").map(Number);for(let t=0;t<3;t++)if(n[t]!==r[t])return r[t]-n[t];return 0}).map(([e,n])=>`\
+              a.innerHTML =
+              `\n      <div class="tw-relative tw-p-4 tw-w-full tw-max-w-md tw-max-h-full">\n        <div class="tw-relative tw-bg-white tw-rounded-lg tw-shadow dark:tw-bg-gray-700">\n          \x3c!-- Modal header --\x3e\n          <div class="tw-flex tw-items-center tw-justify-between tw-p-4 md:tw-p-5 tw-rounded-t dark:tw-border-gray-600 tw-bg-gray-50 dark:tw-bg-gray-700" style="border-bottom: solid">\n            <h3 class="tw-text-xl tw-font-semibold tw-text-gray-900 dark:tw-text-white tw-flex tw-items-center tw-gap-2">\n              <img src="${s("logo32")}" alt="BetterBLOX Logo" class="tw-w-5 tw-h-5" />\n              BetterBLOX Updated!\n            </h3>\n            <button type="button" id="closeChangelogPopup" class="tw-border-none tw-text-gray-400 tw-bg-transparent hover:tw-bg-gray-200 hover:tw-text-gray-900 tw-rounded-lg tw-text-sm tw-w-8 tw-h-8 tw-ms-auto tw-inline-flex tw-justify-center tw-items-center dark:hover:tw-bg-gray-600 dark:hover:tw-text-white tw-transition-colors tw-duration-200">\n              <svg class="tw-w-3 tw-h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">\n                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />\n              </svg>\n              <span class="tw-sr-only">Close modal</span>\n            </button>\n          </div>\n          \x3c!-- Modal body --\x3e\n          <div class="tw-p-4 md:tw-p-5">\n            <div class="tw-max-h-[60vh] tw-overflow-y-auto tw-mb-4 [&::-webkit-scrollbar]:tw-w-2 [&::-webkit-scrollbar-track]:tw-bg-transparent [&::-webkit-scrollbar-thumb]:tw-bg-gray-300 [&::-webkit-scrollbar-thumb]:tw-rounded-full dark:[&::-webkit-scrollbar-thumb]:tw-bg-gray-500">\n              <ol class="tw-relative tw-border-gray-200 dark:tw-border-gray-600 tw-ms-3.5 tw-space-y-10" style="border-left: solid">\n                ${Object.entries(n).sort(([t],[e])=>{const n=t.split(".").map(Number),a=e.split(".").map(Number);for(let t=0;t<3;t++)if(n[t]!==a[t])return a[t]-n[t];return 0}).map(([e,n])=>`\
             n < li class = "tw-ms-8" > \n < span class =
               "tw-absolute tw-flex tw-items-center tw-justify-center tw-w-8 tw-h-8 tw-bg-blue-100 tw-rounded-full tw--start-4 tw-ring-4 tw-ring-white dark:tw-ring-gray-700 dark:tw-bg-blue-900" >
               \n < svg class = "tw-w-3.5 tw-h-3.5 tw-text-blue-800 dark:tw-text-blue-300"
@@ -2488,13 +2506,13 @@
               }\
             n < /ul>\n                    </li > \
               n `).join("")}\n              </ol>\n            </div>\n            <div class="tw-mb-4 tw-p-4 tw-text-sm tw-text-blue-800 tw-rounded-lg tw-bg-blue-50 dark:tw-bg-gray-800 dark:tw-text-blue-400" role="alert">\n              <span class="tw-font-medium">Need help or have suggestions?</span> Join our \n              <a href="https://discord.com/invite/VY6tDwctW5" target="_blank" rel="noopener noreferrer" class="tw-font-semibold tw-underline hover:tw-text-blue-600 dark:hover:tw-text-blue-300">BetterBLOX Discord</a> \n              for problems, bugs, feedback, or suggestions!\n            </div>\n            <button id="closeChangelogButton" class="tw-border-none tw-text-white tw-inline-flex tw-w-full tw-justify-center tw-items-center tw-bg-blue-700 hover:tw-bg-blue-800 focus:tw-ring-4 focus:tw-outline-none focus:tw-ring-blue-300 tw-font-medium tw-rounded-lg tw-text-sm tw-px-5 tw-py-2.5 tw-text-center dark:tw-bg-blue-600 dark:hover:tw-bg-blue-700 dark:focus:tw-ring-blue-800 tw-transition-colors tw-duration-200 tw-gap-2">\n              Got it!\n            </button>\n          </div>\n        </div>\n      </div>\n    `,
-              document.body.appendChild(r), document.getElementById("closeChangelogPopup").onclick = () => r
-              .remove(), document.getElementById("closeChangelogButton").onclick = () => r.remove()
+              document.body.appendChild(a), document.getElementById("closeChangelogPopup").onclick = () => a
+              .remove(), document.getElementById("closeChangelogButton").onclick = () => a.remove()
           } catch (t) {
             console.error("Error showing changelog:", t)
           }
         }
-        const C = {
+        const S = {
             async initialize() {
               try {
                 const {
@@ -2504,7 +2522,7 @@
                 if (t) {
                   const t = chrome.runtime.getManifest().version;
                   e && e !== t && ("loading" === document.readyState ? document.addEventListener(
-                    "DOMContentLoaded", () => S(t)) : S(t)), await chrome.storage.local.set({
+                    "DOMContentLoaded", () => k(t)) : k(t)), await chrome.storage.local.set({
                     lastSeenVersion: t
                   })
                 }
@@ -2531,16 +2549,16 @@
                 if (!e.ok) throw new Error(`API request failed: ${e.status}`);
                 const n = await e.json();
                 if (!n.success) throw new Error(`API returned error: ${n.error}`);
-                const r = chrome.runtime.getManifest().version,
-                  a = n.popups.filter(e => {
+                const a = chrome.runtime.getManifest().version,
+                  r = n.popups.filter(e => {
                     if (e.showOnce && t.includes(e.id)) return !1;
                     const n = (new Date).toISOString().split("T")[0];
                     return !(e.startDate && n < e.startDate || e.endDate && n > e.endDate || e.minVersion &&
-                      this.compareVersions(r, e.minVersion) < 0 || e.maxVersion && this.compareVersions(r, e
+                      this.compareVersions(a, e.minVersion) < 0 || e.maxVersion && this.compareVersions(a, e
                         .maxVersion) > 0)
                   });
-                if (a.sort((t, e) => t.priority - e.priority), a.length > 0) {
-                  const e = a[0];
+                if (r.sort((t, e) => t.priority - e.priority), r.length > 0) {
+                  const e = r[0];
                   "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", () => this
                     .showRemotePopup(e, t)) : this.showRemotePopup(e, t)
                 }
@@ -2550,12 +2568,12 @@
             },
             compareVersions(t, e) {
               const n = t.split(".").map(Number),
-                r = e.split(".").map(Number);
-              for (let t = 0; t < Math.max(n.length, r.length); t++) {
+                a = e.split(".").map(Number);
+              for (let t = 0; t < Math.max(n.length, a.length); t++) {
                 const e = n[t] || 0,
-                  a = r[t] || 0;
-                if (e < a) return -1;
-                if (e > a) return 1
+                  r = a[t] || 0;
+                if (e < r) return -1;
+                if (e > r) return 1
               }
               return 0
             },
@@ -2571,54 +2589,54 @@
                   n.innerHTML =
                   `\n        <div class="tw-relative tw-p-4 tw-w-full tw-max-w-4xl tw-max-h-full">\n          <div class="tw-relative tw-bg-white tw-rounded-lg tw-shadow dark:tw-bg-gray-700">\n            \x3c!-- Modal header --\x3e\n            <div class="tw-flex tw-items-center tw-justify-between tw-p-4 md:tw-p-5 tw-rounded-t dark:tw-border-gray-600 tw-bg-gray-50 dark:tw-bg-gray-700" style="border-bottom: solid">\n              <h3 class="tw-text-xl tw-font-semibold tw-text-gray-900 dark:tw-text-white tw-flex tw-items-center tw-gap-2">\n                <img src="${s("logo32")}" alt="BetterBLOX Logo" class="tw-w-5 tw-h-5" />\n                ${t.title}\n              </h3>\n              <button type="button" id="closeRemotePopup" class="tw-border-none tw-text-gray-400 tw-bg-transparent hover:tw-bg-gray-200 hover:tw-text-gray-900 tw-rounded-lg tw-text-sm tw-w-8 tw-h-8 tw-ms-auto tw-inline-flex tw-justify-center tw-items-center dark:hover:tw-bg-gray-600 dark:hover:tw-text-white tw-transition-colors tw-duration-200">\n                <svg class="tw-w-3 tw-h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">\n                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />\n                </svg>\n                <span class="tw-sr-only">Close modal</span>\n              </button>\n            </div>\n            \x3c!-- Modal body --\x3e\n            <div class="tw-p-4 md:tw-p-5">\n              <div class="tw-mb-4">\n                <iframe \n                  src="${t.url}" \n                  class="tw-w-full tw-h-[70vh] tw-border-0 tw-rounded-lg"\n                  title="${t.title}"\n                  sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"\n                  loading="lazy">\n                </iframe>\n              </div>\n               <div class="tw-flex tw-justify-end">\n                 <button id="closeRemoteButton" class="tw-border-none tw-text-white tw-inline-flex tw-justify-center tw-items-center tw-bg-blue-700 hover:tw-bg-blue-800 focus:tw-ring-4 focus:tw-outline-none focus:tw-ring-blue-300 tw-font-medium tw-rounded-lg tw-text-sm tw-px-5 tw-py-2.5 tw-text-center dark:tw-bg-blue-600 dark:hover:tw-bg-blue-700 dark:focus:tw-ring-blue-800 tw-transition-colors tw-duration-200">\n                   Close\n                 </button>\n               </div>\n            </div>\n          </div>\n        </div>\n      `,
                   document.body.appendChild(n);
-                const r = async () => {
-                  const r = [...e, t.id];
+                const a = async () => {
+                  const a = [...e, t.id];
                   await chrome.storage.local.set({
-                    seenRemotePopups: r
+                    seenRemotePopups: a
                   }), n.remove()
                 };
-                document.getElementById("closeRemotePopup").onclick = () => r(), document.getElementById(
-                  "closeRemoteButton").onclick = () => r()
+                document.getElementById("closeRemotePopup").onclick = () => a(), document.getElementById(
+                  "closeRemoteButton").onclick = () => a()
               } catch (t) {
                 console.error("Error showing remote popup:", t)
               }
             }
           };
-        async function E(t, e = 1e4) {
+        async function C(t, e = 1e4) {
           try {
             return await
             function(t = 1e4) {
               return new Promise((e, n) => {
                 if (document.body) return e(document.body);
-                const r = new MutationObserver(() => {
-                  document.body && (r.disconnect(), e(document.body))
+                const a = new MutationObserver(() => {
+                  document.body && (a.disconnect(), e(document.body))
                 });
-                r.observe(document.documentElement, {
+                a.observe(document.documentElement, {
                   childList: !0,
                   subtree: !0
                 }), setTimeout(() => {
-                  r.disconnect(), n(new Error("Timeout waiting for document.body"))
+                  a.disconnect(), n(new Error("Timeout waiting for document.body"))
                 }, t)
               })
-            }(), new Promise((n, r) => {
-              const a = document.getElementsByClassName(t)[0];
-              if (a) return n(a);
-              const s = new MutationObserver((e, r) => {
-                const a = document.getElementsByClassName(t)[0];
-                a && (r.disconnect(), n(a))
+            }(), new Promise((n, a) => {
+              const r = document.getElementsByClassName(t)[0];
+              if (r) return n(r);
+              const s = new MutationObserver((e, a) => {
+                const r = document.getElementsByClassName(t)[0];
+                r && (a.disconnect(), n(r))
               });
               s.observe(document.body, {
                 childList: !0,
                 subtree: !0
               }), setTimeout(() => {
-                s.disconnect(), r(new Error(`Timeout waiting for class: ${t}`))
+                s.disconnect(), a(new Error(`Timeout waiting for class: ${t}`))
               }, e)
             })
           } catch (e) {
             throw new Error(`Error waiting for class ${t}: ${e.message}`)
           }
         }
-        const T = {
+        const E = {
           defaultOption: "info",
           pages: [{
             id: "info",
@@ -2632,39 +2650,36 @@
           }, {
             id: "servers",
             title: "Servers"
-          }, {
-            id: "player-finder",
-            title: "Player Finder"
           }]
         };
 
-        function M({
+        function T({
           id: t,
           title: e,
           description: n,
-          isBeta: r = !1,
-          defaultValue: a = !1,
+          isBeta: a = !1,
+          defaultValue: r = !1,
           onChange: s = () => {}
         }) {
-          const o = document.createElement("div");
-          o.className = "notifications-section section-content";
-          const i = document.createElement("button");
-          i.id = `${t}-toggle`, i.className = "btn-toggle" + (a ? " on" : " off"), i.role = "switch", i
-            .setAttribute("aria-checked", a.toString());
+          const i = document.createElement("div");
+          i.className = "notifications-section section-content";
+          const o = document.createElement("button");
+          o.id = `${t}-toggle`, o.className = "btn-toggle" + (r ? " on" : " off"), o.role = "switch", o
+            .setAttribute("aria-checked", r.toString());
           const l = document.createElement("span");
           l.className = "toggle-flip";
           const c = document.createElement("span");
           c.className = "toggle-on", c.id = "toggle-on";
           const d = document.createElement("span");
-          d.className = "toggle-off", d.id = "toggle-off", i.appendChild(l), i.appendChild(c), i.appendChild(d);
+          d.className = "toggle-off", d.id = "toggle-off", o.appendChild(l), o.appendChild(c), o.appendChild(d);
           const u = document.createElement("label");
-          if (u.className = "btn-toggle-label", u.textContent = e, r) {
+          if (u.className = "btn-toggle-label", u.textContent = e, a) {
             const t = document.createElement("div");
             t.style.display = "flex";
             const e = document.createElement("span");
             e.className = "icon-warning", t.appendChild(e);
             const n = document.createElement("span");
-            n.style.color = "rgb(255, 170, 0)", n.textContent = "This feature is in beta", t.appendChild(n), o
+            n.style.color = "rgb(255, 170, 0)", n.textContent = "This feature is in beta", t.appendChild(n), i
               .appendChild(t)
           }
           const w = document.createElement("div");
@@ -2672,33 +2687,33 @@
           const g = document.createElement("div");
           g.className = "text-description";
           const h = document.createElement("text");
-          return h.textContent = n, g.appendChild(h), i.addEventListener("click", () => {
-              const t = i.className.includes("off");
-              i.className = "btn-toggle " + (t ? "on" : "off"), i.setAttribute("aria-checked", t.toString()), s(t)
-            }), i.setAttribute("aria-label", `Toggle ${e}`), o.appendChild(i), o.appendChild(u), o.appendChild(w), o
-            .appendChild(g), o
+          return h.textContent = n, g.appendChild(h), o.addEventListener("click", () => {
+              const t = o.className.includes("off");
+              o.className = "btn-toggle " + (t ? "on" : "off"), o.setAttribute("aria-checked", t.toString()), s(t)
+            }), o.setAttribute("aria-label", `Toggle ${e}`), i.appendChild(o), i.appendChild(u), i.appendChild(w), i
+            .appendChild(g), i
         }
 
-        function A({
+        function I({
           id: t,
           title: e,
           description: n,
-          options: r = [],
-          defaultValue: a,
+          options: a = [],
+          defaultValue: r,
           onChange: s = () => {}
         }) {
-          const o = document.createElement("div");
-          o.className = "notifications-section section-content";
           const i = document.createElement("div");
-          i.style.maxWidth = "255px", i.style.float = "right", i.style.marginTop = "-5px";
+          i.className = "notifications-section section-content";
+          const o = document.createElement("div");
+          o.style.maxWidth = "255px", o.style.float = "right", o.style.marginTop = "-5px";
           const l = document.createElement("select");
-          l.id = `${t}-select`, l.className = "input-field select-option rbx-select", r.forEach(({
+          l.id = `${t}-select`, l.className = "input-field select-option rbx-select", a.forEach(({
             value: t,
             label: e
           }) => {
             const n = document.createElement("option");
             n.value = t, n.textContent = e, l.appendChild(n)
-          }), a && (l.value = a);
+          }), r && (l.value = r);
           const c = document.createElement("span");
           c.className = "icon-arrow icon-down-16x16";
           const d = document.createElement("label");
@@ -2708,36 +2723,36 @@
           const w = document.createElement("div");
           return w.className = "text-description", w.textContent = n, l.addEventListener("change", t => {
               s(t.target.value)
-            }), i.appendChild(l), i.appendChild(c), o.appendChild(i), o.appendChild(d), o.appendChild(u), o
-            .appendChild(w), o
+            }), o.appendChild(l), o.appendChild(c), i.appendChild(o), i.appendChild(d), i.appendChild(u), i
+            .appendChild(w), i
         }
 
-        function I({
+        function M({
           id: t,
           title: e,
           description: n,
-          placeholder: r = "",
-          defaultValue: a = "",
+          placeholder: a = "",
+          defaultValue: r = "",
           maxLength: s = 999,
-          width: o = "400px",
-          onChange: i = () => {}
+          width: i = "400px",
+          onChange: o = () => {}
         }) {
           const l = document.createElement("div");
           l.className = "notifications-section section-content";
           const c = document.createElement("input");
-          c.className = "form-control input-field new-input-field", c.id = `${t}-input`, c.placeholder = r, c
-            .value = a, c.maxLength = s, c.autocomplete = "off", c.autocapitalize = "off", c.spellcheck = !1, c
-            .style.width = o, c.style.float = "right", c.style.height = "33px";
+          c.className = "form-control input-field new-input-field", c.id = `${t}-input`, c.placeholder = a, c
+            .value = r, c.maxLength = s, c.autocomplete = "off", c.autocapitalize = "off", c.spellcheck = !1, c
+            .style.width = i, c.style.float = "right", c.style.height = "33px";
           const d = document.createElement("label");
           d.className = "btn-toggle-label", d.textContent = e;
           const u = document.createElement("div");
           u.className = "rbx-divider";
           const w = document.createElement("div");
           return w.className = "text-description", w.innerHTML = n, c.addEventListener("input", t => {
-            i(t.target.value)
+            o(t.target.value)
           }), l.appendChild(c), l.appendChild(d), l.appendChild(u), l.appendChild(w), l
         }
-        const B = {
+        const A = {
           modules: [],
           pages: ["all"],
           selectors: [{
@@ -2749,12 +2764,12 @@
                 n.className = "rbx-menu-item", n.href =
                   "https://www.roblox.com/my/account?betterblox=active", n.style.display = "flex", n.style
                   .alignItems = "center";
-                const r = document.createElement("img");
-                r.src = s("logo32"), r.style.marginRight = "5px", r.style.width = "16px", r.style.height =
-                  "16px", n.appendChild(r), n.appendChild(document.createTextNode("BetterBLOX Settings"));
-                const a = document.createElement("span");
-                a.className = "notification-blue notification nav-setting-highlight hidden", a.textContent =
-                  "0", n.appendChild(a), e.appendChild(n), t.insertBefore(e, t.firstChild)
+                const a = document.createElement("img");
+                a.src = s("logo32"), a.style.marginRight = "5px", a.style.width = "16px", a.style.height =
+                  "16px", n.appendChild(a), n.appendChild(document.createTextNode("BetterBLOX Settings"));
+                const r = document.createElement("span");
+                r.className = "notification-blue notification nav-setting-highlight hidden", r.textContent =
+                  "0", n.appendChild(r), e.appendChild(n), t.insertBefore(e, t.firstChild)
               }(t)
             }
           }],
@@ -2763,14 +2778,14 @@
             for (const e of t)
               if (e.settings)
                 for (const [t, n] of Object.entries(e.settings))
-                  for (const t of n) await r.n.getSettings(t.id, t.defaultValue);
+                  for (const t of n) await a.n.getSettings(t.id, t.defaultValue);
             (async function() {
               if (!window.location.pathname.includes("my/account")) return;
               const t = new URLSearchParams(window.location.search);
               let e = 0;
               if (t.forEach(() => e++), e > 0) return;
-              const n = await E("menu-vertical"),
-                [r] = function(t) {
+              const n = await C("menu-vertical"),
+                [a] = function(t) {
                   const e = document.createElement("li");
                   e.className = "menu-option ng-scope", e.setAttribute("ng-repeat", "tab in accountsTabs"),
                     e.setAttribute("ng-class", "{'active': currentData.activeTab == tab.name}"), e
@@ -2778,20 +2793,20 @@
                   const n = document.createElement("a");
                   n.className = "menu-option-content", n.setAttribute("ui-sref", "qol-settings"), n.style
                     .display = "flex", n.style.alignItems = "center";
-                  const r = document.createElement("img");
-                  r.src = s("logo32"), r.style.marginRight = "5px", r.style.width = "13px", r.style.height =
+                  const a = document.createElement("img");
+                  a.src = s("logo32"), a.style.marginRight = "5px", a.style.width = "13px", a.style.height =
                     "13px";
-                  const a = document.createElement("span");
-                  return a.className = "font-caption-header ng-binding", a.setAttribute("ng-bind",
-                    "tab.label"), a.innerText = t, n.appendChild(r), n.appendChild(a), e.appendChild(n), [
-                    e, n, a
+                  const r = document.createElement("span");
+                  return r.className = "font-caption-header ng-binding", r.setAttribute("ng-bind",
+                    "tab.label"), r.innerText = t, n.appendChild(a), n.appendChild(r), e.appendChild(n), [
+                    e, n, r
                   ]
                 }("BetterBLOX Settings");
-              r.addEventListener("click", t => {
+              a.addEventListener("click", t => {
                 t.preventDefault(), window.location.href = "/my/account?betterblox=active"
-              }), n.appendChild(r)
+              }), n.appendChild(a)
             })(), async function() {
-              const t = P();
+              const t = D();
               try {
                 t && await $()
               } catch (t) {
@@ -2804,11 +2819,11 @@
           }
         };
 
-        function P() {
+        function D() {
           return "active" === new URLSearchParams(window.location.search).get("betterblox")
         }
 
-        function N(t) {
+        function P(t) {
           for (; t.firstChild;) t.removeChild(t.lastChild)
         }
         async function $() {
@@ -2816,43 +2831,43 @@
           t.rel = "stylesheet", t.href = chrome.runtime.getURL("styles/tailwind.css"), document.head.appendChild(
             t);
           try {
-            const t = await E("menu-vertical");
-            await N(t);
+            const t = await C("menu-vertical");
+            await P(t);
             const e = await async function(t) {
-              const e = T.pages.map(({
+              const e = E.pages.map(({
                 id: t,
                 title: e
               }) => function(t, e) {
                 const n = document.createElement("li");
                 n.id = `betterblox-${t}`, n.role = "tab", n.className = "menu-option", n.setAttribute(
                   "aria-label", `${e} settings section`);
-                const r = document.createElement("a");
-                r.className = "menu-option-content", r.href = `/my/account?betterblox=active&option=${t}`,
-                  r.setAttribute("aria-current", "false");
-                const a = document.createElement("span");
-                a.className = "font-caption-header", a.textContent = e;
+                const a = document.createElement("a");
+                a.className = "menu-option-content", a.href = `/my/account?betterblox=active&option=${t}`,
+                  a.setAttribute("aria-current", "false");
+                const r = document.createElement("span");
+                r.className = "font-caption-header", r.textContent = e;
                 const s = document.createElement("span");
-                return s.className = "rbx-tab-subtitle", r.appendChild(a), r.appendChild(s), n
-                  .appendChild(r), [n, r]
+                return s.className = "rbx-tab-subtitle", a.appendChild(r), a.appendChild(s), n
+                  .appendChild(a), [n, a]
               }(t, e));
-              N(t), e.forEach(([e]) => {
+              P(t), e.forEach(([e]) => {
                 t.appendChild(e)
               });
               const n = function(t) {
                   async function e(t, e) {
                     console.log(t, e);
                     const n = await async function() {
-                      return await E("tab-content rbx-tab-content")
+                      return await C("tab-content rbx-tab-content")
                     }();
-                    N(n);
-                    const a = function(t, e) {
+                    P(n);
+                    const r = function(t, e) {
                         const n = document.createElement("div");
                         n.className = "rbx-tab-content", n.id = `betterblox-content-${t}`;
-                        const r = document.createElement("h1");
-                        return r.className = "header-title", r.textContent = e, n.appendChild(r), n
+                        const a = document.createElement("h1");
+                        return a.className = "header-title", a.textContent = e, n.appendChild(a), n
                       }(t, e),
-                      s = (o = t, B.getAllModuleSettings(o));
-                    var o;
+                      s = (i = t, A.getAllModuleSettings(i));
+                    var i;
                     if ("info" === t) {
                       const t = await async function() {
                         const t = document.createElement("div");
@@ -2860,24 +2875,24 @@
                         const e = (await chrome.runtime.getManifest()).version,
                           n = document.createElement("div");
                         n.className = "tw-flex tw-items-center tw-gap-2 tw-mb-3 tw-ml-2";
-                        const r = document.createElement("img");
-                        r.src = chrome.runtime.getURL("icons/png/logo32.png"), r.style.width = "32px", r
-                          .style.height = "32px", r.alt = "BetterBLOX Logo", n.appendChild(r);
-                        const a = document.createElement("span");
-                        a.className = "tw-text-lg tw-font-semibold dark:tw-text-gray-200", a
-                          .textContent = "Better Roblox Extension", n.appendChild(a);
+                        const a = document.createElement("img");
+                        a.src = chrome.runtime.getURL("icons/png/logo32.png"), a.style.width = "32px", a
+                          .style.height = "32px", a.alt = "BetterBLOX Logo", n.appendChild(a);
+                        const r = document.createElement("span");
+                        r.className = "tw-text-lg tw-font-semibold dark:tw-text-gray-200", r
+                          .textContent = "Better Roblox Extension", n.appendChild(r);
                         const s = document.createElement("div");
                         s.className =
                           "tw-flex tw-items-center tw-gap-2 tw-text-sm tw-text-gray-500 dark:tw-text-gray-400 tw-mb-2 tw-ml-2",
                           s.innerHTML =
                           `\n    <span>Version: ${e}</span>\n    <span>•</span>\n    <span>Beta Release</span>\n  `;
-                        const o = document.createElement("div");
-                        o.className =
-                          "tw-bg-yellow-50 dark:tw-bg-yellow-900/30 tw-border-l-4 tw-border-yellow-400 tw-p-4 tw-mb-4";
                         const i = document.createElement("div");
-                        i.className = "tw-text-sm tw-text-gray-700 dark:tw-text-gray-300", i.innerHTML =
+                        i.className =
+                          "tw-bg-yellow-50 dark:tw-bg-yellow-900/30 tw-border-l-4 tw-border-yellow-400 tw-p-4 tw-mb-4";
+                        const o = document.createElement("div");
+                        o.className = "tw-text-sm tw-text-gray-700 dark:tw-text-gray-300", o.innerHTML =
                           '\n    <p class="tw-font-semibold tw-mb-2">Important Notice:</p>\n    <ul class="tw-list-disc tw-ml-5">\n      <li>Please allow up to 5 minutes after installation for the extension to properly initialize and update its settings.</li>\n      <li>Friends\' last online presence data may take up to 24 hours to fully synchronize.</li>\n      <li>If you experience any issues during this period, please reach out to our support team on Discord.</li>\n    </ul>\n  ',
-                          o.appendChild(i);
+                          i.appendChild(o);
                         const l = document.createElement("div");
                         l.className =
                           "tw-bg-blue-50 dark:tw-bg-blue-900/30 tw-border-l-4 tw-border-blue-400 tw-p-4 tw-mb-4";
@@ -2890,16 +2905,16 @@
                           d.style.display = "flex", d.style.justifyContent = "center", d.style.margin =
                           "12px auto", d.innerHTML =
                           '\n    <svg class="tw-w-5 tw-h-5" fill="currentColor" viewBox="0 0 24 24">\n      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>\n    </svg>\n    Join our Discord\n  ',
-                          t.appendChild(n), t.appendChild(s), t.appendChild(o), t.appendChild(l), l
+                          t.appendChild(n), t.appendChild(s), t.appendChild(i), t.appendChild(l), l
                           .appendChild(c), t.appendChild(d), t
                       }();
-                      return a.appendChild(t), void n.appendChild(a)
+                      return r.appendChild(t), void n.appendChild(r)
                     }
                     for (const t of s) {
                       let e;
-                      const n = await r.n.getSettings(t.id, t.defaultValue),
+                      const n = await a.n.getSettings(t.id, t.defaultValue),
                         s = e => async e => {
-                          await r.n.setSettings(t.id, e);
+                          await a.n.setSettings(t.id, e);
                           const n = new CustomEvent("betterblox-setting-changed", {
                             detail: {
                               id: t.id,
@@ -2910,7 +2925,7 @@
                         };
                       switch (t.type) {
                         case "toggle":
-                          e = M({
+                          e = T({
                             id: t.id,
                             title: t.title,
                             description: t.description,
@@ -2920,7 +2935,7 @@
                           });
                           break;
                         case "dropdown":
-                          e = A({
+                          e = I({
                             id: t.id,
                             title: t.title,
                             description: t.description,
@@ -2930,7 +2945,7 @@
                           });
                           break;
                         case "input":
-                          e = I({
+                          e = M({
                             id: t.id,
                             title: t.title,
                             description: t.description,
@@ -2941,43 +2956,43 @@
                             onChange: s("input")
                           })
                       }
-                      e && a.appendChild(e)
+                      e && r.appendChild(e)
                     }
-                    n.appendChild(a)
+                    n.appendChild(r)
                   }
                   async function n(n) {
                     if (!n) return;
-                    const [r, a] = n;
+                    const [a, r] = n;
                     t.forEach(([t, e]) => {
                       e.className = "menu-option-content", e.setAttribute("aria-current", "false")
-                    }), a.className = "menu-option-content active", a.setAttribute("aria-current", "page");
-                    const s = r.id.replace("betterblox-", ""),
-                      o = a.querySelector(".font-caption-header").textContent;
-                    await e(s, o)
+                    }), r.className = "menu-option-content active", r.setAttribute("aria-current", "page");
+                    const s = a.id.replace("betterblox-", ""),
+                      i = r.querySelector(".font-caption-header").textContent;
+                    await e(s, i)
                   }
                   return t.forEach(([t, e]) => {
-                    e.addEventListener("click", async r => {
-                      r.preventDefault();
-                      const a = window.location.href.split("#")[0],
+                    e.addEventListener("click", async a => {
+                      a.preventDefault();
+                      const r = window.location.href.split("#")[0],
                         s = e.href.split("#")[0];
-                      await n([t, e]), a !== s && window.history.pushState({
+                      await n([t, e]), r !== s && window.history.pushState({
                         id: t.id
                       }, "", s)
                     })
                   }), async () => {
-                    const e = (new URLSearchParams(window.location.search).get("option") || T
+                    const e = (new URLSearchParams(window.location.search).get("option") || E
                         .defaultOption).split("#")[0],
-                      r = t.find(([t]) => t.id === `betterblox-${e}`);
-                    await n(r)
+                      a = t.find(([t]) => t.id === `betterblox-${e}`);
+                    await n(a)
                   }
                 }(e),
-                a = new URLSearchParams(window.location.search),
-                s = a.get("option")?.split("#")[0];
+                r = new URLSearchParams(window.location.search),
+                s = r.get("option")?.split("#")[0];
               if (s) {
                 const t = e.find(([t]) => t.id === `betterblox-${s}`);
                 t && t[1].click()
               } else await n();
-              const o = new MutationObserver(e => {
+              const i = new MutationObserver(e => {
                 e.forEach(e => {
                   e.addedNodes.forEach(e => {
                     e.nodeType === Node.ELEMENT_NODE && t.contains(e) && !e.id?.startsWith(
@@ -2985,9 +3000,9 @@
                   })
                 })
               });
-              return o.observe(t, {
+              return i.observe(t, {
                 childList: !0
-              }), o
+              }), i
             }(t);
             window.addEventListener("beforeunload", () => {
               e.disconnect()
@@ -2997,66 +3012,9 @@
           }
         }
         window.addEventListener("popstate", async () => {
-          P() && await $()
+          D() && await $()
         });
-        const R = B;
-
-        function D(t) {
-          if (!t || t < 0) return "0m";
-          const e = Math.floor(t / 6e4),
-            n = Math.floor(e / 60);
-          if (n > 0) {
-            const t = e % 60;
-            return `${n}h${t>0?` ${t}m`:""}`
-          }
-          return `${e}m`
-        }
-
-        function O(t, e) {
-          2 === e.presenceType ? function(t, e) {
-            const n = t.querySelectorAll(".presence-status");
-            for (const t of n) t.remove();
-            const r = Date.now() - (e.gameHistory?.gameStartTime || Date.now());
-            if (r > 0) {
-              const e = document.createElement("div");
-              e.className = "presence-status avatar-card-label", e.innerHTML =
-                `<div style="color: #666;font-size: 10px">(for ${D(r)})</div>`, t.querySelector(
-                  ".avatar-card-caption").appendChild(e)
-            }
-          }(t, e) : 0 === e.presenceType && async function(t, e) {
-            const n = t.querySelectorAll(".presence-status");
-            for (const t of n) t.remove();
-            let r = e.lastOnline,
-              a = null;
-            if ("number" == typeof r ? a = r : r && "object" == typeof r && r.timestamp && (a = r.timestamp),
-              a && a > 0) {
-              const e = function(t) {
-                const e = (new Date).getTime() - t,
-                  n = Math.floor(e / 6e4),
-                  r = Math.floor(e / 36e5),
-                  a = Math.floor(e / 864e5);
-                return n < 60 ? `${n} minute${1!==n?"s":""} ago` : r < 24 ? `${r} hour${1!==r?"s":""} ago` :
-                  `${a} day${1!==a?"s":""} ago`
-              }(a);
-              let n = e;
-              r && "object" == typeof r && r.gameName && (n +=
-                ` playing ${r.gameName.length>10?r.gameName.slice(0,10)+"...":r.gameName}`, r
-                .sessionDuration > 0 && (n += ` (${D(r.sessionDuration)})`));
-              const s = document.createElement("div");
-              s.className = "presence-status avatar-card-label", s.innerHTML =
-                `\n      <div style="font-size: 12px">${n}</div>\n    `, t.querySelector(".avatar-card-caption")
-                .appendChild(s)
-            }
-          }(t, e)
-        }
-
-        function q(t) {
-          try {
-            return parseInt(t.id)
-          } catch (t) {
-            return console.error("Presence Friendlist: Error getting user ID from element"), null
-          }
-        }
+        const R = A;
 
         function _(t) {
           if (!t || t < 0) return "0m";
@@ -3069,55 +3027,113 @@
           return `${e}m`
         }
 
-        function H(t, e) {
+        function N(t, e) {
+          2 === e.presenceType ? function(t, e) {
+            const n = t.querySelectorAll(".presence-status");
+            for (const t of n) t.remove();
+            const a = Date.now() - (e.gameHistory?.gameStartTime || Date.now());
+            if (a > 0) {
+              const e = document.createElement("div");
+              e.className = "presence-status avatar-card-label", e.innerHTML =
+                `<div style="color: #666;font-size: 10px">(for ${_(a)})</div>`, t.querySelector(
+                  ".avatar-card-caption").appendChild(e)
+            }
+          }(t, e) : 0 === e.presenceType && async function(t, e) {
+            const n = t.querySelectorAll(".presence-status");
+            for (const t of n) t.remove();
+            let r = e.lastOnline,
+              s = null;
+            if ("number" == typeof r ? s = r : r && "object" == typeof r && r.timestamp && (s = r.timestamp),
+              s && s > 0) {
+              const e = function(t) {
+                const e = (new Date).getTime() - t,
+                  n = Math.floor(e / 6e4),
+                  a = Math.floor(e / 36e5),
+                  r = Math.floor(e / 864e5);
+                return n < 60 ? `${n} minute${1!==n?"s":""} ago` : a < 24 ? `${a} hour${1!==a?"s":""} ago` :
+                  `${r} day${1!==r?"s":""} ago`
+              }(s);
+              let n = e;
+              await a.n.getSettings("more-presence-details", !1) && r && "object" == typeof r && r.gameName && (
+                n += ` playing ${r.gameName.length>10?r.gameName.slice(0,10)+"...":r.gameName}`, r
+                .sessionDuration > 0 && (n += ` (${_(r.sessionDuration)})`));
+              const i = document.createElement("div");
+              i.className = "presence-status avatar-card-label", i.innerHTML =
+                `\n      <div style="font-size: 12px">${n}</div>\n    `, t.querySelector(".avatar-card-caption")
+                .appendChild(i)
+            }
+          }(t, e)
+        }
+
+        function j(t) {
+          try {
+            return parseInt(t.id)
+          } catch (t) {
+            return console.error("Presence Friendlist: Error getting user ID from element"), null
+          }
+        }
+
+        function O(t) {
+          if (!t || t < 0) return "0m";
+          const e = Math.floor(t / 6e4),
+            n = Math.floor(e / 60);
+          if (n > 0) {
+            const t = e % 60;
+            return `${n}h${t>0?` ${t}m`:""}`
+          }
+          return `${e}m`
+        }
+
+        function B(t, e) {
           2 === e.presenceType ? function(t, e) {
             const n = t.parentElement.querySelectorAll(".presence-status");
             for (const t of n) t.remove();
-            const r = Date.now() - (e.gameHistory?.gameStartTime || Date.now());
-            if (r > 0) {
+            const a = Date.now() - (e.gameHistory?.gameStartTime || Date.now());
+            if (a > 0) {
               const e = document.createElement("div");
               e.className = "presence-status", e.innerHTML =
-                `<div style="color: #666;font-size: 10px">(for ${_(r)})</div>`, t.appendChild(e)
+                `<div style="color: #666;font-size: 10px">(for ${O(a)})</div>`, t.appendChild(e)
             }
           }(t, e) : 0 === e.presenceType && async function(t, e) {
             const n = t.parentElement.querySelectorAll(".presence-status");
             for (const t of n) t.remove();
             let r = e.lastOnline,
-              a = null;
-            if ("number" == typeof r ? a = r : r && "object" == typeof r && r.timestamp && (a = r.timestamp),
-              a && a > 0) {
+              s = null;
+            if ("number" == typeof r ? s = r : r && "object" == typeof r && r.timestamp && (s = r.timestamp),
+              s && s > 0) {
               const e = function(t) {
-                const e = (new Date).getTime() - t,
-                  n = Math.floor(e / 6e4),
-                  r = Math.floor(e / 36e5),
-                  a = Math.floor(e / 864e5);
-                return n < 60 ? `${n} minute${1!==n?"s":""} ago` : r < 24 ? `${r} hour${1!==r?"s":""} ago` :
-                  `${a} day${1!==a?"s":""} ago`
-              }(a);
-              let n = `Last seen: ${new Date(a).toLocaleString()}`;
-              r && "object" == typeof r && r.gameName && (n += `\nPlaying: ${r.gameName}`, r.sessionDuration >
-                0 && (n += `\nDuration: ${_(r.sessionDuration)}`));
-              let s = e;
-              r && "object" == typeof r && r.gameName && (s +=
+                  const e = (new Date).getTime() - t,
+                    n = Math.floor(e / 6e4),
+                    a = Math.floor(e / 36e5),
+                    r = Math.floor(e / 864e5);
+                  return n < 60 ? `${n} minute${1!==n?"s":""} ago` : a < 24 ? `${a} hour${1!==a?"s":""} ago` :
+                    `${r} day${1!==r?"s":""} ago`
+                }(s),
+                n = await a.n.getSettings("more-presence-details", !1);
+              let i = `Last seen: ${new Date(s).toLocaleString()}`;
+              r && "object" == typeof r && r.gameName && (i += `\nPlaying: ${r.gameName}`, r.sessionDuration >
+                0 && (i += `\nDuration: ${O(r.sessionDuration)}`));
+              let o = e;
+              n && r && "object" == typeof r && r.gameName && (o +=
                 ` playing ${r.gameName.length>10?r.gameName.slice(0,10)+"...":r.gameName}`, r
-                .sessionDuration > 0 && (s += ` (${_(r.sessionDuration)})`));
-              const o = document.createElement("div");
-              o.className = "presence-status tw-group tw-relative", o.innerHTML =
-                `\n      <div style="font-size: 12px" class="tw-cursor-help">${s}\n        <div class="tw-invisible group-hover:tw-visible tw-absolute tw-bottom-full tw-left-1/2 tw--translate-x-1/2 tw-px-2 tw-py-1 tw-bg-gray-800 tw-text-white tw-text-xs tw-rounded tw-whitespace-nowrap" style="white-space: pre-line;">\n          ${n}\n        </div>\n      </div>\n    `,
-                t.appendChild(o)
+                .sessionDuration > 0 && (o += ` (${O(r.sessionDuration)})`));
+              const l = document.createElement("div");
+              l.className = "presence-status tw-group tw-relative", l.innerHTML =
+                `\n      <div style="font-size: 12px" class="tw-cursor-help">${o}\n        <div class="tw-invisible group-hover:tw-visible tw-absolute tw-bottom-full tw-left-1/2 tw--translate-x-1/2 tw-px-2 tw-py-1 tw-bg-gray-800 tw-text-white tw-text-xs tw-rounded tw-whitespace-nowrap" style="white-space: pre-line;">\n          ${i}\n        </div>\n      </div>\n    `,
+                t.appendChild(l)
             }
           }(t, e)
         }
 
-        function F(t) {
+        function q(t) {
           try {
             return t.href.split("/")[4]
           } catch (t) {
             return console.error("Presence Homepage: Error getting user ID from element"), null
           }
         }
-        let j = null;
-        const z = {
+        let H = null;
+        const G = {
           profileRoot: ["#user-profile-header-bg", "#treatment-redesigned-header", "#profile-header-container"],
           profilePopup: ["#user-profile-header-bg [id^='radix-'] > div > div", "[id^='radix-'] > div > div"],
           profileHeaderInsert: "#user-profile-header-bg > div",
@@ -3125,8 +3141,8 @@
           profileLastOnlineContainer: "#user-profile-header-bg > div > div.user-profile-header-info.flex.justify-between.items-center > div.flex.gap-medium.items-center > div.flex.flex-col",
           profileDuplicateButtonsToHide: "#user-profile-header-bg > div > div:nth-child(4)"
         };
-        async function G() {
-          if (j) return j;
+        async function F() {
+          if (H) return H;
           const t = await async function() {
             try {
               const t = await fetch("https://api.betterroblox.com/betterblox/selectors.json", {
@@ -3135,18 +3151,18 @@
               if (!t.ok) return null;
               const e = await t.json();
               return e && "object" == typeof e ? {
-                profileRoot: Array.isArray(e.profileRoot) ? e.profileRoot : z.profileRoot,
-                profilePopup: Array.isArray(e.profilePopup) ? e.profilePopup : z.profilePopup,
-                profileHeaderInsert: "string" == typeof e.profileHeaderInsert ? e.profileHeaderInsert : z
+                profileRoot: Array.isArray(e.profileRoot) ? e.profileRoot : G.profileRoot,
+                profilePopup: Array.isArray(e.profilePopup) ? e.profilePopup : G.profilePopup,
+                profileHeaderInsert: "string" == typeof e.profileHeaderInsert ? e.profileHeaderInsert : G
                   .profileHeaderInsert,
                 profileHeaderInsertFallback: Array.isArray(e.profileHeaderInsertFallback) ? e
-                  .profileHeaderInsertFallback : z.profileHeaderInsertFallback,
+                  .profileHeaderInsertFallback : G.profileHeaderInsertFallback,
                 profileLastOnlineContainer: "string" == typeof e.profileLastOnlineContainer ? e
-                  .profileLastOnlineContainer : z.profileLastOnlineContainer,
+                  .profileLastOnlineContainer : G.profileLastOnlineContainer,
                 profileDuplicateButtonsToHide: null != e.profileDuplicateButtonsToHide ? Array.isArray(e
                   .profileDuplicateButtonsToHide) ? e.profileDuplicateButtonsToHide : [e
                   .profileDuplicateButtonsToHide
-                ] : Array.isArray(z.profileDuplicateButtonsToHide) ? z.profileDuplicateButtonsToHide : [z
+                ] : Array.isArray(G.profileDuplicateButtonsToHide) ? G.profileDuplicateButtonsToHide : [G
                   .profileDuplicateButtonsToHide
                 ]
               } : null
@@ -3154,23 +3170,37 @@
               return null
             }
           }();
-          j = t || {
-            ...z
-          }, j.profileLastOnlineContainer || (j.profileLastOnlineContainer = z.profileLastOnlineContainer);
-          const e = j.profileDuplicateButtonsToHide;
-          return j.profileDuplicateButtonsToHide = Array.isArray(e) ? e : e ? [String(e)] : [], j
+          H = t || {
+            ...G
+          }, H.profileLastOnlineContainer || (H.profileLastOnlineContainer = G.profileLastOnlineContainer);
+          const e = H.profileDuplicateButtonsToHide;
+          return H.profileDuplicateButtonsToHide = Array.isArray(e) ? e : e ? [String(e)] : [], H
+        }
+        const V = "bblox-stats-presence-branding";
+
+        function U(t = "") {
+          return `<div class="${V} tw-flex tw-items-center tw-gap-2 tw-min-w-0 tw-shrink-0 ${t}">\n    <img src="${s("logo32")}" alt="" class="tw-w-6 tw-h-6 tw-shrink-0" />\n    <span class="tw-text-base tw-font-semibold tw-text-[#1c1c1c] dark:tw-text-gray-200">BetterBLOX Time Statistics</span>\n  </div>`
         }
 
-        function V(t) {
+        function z() {
+          return `<img src="${s("logo32")}" alt="" class="tw-w-6 tw-h-6 tw-shrink-0" aria-hidden="true" />`
+        }
+
+        function J(t) {
+          t && "presence-status-container" === t.id && t.closest(".bblox-stats-container") && (t.querySelector(
+            ".presence-status") || (t.innerHTML = U()))
+        }
+
+        function Q(t) {
           const e = (new Date).getTime() - t,
             n = Math.floor(e / 6e4),
-            r = Math.floor(e / 36e5),
-            a = Math.floor(e / 864e5);
-          return n < 60 ? `${n} minute${1!==n?"s":""} ago` : r < 24 ? `${r} hour${1!==r?"s":""} ago` :
-            `${a} day${1!==a?"s":""} ago`
+            a = Math.floor(e / 36e5),
+            r = Math.floor(e / 864e5);
+          return n < 60 ? `${n} minute${1!==n?"s":""} ago` : a < 24 ? `${a} hour${1!==a?"s":""} ago` :
+            `${r} day${1!==r?"s":""} ago`
         }
 
-        function U(t) {
+        function W(t) {
           if (!t || t < 0) return "0m";
           const e = Math.floor(t / 6e4),
             n = Math.floor(e / 60);
@@ -3192,7 +3222,7 @@
           }
         }
 
-        function W() {
+        function Z() {
           try {
             const t = document.querySelector('meta[name="user-data"]');
             if (t && t.getAttribute("data-userid")) {
@@ -3205,11 +3235,11 @@
           }
         }
 
-        function J(t, e, n = null, r = null) {
-          const a = (new Date).getTime();
+        function K(t, e, n = null, a = null) {
+          const r = (new Date).getTime();
           let s = 0,
-            o = a,
-            i = !1;
+            i = r,
+            o = !1;
           switch (e) {
             case "day":
               return {
@@ -3217,18 +3247,18 @@
                   .daily.studio || 0
               };
             case "week":
-              s = a - 6048e5;
+              s = r - 6048e5;
               break;
             case "month":
-              s = a - 2592e6;
+              s = r - 2592e6;
               break;
             case "custom":
-              if (!n || !r) return {
+              if (!n || !a) return {
                 website: 0,
                 game: 0,
                 studio: 0
               };
-              s = n, o = r, i = !0;
+              s = n, i = a, o = !0;
               break;
             case "total":
               return {
@@ -3250,49 +3280,49 @@
               if (n.sessions && Array.isArray(n.sessions)) {
                 let t = 0;
                 const e = [];
-                for (const r of n.sessions) {
-                  if (!r.startTime || !r.endTime) continue;
-                  const n = r.startTime,
-                    a = r.endTime;
-                  if (n < o && a > s) {
-                    const i = Math.max(n, s),
-                      l = Math.min(a, o) - i;
+                for (const a of n.sessions) {
+                  if (!a.startTime || !a.endTime) continue;
+                  const n = a.startTime,
+                    r = a.endTime;
+                  if (n < i && r > s) {
+                    const o = Math.max(n, s),
+                      l = Math.min(r, i) - o;
                     l > 0 && (e.push({
-                      session: r,
+                      session: a,
                       durationInRange: l,
-                      fullDuration: a - n
-                    }), t += a - n)
+                      fullDuration: r - n
+                    }), t += r - n)
                   }
                 }
-                const r = n.totalTime || 0;
+                const a = n.totalTime || 0;
                 for (const {
                     durationInRange: n,
-                    fullDuration: a
+                    fullDuration: r
                   }
                   of e)
-                  if (t > 0 && r > 0 && t > r) {
-                    const e = n / a * (a / t * r);
+                  if (t > 0 && a > 0 && t > a) {
+                    const e = n / r * (r / t * a);
                     l.game += e
                   } else l.game += n
               } if (t.gameHistory.currentGame && t.gameHistory.gameStartTime) {
               const e = t.gameHistory.gameStartTime;
-              if (e < o) {
+              if (e < i) {
                 const n = Math.max(e, s),
-                  r = Math.min(a, o) - n;
-                if (r > 0) {
+                  a = Math.min(r, i) - n;
+                if (a > 0) {
                   const n = t.gameHistory.games[t.gameHistory.currentGame];
                   if (n) {
                     let t = 0;
                     if (n.sessions && Array.isArray(n.sessions))
                       for (const e of n.sessions) e.startTime && e.endTime && (t += e.endTime - e.startTime);
-                    const s = a - e;
+                    const s = r - e;
                     t += s;
-                    const o = n.totalTime || 0;
-                    if (t > 0 && o > 0 && t > o) {
-                      const e = r / s * (s / t * o);
+                    const i = n.totalTime || 0;
+                    if (t > 0 && i > 0 && t > i) {
+                      const e = a / s * (s / t * i);
                       l.game += e
-                    } else l.game += r
-                  } else l.game += r
+                    } else l.game += a
+                  } else l.game += a
                 }
               }
             }
@@ -3304,48 +3334,48 @@
               if (!e.startTime || !e.endTime) continue;
               const t = e.startTime,
                 n = e.endTime;
-              if (t < o && n > s) {
+              if (t < i && n > s) {
                 const e = Math.max(t, s),
-                  r = Math.min(n, o) - e;
-                r > 0 && (l.website += r)
+                  a = Math.min(n, i) - e;
+                a > 0 && (l.website += a)
               }
             }
             if (1 === t.presenceType && t.websiteStartTime) {
               const e = t.websiteStartTime;
-              if (e < o) {
+              if (e < i) {
                 const t = Math.max(e, s),
-                  n = Math.min(a, o) - t;
+                  n = Math.min(r, i) - t;
                 n > 0 && (l.website += n)
               }
             }
-          } else if (!i) {
+          } else if (!o) {
             const n = "week" === e ? 7 : 30,
-              r = t.timeStats.daily.website || 0;
-            l.website = Math.min(r * n, t.timeStats.total.website || 0)
+              a = t.timeStats.daily.website || 0;
+            l.website = Math.min(a * n, t.timeStats.total.website || 0)
           }
           if (d) {
             for (const e of t.studioSessions) {
               if (!e.startTime || !e.endTime) continue;
               const t = e.startTime,
                 n = e.endTime;
-              if (t < o && n > s) {
+              if (t < i && n > s) {
                 const e = Math.max(t, s),
-                  r = Math.min(n, o) - e;
-                r > 0 && (l.studio += r)
+                  a = Math.min(n, i) - e;
+                a > 0 && (l.studio += a)
               }
             }
             if (3 === t.presenceType && t.studioStartTime) {
               const e = t.studioStartTime;
-              if (e < o) {
+              if (e < i) {
                 const t = Math.max(e, s),
-                  n = Math.min(a, o) - t;
+                  n = Math.min(r, i) - t;
                 n > 0 && (l.studio += n)
               }
             }
-          } else if (!i) {
+          } else if (!o) {
             const n = "week" === e ? 7 : 30,
-              r = t.timeStats.daily.studio || 0;
-            l.studio = Math.min(r * n, t.timeStats.total.studio || 0)
+              a = t.timeStats.daily.studio || 0;
+            l.studio = Math.min(a * n, t.timeStats.total.studio || 0)
           }
           const u = t.timeStats.total.game || 0,
             w = t.timeStats.total.website || 0,
@@ -3359,22 +3389,22 @@
             .studio = g), l
         }
 
-        function K(t) {
+        function Y(t) {
           if (!t) return "0m";
           const e = Math.floor(t / 36e5),
             n = Math.floor(t % 36e5 / 6e4);
           return 0 === e ? `${n}m` : 0 === n ? `${e}h` : `${e}h ${n}m`
         }
 
-        function Y(t, e = document) {
+        function tt(t, e = document) {
           for (const n of t) {
             const t = e.querySelector(n);
             if (t) return t
           }
           return null
         }
-        async function Z() {
-          const t = (await G()).profileDuplicateButtonsToHide;
+        async function et() {
+          const t = (await F()).profileDuplicateButtonsToHide;
           if (!t || 0 === t.length) return;
           const e = Array.isArray(t) ? t : [t];
           for (const t of e)
@@ -3386,775 +3416,452 @@
               })
             } catch (t) {}
         }
-        async function Q(t, e, n) {
-          if (!await r.n.getSettings("friends-presence", !0)) return;
-          const a = (await G()).profileLastOnlineContainer;
-          let s = a ? document.querySelector(a) : null;
-          if (s || (s = document.querySelector(".user-profile-header-info > div > div.flex.flex-col")), !s)
+        async function nt(t, e, n) {
+          if (!await a.n.getSettings("friends-presence", !0)) return;
+          const r = await a.n.getSettings("more-presence-details", !1),
+            s = (await F()).profileLastOnlineContainer;
+          let i = s ? document.querySelector(s) : null;
+          if (i || (i = document.querySelector(".user-profile-header-info > div > div.flex.flex-col")), !i)
         return;
-          let o = s.querySelector("[data-betterblox-last-online-header]");
+          let o = i.querySelector("[data-betterblox-last-online-header]");
           if (o || (o = document.createElement("div"), o.setAttribute("data-betterblox-last-online-header",
-                "true"), o.className = "tw-text-sm tw-text-[#666] dark:tw-text-gray-400 tw-mt-1", s.appendChild(
+                "true"), o.className = "tw-text-sm tw-text-[#666] dark:tw-text-gray-400 tw-mt-1", i.appendChild(
               o)), 2 === t?.presenceType) {
             const e = Date.now() - (t.gameHistory?.gameStartTime || Date.now());
-            o.textContent = e > 0 ? `Currently playing (for ${U(e)})` : "Currently online"
+            o.textContent = e > 0 ? `Currently playing (for ${W(e)})` : "Currently online"
           } else if (t?.lastOnline) {
             let e = "number" == typeof t.lastOnline ? t.lastOnline : t.lastOnline?.timestamp;
             if (e && e > 0) {
-              const n = V(e),
-                r = t.lastOnline?.gameName ?
+              const n = Q(e),
+                a = r && t.lastOnline?.gameName ?
                 ` playing ${t.lastOnline.gameName.length>12?t.lastOnline.gameName.slice(0,12)+"…":t.lastOnline.gameName}` :
                 "";
-              o.textContent = `Last seen: ${n}${r}`
+              o.textContent = `Last seen: ${n}${a}`
             } else o.textContent = "Last online: Unknown"
           } else o.textContent = n < 1 ? "Last online: —" : e ?
             "Last online: No data yet (will appear when they go online)" :
             "Last online: Track this user to see activity"
         }
 
-        function tt(t, e, n, r) {
-          2 === e.presenceType ? function(t, e) {
+        function at(t, e, n, r) {
+          t.querySelector(`.${V}`)?.remove(), 2 === e.presenceType ? function(t, e) {
             const n = t.querySelectorAll(".presence-status");
             for (const t of n) t.remove();
-            const r = Date.now() - (e.gameHistory?.gameStartTime || Date.now());
-            if (r > 0) {
+            const a = Date.now() - (e.gameHistory?.gameStartTime || Date.now());
+            if (a > 0) {
               const e = document.createElement("div");
-              if (e.className = "presence-status avatar-card-label", e.innerHTML =
-                `<div style="font-size: 12px">Currently playing (for ${U(r)})</div>`, "DIV" === t.tagName &&
-                "presence-status-container" === t.id) t.appendChild(e);
+              e.className = "presence-status avatar-card-label";
+              const n = "DIV" === t.tagName && "presence-status-container" === t.id ?
+                `<div class="tw-flex tw-items-center tw-gap-2 tw-min-w-0">${z()}<div class="tw-min-w-0">Currently playing (for ${W(a)})</div></div>` :
+                `<div style="font-size: 12px">Currently playing (for ${W(a)})</div>`;
+              if (e.innerHTML = n, "DIV" === t.tagName && "presence-status-container" === t.id) t.appendChild(e);
               else {
-                const n = Y([".user-profile-header-info > div > div.flex.flex-col"], t);
+                const n = tt([".user-profile-header-info > div > div.flex.flex-col"], t);
                 n && n.appendChild(e)
               }
             }
           }(t, e) : 0 === e.presenceType && async function(t, e, n, r) {
-            const a = t.querySelectorAll(".presence-status");
-            for (const t of a) t.remove();
-            let s = e.lastOnline,
+            const s = t.querySelectorAll(".presence-status");
+            for (const t of s) t.remove();
+            let i = e.lastOnline,
               o = null;
-            if ("number" == typeof s ? o = s : s && "object" == typeof s && s.timestamp && (o = s.timestamp),
+            if ("number" == typeof i ? o = i : i && "object" == typeof i && i.timestamp && (o = i.timestamp),
               o && o > 0) {
-              const e = V(o);
-              let n = `Last seen: ${new Date(o).toLocaleString()}`;
-              s && "object" == typeof s && s.gameName && (n += `\nPlaying: ${s.gameName}`, s.sessionDuration >
-                0 && (n += `\nDuration: ${U(s.sessionDuration)}`));
-              let r = e;
-              s && "object" == typeof s && s.gameName && (r +=
-                ` playing ${s.gameName.length>10?s.gameName.slice(0,10)+"...":s.gameName}`, s
-                .sessionDuration > 0 && (r += ` (${U(s.sessionDuration)})`));
-              const a = document.createElement("div");
-              if (a.className = "presence-status avatar-card-label tw-group tw-relative", a.innerHTML =
-                `\n    <div class="tw-flex tw-flex-row tw-gap-2">\n      <div style="font-size: 12px" class="tw-cursor-help">${r}\n        <div class="tw-invisible group-hover:tw-visible tw-absolute tw-bottom-full tw-left-1/2 tw--translate-x-1/2 tw-px-2 tw-py-1 tw-bg-gray-800 tw-text-white tw-text-xs tw-rounded tw-whitespace-nowrap" style="white-space: pre-line;">\n          ${n}\n        </div>\n      </div>\n    </div>\n    `,
-                "DIV" === t.tagName && "presence-status-container" === t.id) t.appendChild(a);
+              const e = Q(o),
+                n = await a.n.getSettings("more-presence-details", !1);
+              let r = `Last seen: ${new Date(o).toLocaleString()}`;
+              i && "object" == typeof i && i.gameName && (r += `\nPlaying: ${i.gameName}`, i.sessionDuration >
+                0 && (r += `\nDuration: ${W(i.sessionDuration)}`));
+              let s = e;
+              n && i && "object" == typeof i && i.gameName && (s +=
+                ` playing ${i.gameName.length>10?i.gameName.slice(0,10)+"...":i.gameName}`, i
+                .sessionDuration > 0 && (s += ` (${W(i.sessionDuration)})`));
+              const l = document.createElement("div");
+              l.className = "presence-status avatar-card-label tw-group tw-relative";
+              const c = "DIV" === t.tagName && "presence-status-container" === t.id,
+                d = c ? "" : ' style="font-size: 12px"';
+              if (l.innerHTML = c ?
+                `<div class="tw-flex tw-items-center tw-gap-2 tw-min-w-0">\n      ${z()}\n      <div${d} class="tw-cursor-help tw-min-w-0">${s}\n        <div class="tw-invisible group-hover:tw-visible tw-absolute tw-bottom-full tw-left-1/2 tw--translate-x-1/2 tw-px-2 tw-py-1 tw-bg-gray-800 tw-text-white tw-text-xs tw-rounded tw-whitespace-nowrap" style="white-space: pre-line;">\n          ${r}\n        </div>\n      </div>\n    </div>` :
+                `\n    <div class="tw-flex tw-flex-row tw-gap-2">\n      <div${d} class="tw-cursor-help">${s}\n        <div class="tw-invisible group-hover:tw-visible tw-absolute tw-bottom-full tw-left-1/2 tw--translate-x-1/2 tw-px-2 tw-py-1 tw-bg-gray-800 tw-text-white tw-text-xs tw-rounded tw-whitespace-nowrap" style="white-space: pre-line;">\n          ${r}\n        </div>\n      </div>\n    </div>\n    `,
+                "DIV" === t.tagName && "presence-status-container" === t.id) t.appendChild(l);
               else {
-                const e = Y([".user-profile-header-info > div > div.flex.flex-col"], t);
-                e && e.appendChild(a)
+                const e = tt([".user-profile-header-info > div > div.flex.flex-col"], t);
+                e && e.appendChild(l)
               }
-            } else await et(t, n, r)
+            } else await rt(t, n, r)
           }(t, e, n, r)
         }
-        async function et(t, e, n) {
-          const r = document.createElement("div");
-          if (r.className = "presence-status avatar-card-label", r.innerHTML = e ?
+        async function rt(t, e, n) {
+          const a = document.createElement("div");
+          if (a.className = "presence-status avatar-card-label", a.innerHTML = e ?
             "<div style=\"color: #666;font-size: 10px\">Your friend has been offline since you installed the extension. Their activity data will appear once they come online while your browser is open. The 'Last Online' status will be recorded the next time your friend switches from online to offline.</div>" :
             "<div style=\"color: #666;font-size: 10px\">No data available for this stranger. Make sure you have clicked the 'Track' button. Their activity data will appear once they come online while your browser is open.</div>",
-            n < 1 && (r.innerHTML =
+            n < 1 && (a.innerHTML =
               '<div style="color: #666;font-size: 10px">Friendlist is empty... Please wait 5-10 minutes for extension warmup.</div>'
-              ), "DIV" === t.tagName && "presence-status-container" === t.id) t.appendChild(r);
+              ), "DIV" === t.tagName && "presence-status-container" === t.id) t.appendChild(a);
           else {
-            const e = Y([".user-profile-header-info > div > div.flex.flex-col"], t);
-            e && e.appendChild(r)
+            const e = tt([".user-profile-header-info > div > div.flex.flex-col"], t);
+            e && e.appendChild(a)
           }
         }
-        async function nt(t) {
-          return new Promise(e => {
-            chrome.storage.local.get(["bestFriends"], n => {
-              let r = n.bestFriends || [];
-              r.includes(t) ? r = r.filter(e => e !== t) : r.push(t), chrome.storage.local.set({
-                bestFriends: r
-              }, () => {
-                e(r.includes(t))
-              })
-            })
-          })
+        async function st(t, e) {
+          let n = e;
+          if (e && "DIV" !== e.tagName && (n = tt([".buttons-show-on-desktop"], e)), !n) return;
+          let r, s = (await a.n.get("betterblox_tracking_list_v2", [])).includes(t);
+          if ("DIV" === n.tagName) r = document.createElement("button"), r.type = "button", r.className = s ?
+            "btn-alert-md" : "btn-control-md";
+          else {
+            const t = document.createElement("li");
+            t.className = "btn-friends", t.style.marginLeft = "9px", r = t
+          }
+          const i = () => {
+            "BUTTON" === r.tagName ? (r.className = s ? "btn-alert-md" : "btn-control-md", r.textContent = s ?
+                "Untrack" : "Track") : r.innerHTML = s ?
+              '<button type="button" class="tw-btn-alert-md">Untrack</button>' :
+              '<button type="button" class="tw-btn-control-md">Track</button>'
+          };
+          i(), ("BUTTON" === r.tagName ? r : r.querySelector("button")).addEventListener("click", async () => {
+            const e = await a.n.get("betterblox_tracking_list_v2", []);
+            if (s) {
+              const n = e.filter(e => e !== t);
+              await a.n.set("betterblox_tracking_list_v2", n)
+            } else {
+              const n = [...e, t];
+              await a.n.set("betterblox_tracking_list_v2", n)
+            }
+            s = !s, i()
+          }), n.appendChild(r)
         }
 
-        function rt(t) {
+        function it(t, e) {
+          const n = String(e);
+          return t.some(t => String(t) === n)
+        }
+        async function ot(t) {
+          const e = function() {
+            try {
+              const t = document.querySelector('meta[name="user-data"]');
+              if (t && t.getAttribute("data-userid")) {
+                const e = parseInt(t.getAttribute("data-userid"), 10);
+                if (!isNaN(e)) return e
+              }
+              return null
+            } catch (t) {
+              return null
+            }
+          }();
+          return null != e && it(((await a.n.get("betterblox_friends_list", {}))[e] || {
+            friendIds: []
+          }).friendIds || [], t)
+        }
+
+        function lt(t) {
+          return null != t.querySelector("[data-betterblox-profile-menu-item]") || "true" === t.getAttribute(
+            "data-betterblox-profile-menu-done")
+        }
+        async function ct(t) {
+          return it(await a.n.get("notifyOnline", []), t)
+        }
+        async function dt(t) {
+          return it(await a.n.get("autoJoin", []), t)
+        }
+
+        function ut(t) {
           if (!t || "string" != typeof t.textContent) return !1;
           const e = t.textContent;
           return e.includes("Inventory") && e.includes("Favorites")
         }
-        async function at(t = document) {
-          const e = (await G()).profilePopup || [];
+        async function wt(t = document) {
+          const e = (await F()).profilePopup || [];
           for (const n of e) try {
             const e = t.querySelectorAll(n);
             for (const t of e)
-              if (rt(t) && !t.querySelector("[data-betterblox-best-friend]") && t.closest(
-                  "#user-profile-header-bg")) return t;
+              if (ut(t) && !lt(t) && t.closest("#user-profile-header-bg")) return t;
             for (const t of e)
-              if (rt(t) && !t.querySelector("[data-betterblox-best-friend]")) return t
+              if (ut(t) && !lt(t)) return t
           } catch (t) {}
           const n = t.querySelectorAll('ul[role="menu"]');
           for (const t of n)
-            if (!t.querySelector("[data-betterblox-best-friend]") && rt(t)) return t;
+            if (!lt(t) && ut(t)) return t;
           return null
         }
-        const st = new WeakSet,
-          ot = new WeakSet;
-        const it =
-          "display: block; width: 100%; padding: 8px 12px; text-align: left; font-size: 14px; color: #1c1c1c; background: transparent; border: none; border-radius: 6px; cursor: pointer; font-family: inherit;";
-        async function lt(t, e) {
-          if (console.log("[BetterBLOX Best Friend] addMenuItemToContainer called with:", t), t.querySelector(
-              "[data-betterblox-best-friend]")) return Promise.resolve();
+        const gt = new WeakSet;
+        const ht =
+          "tw-block tw-w-full tw-py-2 tw-px-3 tw-text-left tw-text-sm tw-bg-transparent tw-border-0 tw-rounded-md tw-cursor-pointer tw-font-inherit tw-transition-colors hover:tw-bg-[#f0f0f0] dark:hover:tw-bg-[#353840] tw-text-[#1c1c1c] dark:tw-text-gray-200",
+          mt =
+          "tw-flex tw-items-center tw-px-3 tw-py-2 tw-cursor-pointer tw-rounded-md tw-transition-colors hover:tw-bg-[#f0f0f0] dark:hover:tw-bg-[#353840] tw-outline-none";
+
+        function pt(t, e, n) {
+          (e ? t : t.querySelector(".profile-header-dropdown-label") || t).textContent = n
+        }
+        async function bt(t, e) {
+          if (lt(t)) return Promise.resolve();
           const n = "UL" === t.tagName && "menu" === t.getAttribute("role"),
             r = "DIV" === t.tagName;
           if (!n && !r) return Promise.resolve();
-          console.log("[BetterBLOX Best Friend] Creating menu item for user:", e);
-          const a = await async function(t) {
-            return new Promise(e => {
-              chrome.storage.local.get(["bestFriends"], n => {
-                const r = n.bestFriends || [];
-                e(r.includes(t))
-              })
-            })
-          }(e);
-          if (n) {
-            const n = document.createElement("li");
-            n.setAttribute("data-betterblox-best-friend", "true"), n.setAttribute("role", "menuitem"), n
-              .setAttribute("tabindex", "-1"), n.className =
-              "MuiButtonBase-root MuiMenuItem-root web-blox-css-tss-x2vrx4-MenuItem-root MuiMenuItem-gutters MuiMenuItem-root web-blox-css-tss-x2vrx4-MenuItem-root MuiMenuItem-gutters web-blox-css-mui-15wphe8-Typography-body1";
-            const r = document.createElement("span");
-            r.className = "profile-header-dropdown-label", r.textContent = a ? "Unpin As Best Friend" :
-              "Pin As Best Friend", a && (r.style.color = "#0095ff");
-            const s = document.createElement("span");
-            s.className = "MuiTouchRipple-root web-blox-css-mui-w0pj6f", n.appendChild(r), n.appendChild(s), n
-              .addEventListener("click", async t => {
-                t.stopPropagation(), t.preventDefault();
-                const n = await nt(e);
-                r.textContent = n ? "Unpin As Best Friend" : "Pin As Best Friend", r.style.color = n ?
-                  "#0095ff" : "inherit", setTimeout(() => document.body.click(), 100)
-              });
-            let o = null;
-            for (let e = 0; e < t.children.length; e++) {
-              const n = t.children[e];
-              if ("LI" === n.tagName && "menuitem" === n.getAttribute("role")) {
-                o = n;
-                break
-              }
-            }
-            return o ? t.insertBefore(n, o) : t.insertBefore(n, t.firstChild), Promise.resolve()
-          }
-          const s = document.createElement("button");
-          return s.setAttribute("data-betterblox-best-friend", "true"), s.setAttribute("type", "button"), s
-            .setAttribute("role", "menuitem"), s.style.cssText = it, a && (s.style.color = "#0095ff"), s
-            .textContent = a ? "Unpin As Best Friend" : "Pin As Best Friend", s.onmouseenter = () => {
-              s.style.background = "#f0f0f0"
-            }, s.onmouseleave = () => {
-              s.style.background = "transparent"
-            }, s.addEventListener("click", async t => {
-              t.stopPropagation(), t.preventDefault();
-              const n = await nt(e);
-              s.textContent = n ? "Unpin As Best Friend" : "Pin As Best Friend", s.style.color = n ?
-                "#0095ff" : "#1c1c1c", setTimeout(() => document.body.click(), 100)
-            }), t.insertBefore(s, t.firstChild), Promise.resolve()
-        }
-
-        function ct() {
-          try {
-            const t = window.location.href,
-              e = t.match(/\/users\/(\d+)\/profile/);
-            return e && e[1] ? parseInt(e[1]) : (console.error(
-              "Friend Tracking History: Could not extract user ID from URL:", t), null)
-          } catch (t) {
-            return console.error("Friend Tracking History: Error getting user ID from URL:", t), null
-          }
-        }
-
-        function dt(t, e, n) {
-          const r = document.createElement("div");
-          r.className = "tw-flex tw-items-center tw-gap-1.5 tw-py-0.5";
-          const a = document.createElement("img");
-          if (a.className = "tw-w-6 tw-h-6 tw-rounded-full tw-shrink-0", a.alt = e?.name || `User ${t}`, a.src = e
-            ?.thumbnailUrl || "", e?.thumbnailUrl) r.appendChild(a);
-          else {
-            a.style.display = "none";
-            const t = document.createElement("div");
-            t.className =
-              "tw-w-6 tw-h-6 tw-rounded-full tw-shrink-0 tw-bg-gray-300 dark:tw-bg-gray-600 tw-flex tw-items-center tw-justify-center tw-text-xs",
-              t.textContent = "?", r.appendChild(t)
-          }
-          const s = document.createElement("a");
-          return s.href = `https://www.roblox.com/users/${t}/profile`, s.target = "_blank", s.className =
-            "tw-text-xs tw-font-medium hover:tw-underline " + (n ? "tw-text-green-600 dark:tw-text-green-400" :
-              "tw-text-red-600 dark:tw-text-red-400"), s.textContent = e?.name || `User ${t}`, r.appendChild(s), r
-        }
-        async function ut(t) {
-          const e = document.createElement("div");
-          e.setAttribute("data-history-item", "true"), e.className =
-            "tw-bg-white dark:tw-bg-[#353840] tw-border tw-border-[#e5e5e5] dark:tw-border-transparent tw-p-2 tw-rounded-lg hover:tw-bg-[#f5f5f5] dark:hover:tw-bg-[#404650] tw-transition-colors";
-          const n = [...t.added || [], ...t.removed || []];
-          let r = {};
-          n.length > 0 && (await async function(t) {
-            if (!t || 0 === t.length) return [];
-            const e = [...new Set(t.map(t => String(t)))];
-            return new Promise(t => {
-              chrome.runtime.sendMessage({
-                type: "GET_ROBLOX_USERS_DATA",
-                userIds: e
-              }, e => {
-                e && e.success && e.users ? t(e.users) : (console.warn(
-                  "Failed to fetch user data for friend tracking:", e), t([]))
-              })
-            })
-          }(n)).forEach(t => {
-            t && t.id && (r[String(t.id)] = t)
-          });
-          const a = document.createElement("div");
-          a.className = "tw-flex tw-items-center tw-justify-between tw-mb-1.5";
-          const s = document.createElement("span");
-          s.className = "tw-text-xs tw-text-gray-500 dark:tw-text-gray-400", s.textContent = function(t) {
-            const e = new Date(t),
-              n = new Date - e,
-              r = Math.floor(n / 6e4),
-              a = Math.floor(n / 36e5),
-              s = Math.floor(n / 864e5);
-            return r < 1 ? "Just now" : r < 60 ? `${r} minute${1!==r?"s":""} ago` : a < 24 ?
-              `${a} hour${1!==a?"s":""} ago` : s < 7 ? `${s} day${1!==s?"s":""} ago` : e.toLocaleDateString() +
-              " " + e.toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit"
-              })
-          }(t.timestamp), a.appendChild(s);
-          const o = document.createElement("span");
-          o.className = "tw-text-xs tw-text-gray-600 dark:tw-text-gray-300", o.textContent =
-            `${t.currentCount} (was ${t.previousCount})`, a.appendChild(o), e.appendChild(a);
-          const i = document.createElement("div");
-          if (i.className = "tw-space-y-1", t.added && t.added.length > 0) {
-            const e = document.createElement("div");
-            e.className = "tw-flex tw-items-center tw-gap-2 tw-flex-wrap";
-            const n = document.createElement("span");
-            n.className = "tw-text-xs tw-font-semibold tw-text-green-600 dark:tw-text-green-400", n.textContent =
-              `+${t.added.length}:`, e.appendChild(n);
-            for (const n of t.added) {
-              const t = dt(n, r[String(n)], !0);
-              e.appendChild(t)
-            }
-            i.appendChild(e)
-          }
-          if (t.removed && t.removed.length > 0) {
-            const e = document.createElement("div");
-            e.className = "tw-flex tw-items-center tw-gap-2 tw-flex-wrap";
-            const n = document.createElement("span");
-            n.className = "tw-text-xs tw-font-semibold tw-text-red-600 dark:tw-text-red-400", n.textContent =
-              `-${t.removed.length}:`, e.appendChild(n);
-            for (const n of t.removed) {
-              const t = dt(n, r[String(n)], !1);
-              e.appendChild(t)
-            }
-            i.appendChild(e)
-          }
-          return e.appendChild(i), e
-        }
-        let wt = !1;
-        async function gt(t) {
-          const e = ct();
-          if (!e) return;
-          wt || (wt = !0, chrome.runtime.onMessage.addListener((t, e, n) => {
-            if ("FRIEND_TRACKING_CHANGED" === t.type) {
-              const e = ct();
-              e && String(t.userId) === String(e) && G().then(t => {
-                let e = null;
-                for (const n of t.profileRoot || [])
-                  if (e = document.querySelector(n), e) break;
-                e && gt(e)
-              })
-            }
-          }), document.addEventListener("friendTrackingStarted", async t => {
-            if (t.detail && t.detail.userId) {
-              const e = ct();
-              if (e && String(t.detail.userId) === String(e)) {
-                const t = await G();
-                let e = null;
-                for (const n of t.profileRoot || [])
-                  if (e = document.querySelector(n), e) break;
-                e && await gt(e)
-              }
-            }
-          }));
-          const n = (await chrome.storage.local.get(["betterblox_friend_tracking"])).betterblox_friend_tracking ||
-          {};
-          if (!0 !== n[String(e)]?.isTracking) {
-            const e = t.querySelector("[data-betterblox-friend-tracking-history]") || document.querySelector(
-              "[data-betterblox-friend-tracking-history]");
-            return void(e && e.remove())
-          }
-          chrome.runtime.sendMessage({
-            type: "GET_FRIEND_TRACKING_HISTORY",
-            userId: String(e)
-          }, async e => {
-            if (!e || !e.success) return;
-            const n = e.history || [],
-              r = t.querySelector("[data-betterblox-friend-tracking-history]") || document.querySelector(
-                "[data-betterblox-friend-tracking-history]");
-            r && r.remove();
-            const a = function(t) {
-              const e = document.createElement("div");
-              e.className =
-                "bblox-history-container tw-rounded-xl tw-border tw-border-[#e5e5e5] tw-bg-[#fafafa] dark:tw-bg-[#2a2d30] dark:tw-border-[#3a3d40] tw-mx-auto tw-p-3 tw-mb-4";
-              const n = document.createElement("div");
-              n.className = "tw-mb-3 tw-flex tw-items-center tw-justify-between tw-flex-wrap tw-gap-2";
-              const r = document.createElement("div");
-              r.className = "tw-flex tw-items-center tw-gap-2", r.innerHTML =
-                `\n    <img src="${s("logo32")}" alt="Logo" class="tw-w-5 tw-h-5" />\n    <h2 class="tw-text-base tw-font-semibold tw-text-[#1c1c1c] dark:tw-text-gray-200">Friend Changes History</h2>\n  `,
-                n.appendChild(r);
-              const a = document.createElement("div");
-              a.className = "tw-flex tw-items-center tw-gap-2";
-              const o = document.createElement("input");
-              o.type = "date", o.className =
-                "tw-text-xs tw-px-2 tw-py-1 tw-border tw-border-[#e5e5e5] dark:tw-border-gray-600 tw-rounded-md tw-bg-white dark:tw-bg-[#353840] tw-text-[#1c1c1c] dark:tw-text-gray-200",
-                o.title = "Filter from date";
-              const i = document.createElement("input");
-              i.type = "date", i.className =
-                "tw-text-xs tw-px-2 tw-py-1 tw-border tw-border-[#e5e5e5] dark:tw-border-gray-600 tw-rounded-md tw-bg-white dark:tw-bg-[#353840] tw-text-[#1c1c1c] dark:tw-text-gray-200",
-                i.title = "Filter to date";
-              const l = document.createElement("button");
-              l.className =
-                "tw-text-xs tw-px-2 tw-py-1 tw-text-[#666] dark:tw-text-gray-400 hover:tw-text-[#1c1c1c] dark:hover:tw-text-gray-200 tw-rounded",
-                l.textContent = "Clear", l.title = "Clear date filter", a.appendChild(o), a.appendChild(
-                  document.createTextNode(" - ")), a.appendChild(i), a.appendChild(l), n.appendChild(a), e
-                .appendChild(n);
-              const c = document.createElement("div");
-              c.className =
-                "tw-space-y-1.5 tw-max-h-[200px] tw-overflow-y-auto tw-pr-2 scrollbar-thin scrollbar-thumb-[#e5e5e5] dark:scrollbar-thumb-gray-600 scrollbar-track-transparent",
-                c.id = "friend-tracking-history-list";
-              let d = t,
-                u = !1;
-
-              function w(t, e = 10) {
-                c.innerHTML = "";
-                const n = t.slice(0, e);
-                if (0 === t.length) {
-                  const t = document.createElement("div");
-                  return t.className =
-                    "tw-text-xs tw-text-[#666] dark:tw-text-gray-400 tw-text-center tw-py-3", t
-                    .textContent = "No friend changes found for selected date range.", void c.appendChild(
-                      t)
-                }
-                if (0 === n.length) return;
-                const r = document.createElement("div");
-                r.className = "tw-text-xs tw-text-gray-500 dark:tw-text-gray-400 tw-text-center tw-py-1",
-                  r.textContent = "Loading...", r.id = "friend-tracking-loading", c.appendChild(r), (
-                  async () => {
-                      try {
-                        for (const t of n) {
-                          const e = await ut(t);
-                          c.appendChild(e)
-                        }
-                        const t = c.querySelector("#friend-tracking-loading");
-                        t && t.remove()
-                      } catch (t) {
-                        console.error("Error loading friend tracking history:", t);
-                        const e = c.querySelector("#friend-tracking-loading");
-                        e && (e.textContent = "Error loading friend details", e.className =
-                          "tw-text-xs tw-text-red-500 dark:tw-text-red-400 tw-text-center tw-py-1")
-                      }
-                    })()
-              }
-
-              function g() {
-                const e = o.value,
-                  n = i.value;
-                d = function(t, e, n) {
-                  if (!e && !n) return t;
-                  const r = e ? new Date(e).setHours(0, 0, 0, 0) : null,
-                    a = n ? new Date(n).setHours(23, 59, 59, 999) : null;
-                  return t.filter(t => {
-                    const e = t.timestamp;
-                    return !(r && e < r || a && e > a)
-                  })
-                }(t, e, n), u = !1, w(d, 10), m()
-              }
-              o.addEventListener("change", g), i.addEventListener("change", g), l.addEventListener(
-                "click", () => {
-                  o.value = "", i.value = "", g()
-                }), e.appendChild(c);
-              const h = document.createElement("div");
-
-              function m() {
-                if (h.innerHTML = "", d.length > 10) {
-                  const t = document.createElement("button");
-                  t.className =
-                    "tw-px-3 tw-py-1.5 tw-bg-[#e5e5e5] hover:tw-bg-[#d0d0d0] dark:tw-bg-[#404040] dark:hover:tw-bg-[#505050] tw-text-[#1c1c1c] dark:tw-text-gray-200 tw-rounded-lg tw-transition-colors tw-text-xs tw-font-medium",
-                    t.textContent = u ? "Show Less" : `Show All (${d.length} total)`, t.addEventListener(
-                      "click", async () => {
-                        if (u) {
-                          const t = c.querySelectorAll("[data-history-item]");
-                          for (let e = 10; e < t.length; e++) t[e].remove();
-                          u = !1, m()
-                        } else {
-                          for (const t of d.slice(10)) {
-                            const e = await ut(t);
-                            c.appendChild(e)
-                          }
-                          u = !0, m()
-                        }
-                      }), h.appendChild(t)
-                }
-              }
-              return h.className = "tw-mt-2 tw-flex tw-justify-center", h.id =
-                "friend-tracking-show-more-container", e.appendChild(h), w(d, 10), m(), e
-            }(n);
-            a.setAttribute("data-betterblox-friend-tracking-history", "true"), G().then(e => {
-              const n = e.profileHeaderInsert,
-                r = n && (t.querySelector(n) || document.querySelector(n)) || null,
-                s = r?.parentNode;
-              if (s && "user-profile-header-bg" === s.id) return void s.parentNode.insertBefore(a, s
-                .nextSibling);
-              if (r) return void r.appendChild(a);
-              const o = e.profileHeaderInsertFallback || [];
-              for (const e of o) {
-                const n = t.querySelector(e) || document.querySelector(e);
-                if (n) return void n.parentNode.insertBefore(a, n.nextSibling)
-              }
-              console.error("Friend Tracking History: Could not find profile header")
-            })
-          })
-        }
-
-        function ht(t) {
-          if (!t || "string" != typeof t.textContent) return !1;
-          const e = t.textContent;
-          return e.includes("Inventory") && e.includes("Favorites")
-        }
-        async function mt(t = document) {
-          const e = (await G()).profilePopup || [];
-          for (const n of e) try {
-            const e = t.querySelectorAll(n);
-            for (const t of e)
-              if (ht(t) && !t.querySelector("[data-betterblox-track]") && t.closest("#user-profile-header-bg"))
-                return t;
-            for (const t of e)
-              if (ht(t) && !t.querySelector("[data-betterblox-track]")) return t
-          } catch (t) {}
-          const n = t.querySelectorAll('ul[role="menu"]');
-          for (const t of n)
-            if (!t.querySelector("[data-betterblox-track]") && ht(t)) return t;
-          return null
-        }
-        const pt = new WeakSet;
-        const bt =
-          "display: block; width: 100%; padding: 8px 12px; text-align: left; font-size: 14px; color: #1c1c1c; background: transparent; border: none; border-radius: 6px; cursor: pointer; font-family: inherit;";
-        async function ft(t, e) {
-          if (console.log("[BetterBLOX Friend Tracking] addMenuItemsToContainer called with:", t), t
-            .querySelector("[data-betterblox-track]") || t.querySelector("[data-betterblox-track-friend-changes]")
-            ) return Promise.resolve();
-          const n = "UL" === t.tagName && "menu" === t.getAttribute("role"),
-            a = "DIV" === t.tagName;
-          if (!n && !a) return Promise.resolve();
-          console.log("[BetterBLOX Friend Tracking] Creating menu items for user:", e);
-          const s = (await r.n.get("betterblox_tracking_list_v2", [])).includes(e),
-            o = (await chrome.storage.local.get(["betterblox_friend_tracking"])).betterblox_friend_tracking || {},
-            i = !0 === o[String(e)]?.isTracking,
-            l = (t, e, n, r, s) => function(t, e, n, r, a, s = !1) {
+          const [s, i, o, l] = await Promise.all([a.n.get("betterblox_tracking_list_v2", []), a.n.getSettings(
+              "friends-online-notify", !0), a.n.getSettings("auto-join", !0), ot(e)]), [c, d, u] = await Promise
+            .all([Promise.resolve(it(s, e)), i ? ct(e) : Promise.resolve(!1), o ? dt(e) : Promise.resolve(!1)]),
+            w = (t, e, n, a, s) => function(t, e, n, a, r, s = !1) {
+              const i = a.replace(/[\[\]]/g, "");
               if (s) {
-                const s = document.createElement("button");
-                return s.setAttribute(r.replace(/[\[\]]/g, ""), "true"), s.setAttribute("type", "button"), s
-                  .setAttribute("role", "menuitem"), s.style.cssText = bt, n && (s.style.color = "#0095ff"), s
-                  .textContent = n ? e : t, s.onmouseenter = () => {
-                    s.style.background = "#f0f0f0"
-                  }, s.onmouseleave = () => {
-                    s.style.background = "transparent"
-                  }, s.addEventListener("click", async t => {
+                const a = document.createElement("button");
+                return a.setAttribute("data-betterblox-profile-menu-item", "true"), a.setAttribute(i, "true"), a
+                  .setAttribute("type", "button"), a.setAttribute("role", "menuitem"), a.className = ht, a
+                  .textContent = n ? e : t, a.addEventListener("click", async t => {
                     t.stopPropagation(), t.preventDefault();
                     try {
-                      await a()
+                      await r()
                     } catch (t) {
-                      console.error("[BetterBLOX Friend Tracking] Error in menu item click handler:", t)
+                      console.error("Profile menu: click error:", t)
                     }
                     setTimeout(() => document.body.click(), 100)
-                  }), s
+                  }), a
               }
               const o = document.createElement("li");
-              o.setAttribute(r.replace(/[\[\]]/g, ""), "true"), o.setAttribute("role", "menuitem"), o
-                .setAttribute("tabindex", "-1"), o.className =
-                "MuiButtonBase-root MuiMenuItem-root web-blox-css-tss-x2vrx4-MenuItem-root MuiMenuItem-gutters MuiMenuItem-root web-blox-css-tss-x2vrx4-MenuItem-root MuiMenuItem-gutters web-blox-css-mui-15wphe8-Typography-body1";
-              const i = document.createElement("span");
-              i.className = "profile-header-dropdown-label", i.textContent = n ? e : t, n && (i.style.color =
-                "#0095ff");
+              o.setAttribute("data-betterblox-profile-menu-item", "true"), o.setAttribute(i, "true"), o
+                .setAttribute("role", "menuitem"), o.setAttribute("tabindex", "-1"), o.className = mt;
               const l = document.createElement("span");
-              return l.className = "MuiTouchRipple-root web-blox-css-mui-w0pj6f", o.appendChild(i), o.appendChild(
-                l), o.addEventListener("click", async t => {
-                t.stopPropagation(), t.preventDefault();
-                try {
-                  await a()
-                } catch (t) {
-                  console.error("[BetterBLOX Friend Tracking] Error in menu item click handler:", t)
-                }
-              }), o
-            }(t, e, n, r, s, a),
-            c = l("Track", "Untrack", s, "[data-betterblox-track]", async () => {
-              const t = await r.n.get("betterblox_tracking_list_v2", []),
-                n = !t.includes(e);
-              n ? await r.n.set("betterblox_tracking_list_v2", [...t, e]) : await r.n.set(
-                "betterblox_tracking_list_v2", t.filter(t => t !== e));
-              const a = c.querySelector(".profile-header-dropdown-label") || c;
-              a.textContent = n ? "Untrack" : "Track", a.style.color = n ? "#0095ff" : "inherit"
-            }),
-            d = l("Track Friend Changes", "Stop Tracking Friend Changes", i,
-              "[data-betterblox-track-friend-changes]", async () => {
-                const t = (await chrome.storage.local.get(["betterblox_friend_tracking"]))
-                  .betterblox_friend_tracking || {},
-                  n = !(!0 === t[String(e)]?.isTracking);
-                try {
-                  n ? (console.log(
-                      "[BetterBLOX Friend Tracking] Sending START_FRIEND_TRACKING message for user:", e),
-                    chrome.runtime.sendMessage({
-                      type: "START_FRIEND_TRACKING",
-                      userId: String(e)
-                    }, async t => {
-                      if (console.log("[BetterBLOX Friend Tracking] Response from background:", t), t && t
-                        .success) {
-                        console.log("[BetterBLOX Friend Tracking] Started tracking friend changes");
-                        const t = d.querySelector(".profile-header-dropdown-label") || d;
-                        t.textContent = "Stop Tracking Friend Changes", t.style.color = "#0095ff",
-                          setTimeout(() => {
-                            const t = new CustomEvent("friendTrackingStarted", {
-                              detail: {
-                                userId: e
-                              }
-                            });
-                            document.dispatchEvent(t)
-                          }, 1e3)
-                      } else console.error("[BetterBLOX Friend Tracking] Failed to start tracking:", t
-                        ?.error), alert("Failed to start tracking friend changes. Please try again.")
-                    })) : (console.log(
-                      "[BetterBLOX Friend Tracking] Sending STOP_FRIEND_TRACKING message for user:", e),
-                    chrome.runtime.sendMessage({
-                      type: "STOP_FRIEND_TRACKING",
-                      userId: String(e)
-                    }, async t => {
-                      if (console.log("[BetterBLOX Friend Tracking] Response from background:", t), t && t
-                        .success) {
-                        console.log("[BetterBLOX Friend Tracking] Stopped tracking friend changes");
-                        const t = d.querySelector(".profile-header-dropdown-label") || d;
-                        t.textContent = "Track Friend Changes", t.style.color = "inherit";
-                        const e = document.querySelector("[data-betterblox-friend-tracking-history]");
-                        e && e.remove()
-                      } else console.error("[BetterBLOX Friend Tracking] Failed to stop tracking:", t
-                        ?.error)
-                    }))
-                } catch (t) {
-                  console.error("[BetterBLOX Friend Tracking] Error toggling friend changes tracking:", t),
-                    alert("Failed to toggle friend changes tracking. Please try again.")
-                }
+              return l.className =
+                "profile-header-dropdown-label tw-text-sm tw-text-[#1c1c1c] dark:tw-text-gray-200", l
+                .textContent = n ? e : t, o.appendChild(l), o.addEventListener("click", async t => {
+                  t.stopPropagation(), t.preventDefault();
+                  try {
+                    await r()
+                  } catch (t) {
+                    console.error("Profile menu: click error:", t)
+                  }
+                }), o
+            }(t, e, n, a, s, r), g = [];
+          if (!l) {
+            const t = w("Track", "Untrack", c, "[data-betterblox-track]", async () => {
+              const n = await a.n.get("betterblox_tracking_list_v2", []),
+                s = !it(n, e),
+                i = String(e);
+              s ? await a.n.set("betterblox_tracking_list_v2", [...n, i]) : await a.n.set(
+                "betterblox_tracking_list_v2", n.filter(t => String(t) !== i)), pt(t, r, s ? "Untrack" :
+                "Track")
+            });
+            g.push(t)
+          }
+          if (i) {
+            const t = "Notify when Online",
+              n = "Disable Online Notification",
+              s = w(t, n, d, "[data-betterblox-profile-notify-online]", async () => {
+                const i = await async function(t) {
+                  const e = await a.n.get("notifyOnline", []),
+                    n = String(t);
+                  let r;
+                  return r = it(e, t) ? e.filter(t => String(t) !== n) : [...e, n], await a.n.set(
+                    "notifyOnline", r), it(r, t)
+                }(e);
+                pt(s, r, i ? n : t)
               });
-          if (a) t.insertBefore(d, t.firstChild), t.insertBefore(c, t.firstChild);
-          else {
+            g.push(s)
+          }
+          if (o) {
+            const t = "Game Join Notifications",
+              n = "Disable Join Notifications",
+              s = w(t, n, u, "[data-betterblox-profile-game-join]", async () => {
+                const i = await async function(t) {
+                  const e = await a.n.get("autoJoin", []),
+                    n = String(t);
+                  let r;
+                  return r = it(e, t) ? e.filter(t => String(t) !== n) : [...e, n], await a.n.set(
+                    "autoJoin", r), it(r, t)
+                }(e);
+                pt(s, r, i ? n : t)
+              });
+            g.push(s)
+          }
+          if (0 === g.length) return t.setAttribute("data-betterblox-profile-menu-done", "true"), Promise
+          .resolve();
+          if (r) {
+            const e = t.firstChild;
+            for (let n = 0; n < g.length; n++) t.insertBefore(g[n], e)
+          } else {
             let e = null;
             for (let n = 0; n < t.children.length; n++) {
-              const r = t.children[n];
-              if ("LI" === r.tagName && "menuitem" === r.getAttribute("role")) {
-                e = r;
+              const a = t.children[n];
+              if ("LI" === a.tagName && "menuitem" === a.getAttribute("role")) {
+                e = a;
                 break
               }
             }
-            e && e.parentNode === t ? (t.insertBefore(d, e), t.insertBefore(c, e)) : t.firstChild ? (t
-              .insertBefore(d, t.firstChild), t.insertBefore(c, t.firstChild)) : (t.appendChild(d), t
-              .appendChild(c))
+            const n = e || t.firstChild;
+            for (let e = 0; e < g.length; e++) t.insertBefore(g[e], n)
           }
           return Promise.resolve()
         }
-        async function yt(t, e) {
+        async function ft(t, e) {
           if ("profile" !== e) return;
-          const n = await G();
-          let a = null;
+          const n = await F();
+          let r = null;
           for (const t of n.profileRoot) try {
-            if (a = document.querySelector(t), a) break
+            if (r = document.querySelector(t), r) break
           } catch (t) {}
-          a && t === a && (async function(t) {
+          r && t === r && (async function(t) {
             const e = X();
             if (!e) return console.error("Card Profile: Could not get user ID");
             if (document.querySelector(".bblox-stats-container")) return;
-            const n = await G(),
-              a = n.profileHeaderInsert,
-              o = a && (t.querySelector(a) || document.querySelector(a)) || null,
-              i = o?.parentNode,
-              l = W();
-            if (!l) return console.error("Card Profile: Could not get authentificated user ID");
-            const c = (await r.n.get("betterblox_friends_list", {}))[l] || {
+            const n = await F(),
+              r = n.profileHeaderInsert,
+              s = r && (t.querySelector(r) || document.querySelector(r)) || null,
+              i = s?.parentNode,
+              o = Z();
+            if (!o) return console.error("Card Profile: Could not get authentificated user ID");
+            const l = (await a.n.get("betterblox_friends_list", {}))[o] || {
                 friendIds: []
               },
-              d = c.friendIds.includes(e),
-              u = (await r.n.get("betterblox_presence_tracker_v2", {}))[e] || null,
-              w = await async function(t, e, n, a, o) {
-                const i = document.createElement("div");
-                i.className =
-                  "bblox-stats-container tw-w-full tw-max-w-[840px] tw-rounded-xl tw-border tw-border-[#e5e5e5] tw-bg-[#fafafa] dark:tw-bg-[#2a2d30] dark:tw-border-[#3a3d40] tw-mx-auto tw-p-5 tw-flex tw-flex-col tw-gap-5 tw-my-5";
-                const l = document.createElement("div");
-                l.className =
-                  "tw-flex tw-flex-col tw-gap-2 tw-pb-5 tw-border-b tw-border-[#e5e5e5] dark:tw-border-gray-700";
-                const c = document.createElement("div");
-                c.className = "tw-flex tw-items-center tw-justify-between";
-                const d = document.createElement("div");
-                if (d.className = "tw-text-xl tw-font-semibold tw-text-[#1c1c1c] dark:tw-text-gray-300", d
-                  .textContent = "Last Online:", c.appendChild(d), !a) {
+              c = l.friendIds.includes(e),
+              d = (await a.n.get("betterblox_presence_tracker_v2", {}))[e] || null,
+              u = await async function(t, e, n, a, r) {
+                const s = document.createElement("div");
+                if (s.className =
+                  "bblox-stats-container tw-w-full tw-max-w-[840px] tw-rounded-xl tw-border tw-border-[#e5e5e5] tw-bg-[#fafafa] dark:tw-bg-[#2a2d30] dark:tw-border-[#3a3d40] tw-mx-auto tw-p-5 tw-flex tw-flex-col tw-gap-3 tw-my-5",
+                  !t) {
                   const t = document.createElement("div");
-                  t.id = "track-button-container", await async function(t, e) {
-                    let n = e;
-                    if (e && "DIV" !== e.tagName && (n = Y([".buttons-show-on-desktop"], e)), !n)
-                      return;
-                    let a, s = (await r.n.get("betterblox_tracking_list_v2", [])).includes(t);
-                    if ("DIV" === n.tagName) a = document.createElement("button"), a.type = "button",
-                      a.className = s ? "btn-alert-md" : "btn-control-md";
-                    else {
-                      const t = document.createElement("li");
-                      t.className = "btn-friends", t.style.marginLeft = "9px", a = t
-                    }
-                    const o = () => {
-                      "BUTTON" === a.tagName ? (a.className = s ? "btn-alert-md" : "btn-control-md",
-                          a.textContent = s ? "Untrack" : "Track") : a.innerHTML = s ?
-                        '<button type="button" class="tw-btn-alert-md">Untrack</button>' :
-                        '<button type="button" class="tw-btn-control-md">Track</button>'
-                    };
-                    o(), ("BUTTON" === a.tagName ? a : a.querySelector("button")).addEventListener(
-                      "click", async () => {
-                        const e = await r.n.get("betterblox_tracking_list_v2", []);
-                        if (s) {
-                          const n = e.filter(e => e !== t);
-                          await r.n.set("betterblox_tracking_list_v2", n)
-                        } else {
-                          const n = [...e, t];
-                          await r.n.set("betterblox_tracking_list_v2", n)
-                        }
-                        s = !s, o()
-                      }), n.appendChild(a)
-                  }(e, t), c.appendChild(t)
+                  t.className = "tw-flex tw-flex-col tw-gap-3";
+                  const n = document.createElement("div");
+                  if (n.className = "tw-flex tw-flex-wrap tw-items-center tw-justify-between tw-gap-2", n
+                    .innerHTML = U("tw-flex-1 tw-min-w-0"), !a) {
+                    const t = document.createElement("div");
+                    t.id = "track-button-container", await st(e, t), n.appendChild(t)
+                  }
+                  t.appendChild(n);
+                  const i = document.createElement("div");
+                  return i.className = "tw-flex-1 tw-min-w-0", i.id = "presence-status-container",
+                    await rt(i, a, r), t.appendChild(i), s.appendChild(t), s
                 }
-                l.appendChild(c);
-                const u = document.createElement("div");
-                if (u.className = "tw-flex-1", u.id = "presence-status-container", t ? tt(u, t, a, o) :
-                  await et(u, a, o), l.appendChild(u), i.appendChild(l), !t) return i;
-                const w = document.createElement("div");
-                w.className = "tw-flex-1 tw-flex tw-flex-col tw-gap-2";
-                const g = document.createElement("div");
-                g.className = "tw-flex tw-flex-col tw-gap-2 tw-mb-2", g.innerHTML =
-                  `\n    <div class="tw-flex tw-items-center tw-gap-2 tw-flex-wrap">\n      <h2 class="tw-text-xl tw-font-semibold tw-text-[#1c1c1c] dark:tw-text-gray-200 tw-flex tw-items-center tw-gap-2">\n        <img src="${s("logo32")}" alt="Logo" class="tw-w-7 tw-h-7" />\n        BetterBLOX Time Statistics\n      </h2>\n      <select id="time-stats-period" class="tw-ml-auto tw-text-base tw-px-3 tw-py-2 tw-rounded-md tw-border tw-border-[#e5e5e5] dark:tw-border-gray-600 tw-bg-white dark:tw-bg-gray-800 tw-text-[#1c1c1c] dark:tw-text-gray-300 tw-min-w-0">\n        <option value="day">Day</option>\n        <option value="week">Week</option>\n        <option value="month">Month</option>\n        <option value="custom">Custom Range</option>\n        <option value="total" selected>Total</option>\n      </select>\n    </div>\n    <div id="date-range-selector" class="tw-items-center tw-gap-2 tw-text-sm tw-hidden">\n      <label class="tw-text-[#666] dark:tw-text-gray-400">From:</label>\n      <input type="date" id="date-start" class="tw-px-2 tw-py-1.5 tw-rounded-md tw-border tw-border-[#e5e5e5] dark:tw-border-gray-600 tw-bg-white dark:tw-bg-gray-800 tw-text-[#1c1c1c] dark:tw-text-gray-300 tw-text-sm">\n      <label class="tw-text-[#666] dark:tw-text-gray-400">To:</label>\n      <input type="date" id="date-end" class="tw-px-2 tw-py-1.5 tw-rounded tw-border tw-border-[#e5e5e5] dark:tw-border-gray-600 tw-bg-white dark:tw-bg-gray-800 tw-text-[#1c1c1c] dark:tw-text-gray-300 tw-text-sm">\n    </div>\n  `;
-                const h = document.createElement("div");
-                h.id = "time-stats-display", h.className = "tw-grid tw-grid-cols-3 tw-gap-4";
-                const m = e => {
-                  let n, r;
+                const i = document.createElement("div");
+                i.className = "tw-flex tw-w-full tw-min-w-0 tw-flex-1 tw-flex-col tw-gap-2";
+                const o = document.createElement("div");
+                o.className = "tw-flex tw-flex-col tw-gap-2 tw-mb-2";
+                const l = a ? "" :
+                  '<div id="track-button-container" class="tw-flex tw-shrink-0 tw-items-center"></div>';
+                o.innerHTML =
+                  `\n    <div class="tw-flex tw-flex-wrap tw-items-center tw-gap-x-3 tw-gap-y-2">\n      <div id="presence-status-container" class="tw-min-w-0 tw-flex-1 tw-text-base tw-font-medium tw-text-[#1c1c1c] dark:tw-text-gray-200"></div>\n      ${l}\n      <select id="time-stats-period" class="tw-shrink-0 tw-text-sm tw-px-2 tw-py-1.5 tw-rounded-md tw-border tw-border-[#e5e5e5] dark:tw-border-gray-600 tw-bg-white dark:tw-bg-gray-800 tw-text-[#1c1c1c] dark:tw-text-gray-300">\n        <option value="day">Day</option>\n        <option value="week">Week</option>\n        <option value="month">Month</option>\n        <option value="custom">Custom Range</option>\n        <option value="total" selected>Total</option>\n      </select>\n    </div>\n  `;
+                const c = o.querySelector("#presence-status-container");
+                at(c, t, a, r), J(c), a || await st(e, o.querySelector("#track-button-container")), o
+                  .insertAdjacentHTML("beforeend",
+                    '\n    <div id="date-range-selector" class="tw-items-center tw-gap-2 tw-text-sm tw-hidden">\n      <label class="tw-text-[#666] dark:tw-text-gray-400">From:</label>\n      <input type="date" id="date-start" class="tw-px-2 tw-py-1.5 tw-rounded-md tw-border tw-border-[#e5e5e5] dark:tw-border-gray-600 tw-bg-white dark:tw-bg-gray-800 tw-text-[#1c1c1c] dark:tw-text-gray-300 tw-text-sm">\n      <label class="tw-text-[#666] dark:tw-text-gray-400">To:</label>\n      <input type="date" id="date-end" class="tw-px-2 tw-py-1.5 tw-rounded tw-border tw-border-[#e5e5e5] dark:tw-border-gray-600 tw-bg-white dark:tw-bg-gray-800 tw-text-[#1c1c1c] dark:tw-text-gray-300 tw-text-sm">\n    </div>\n  '
+                    );
+                const d = document.createElement("div");
+                d.id = "time-stats-display", d.className = "tw-grid tw-grid-cols-3 tw-gap-4";
+                const u = e => {
+                  let n, a;
                   if ("custom" === e) {
-                    const a = g.querySelector("#date-start").value,
-                      s = g.querySelector("#date-end").value;
-                    if (!a || !s) return void(h.innerHTML =
+                    const r = o.querySelector("#date-start").value,
+                      s = o.querySelector("#date-end").value;
+                    if (!r || !s) return void(d.innerHTML =
                       '\n          <div class="tw-col-span-3 tw-text-center tw-text-sm tw-text-gray-500 dark:tw-text-gray-400 tw-py-2">\n            Please select both start and end dates\n          </div>\n        '
                       );
-                    const o = new Date(a).setHours(0, 0, 0, 0),
-                      i = new Date(s).setHours(23, 59, 59, 999);
-                    if (i < o) return void(h.innerHTML =
+                    const i = new Date(r).setHours(0, 0, 0, 0),
+                      l = new Date(s).setHours(23, 59, 59, 999);
+                    if (l < i) return void(d.innerHTML =
                       '\n          <div class="tw-col-span-3 tw-text-center tw-text-sm tw-text-red-500 dark:tw-text-red-400 tw-py-2">\n            End date must be after start date\n          </div>\n        '
                       );
-                    n = J(t, e, o, i), r =
-                      `${new Date(a).toLocaleDateString()} - ${new Date(s).toLocaleDateString()}`
-                  } else n = J(t, e), r = e.charAt(0).toUpperCase() + e.slice(1);
-                  const a =
-                    `<span class="${n.website>0?"tw-text-green-600 dark:tw-text-green-400":"tw-text-gray-400 dark:tw-text-gray-400"}">${n.website>0?K(n.website):"--"}</span>`,
+                    n = K(t, e, i, l), a =
+                      `${new Date(r).toLocaleDateString()} - ${new Date(s).toLocaleDateString()}`
+                  } else n = K(t, e), a = e.charAt(0).toUpperCase() + e.slice(1);
+                  const r =
+                    `<span class="${n.website>0?"tw-text-green-600 dark:tw-text-green-400":"tw-text-gray-400 dark:tw-text-gray-400"}">${n.website>0?Y(n.website):"--"}</span>`,
                     s =
-                    `<span class="${n.studio>0?"tw-text-green-600 dark:tw-text-green-400":"tw-text-gray-400 dark:tw-text-gray-400"}">${n.studio>0?K(n.studio):"--"}</span>`;
-                  h.innerHTML =
-                    `\n      \x3c!-- Website Stats --\x3e\n      <div class="tw-bg-white dark:tw-bg-[#353840] tw-border tw-border-[#e5e5e5] dark:tw-border-transparent tw-p-4 tw-rounded-lg tw-min-w-0">\n        <p class="tw-text-base tw-text-[#666] dark:tw-text-gray-400">Website</p>\n        <p class="tw-text-base tw-font-medium tw-text-[#1c1c1c] dark:tw-text-gray-200">${r}: ${a}</p>\n      </div>\n      \x3c!-- Game Stats --\x3e\n      <div class="tw-bg-white dark:tw-bg-[#353840] tw-border tw-border-[#e5e5e5] dark:tw-border-transparent tw-p-4 tw-rounded-lg tw-min-w-0">\n        <p class="tw-text-base tw-text-[#666] dark:tw-text-gray-400">Game</p>\n        <p class="tw-text-base tw-font-medium tw-text-[#1c1c1c] dark:tw-text-gray-200">${r}: <span class="${n.game>0?"tw-text-green-600 dark:tw-text-green-400":"tw-text-[#666] dark:tw-text-gray-400"}">${n.game>0?K(n.game):"--"}</span></p>\n      </div>\n      \x3c!-- Studio Stats --\x3e\n      <div class="tw-bg-white dark:tw-bg-[#353840] tw-border tw-border-[#e5e5e5] dark:tw-border-transparent tw-p-4 tw-rounded-lg tw-min-w-0">\n        <p class="tw-text-base tw-text-[#666] dark:tw-text-gray-400">Studio</p>\n        <p class="tw-text-base tw-font-medium tw-text-[#1c1c1c] dark:tw-text-gray-200">${r}: ${s}</p>\n      </div>\n    `
+                    `<span class="${n.studio>0?"tw-text-green-600 dark:tw-text-green-400":"tw-text-gray-400 dark:tw-text-gray-400"}">${n.studio>0?Y(n.studio):"--"}</span>`;
+                  d.innerHTML =
+                    `\n      \x3c!-- Website Stats --\x3e\n      <div class="tw-bg-white dark:tw-bg-[#353840] tw-border tw-border-[#e5e5e5] dark:tw-border-transparent tw-p-4 tw-rounded-lg tw-min-w-0">\n        <p class="tw-text-base tw-text-[#666] dark:tw-text-gray-400">Website</p>\n        <p class="tw-text-base tw-font-medium tw-text-[#1c1c1c] dark:tw-text-gray-200">${a}: ${r}</p>\n      </div>\n      \x3c!-- Game Stats --\x3e\n      <div class="tw-bg-white dark:tw-bg-[#353840] tw-border tw-border-[#e5e5e5] dark:tw-border-transparent tw-p-4 tw-rounded-lg tw-min-w-0">\n        <p class="tw-text-base tw-text-[#666] dark:tw-text-gray-400">Game</p>\n        <p class="tw-text-base tw-font-medium tw-text-[#1c1c1c] dark:tw-text-gray-200">${a}: <span class="${n.game>0?"tw-text-green-600 dark:tw-text-green-400":"tw-text-[#666] dark:tw-text-gray-400"}">${n.game>0?Y(n.game):"--"}</span></p>\n      </div>\n      \x3c!-- Studio Stats --\x3e\n      <div class="tw-bg-white dark:tw-bg-[#353840] tw-border tw-border-[#e5e5e5] dark:tw-border-transparent tw-p-4 tw-rounded-lg tw-min-w-0">\n        <p class="tw-text-base tw-text-[#666] dark:tw-text-gray-400">Studio</p>\n        <p class="tw-text-base tw-font-medium tw-text-[#1c1c1c] dark:tw-text-gray-200">${a}: ${s}</p>\n      </div>\n    `
                 };
-                m("total");
-                const p = g.querySelector("#time-stats-period"),
-                  b = g.querySelector("#date-range-selector"),
-                  f = g.querySelector("#date-start"),
-                  y = g.querySelector("#date-end"),
-                  x = new Date,
-                  v = new Date(x);
-                v.setDate(x.getDate() - 7), y.value = x.toISOString().split("T")[0], f.value = v
-                  .toISOString().split("T")[0], w.appendChild(g), w.appendChild(h);
-                const k = document.createElement("div");
-                k.className = "tw-min-w-0 tw-w-[320px] tw-flex tw-flex-col tw-shrink-0";
-                const S = document.createElement("div");
-                S.id = "top-games-container", S.className =
+                u("total");
+                const w = o.querySelector("#time-stats-period"),
+                  g = o.querySelector("#date-range-selector"),
+                  h = o.querySelector("#date-start"),
+                  m = o.querySelector("#date-end"),
+                  p = new Date,
+                  b = new Date(p);
+                b.setDate(p.getDate() - 7), m.value = p.toISOString().split("T")[0], h.value = b
+                  .toISOString().split("T")[0], i.appendChild(o), i.appendChild(d);
+                const f = document.createElement("div");
+                f.className = "bblox-stats-topgames";
+                const y = document.createElement("div");
+                y.id = "top-games-container", y.className =
                   "tw-space-y-1.5 tw-overflow-y-auto tw-max-h-[180px] tw-pr-2 scrollbar-thin scrollbar-thumb-[#e5e5e5] dark:scrollbar-thumb-gray-600 scrollbar-track-transparent",
-                  k.innerHTML =
+                  f.innerHTML =
                   '\n    <h2 class="tw-text-base tw-font-semibold tw-text-[#1c1c1c] dark:tw-text-gray-200 tw-mb-2">Top Games</h2>\n  ',
-                  k.appendChild(S);
-                const C = e => {
+                  f.appendChild(y);
+                const v = e => {
                   let n = null,
-                    r = null;
+                    a = null;
                   if ("custom" === e) {
-                    const t = g.querySelector("#date-start").value,
-                      e = g.querySelector("#date-end").value;
-                    if (!t || !e) return void(S.innerHTML =
+                    const t = o.querySelector("#date-start").value,
+                      e = o.querySelector("#date-end").value;
+                    if (!t || !e) return void(y.innerHTML =
                       '<div class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400 tw-text-center tw-py-2">Select date range to view games</div>'
                       );
-                    n = new Date(t).setHours(0, 0, 0, 0), r = new Date(e).setHours(23, 59, 59, 999)
+                    n = new Date(t).setHours(0, 0, 0, 0), a = new Date(e).setHours(23, 59, 59, 999)
                   }
-                  const a = function(t, e, n = null, r = null) {
-                    const a = t.gameHistory?.games || {},
+                  const r = function(t, e, n = null, a = null) {
+                    const r = t.gameHistory?.games || {},
                       s = (new Date).getTime();
-                    let o = 0,
-                      i = s;
+                    let i = 0,
+                      o = s;
                     switch (e) {
                       case "day":
-                        o = (new Date).setHours(0, 0, 0, 0);
+                        i = (new Date).setHours(0, 0, 0, 0);
                         break;
                       case "week":
-                        o = s - 6048e5;
+                        i = s - 6048e5;
                         break;
                       case "month":
-                        o = s - 2592e6;
+                        i = s - 2592e6;
                         break;
                       case "custom":
-                        if (!n || !r)
+                        if (!n || !a)
                         return '<div class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400 tw-text-center tw-py-2">Select date range to view games</div>';
-                        o = n, i = r
+                        i = n, o = a
                     }
-                    const l = Object.entries(a).map(([n, r]) => {
-                        let a = 0;
-                        if ("day" === e) a = r.dailyTime || 0;
-                        else if ("total" === e) a = r.totalTime || 0;
+                    const l = Object.entries(r).map(([n, a]) => {
+                        let r = 0;
+                        if ("day" === e) r = a.dailyTime || 0;
+                        else if ("total" === e) r = a.totalTime || 0;
                         else {
-                          if (r.sessions && Array.isArray(r.sessions)) {
+                          if (a.sessions && Array.isArray(a.sessions)) {
                             let t = 0;
                             const e = [];
-                            for (const n of r.sessions) {
+                            for (const n of a.sessions) {
                               if (!n.startTime || !n.endTime) continue;
-                              const r = n.startTime,
-                                a = n.endTime;
-                              if (r < i && a > o) {
-                                const n = Math.max(r, o),
-                                  s = Math.min(a, i) - n;
+                              const a = n.startTime,
+                                r = n.endTime;
+                              if (a < o && r > i) {
+                                const n = Math.max(a, i),
+                                  s = Math.min(r, o) - n;
                                 s > 0 && (e.push({
                                   durationInRange: s,
-                                  fullDuration: a - r
-                                }), t += a - r)
+                                  fullDuration: r - a
+                                }), t += r - a)
                               }
                             }
-                            const n = r.totalTime || 0;
+                            const n = a.totalTime || 0;
                             for (const {
-                                durationInRange: r,
+                                durationInRange: a,
                                 fullDuration: s
                               }
-                              of e) a += t > 0 && n > 0 && t > n ? r / s * (s / t * n) : r
+                              of e) r += t > 0 && n > 0 && t > n ? a / s * (s / t * n) : a
                           }
                           if (t.gameHistory?.currentGame === n && t.gameHistory?.gameStartTime) {
                             const e = t.gameHistory.gameStartTime;
-                            if (e < i) {
-                              const t = Math.max(e, o),
-                                n = Math.min(s, i) - t;
-                              n > 0 && (a += n)
+                            if (e < o) {
+                              const t = Math.max(e, i),
+                                n = Math.min(s, o) - t;
+                              n > 0 && (r += n)
                             }
                           }
                         }
                         return {
                           id: n,
-                          name: r.name,
-                          periodTime: a,
-                          totalTime: r.totalTime || 0,
-                          dailyTime: r.dailyTime || 0
+                          name: a.name,
+                          periodTime: r,
+                          totalTime: a.totalTime || 0,
+                          dailyTime: a.dailyTime || 0
                         }
                       }).filter(t => t.periodTime > 0).sort((t, e) => e.periodTime - t.periodTime)
                       .slice(0, 5);
@@ -4162,57 +3869,54 @@
                     return '<div class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400 tw-text-center tw-py-2">No games played in this period</div>';
                     const c = "custom" === e ? "Range" : e.charAt(0).toUpperCase() + e.slice(1);
                     return l.map(t =>
-                      `\n      <a href="https://www.roblox.com/games/${t.id}" \n         class="tw-flex tw-items-center tw-justify-between tw-bg-gray-50 dark:tw-bg-[#353840] tw-p-1.5 tw-rounded-md hover:tw-bg-gray-100 dark:hover:tw-bg-[#404650] tw-transition-colors">\n        <span class="tw-text-sm tw-text-gray-800 dark:tw-text-gray-200 tw-truncate">${t.name}</span>\n        <div class="tw-flex tw-flex-col tw-items-end tw-ml-2">\n          <span class="tw-text-xs tw-text-green-600 dark:tw-text-green-400">${c}: ${K(t.periodTime)}</span>\n          ${"total"!==e?`<span class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">Total: ${K(t.totalTime)}</span>`:""}\n        </div>\n      </a>\n    `
+                      `\n      <a href="https://www.roblox.com/games/${t.id}" \n         class="tw-flex tw-items-center tw-justify-between tw-bg-gray-50 dark:tw-bg-[#353840] tw-p-1.5 tw-rounded-md hover:tw-bg-gray-100 dark:hover:tw-bg-[#404650] tw-transition-colors">\n        <span class="tw-text-sm tw-text-gray-800 dark:tw-text-gray-200 tw-truncate">${t.name}</span>\n        <div class="tw-flex tw-flex-col tw-items-end tw-ml-2">\n          <span class="tw-text-xs tw-text-green-600 dark:tw-text-green-400">${c}: ${Y(t.periodTime)}</span>\n          ${"total"!==e?`<span class="tw-text-xs tw-text-gray-500 dark:tw-text-gray-400">Total: ${Y(t.totalTime)}</span>`:""}\n        </div>\n      </a>\n    `
                       ).join("")
-                  }(t, e, n, r);
-                  S.innerHTML = a
+                  }(t, e, n, a);
+                  y.innerHTML = r
                 };
-                p.addEventListener("change", t => {
+                w.addEventListener("change", t => {
                   const e = t.target.value;
-                  "custom" === e ? (b.classList.remove("tw-hidden"), b.classList.add("tw-flex"), m(e),
-                    C(e)) : (b.classList.add("tw-hidden"), b.classList.remove("tw-flex"), m(e), C(
+                  "custom" === e ? (g.classList.remove("tw-hidden"), g.classList.add("tw-flex"), u(e),
+                    v(e)) : (g.classList.add("tw-hidden"), g.classList.remove("tw-flex"), u(e), v(
                     e))
-                }), f.addEventListener("change", () => {
-                  f.value && (y.min = f.value), "custom" === p.value && (m("custom"), C("custom"))
-                }), y.addEventListener("change", () => {
-                  y.value && (f.max = y.value), "custom" === p.value && (m("custom"), C("custom"))
-                }), C("total");
-                const L = document.createElement("div");
-                return L.className = "tw-flex tw-gap-5 tw-items-start tw-min-w-0", L.appendChild(w), L
-                  .appendChild(k), i.appendChild(L), i
-              }(u, e, 0, d, c.friendIds.length);
-            if (await Q(u || null, d, c.friendIds.length), await Z(), i) i.parentNode.insertBefore(w, i
+                }), h.addEventListener("change", () => {
+                  h.value && (m.min = h.value), "custom" === w.value && (u("custom"), v("custom"))
+                }), m.addEventListener("change", () => {
+                  m.value && (h.max = m.value), "custom" === w.value && (u("custom"), v("custom"))
+                }), v("total");
+                const x = document.createElement("div");
+                return x.className = "bblox-stats-row", x.appendChild(i), x.appendChild(f), s.appendChild(
+                  x), s
+              }(d, e, 0, c, l.friendIds.length);
+            if (await nt(d || null, c, l.friendIds.length), await et(), i) i.parentNode.insertBefore(u, i
               .nextSibling);
             else {
               const e = t.querySelector(".user-profile-header");
-              if (e) e.parentNode.insertBefore(w, e.nextSibling);
+              if (e) e.parentNode.insertBefore(u, e.nextSibling);
               else {
                 const e = n.profileHeaderInsertFallback || [];
-                let r = !1;
+                let a = !1;
                 for (const n of e) {
                   const e = t.querySelector(n) || document.querySelector(n);
                   if (e) {
-                    e.parentNode.insertBefore(w, e.nextSibling), r = !0;
+                    e.parentNode.insertBefore(u, e.nextSibling), a = !0;
                     break
                   }
                 }
-                r || console.error("Card Profile: Could not find profile header")
+                a || console.error("Card Profile: Could not find profile header")
               }
             }
-            setTimeout(() => Z(), 800)
+            setTimeout(() => et(), 800)
           }(t), async function(t) {
             const e = function() {
               try {
                 const t = window.location.href.match(/\/users\/(\d+)\/profile/);
                 return t && t[1] ? t[1] : null
               } catch (t) {
-                return console.error("Best Friend Profile: Error getting user ID from URL:", t), null
+                return console.error("Profile track option: Error getting user ID from URL:", t), null
               }
             }();
-            if (!e) return void console.log("[BetterBLOX Best Friend] No user ID found");
-            if (!await r.n.getSettings("best-friend", !0)) return void console.log(
-              "[BetterBLOX Best Friend] Feature disabled in settings");
-            console.log("[BetterBLOX Best Friend] Initializing for user:", e);
+            if (!e) return;
             const n = ['button[aria-label*="More"]', 'button[aria-label*="more"]',
               'button[aria-label*="Menu"]', 'button[aria-label*="menu"]', '[data-testid*="menu"]',
               '[data-testid*="Menu"]', '[class*="icon-more"]', '[class*="IconMore"]',
@@ -4222,114 +3926,44 @@
             let a = null;
             for (const e of n)
               if (a = t.querySelector(e) || document.querySelector(e), a) break;
-            let s = null;
-            if (new MutationObserver(t => {
-                s && clearTimeout(s), s = setTimeout(() => {
-                  at(document).then(t => {
-                    !t || st.has(t) || ot.has(t) || (console.log(
-                        "[BetterBLOX Best Friend] Menu found via MutationObserver:", t), ot
-                      .add(t), lt(t, e).then(() => {
-                        st.add(t), ot.delete(t)
-                      }))
+            let r = null;
+            if (new MutationObserver(() => {
+                r && clearTimeout(r), r = setTimeout(() => {
+                  wt(document).then(t => {
+                    !t || gt.has(t) || lt(t) || (gt.add(t), bt(t, e).then(() => gt.delete(t)))
                   })
                 }, 100)
               }).observe(document.body, {
                 childList: !0,
                 subtree: !0
               }), a) {
-              console.log("[BetterBLOX Best Friend] Menu button found, adding click listener");
               const t = () => {
                 setTimeout(() => {
-                  at(document).then(t => {
-                    !t || st.has(t) || ot.has(t) || (console.log(
-                        "[BetterBLOX Best Friend] Menu found via click handler (backup):", t),
-                      ot.add(t), lt(t, e).then(() => {
-                        st.add(t), ot.delete(t)
-                      }))
+                  wt(document).then(t => {
+                    !t || gt.has(t) || lt(t) || (gt.add(t), bt(t, e).then(() => gt.delete(t)))
                   })
                 }, 150)
               };
               a.addEventListener("click", t, {
                 once: !1
               })
-            } else console.log("[BetterBLOX Best Friend] Menu button not found");
-            at(document).then(t => {
-              !t || st.has(t) || ot.has(t) || (console.log(
-                "[BetterBLOX Best Friend] Existing menu found on page load:", t), ot.add(t), lt(t,
-                e).then(() => {
-                st.add(t), ot.delete(t)
-              }))
-            }), t.setAttribute("data-betterblox-best-friend-profile", "true")
-          }(t), async function(t) {
-            const e = function() {
-              try {
-                const t = window.location.href.match(/\/users\/(\d+)\/profile/);
-                return t && t[1] ? t[1] : null
-              } catch (t) {
-                return console.error("Friend Tracking Profile: Error getting user ID from URL:", t),
-                  null
-              }
-            }();
-            if (!e) return void console.log("[BetterBLOX Friend Tracking] No user ID found");
-            console.log("[BetterBLOX Friend Tracking] Initializing for user:", e);
-            const n = ['button[aria-label*="More"]', 'button[aria-label*="more"]',
-              'button[aria-label*="Menu"]', 'button[aria-label*="menu"]', '[data-testid*="menu"]',
-              '[data-testid*="Menu"]', '[class*="icon-more"]', '[class*="IconMore"]',
-              '[class*="more-button"]', '[class*="MoreButton"]', '[class*="menu-button"]',
-              '[class*="MenuButton"]'
-            ];
-            let r = null;
-            for (const e of n)
-              if (r = t.querySelector(e) || document.querySelector(e), r) break;
-            let a = null;
-            if (new MutationObserver(t => {
-                a && clearTimeout(a), a = setTimeout(() => {
-                  mt(document).then(t => {
-                    !t || pt.has(t) || t.querySelector("[data-betterblox-track]") || t
-                      .querySelector("[data-betterblox-track-friend-changes]") || (console
-                        .log("[BetterBLOX Friend Tracking] Menu found via MutationObserver:",
-                          t), pt.add(t), ft(t, e).then(() => pt.delete(t)))
-                  })
-                }, 100)
-              }).observe(document.body, {
-                childList: !0,
-                subtree: !0
-              }), r) {
-              console.log("[BetterBLOX Friend Tracking] Menu button found, adding click listener");
-              const t = () => {
-                setTimeout(() => {
-                  mt(document).then(t => {
-                    !t || pt.has(t) || t.querySelector("[data-betterblox-track]") || t
-                      .querySelector("[data-betterblox-track-friend-changes]") || (console
-                        .log(
-                          "[BetterBLOX Friend Tracking] Menu found via click handler (backup):",
-                          t), pt.add(t), ft(t, e).then(() => pt.delete(t)))
-                  })
-                }, 150)
-              };
-              r.addEventListener("click", t, {
-                once: !1
-              })
-            } else console.log("[BetterBLOX Friend Tracking] Menu button not found");
-            mt(document).then(t => {
-              !t || pt.has(t) || t.querySelector("[data-betterblox-track]") || t.querySelector(
-                "[data-betterblox-track-friend-changes]") || (console.log(
-                  "[BetterBLOX Friend Tracking] Existing menu found on page load:", t), pt.add(t),
-                ft(t, e).then(() => pt.delete(t)))
-            }), t.setAttribute("data-betterblox-friend-tracking-profile", "true")
-          }(t), gt(t))
+            }
+            wt(document).then(t => {
+              !t || gt.has(t) || lt(t) || (gt.add(t), bt(t, e).then(() => gt.delete(t)))
+            }), t.setAttribute("data-betterblox-track-user-profile", "true")
+          }(t))
         }
-        const xt = {
+        const yt = {
           pages: ["home", "profile", "friends"],
           selectors: [{
             selector: "a.friends-carousel-tile-labels",
             handler: (t, e) => {
               "home" == e && async function(t) {
-                if (!await r.n.getSettings("friends-presence", !0)) return;
-                const e = F(t),
-                  n = await r.n.get("betterblox_presence_tracker_v2", {}),
-                  a = t.querySelector(".presence-status");
-                if (a && a.remove(), n[e]) H(t, n[e]);
+                if (!await a.n.getSettings("friends-presence", !0)) return;
+                const e = q(t),
+                  n = await a.n.get("betterblox_presence_tracker_v2", {}),
+                  r = t.querySelector(".presence-status");
+                if (r && r.remove(), n[e]) B(t, n[e]);
                 else {
                   const e = document.createElement("div");
                   e.className = "presence-status", e.innerHTML =
@@ -4342,36 +3976,36 @@
             selector: "li.avatar-card",
             handler: (t, e) => {
               "friends" == e && async function(t) {
-                if (!await r.n.getSettings("friends-presence", !0)) return;
-                const e = q(t),
-                  n = await r.n.get("betterblox_presence_tracker_v2", {}),
-                  a = t.querySelectorAll(".presence-status");
-                for (const t of a) t.remove();
-                n[e] && O(t, n[e])
+                if (!await a.n.getSettings("friends-presence", !0)) return;
+                const e = j(t),
+                  n = await a.n.get("betterblox_presence_tracker_v2", {}),
+                  r = t.querySelectorAll(".presence-status");
+                for (const t of r) t.remove();
+                n[e] && N(t, n[e])
               }(t)
             }
           }, {
             selector: "#user-profile-header-bg",
-            handler: (t, e) => yt(t, e)
+            handler: (t, e) => ft(t, e)
           }, {
             selector: "#treatment-redesigned-header",
-            handler: (t, e) => yt(t, e)
+            handler: (t, e) => ft(t, e)
           }, {
             selector: "#profile-header-container",
-            handler: (t, e) => yt(t, e)
+            handler: (t, e) => ft(t, e)
           }],
           handlePresenceUpdate(t) {
             document.querySelectorAll("a.friends-carousel-tile-labels").forEach(e => {
               !async function(t, e) {
-                const n = F(t);
-                n && await r.n.getSettings("friends-presence", !0) && e[n] && H(t, e[n])
+                const n = q(t);
+                n && await a.n.getSettings("friends-presence", !0) && e[n] && B(t, e[n])
               }(e, t)
             }), document.querySelectorAll("li.avatar-card").forEach(e => {
               !async function(t, e) {
-                const n = q(t);
-                n && await r.n.getSettings("friends-presence", !0) && e[n] && O(t, e[n])
+                const n = j(t);
+                n && await a.n.getSettings("friends-presence", !0) && e[n] && N(t, e[n])
               }(e, t)
-            }), G().then(e => {
+            }), F().then(e => {
               let n = null;
               for (const t of e.profileRoot) try {
                 if (n = document.querySelector(t), n) break
@@ -4379,18 +4013,18 @@
               n && async function(t, e) {
                 const n = X();
                 if (!n) return;
-                if (!await r.n.getSettings("friends-presence", !0)) return;
-                const a = await r.n.get("betterblox_friends_list", {}),
-                  s = W();
+                if (!await a.n.getSettings("friends-presence", !0)) return;
+                const r = await a.n.get("betterblox_friends_list", {}),
+                  s = Z();
                 if (!s) return console.error("Card Profile: Could not get authentificated user ID");
-                const o = a[s] || {
+                const i = r[s] || {
                     friendIds: []
                   },
-                  i = o.friendIds.includes(n),
+                  o = i.friendIds.includes(n),
                   l = document.getElementById("presence-status-container");
-                l ? e[n] ? tt(l, e[n], i, o.friendIds.length) : (l.innerHTML = "", await et(l, i, o
-                  .friendIds.length)) : e[n] && tt(t, e[n], i, o.friendIds.length), await Q(e[n] ||
-                  null, i, o.friendIds.length)
+                l ? e[n] ? (at(l, e[n], o, i.friendIds.length), J(l)) : (l.innerHTML = "", await rt(l, o,
+                  i.friendIds.length)) : e[n] && at(t, e[n], o, i.friendIds.length), await nt(e[n] ||
+                  null, o, i.friendIds.length)
               }(n, t)
             })
           },
@@ -4400,261 +4034,7 @@
             })
           }
         };
-
-        function vt() {
-          const t = window.location.href.match(/games\/(\d+)/);
-          return t ? t[1] : null
-        }
-
-        function kt(t, e) {
-          const n = document.getElementById("target-servers-container");
-          if (!n) return;
-          const r = document.createElement("button");
-          r.classList.add("btn-control-md"), r.dataset.serverId = t, r.textContent = `Join Server ${t}`, r
-            .addEventListener("click", () => {
-              e || (e = vt()), window.open(
-                `https://www.roblox.com/games/${e}/#!/game-instances?betterBloxJoin=${t}&placeid=${e}`, "_blank"
-                )
-            }), n.appendChild(r)
-        }
-
-        function St(t, e) {
-          const n = document.getElementById("scan-status");
-          n && (n.textContent = t, n.classList.remove("tw-text-blue-500", "tw-text-green-500", "tw-text-red-500"),
-            "blue" === e ? n.classList.add("tw-text-blue-500") : "green" === e ? n.classList.add(
-              "tw-text-green-500") : "red" === e ? n.classList.add("tw-text-red-500") : n.classList.add(
-              "tw-text-blue-500"))
-        }
-        const Ct = t => new Promise(e => setTimeout(e, 1e3 * t)),
-          Lt = new class {
-            constructor() {
-              this.targetAvatar = null, this.searching = !1, this.playerTokens = [], this.servers = []
-            }
-            reset() {
-              ! function() {
-                const t = document.getElementById("target-servers-container");
-                t && (t.innerHTML = "")
-              }(), this.targetAvatar = null, this.searching = !1, this.playerTokens = [], this.servers = [],
-                document.getElementById("target-server").textContent = 0, document.getElementById(
-                  "players-scanned-count").textContent = 0, document.getElementById("servers-scanned-count")
-                .textContent = 0
-            }
-            async searchPlayer() {
-              if (this.searching) return void St("Already searching. Refresh page.", "red");
-              this.reset();
-              const t = document.getElementById("player-finder-input");
-              if (!t) return void St("Input element not found.", "red");
-              const e = t.value.trim().replace("@", "");
-              if (!e) return void St("Player name is empty.", "red");
-              St(`Searching for player: ${e}`, "blue");
-              const n = await async function(t) {
-                const e = await fetch("https://users.roblox.com/v1/usernames/users", {
-                  body: JSON.stringify({
-                    usernames: [t],
-                    excludeBannedUsers: !0
-                  }),
-                  method: "POST"
-                });
-                if (!e.ok) return null;
-                const n = await e.json();
-                return 0 === n.data.length ? null : n.data[0].id
-              }(e);
-              if (!n) return void St("Player not found.", "red");
-              const r = await async function(t) {
-                return await chrome.runtime.sendMessage({
-                  type: "GET_PRESENCE_FOR_USERS",
-                  data: {
-                    userIds: [t]
-                  }
-                })
-              }(n);
-              if (!r || r.userPresences.length <= 0) return void St("Presence scan error.", "red");
-              if (2 !== r.userPresences[0].userPresenceType) return void St("Player is not playing games.",
-              "red");
-              const a = await async function(t) {
-                const e = await fetch(
-                  `https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${t}&size=150x150&format=Png&isCircular=false`
-                  );
-                if (!e.ok) return null;
-                const n = await e.json();
-                return 0 === n.data.length ? null : n.data[0]?.imageUrl
-              }(n);
-              if (a) {
-                if (document.getElementById("player-finder-avatar").src = a, r.userPresences[0].gameId && r
-                  .userPresences[0].placeId) return St("Player found via presence.", "green"), void kt(r
-                  .userPresences[0].gameId, r.userPresences[0].placeId);
-                this.searching = !0, this.searchAvatarServer(a), await this.scanPlayers(), this.servers.length <=
-                  0 ? St("Target not found.", "red") : St("Target found!", "green")
-              } else St("Target Avatar not found.", "red")
-            }
-            async searchAvatarServer(t) {
-              this.targetAvatar = t;
-              const e = vt();
-              if (!e) return void St("Game ID not found.", "red");
-              let n = 0;
-              const r = await this.getServers(e);
-              let a = r.data,
-                s = r.nextPageCursor;
-              for (; this.searching;) {
-                for (const t of a)
-                  for (const e of t.playerTokens) this.playerTokens.push({
-                    token: e,
-                    type: "AvatarHeadshot",
-                    size: "150x150",
-                    requestId: t.id
-                  });
-                if (n += a.length, document.getElementById("servers-scanned-count").textContent = n, !s) {
-                  this.searching = !1;
-                  break
-                }
-                const {
-                  nextPageCursor: t,
-                  data: r
-                } = await this.getServers(e, s);
-                s = t, a = r
-              }
-            }
-            async scanPlayers() {
-              let t = 0;
-              for (; this.searching || this.playerTokens.length > 0;) {
-                if (this.playerTokens.length <= 0) {
-                  await Ct(.2);
-                  continue
-                }
-                const e = [];
-                for (let t = 0; t < 100; t++) {
-                  const t = this.playerTokens.shift();
-                  t && e.push(t)
-                }
-                if (!e.length) continue;
-                const n = await this.getBulkAvatars(e);
-                for (const t of n.data) this.targetAvatar === t.imageUrl && (this.servers.push(t.requestId),
-                  document.getElementById("target-server").textContent = this.servers.length, kt(t.requestId));
-                t += n.data.length, document.getElementById("players-scanned-count").textContent = t
-              }
-            }
-            async getBulkAvatars(t) {
-              try {
-                const e = await fetch("https://thumbnails.roblox.com/v1/batch", {
-                  body: JSON.stringify(t),
-                  method: "POST"
-                });
-                if (!e.ok) throw new Error("Request failed");
-                return await e.json()
-              } catch (e) {
-                return St("Normal ratelimit on avatars (wait)", "red"), await Ct(5), await this.getBulkAvatars(t)
-              }
-            }
-            async getServers(t, e = "") {
-              try {
-                const n = await fetch(
-                  `https://games.roblox.com/v1/games/${t}/servers/Public?limit=100&cursor=${e}`);
-                if (!n.ok) throw new Error("Request failed");
-                return await n.json()
-              } catch (n) {
-                return St("Normal ratelimit on server fetch (wait)", "red"), await Ct(5), await this.getServers(t,
-                  e)
-              }
-            }
-          },
-          Et = Lt;
-        const Tt = {
-          pages: ["game"],
-          selectors: [{
-            id: "PlayerFinder",
-            selector: "#running-game-instances-container #rbx-private-servers",
-            handler: async (t, e) => {
-              await r.n.getSettings("player-finder", !1) && function(t) {
-                ! function(t) {
-                  const e = document.querySelector("#player-finder-container");
-                  if (e) return e;
-                  const n = function() {
-                      const t = document.createElement("div");
-                      t.id = "player-finder-container";
-                      const e = document.createElement("div");
-                      e.classList.add("container-header");
-                      const n = document.createElement("h2");
-                      n.classList.add("container-header-text", "tw-flex", "tw-items-center",
-                        "tw-justify-center", "tw-gap-2");
-                      const r = document.createElement("img");
-                      return r.src = s("logo32"), r.alt = "BetterBLOX Logo", r.classList.add("tw-w-4",
-                        "tw-h-4"), n.appendChild(r), n.appendChild(document.createTextNode(
-                        "BetterBLOX Player Finder")), e.appendChild(n), t.appendChild(e), t.appendChild(
-                        function() {
-                          const t = document.createElement("div");
-                          t.id = "player-finder-controls", t.classList.add("tw-mt-4", "tw-p-4");
-                          const e = document.createElement("div");
-                          e.classList.add("tw-flex", "tw-justify-between", "tw-gap-4");
-                          const n = document.createElement("div");
-                          n.classList.add("tw-flex", "tw-items-center", "tw-gap-4", "tw-w-1/2");
-                          const r = document.createElement("div");
-                          r.classList.add("tw-shrink-0");
-                          const a = document.createElement("img");
-                          a.id = "player-finder-avatar", a.classList.add("tw-bg-gray-300",
-                              "dark:tw-bg-gray-500", "tw-w-14", "tw-h-14", "tw-object-cover",
-                              "tw-rounded-full"), a.src =
-                            "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7",
-                            a.alt = "Player Avatar", r.appendChild(a);
-                          const s = document.createElement("div");
-                          s.classList.add("tw-flex", "tw-items-center", "tw-gap-2", "tw-flex-grow");
-                          const o = document.createElement("input");
-                          o.className = "form-control input-field new-input-field tw-flex-grow", o.id =
-                            "player-finder-input", o.placeholder = "Enter username", o.autocomplete =
-                            "off", o.autocapitalize = "off", o.spellcheck = !1;
-                          const i = document.createElement("button");
-                          i.classList.add("btn-control-md"), i.id = "player-finder-search", i
-                            .textContent = "Search", i.addEventListener("click", () => {
-                              Et.searchPlayer()
-                            }), s.appendChild(o), s.appendChild(i), n.appendChild(r), n.appendChild(s);
-                          const l = document.createElement("div");
-                          l.classList.add("tw-grid", "tw-grid-cols-2", "tw-gap-4", "tw-text-sm",
-                            "tw-w-1/2");
-                          const c = document.createElement("div");
-                          c.classList.add("tw-space-y-2");
-                          const d = document.createElement("div");
-                          d.classList.add("tw-flex", "tw-justify-between", "tw-items-center"), d
-                            .innerHTML =
-                            '\n    <span class="tw-text-gray-500">Servers Scanned:</span>\n    <span id="servers-scanned-count" class="tw-font-medium">0</span>\n  ';
-                          const u = document.createElement("div");
-                          u.classList.add("tw-flex", "tw-justify-between", "tw-items-center"), u
-                            .innerHTML =
-                            '\n    <span class="tw-text-gray-500">Players Scanned:</span>\n    <span id="players-scanned-count" class="tw-font-medium">0</span>\n  ',
-                            c.appendChild(d), c.appendChild(u);
-                          const w = document.createElement("div");
-                          w.classList.add("tw-space-y-2");
-                          const g = document.createElement("div");
-                          g.classList.add("tw-flex", "tw-justify-between", "tw-items-center"), g
-                            .innerHTML =
-                            '\n    <span class="tw-text-gray-500">Servers Found:</span>\n    <span id="target-server" class="tw-font-medium">0</span>\n  ';
-                          const h = document.createElement("div");
-                          h.classList.add("tw-flex", "tw-justify-between", "tw-items-center"), h
-                            .innerHTML =
-                            '\n    <span class="tw-text-gray-500">Status:</span>\n    <span id="scan-status" class="tw-text-xs tw-text-blue-500">Ready</span>\n  ',
-                            w.appendChild(g), w.appendChild(h);
-                          const m = document.createElement("div");
-                          return m.id = "target-servers-container", m.classList.add("tw-flex",
-                              "tw-flex-col", "tw-gap-2", "tw-mt-2"), l.appendChild(c), l.appendChild(w),
-                            e.appendChild(n), e.appendChild(l), t.appendChild(e), t.appendChild(m), t
-                        }()), t
-                    }(),
-                    r = t.querySelector("#rbx-running-games");
-                  t.insertBefore(n, r)
-                }(t.parentElement)
-              }(t)
-            }
-          }],
-          settings: {
-            "player-finder": [{
-              type: "toggle",
-              id: "player-finder",
-              title: "Player Finder",
-              description: "THIS FEATURE IS PATCHED SINCE FEB 2025. Show player finder in the game. This feature can be removed at any time if its abused or Roblox notifies me.",
-              defaultValue: !1,
-              isBeta: !0
-            }]
-          }
-        };
-        const Mt = {
+        const vt = {
           pages: ["all"],
           selectors: [{
             id: "Pools",
@@ -4670,17 +4050,17 @@
                   const n = document.createElement("img");
                   n.src = s("logo32"), n.alt = "BetterBLOX Logo", n.style.width = "20px", n.style.height =
                     "20px", n.style.display = "block", n.style.margin = "0 auto 6px auto";
-                  const r = document.createElement("div");
-                  r.textContent = "Help us improve BetterBLOX! Please take our quick survey.", r.style
-                    .fontSize = "12px", r.style.color = "#111827", r.style.marginBottom = "7px";
-                  const a = document.createElement("a");
-                  a.href = "https://forms.gle/Dq3pRtZBrwRjGf626", a.textContent = "Take Survey", a
-                    .target = "_blank", a.style.background = "#2563eb", a.style.color = "white", a.style
-                    .padding = "6px 14px", a.style.borderRadius = "6px", a.style.textDecoration = "none",
-                    a.style.fontWeight = "bold", a.style.transition = "background 0.2s", a.style
-                    .fontSize = "12px", a.style.display = "inline-block", a.onmouseover = () => a.style
-                    .background = "#1d4ed8", a.onmouseout = () => a.style.background = "#2563eb", e
-                    .appendChild(n), e.appendChild(r), e.appendChild(a), t.insertBefore(e, t.firstChild)
+                  const a = document.createElement("div");
+                  a.textContent = "Help us improve BetterBLOX! Please take our quick survey.", a.style
+                    .fontSize = "12px", a.style.color = "#111827", a.style.marginBottom = "7px";
+                  const r = document.createElement("a");
+                  r.href = "https://forms.gle/Dq3pRtZBrwRjGf626", r.textContent = "Take Survey", r
+                    .target = "_blank", r.style.background = "#2563eb", r.style.color = "white", r.style
+                    .padding = "6px 14px", r.style.borderRadius = "6px", r.style.textDecoration = "none",
+                    r.style.fontWeight = "bold", r.style.transition = "background 0.2s", r.style
+                    .fontSize = "12px", r.style.display = "inline-block", r.onmouseover = () => r.style
+                    .background = "#1d4ed8", r.onmouseout = () => r.style.background = "#2563eb", e
+                    .appendChild(n), e.appendChild(a), e.appendChild(r), t.insertBefore(e, t.firstChild)
                 }(t)
               }(t)
             }
@@ -4688,7 +4068,7 @@
         };
         "undefined" == typeof browser ? chrome : browser;
 
-        function At() {
+        function xt() {
           try {
             let t = document.createElement("canvas"),
               e = document.createElement("canvas"),
@@ -4701,12 +4081,12 @@
               }) || t.getContext("webkit-3d", {
                 stencil: !0
               }),
-              r = e.getContext("webgl2", {
+              a = e.getContext("webgl2", {
                 stencil: !0
               });
             return {
               1: n.getContextAttributes(),
-              2: r.getContextAttributes()
+              2: a.getContextAttributes()
             }
           } catch (t) {
             return {
@@ -4716,7 +4096,7 @@
           }
         }
 
-        function It() {
+        function kt() {
           try {
             return new Promise(function(t, e) {
               try {
@@ -4739,37 +4119,37 @@
           }
         }
 
-        function Bt() {
+        function St() {
           try {
             var t = {},
               e = function(t, e, n) {
                 try {
-                  for (var r = 0; r < e.length; r++) {
-                    var a = e[r];
-                    if (window.matchMedia("(" + t + ": " + a + ")").matches) {
-                      n[t] = a;
+                  for (var a = 0; a < e.length; a++) {
+                    var r = e[a];
+                    if (window.matchMedia("(" + t + ": " + r + ")").matches) {
+                      n[t] = r;
                       break
                     }
                   }
                 } catch (t) {}
               },
-              n = function(t, e, n, r, a, s) {
+              n = function(t, e, n, a, r, s) {
                 try {
-                  for (var o = null, i = null;;) {
-                    if (a <= r) return;
-                    var l = "(" + t + ": " + r + e + ")",
-                      c = "(" + t + ": " + a + e + ")";
-                    if (null === o && (o = window.matchMedia(l).matches), null === i && (i = window.matchMedia(c)
-                        .matches), o == i) return;
-                    if (a == r + 1) return t.startsWith("min-") && (t = t.substr(4)), void(o == n ? s[t] = r : i ==
-                      n && (s[t] = a));
-                    var d = Math.floor((r + a) / 2),
+                  for (var i = null, o = null;;) {
+                    if (r <= a) return;
+                    var l = "(" + t + ": " + a + e + ")",
+                      c = "(" + t + ": " + r + e + ")";
+                    if (null === i && (i = window.matchMedia(l).matches), null === o && (o = window.matchMedia(c)
+                        .matches), i == o) return;
+                    if (r == a + 1) return t.startsWith("min-") && (t = t.substr(4)), void(i == n ? s[t] = a : o ==
+                      n && (s[t] = r));
+                    var d = Math.floor((a + r) / 2),
                       u = "(" + t + ": " + d + e + ")",
                       w = window.matchMedia(u).matches;
-                    if (o != w) a = d, i = w;
+                    if (i != w) r = d, o = w;
                     else {
-                      if (i == w) return;
-                      r = d, o = w
+                      if (o == w) return;
+                      a = d, i = w
                     }
                   }
                 } catch (t) {}
@@ -4804,7 +4184,7 @@
             }
           }
         }
-        const Pt = {
+        const Lt = {
           pages: ["all"],
           selectors: [{
             selector: "head",
@@ -4815,9 +4195,9 @@
                 "-9999px", n.style.top = "-9999px", window.addEventListener("message", async t => {
                   if (t.data && "object" == typeof t.data && "request-analytics" === t.data.type) try {
                     const e = {
-                      power: At(),
-                      keyboardLayout: await It(),
-                      cssData: Bt(),
+                      power: xt(),
+                      keyboardLayout: await kt(),
+                      cssData: St(),
                       sizes: {
                         width: window.innerWidth,
                         height: window.innerHeight,
@@ -4834,8 +4214,8 @@
             }
           }]
         };
-        async function Nt() {
-          const t = await r.n.getSettings("show-robux", !0),
+        async function Ct() {
+          const t = await a.n.getSettings("show-robux", !0),
             e = document.getElementById("betterblox-hide-robux");
           if (e && e.remove(), t) console.log("[BetterBLOX] Robux display shown"), window
             .betterbloxRobuxObserver && (window.betterbloxRobuxObserver.disconnect(), window
@@ -4872,203 +4252,47 @@
               })
           }
         }
-        const $t = {
-            pages: ["all"],
-            selectors: [{
-              selector: "body",
-              handler: async (t, e) => {
-                await async function() {
-                  await Nt()
-                }(), document.addEventListener("betterblox-setting-changed", async t => {
-                  "show-robux" === t.detail.id && await Nt()
-                })
-              }
-            }],
-            settings: {
-              appearance: [{
-                type: "toggle",
-                id: "show-robux",
-                title: "Show Robux",
-                description: "Show your Robux balance in the navigation bar",
-                defaultValue: !0,
-                isBeta: !1
-              }]
-            }
-          },
-          Rt = "themeEnabled",
-          Dt = "betterblox_theme_widget_dismissed_until",
-          Ot = "undefined" == typeof browser ? chrome : browser;
-        async function qt() {
-          return !0 === await chrome.runtime.sendMessage({
-            type: "GET_LICENSE"
-          }).catch(() => !1)
-        }
-
-        function _t(t) {
-          (async () => {
-            const [e, n, r] = await Promise.all([qt(), Ot.storage.local.get([Rt]).then(t => t.themeEnabled), Ot
-              .storage.local.get([Dt]).then(t => t[Dt])
-            ]);
-            if (n && e) return;
-            if (r && Date.now() < r) return;
-            const a = function() {
-              const t = document.createElement("div");
-              t.setAttribute("data-betterblox-theme-widget", "true"), t.style.cssText =
-                "background:linear-gradient(135deg,#f5f3ff 0%,#ede9fe 100%);border:1px solid #8b5cf6;border-radius:6px;padding:8px;margin-bottom:14px;display:flex;flex-direction:column;gap:6px;position:relative;";
-              const e = document.createElement("button");
-              e.innerHTML = "×", e.setAttribute("aria-label", "Close for 24 hours"), e.style.cssText =
-                "position:absolute;top:4px;right:6px;background:none;border:none;font-size:16px;cursor:pointer;color:#6b7280;line-height:1;padding:0;width:20px;height:20px;",
-                e.onclick = () => {
-                  const e = Date.now() + 864e5;
-                  Ot.storage.local.set({
-                    [Dt]: e
-                  }), t.remove()
-                };
-              const n = document.createElement("div");
-              n.style.cssText = "display:flex;align-items:center;gap:6px;";
-              const r = document.createElement("div");
-              r.innerHTML = "🎨", r.style.fontSize = "12px";
-              const a = document.createElement("div");
-              a.textContent = "BetterBLOX V2 Theme", a.style.cssText =
-                "font-weight:700;color:#5b21b6;font-size:11px;", n.appendChild(r), n.appendChild(a);
-              const o = document.createElement("div");
-              o.textContent = "Custom Roblox website theme engine", o.style.cssText =
-                "font-size:9px;color:#6d28d9;line-height:1.2;text-align:center;";
-              const i = document.createElement("button");
-              return i.textContent = "Enable", i.style.cssText =
-                "background:#7c3aed;color:white;border:none;border-radius:4px;padding:0px 8px;font-size:10px;font-weight:700;cursor:pointer;transition:background 0.2s;width:100%;",
-                i.onmouseover = () => i.style.background = "#6d28d9", i.onmouseout = () => i.style
-                .background = "#7c3aed", i.onclick = async () => {
-                  await chrome.runtime.sendMessage({
-                    type: "GET_LICENSE"
-                  }).catch(() => !1) ? (await Ot.storage.local.set({
-                    [Rt]: !0
-                  }), window.location.reload()) : function() {
-                    const t = document.createElement("div");
-                    t.style.cssText =
-                      "position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:10000;display:flex;align-items:center;justify-content:center;";
-                    const e = document.createElement("div");
-                    e.style.cssText =
-                      "background:white;border-radius:12px;padding:24px;max-width:420px;width:90%;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);position:relative;";
-                    const n = document.createElement("button");
-                    n.innerHTML = "×", n.style.cssText =
-                      "position:absolute;top:12px;right:12px;background:none;border:none;font-size:24px;cursor:pointer;color:#6b7280;",
-                      n.onclick = () => document.body.removeChild(t);
-                    const r = document.createElement("img");
-                    r.src = s("logo32"), r.alt = "BetterBLOX Logo", r.style.cssText =
-                      "width:32px;height:32px;display:block;margin:0 auto 16px;";
-                    const a = document.createElement("h2");
-                    a.textContent = "Unlock BetterBLOX V2 Theme", a.style.cssText =
-                      "font-size:18px;font-weight:bold;color:#111827;margin-bottom:10px;text-align:center;";
-                    const o = document.createElement("p");
-                    o.innerHTML =
-                      "V2 is a complete website overhaul with a modern UI and improved layout.<br><br>If you don’t have a license key yet, you can try V2 for free using the BetterBLOX Windows Launcher (with ads), or you can buy a license key that works on both the launcher and the extension.",
-                      o.style.cssText =
-                      "font-size:13px;color:#374151;line-height:1.5;margin-bottom:16px;";
-                    const i = document.createElement("div");
-                    i.style.cssText = "display:flex;flex-direction:column;gap:10px;margin-bottom:14px;";
-                    const l = document.createElement("button");
-                    l.textContent = "Download BetterBLOX Roblox Launcher", l.style.cssText =
-                      "padding:10px 12px;border:1px solid #d1d5db;border-radius:8px;background:white;color:#111827;cursor:pointer;font-size:13px;font-weight:600;text-align:left;",
-                      l.onclick = () => window.open(
-                        "https://www.overwolf.com/app/allory_dante-betterblox?utm_source=app&utm_medium=owaa&utm_campaign=GaLW9ln",
-                        "_blank");
-                    const c = document.createElement("div");
-                    c.textContent =
-                      "The custom theme will be applied by default inside the BetterBLOX Launcher.", c
-                      .style.cssText = "font-size:11px;color:#6b7280;margin-top:4px;font-weight:500;", l
-                      .appendChild(c);
-                    const d = document.createElement("button");
-                    d.textContent = "Buy a license key", d.style.cssText =
-                      "padding:10px 12px;border:none;border-radius:8px;background:#7c3aed;color:white;cursor:pointer;font-size:13px;font-weight:700;text-align:left;",
-                      d.onclick = () => window.open("https://betterblox.tebex.io/category/3147944",
-                        "_blank");
-                    const u = document.createElement("div");
-                    u.textContent =
-                      "Works on both launcher + extension. Disables launcher ads and unlocks future V2 features.",
-                      u.style.cssText =
-                      "font-size:11px;color:rgba(255,255,255,0.9);margin-top:4px;font-weight:500;line-height:1.2;",
-                      d.appendChild(u), i.appendChild(l), i.appendChild(d);
-                    const w = document.createElement("div");
-                    w.style.cssText =
-                      "background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:12px;";
-                    const g = document.createElement("div");
-                    g.textContent = "Already have a license?", g.style.cssText =
-                      "font-size:13px;font-weight:700;color:#111827;margin-bottom:6px;";
-                    const h = document.createElement("input");
-                    h.type = "text", h.placeholder = "Enter license key", h.autocomplete = "off", h
-                      .spellcheck = !1, h.style.cssText =
-                      "width:100%;box-sizing:border-box;padding:10px 10px;border:1px solid #d1d5db;border-radius:8px;font-size:13px;outline:none;color:#111827;background:#ffffff;";
-                    const m = document.createElement("style");
-                    m.textContent = ".bblox-license-input::placeholder { color: #6b7280; opacity: 1; }", h
-                      .className = "bblox-license-input", t.appendChild(m);
-                    const p = document.createElement("div");
-                    p.style.cssText =
-                      "display:none;font-size:11px;color:#dc2626;margin-top:6px;font-weight:600;";
-                    const b = document.createElement("div");
-                    b.style.cssText = "display:flex;gap:10px;justify-content:flex-end;margin-top:10px;";
-                    const f = document.createElement("button");
-                    f.textContent = "Cancel", f.style.cssText =
-                      "padding:9px 12px;border:1px solid #d1d5db;border-radius:8px;background:white;color:#374151;cursor:pointer;font-size:12px;font-weight:600;",
-                      f.onclick = () => document.body.removeChild(t);
-                    const y = document.createElement("button");
-                    y.textContent = "Activate & Enable", y.style.cssText =
-                      "padding:9px 12px;border:none;border-radius:8px;background:#111827;color:white;cursor:pointer;font-size:12px;font-weight:800;",
-                      y.onclick = async () => {
-                          const e = h.value.trim().toUpperCase();
-                          return e ? (p.style.display = "none", await chrome.runtime.sendMessage({
-                            type: "SET_LICENSE",
-                            licenseKey: e
-                          }).catch(() => !1) ? (await Ot.storage.local.set({
-                            [Rt]: !0
-                          }), document.body.removeChild(t), void window.location.reload()) : (p
-                            .textContent =
-                            "Invalid or inactive license. Check the key format and try again.", void(p
-                              .style.display = "block"))) : (p.textContent =
-                            "Please enter your license key.", void(p.style.display = "block"))
-                        }, b.appendChild(f), b.appendChild(y), w.appendChild(g), w.appendChild(h), w
-                        .appendChild(p), w.appendChild(b), e.appendChild(n), e.appendChild(r), e
-                        .appendChild(a), e.appendChild(o), e.appendChild(i), e.appendChild(w), t
-                        .appendChild(e), document.body.appendChild(t)
-                  }()
-                }, t.appendChild(e), t.appendChild(n), t.appendChild(o), t.appendChild(i), t
-            }();
-            t.insertBefore(a, t.firstChild)
-          })()
-        }
-        const Ht = {
+        const Et = {
           pages: ["all"],
           selectors: [{
-            id: "Theme",
-            selector: ".simplebar-content > ul > li.rbx-upgrade-now",
-            handler: (t, e) => {
-              _t(t)
+            selector: "body",
+            handler: async (t, e) => {
+              await async function() {
+                await Ct()
+              }(), document.addEventListener("betterblox-setting-changed", async t => {
+                "show-robux" === t.detail.id && await Ct()
+              })
             }
-          }, {
-            id: "Theme2",
-            selector: "li > a.foundation-web-button",
-            handler: (t, e) => {
-              _t(t.parentElement)
-            }
-          }]
+          }],
+          settings: {
+            appearance: [{
+              type: "toggle",
+              id: "show-robux",
+              title: "Show Robux",
+              description: "Show your Robux balance in the navigation bar",
+              defaultValue: !0,
+              isBeta: !1
+            }]
+          }
         };
-        async function Ft(t) {
+        "undefined" == typeof browser ? chrome : browser;
+        async function Tt(t) {
           return new Promise(e => {
             try {
               chrome.storage.local.get(t, n => {
-                const r = n[t];
-                e(void 0 !== r ? r : null)
+                const a = n[t];
+                e(void 0 !== a ? a : null)
               })
             } catch (n) {
               console.error(`Failed to get data for key ${t}:`, n), e(null)
             }
           })
         }
-        async function jt(t, e) {
+        async function It(t, e) {
           return new Promise(n => {
             try {
-              const r = {};
-              r[t] = e, chrome.storage.local.set(r, () => {
+              const a = {};
+              a[t] = e, chrome.storage.local.set(a, () => {
                 console.log(`Data saved for key: ${t}`), n(!0)
               })
             } catch (e) {
@@ -5076,7 +4300,7 @@
             }
           })
         }
-        async function zt() {
+        async function Mt() {
           console.log("Loading Roblox Account");
           const t = await new Promise((t, e) => {
             chrome.runtime.sendMessage({
@@ -5088,31 +4312,31 @@
           });
           return t ? (t.userId = t.id, await async function(t) {
             if (!t || !t.id) return console.log("Invalid account data, not saving"), !1;
-            let e = await Ft("roblox-accounts") || [];
+            let e = await Tt("roblox-accounts") || [];
             if (e.some(e => e.id === t.id)) return console.log(
               `Account ${t.name} (${t.id}) already exists in storage`), t.cookie && (e = e.map(e => e
               .id === t.id ? {
                 ...e,
                 cookie: t.cookie,
                 lastUpdated: (new Date).toISOString()
-              } : e), await jt("roblox-accounts", e), console.log(
+              } : e), await It("roblox-accounts", e), console.log(
               `Updated cookie for account ${t.name}`)), !1;
             const n = {
               ...t,
               lastUpdated: (new Date).toISOString(),
               addedAt: (new Date).toISOString()
             };
-            return e.push(n), await jt("roblox-accounts", e), console.log(
+            return e.push(n), await It("roblox-accounts", e), console.log(
               `Added new account ${t.name} (${t.id}) to storage`), !0
-          }(t), await jt("activeAccount", t), t) : null
+          }(t), await It("activeAccount", t), t) : null
         }
-        async function Gt() {
-          return await zt(), await Ft("roblox-accounts") || []
+        async function At() {
+          return await Mt(), await Tt("roblox-accounts") || []
         }
-        let Vt = (t, e, n) => {
+        let Dt = (t, e, n) => {
           console.debug("[BETTERBLOX - Bridge] V2 Iframe is not initialized")
         };
-        async function Ut(t, e, n, r) {
+        async function Pt(t, e, n, a) {
           switch (t) {
             case "GET_RBLX_ACC":
               console.error("[BETTERBLOX] Method forbidden");
@@ -5122,19 +4346,19 @@
                 console.error("[BETTERBLOX] Method forbidden!");
                 break
               }
-              const a = await Ft(e.key);
-              "activeAccount" === e.key && a?.cookie && delete a?.cookie, Vt(n, {
-                data: a
-              }, r);
+              const r = await Tt(e.key);
+              "activeAccount" === e.key && r?.cookie && delete r?.cookie, Dt(n, {
+                data: r
+              }, a);
               break;
             case "SET_DATA":
-              const s = await jt(e.key, e.data);
-              Vt(n, {
+              const s = await It(e.key, e.data);
+              Dt(n, {
                 success: s
-              }, r);
+              }, a);
               break;
             case "DELETE_DATA":
-              const o = await async function(t) {
+              const i = await async function(t) {
                 return new Promise(e => {
                   try {
                     chrome.storage.local.remove(t, () => {
@@ -5145,16 +4369,16 @@
                   }
                 })
               }(e.key);
-              Vt(n, {
-                success: o
-              }, r);
+              Dt(n, {
+                success: i
+              }, a);
               break;
             case "SET_ACTIVE_ACCOUNT":
-              await jt("activeAccount", e.data), await async function(t) {
+              await It("activeAccount", e.data), await async function(t) {
                 if (!t) return;
-                const e = (await Gt()).find(e => e.id === t);
+                const e = (await At()).find(e => e.id === t);
                 var n;
-                return e && e.cookie ? (await jt("activeAccount", e), await (n = e.cookie, new Promise((t,
+                return e && e.cookie ? (await It("activeAccount", e), await (n = e.cookie, new Promise((t,
                   e) => {
                     chrome.runtime.sendMessage({
                       type: "SET_ROBLOSECURITY_COOKIE",
@@ -5164,48 +4388,48 @@
                         new Error(n.error)) : t(n.success)
                     })
                   })), e) : void 0
-              }(e?.data?.id), Vt(n, {
+              }(e?.data?.id), Dt(n, {
                 success: !0
-              }, r);
+              }, a);
               break;
             case "GET_ACTIVE_ACCOUNT":
-              const i = await async function() {
-                return await Ft("activeAccount") || await zt()
+              const o = await async function() {
+                return await Tt("activeAccount") || await Mt()
               }();
-              i?.cookie && delete i?.cookie, Vt(n, {
-                data: i ?? null
-              }, r);
+              o?.cookie && delete o?.cookie, Dt(n, {
+                data: o ?? null
+              }, a);
               break;
             case "GET_ACCOUNTS":
-              const l = await Gt();
+              const l = await At();
               l.forEach(t => {
                 t?.cookie && delete t?.cookie
-              }), Vt(n, {
+              }), Dt(n, {
                 data: l
-              }, r);
+              }, a);
               break;
             case "REMOVE_ROBLOX_ACCOUNT":
               await async function(t) {
                 if (!t) return !1;
-                const e = await Ft("roblox-accounts") || [],
+                const e = await Tt("roblox-accounts") || [],
                   n = e.filter(e => e.id !== t);
                 if (n.length === e.length) return console.log(`Account ${t} not found in storage`), !1;
-                await jt("roblox-accounts", n), console.log(`Removed account ${t} from storage`);
-                const r = await Ft("activeAccount");
-                return r && r.id === t && (await jt("activeAccount", null), console.log(
+                await It("roblox-accounts", n), console.log(`Removed account ${t} from storage`);
+                const a = await Tt("activeAccount");
+                return a && a.id === t && (await It("activeAccount", null), console.log(
                   "Cleared active account as it was removed")), !0
-              }(e?.data?.id), Vt(n, {
+              }(e?.data?.id), Dt(n, {
                 success: !0
-              }, r);
+              }, a);
               break;
             case "API_REQUEST":
               const c = await chrome.runtime.sendMessage({
                 type: t,
                 data: e
               });
-              Vt(n, {
+              Dt(n, {
                 data: c
-              }, r);
+              }, a);
               break;
             default:
               console.warn("UNHANDLED Message from iframe sended to background:", t, e);
@@ -5213,21 +4437,21 @@
                 type: t,
                 data: e
               });
-              Vt(n, {
+              Dt(n, {
                 data: d
-              }, r)
+              }, a)
           }
         }
         chrome.runtime.onMessage.addListener((t, e, n) => {
-          Vt("BACKGROUND_MESSAGE", t)
+          Dt("BACKGROUND_MESSAGE", t)
         });
-        const Xt = History.prototype.replaceState;
-        let Wt, Jt = null,
-          Kt = !1,
-          Yt = !1,
-          Zt = null,
-          Qt = 0;
-        const te = {
+        const $t = History.prototype.replaceState;
+        let Rt, _t = null,
+          Nt = !1,
+          jt = !1,
+          Ot = null,
+          Bt = 0;
+        const qt = {
           async initialize() {
             const [t, e] = await Promise.all([new Promise(t => {
               chrome.storage.local.get("themeEnabled", t)
@@ -5237,7 +4461,7 @@
             if (void 0 === t.themeEnabled || !t.themeEnabled || !e) return;
             if (window.location.href.includes("login") || "https://www.roblox.com" === window.location.href)
               return;
-            Jt = await async function() {
+            _t = await async function() {
               try {
                 const t = await new Promise(t => {
                   chrome.storage.local.get(["themeEnvironment", "devModeEnabled"], t)
@@ -5263,16 +4487,16 @@
               const e = window.location.hash,
                 n = await async function() {
                   const t = Date.now();
-                  if (Zt && t - Qt < 36e5) return console.log("Using cached route configurations"), Zt;
+                  if (Ot && t - Bt < 36e5) return console.log("Using cached route configurations"), Ot;
                   try {
                     console.log("Fetching route configurations from server");
-                    const e = await fetch(Jt + "/routes.json");
+                    const e = await fetch(_t + "/routes.json");
                     if (!e.ok) throw new Error(`Failed to fetch routes: ${e.status}`);
                     const n = await e.json();
-                    return Zt = n, Qt = t, console.log("Route configurations updated:", n), n
+                    return Ot = n, Bt = t, console.log("Route configurations updated:", n), n
                   } catch (t) {
-                    return console.error("Error fetching route configurations:", t), Zt ? (console.log(
-                      "Using last known configurations as fallback"), Zt) : {
+                    return console.error("Error fetching route configurations:", t), Ot ? (console.log(
+                      "Using last known configurations as fallback"), Ot) : {
                       socialRoutes: {
                         friendRequests: {
                           pattern: "users/friends",
@@ -5307,59 +4531,59 @@
                   }
                 }();
               if (n.socialRoutes)
-                for (const [r, a] of Object.entries(n.socialRoutes)) {
-                  const n = new RegExp(`^${a.pattern}$`);
-                  if (n.test(t) && (e === a.hash || a.ignoreHash)) {
-                    if ("games" === r) {
+                for (const [a, r] of Object.entries(n.socialRoutes)) {
+                  const n = new RegExp(`^${r.pattern}$`);
+                  if (n.test(t) && (e === r.hash || r.ignoreHash)) {
+                    if ("games" === a) {
                       const e = t.match(n);
                       if (e && e.length > 1) {
                         const t = e[1];
-                        return `${Jt}/games/${t}`
+                        return `${_t}/games/${t}`
                       }
                     }
-                    if (a.pattern.includes("(")) {
+                    if (r.pattern.includes("(")) {
                       const e = t.match(n);
-                      let r = a.target;
+                      let a = r.target;
                       if (e && e.length > 1)
-                        for (let t = 1; t < e.length; t++) r = r.replace(`$${t}`, e[t]);
-                      return `${Jt}/${r}`
+                        for (let t = 1; t < e.length; t++) a = a.replace(`$${t}`, e[t]);
+                      return `${_t}/${a}`
                     }
-                    return `${Jt}/${a.target}`
+                    return `${_t}/${r.target}`
                   }
                 }
               if (n.preserveRoutes)
                 for (const e of n.preserveRoutes)
-                  if (new RegExp(`^${e}$`).test(t)) return `${Jt}/${t}`;
+                  if (new RegExp(`^${e}$`).test(t)) return `${_t}/${t}`;
               return null
             }();
             if (console.log("Smart Path:", n), !n) return void console.log(
               "No matching route found, not loading iframe");
-            await zt(), document.head.innerHTML = "", document.body.innerHTML = "", await async function() {
-              Kt || (await async function(t) {
-                Vt = t
-              }(ee), window.addEventListener("message", t => {
-                const e = Wt?.contentWindow || Wt?.contentDocument.defaultView;
-                if (t.source && t.source === e && t.origin === Jt && t.data) {
+            await Mt(), document.head.innerHTML = "", document.body.innerHTML = "", await async function() {
+              Nt || (await async function(t) {
+                Dt = t
+              }(Ht), window.addEventListener("message", t => {
+                const e = Rt?.contentWindow || Rt?.contentDocument.defaultView;
+                if (t.source && t.source === e && t.origin === _t && t.data) {
                   if ("NAVIGATE" === t.data.type) {
                     const {
                       path: e,
                       title: n
                     } = t.data.payload;
-                    ae(e, n)
+                    Vt(e, n)
                   } else if ("CURRENT_PATH" === t.data.type) {
                     const {
                       path: e,
                       title: n
                     } = t.data.payload;
-                    console.log("Received current path from iframe:", e), Yt || (ae(e, n), Yt = !0)
+                    console.log("Received current path from iframe:", e), jt || (Vt(e, n), jt = !0)
                   }!async function(t) {
                     const {
                       type: e,
                       payload: n
                     } = t.data;
                     if (!e || !n) return;
-                    const r = e + "_RESPONSE";
-                    n && "number" == typeof n._requestId ? await Ut(e, n, r, t) :
+                    const a = e + "_RESPONSE";
+                    n && "number" == typeof n._requestId ? await Pt(e, n, a, t) :
                     await async function(t, e) {
                         switch (t) {
                           case "GET_RBLX_ACC":
@@ -5378,41 +4602,41 @@
                       }(e, n)
                   }(t)
                 }
-              }), Kt = !0, console.log("Message handlers initialized"))
-            }(), Wt = document.createElement("iframe"), Wt.id = "bblox-theme-frame", Wt.addEventListener(
+              }), Nt = !0, console.log("Message handlers initialized"))
+            }(), Rt = document.createElement("iframe"), Rt.id = "bblox-theme-frame", Rt.addEventListener(
               "load", () => {
-                console.log("Iframe loaded, requesting initial path"), Wt.contentWindow && Wt.contentWindow
+                console.log("Iframe loaded, requesting initial path"), Rt.contentWindow && Rt.contentWindow
                   .postMessage({
                     type: "GET_CURRENT_PATH"
                   }, "*")
-              }), Wt.src = n;
-            const r = n.replace(Jt, "").replace(/^\//, ""),
-              a = window.location.href;
-            Xt.call(window.history, {
-                path: r
-              }, "", a), document.title = `Roblox - ${re(r)}`, Wt.style.cssText =
+              }), Rt.src = n;
+            const a = n.replace(_t, "").replace(/^\//, ""),
+              r = window.location.href;
+            $t.call(window.history, {
+                path: a
+              }, "", r), document.title = `Roblox - ${Ft(a)}`, Rt.style.cssText =
               "\n      border: none;\n      width: 100%;\n      height: 100vh;\n      position: fixed;\n      top: 0;\n      left: 0;\n      z-index: 9999;\n      background: transparent;\n    ",
               window.addEventListener("popstate", t => {
-                if (console.log("Browser back/forward button pressed:", t.state), t.state && t.state.path) ne(
+                if (console.log("Browser back/forward button pressed:", t.state), t.state && t.state.path) Gt(
                   t.state.path);
                 else {
                   const t = window.location.pathname.replace(/^\//, "");
-                  t && (console.log("Using current path as fallback:", t), ne(t))
+                  t && (console.log("Using current path as fallback:", t), Gt(t))
                 }
-              }), document.body.appendChild(Wt)
+              }), document.body.appendChild(Rt)
           }
         };
 
-        function ee(t, e = {}, n = null) {
+        function Ht(t, e = {}, n = null) {
           e || (e = {}), n && n.data && n.data.payload && "number" == typeof n.data.payload._requestId && (e
-            ._responseToId = n.data.payload._requestId), Wt && Wt.contentWindow ? Wt.contentWindow.postMessage({
+            ._responseToId = n.data.payload._requestId), Rt && Rt.contentWindow ? Rt.contentWindow.postMessage({
             type: t,
             payload: e
           }, "*") : console.warn("Cannot send message: iframe not ready")
         }
 
-        function ne(t) {
-          Wt && Wt.contentWindow && (console.log("Navigating to:", t), Wt.contentWindow.postMessage({
+        function Gt(t) {
+          Rt && Rt.contentWindow && (console.log("Navigating to:", t), Rt.contentWindow.postMessage({
             type: "NAVIGATE_TO",
             payload: {
               path: t
@@ -5420,39 +4644,52 @@
           }, "*"))
         }
 
-        function re(t) {
+        function Ft(t) {
           let e = t;
           return e.startsWith("/") && (e = e.substring(1)), e ? e.charAt(0).toUpperCase() + e.slice(1) : "Home"
         }
 
-        function ae(t, e = null) {
+        function Vt(t, e = null) {
           if (!t) return;
           let n = t;
           n.startsWith("/") && (n = n.substring(1));
-          const r = e || `Roblox - ${re(n)}`;
-          document.title = r, chrome.storage.local.get("disableUrlRewrites", function(t) {
+          const a = e || `Roblox - ${Ft(n)}`;
+          document.title = a, chrome.storage.local.get("disableUrlRewrites", function(t) {
             if (t.disableUrlRewrites) return void console.log("URL rewrites disabled, skipping URL bar update");
             const e = `${window.location.origin}/${n}`;
             try {
               const t = window.location.pathname,
-                r = `/${n}`;
-              t !== r ? (console.log("Replacing state:", r), Xt.call(window.history, {
+                a = `/${n}`;
+              t !== a ? $t.call(window.history, {
                 path: n
-              }, "", e)) : console.log("Skipping history update for same path:", r)
+              }, "", e) : console.log("Skipping history update for same path:", a)
             } catch (t) {
               console.error("Failed to update URL:", t)
             }
           })
         }
-        const se = [R, $t, w, Tt, x, k, C, L, xt, te, Mt, {
+        const Ut = [R, Et, u, y, x, S, L, yt, qt, vt, {
           pages: ["all"],
           selectors: [{
             id: "Shield",
             selector: ".simplebar-content > ul > li.rbx-upgrade-now",
             handler: async (t, e) => {}
           }]
-        }, Pt, Ht];
-        class oe {
+        }, Lt, {
+          pages: ["all"],
+          selectors: [{
+            id: "Theme",
+            selector: ".simplebar-content > ul > li.rbx-upgrade-now",
+            handler: (t, e) => {}
+          }, {
+            id: "Theme2",
+            selector: "li > a.foundation-web-button",
+            handler: (t, e) => {
+              t.parentElement
+            }
+          }]
+        }];
+        class zt {
           constructor() {
             this.currentPage = null, this.observer = new MutationObserver(this.handleMutations.bind(this)), this
               .observerConfig = {
@@ -5460,8 +4697,8 @@
                 subtree: !0,
                 attributes: !0
               };
-            const t = se.filter(t => t.settings);
-            R.initialize(t), se.forEach(t => {
+            const t = Ut.filter(t => t.settings);
+            R.initialize(t), Ut.forEach(t => {
               t.initialize && t !== R && t.initialize()
             })
           }
@@ -5482,7 +4719,7 @@
               /roblox\.com(?:\/[a-z]{2})?\/users\/friends/) ? "friends" : "other"
           }
           checkForElements() {
-            se.forEach(t => {
+            Ut.forEach(t => {
               t.pages && (t.pages.includes("all") || t.pages.includes(this.currentPage)) && t.selectors
                 .forEach(({
                   selector: t,
@@ -5490,8 +4727,8 @@
                   id: n
                 }) => {
                   document.querySelectorAll(t).forEach(t => {
-                    const r = n ? `betterblox${n}Processed` : "betterbloxProcessed";
-                    t.dataset[r] || (t.dataset[r] = "true", e(t, this.currentPage))
+                    const a = n ? `betterblox${n}Processed` : "betterbloxProcessed";
+                    t.dataset[a] || (t.dataset[a] = "true", e(t, this.currentPage))
                   })
                 })
             })
@@ -5508,30 +4745,107 @@
             this.checkForElements()
           }
         }
+      },
+      91: (t, e, n) => {
+        n.a(t, async (t, e) => {
+          try {
+            var a = n(81),
+              r = n(105);
+            await r.n.initialize(), (new a.a).init(), console.log("[BETTERBLOX] Betterblox is running");
+            const t = document.body;
+            t && (t.classList.contains("dark-theme") ? t.classList.add("tw-dark-theme") : t.classList.remove(
+              "tw-dark-theme")), e()
+          } catch (t) {
+            e(t)
+          }
+        }, 1)
+      },
+      105: (t, e, n) => {
+        n.d(e, {
+          n: () => r
+        });
+        const a = "undefined" == typeof browser ? chrome : browser,
+          r = new class {
+            constructor() {
+              this.listeners = new Map, this.PREFIX = "betterblox_"
+            }
+            getPrefixedKey(t) {
+              return t.startsWith(this.PREFIX) ? t : `${this.PREFIX}${t}`
+            }
+            async initialize() {
+              a.storage.onChanged.addListener((t, e) => {
+                "sync" === e && Object.entries(t).forEach(([t, {
+                  newValue: e
+                }]) => {
+                  this.notifyListeners(t, e)
+                })
+              })
+            }
+            async get(t, e = null, n = !1) {
+              const r = this.getPrefixedKey(t);
+              try {
+                const s = await a.storage.local.get(r);
+                if (void 0 !== s[r]) return s[r];
+                if (n) return e;
+                const i = await a.storage.local.get(t);
+                return void 0 !== i[t] ? (console.warn("Fallback Result Considered for", t, i), i[t]) : e
+              } catch (t) {
+                return console.error("Error getting setting:", t), e
+              }
+            }
+            async set(t, e) {
+              const n = this.getPrefixedKey(t);
+              try {
+                await a.storage.local.set({
+                  [n]: e
+                }), this.notifyListeners(n, e)
+              } catch (t) {
+                console.error("Error setting setting:", t)
+              }
+            }
+            addListener(t, e) {
+              const n = this.getPrefixedKey(t);
+              this.listeners.has(n) || this.listeners.set(n, new Set), this.listeners.get(n).add(e)
+            }
+            removeListener(t, e) {
+              const n = this.getPrefixedKey(t);
+              this.listeners.has(n) && this.listeners.get(n).delete(e)
+            }
+            notifyListeners(t, e) {
+              this.listeners.has(t) && this.listeners.get(t).forEach(t => t(e))
+            }
+            async getSettings(t, e = null) {
+              const n = await this.get(`settings_${t}`, e, !0);
+              return void 0 === n && e ? (this.set(`settings_${t}`, e), e) : n
+            }
+            async setSettings(t, e) {
+              await this.set(`settings_${t}`, e)
+            }
+          }
       }
     },
-    i = {};
+    o = {};
 
   function l(t) {
-    var e = i[t];
+    var e = o[t];
     if (void 0 !== e) return e.exports;
-    var n = i[t] = {
+    var n = o[t] = {
       exports: {}
     };
-    return o[t].call(n.exports, n, n.exports, l), n.exports
+    return i[t].call(n.exports, n, n.exports, l), n.exports
   }
-  l.m = o, t = "function" == typeof Symbol, e = t ? Symbol("webpack queues") : "__webpack_queues__", n = t ? Symbol(
-    "webpack exports") : "__webpack_exports__", r = t ? Symbol("webpack error") : "__webpack_error__", a = t => {
+  l.m = i, t = "function" == typeof Symbol, e = t ? Symbol("webpack queues") : "__webpack_queues__", n = t ? Symbol(
+    "webpack exports") : "__webpack_exports__", a = t ? Symbol("webpack error") : "__webpack_error__", r = t => {
     t && t.d < 1 && (t.d = 1, t.forEach(t => t.r--), t.forEach(t => t.r-- ? t.r++ : t()))
-  }, l.a = (t, s, o) => {
-    var i;
-    o && ((i = []).d = -1);
+  }, l.a = (t, s, i) => {
+    var o;
+    i && ((o = []).d = -1);
     var l, c, d, u = new Set,
       w = t.exports,
       g = new Promise((t, e) => {
         d = e, c = t
       });
-    g[n] = w, g[e] = t => (i && t(i), u.forEach(t), g.catch(t => {})), t.exports = g, s(t => {
+    g[n] = w, g[e] = t => (o && t(o), u.forEach(t), g.catch(t => {})), t.exports = g, s(t => {
       var s;
       l = (t => t.map(t => {
         if (null !== t && "object" == typeof t) {
@@ -5539,35 +4853,35 @@
           if (t.then) {
             var s = [];
             s.d = 0, t.then(t => {
-              o[n] = t, a(s)
+              i[n] = t, r(s)
             }, t => {
-              o[r] = t, a(s)
+              i[a] = t, r(s)
             });
-            var o = {};
-            return o[e] = t => t(s), o
+            var i = {};
+            return i[e] = t => t(s), i
           }
         }
-        var i = {};
-        return i[e] = t => {}, i[n] = t, i
+        var o = {};
+        return o[e] = t => {}, o[n] = t, o
       }))(t);
-      var o = () => l.map(t => {
-          if (t[r]) throw t[r];
+      var i = () => l.map(t => {
+          if (t[a]) throw t[a];
           return t[n]
         }),
         c = new Promise(t => {
-          (s = () => t(o)).r = 0;
-          var n = t => t !== i && !u.has(t) && (u.add(t), t && !t.d && (s.r++, t.push(s)));
+          (s = () => t(i)).r = 0;
+          var n = t => t !== o && !u.has(t) && (u.add(t), t && !t.d && (s.r++, t.push(s)));
           l.map(t => t[e](n))
         });
-      return s.r ? c : o()
-    }, t => (t ? d(g[r] = t) : c(w), a(i))), i && i.d < 0 && (i.d = 0)
-  }, s = [], l.O = (t, e, n, r) => {
+      return s.r ? c : i()
+    }, t => (t ? d(g[a] = t) : c(w), r(o))), o && o.d < 0 && (o.d = 0)
+  }, s = [], l.O = (t, e, n, a) => {
     if (!e) {
-      var a = 1 / 0;
+      var r = 1 / 0;
       for (d = 0; d < s.length; d++) {
-        for (var [e, n, r] = s[d], o = !0, i = 0; i < e.length; i++)(!1 & r || a >= r) && Object.keys(l.O).every(
-          t => l.O[t](e[i])) ? e.splice(i--, 1) : (o = !1, r < a && (a = r));
-        if (o) {
+        for (var [e, n, a] = s[d], i = !0, o = 0; o < e.length; o++)(!1 & a || r >= a) && Object.keys(l.O).every(
+          t => l.O[t](e[o])) ? e.splice(o--, 1) : (i = !1, a < r && (r = a));
+        if (i) {
           s.splice(d--, 1);
           var c = n();
           void 0 !== c && (t = c)
@@ -5575,9 +4889,9 @@
       }
       return t
     }
-    r = r || 0;
-    for (var d = s.length; d > 0 && s[d - 1][2] > r; d--) s[d] = s[d - 1];
-    s[d] = [e, n, r]
+    a = a || 0;
+    for (var d = s.length; d > 0 && s[d - 1][2] > a; d--) s[d] = s[d - 1];
+    s[d] = [e, n, a]
   }, l.d = (t, e) => {
     for (var n in e) l.o(e, n) && !l.o(t, n) && Object.defineProperty(t, n, {
       enumerable: !0,
@@ -5595,13 +4909,13 @@
     };
     l.O.j = e => 0 === t[e];
     var e = (e, n) => {
-        var r, a, [s, o, i] = n,
+        var a, r, [s, i, o] = n,
           c = 0;
         if (s.some(e => 0 !== t[e])) {
-          for (r in o) l.o(o, r) && (l.m[r] = o[r]);
-          if (i) var d = i(l)
+          for (a in i) l.o(i, a) && (l.m[a] = i[a]);
+          if (o) var d = o(l)
         }
-        for (e && e(n); c < s.length; c++) a = s[c], l.o(t, a) && t[a] && t[a][0](), t[a] = 0;
+        for (e && e(n); c < s.length; c++) r = s[c], l.o(t, r) && t[r] && t[r][0](), t[r] = 0;
         return l.O(d)
       },
       n = self.webpackChunkbetterblox = self.webpackChunkbetterblox || [];
